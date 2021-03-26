@@ -1132,8 +1132,8 @@ int main()
     <content><![CDATA[<p>上课笔记</p>
 <span id="more"></span>
 
-<h2 id="哈希函数和随机数"><a href="#哈希函数和随机数" class="headerlink" title="哈希函数和随机数"></a>哈希函数和随机数</h2><h3 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h3><h4 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h4><p>md5 32位<br>sha1 128 位 (常用)<br>目前使用 256 位</p>
-<p>明文小改，hash大变</p>
+<h2 id="哈希函数和随机数"><a href="#哈希函数和随机数" class="headerlink" title="哈希函数和随机数"></a>哈希函数和随机数</h2><h3 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h3><h4 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h4><p>md5 32个字符长度<br>sha1 128 个字符长度 (常用)</p>
+<p>要求：<code>明文小改，hash大变</code></p>
 <h4 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h4><h5 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h5><ol>
 <li>消息填充为512倍数（最后几位是 消息长度mod 512）</li>
 <li>等分</li>
@@ -1161,7 +1161,7 @@ int main()
 <li>Java.security.Secure.Random</li>
 </ol>
 <h4 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h4><p>攻击随机数使用环境</p>
-<h5 id="随机数池"><a href="#随机数池" class="headerlink" title="随机数池"></a>随机数池</h5><p>随机数不是使用时产生的，提前产生放在池中，所以呀，要保护随机数池</p>
+<h5 id="随机数池"><a href="#随机数池" class="headerlink" title="随机数池"></a>随机数池</h5><p>随机数不是使用时产生的，提前产生放在池中，所以呀，要保护随机数池，一般也会选择攻击随机数池</p>
 <h4 id="标准"><a href="#标准" class="headerlink" title="标准"></a>标准</h4><h5 id="随机性能监测"><a href="#随机性能监测" class="headerlink" title="随机性能监测"></a>随机性能监测</h5><ol>
 <li>《中华人民共和国密码行业标准》</li>
 <li>NIST SP800-22（2010-04）<ul>
