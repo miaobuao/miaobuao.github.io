@@ -1181,4 +1181,78 @@ int main()
         <tag>数据结构</tag>
       </tags>
   </entry>
+  <entry>
+    <title>STM32F4xx-库函数工程模板创建</title>
+    <url>/2021/03/30/STM32F4xx-%E5%BA%93%E5%87%BD%E6%95%B0%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA/</url>
+    <content><![CDATA[<p>记录遇到的小问题。</p>
+<span id="more"></span>
+
+<h2 id="下载模板文件"><a href="#下载模板文件" class="headerlink" title="下载模板文件"></a>下载模板文件</h2><p><a href="https://wwa.lanzous.com/ip3Grngmhmf">&gt;&gt;&gt;下载&lt;&lt;&lt;</a><br>确保安装了MDK_Keil5，解压模板文件之后进入USER文件夹内，打开<em>T2.uvprojx</em>即可</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>选择build之后报错，好长好长一串。</p>
+<ol>
+<li>需要在魔术棒的C/C++选项卡内的define中写上<code>STM32F40_41xxx,USE_STDPERIPH_DRIVER</code></li>
+<li>同样是在魔术棒中，target选项卡内，Code Generation框内的ARM Compiler下拉栏中，选择<code>Use default compiler version 5</code></li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>信息状态与攻防-信息安全</title>
+    <url>/2021/04/02/%E4%BF%A1%E6%81%AF%E7%8A%B6%E6%80%81%E4%B8%8E%E6%94%BB%E9%98%B2-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
+    <content><![CDATA[<p>攻击没有好坏之别，不存在没有漏洞的计算机</p>
+<span id="more"></span>
+
+<h2 id="信息的状态"><a href="#信息的状态" class="headerlink" title="信息的状态"></a>信息的状态</h2><ol>
+<li>Processing….加工处理</li>
+<li>Storage…….放着没动</li>
+<li>Transmission..传输中</li>
+</ol>
+<h3 id="Processing"><a href="#Processing" class="headerlink" title="Processing"></a>Processing</h3><p>数据在寄存器或者内存<br><strong>数据属于某一个进程</strong></p>
+<ul>
+<li>进程数据区</li>
+<li>堆栈区</li>
+<li>进程控制块</li>
+</ul>
+<p>缓冲区溢出攻击</p>
+<p>用findPass对winlogon.exe分析，找出登陆用户的账号密码</p>
+<h3 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h3><ol>
+<li>硬盘<ul>
+<li>数据在信箱（硬盘中）</li>
+</ul>
+</li>
+<li>移动设备</li>
+<li>文件形式存储</li>
+</ol>
+<p>硬盘存储分两块</p>
+<ol>
+<li>目录<ul>
+<li>地址</li>
+<li>文件名</li>
+<li>大小</li>
+<li>创建信息</li>
+</ul>
+</li>
+<li>内容<ul>
+<li>真实数据</li>
+</ul>
+</li>
+</ol>
+<h4 id="链式存储"><a href="#链式存储" class="headerlink" title="链式存储"></a>链式存储</h4><p>磁道划分扇区，一块扇区512字节，510字节存放内容，2字节存放下一块数据所在扇区的地址<br>0扇区用于存放磁盘大小之类的信息</p>
+<p><strong>优势</strong><br>读写效率高，顺序存储需要把后边的文件地址前移</p>
+<h4 id="顺序存储"><a href="#顺序存储" class="headerlink" title="顺序存储"></a>顺序存储</h4><p>磁带就是顺序存储</p>
+<h4 id="索引式文件分配"><a href="#索引式文件分配" class="headerlink" title="索引式文件分配"></a>索引式文件分配</h4><p>一块扇区存放数据所在地址的索引</p>
+<h4 id="注册表"><a href="#注册表" class="headerlink" title="注册表"></a>注册表</h4><p>一个非关系型数据库（树形结构）存放设备软硬件信息，90%病毒要修改注册表</p>
+<h3 id="Transmission"><a href="#Transmission" class="headerlink" title="Transmission"></a>Transmission</h3><ul>
+<li>数据在传输介质中</li>
+<li>数据传输是按照一定协议</li>
+<li>常用TCP/IP协议</li>
+</ul>
+<h2 id="攻防模型"><a href="#攻防模型" class="headerlink" title="攻防模型"></a>攻防模型</h2><h3 id="防守"><a href="#防守" class="headerlink" title="防守"></a>防守</h3><p>1。 防火墙<br>2. 入侵检测系统</p>
+<h3 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h3><p>利用系统漏洞，或者协议本身的弱点</p>
+<h4 id="三个层次"><a href="#三个层次" class="headerlink" title="三个层次"></a>三个层次</h4><ol>
+<li>物理层（物理黑客）</li>
+<li>网络层（破坏信息）</li>
+<li>感知层（破坏心理、认知、判断）</li>
+</ol>
+]]></content>
+  </entry>
 </search>
