@@ -28,36 +28,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ACM题解-字符串编辑</title>
-    <url>/2021/02/24/ACM%E9%A2%98%E8%A7%A3-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91/</url>
-    <content><![CDATA[<p>测试数据对字符串的删除，替换，以及插入</p>
-<span id="more"></span>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>从键盘输入一个字符串（长度&lt;=40 个字符），并以字符 ‘.’结束。</p>
-<p>例如：’This is a book.’ 现对该字符串进行编辑，编辑功能有：</p>
-<p>D：删除一个字符，命令的方式为：D a<br>其中a为被删除的字符<br>例如：D s  表示删除字符 ‘s’ ，若字符串中有多个 ‘s’，则删除第一次出现的。<br>如上例中删除的结果为： ‘Thi is a book.’</p>
-<p>I：插入一个字符，命令的格式为：I a1 a2<br>其中a1表示插入到指定字符前面，a2表示将要插入的字符。<br>例如：I s d  表示在指定字符 ‘s’ 的前面插入字符 ‘d’ ，若原串中有多个 ‘s’ ，则插入在最后一个字符的前面。<br>如上例中：<br>原串：’This is a book.’<br>插入后：’This ids a book.’</p>
-<p>R：替换一个字符，命令格式为：<br>R a1 a2  其中a1为被替换的字符，a2为替换的字符，若在原串中有多个a1则应全部替换。<br>例如： 原串： ‘This is a book.’<br>输入命令：R o e<br>替换后的字符串为：’This is a beek.’</p>
-<p>在编辑过程中，若出现被改的字符不存在时，则给出提示信息”Not exist”。</p>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>每个测试文件只包含一组测试数据，每组输入数据包含两行：</p>
-<p>第一行，输入一个字符串，表示原串；<br>第二行，输入一个字符串，表示命令。</p>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组输入数据，输出编辑后的字符串，如果被改的字符不存在，则输出”Not exist”（引号不输出）。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><blockquote>
-<p>This is a book.<br>D s</p>
-</blockquote>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><blockquote>
-<p>Thi is a book.</p>
-</blockquote>
-<h2 id="我的代码"><a href="#我的代码" class="headerlink" title="我的代码"></a>我的代码</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">55</span>];</span><br><span class="line">    vector&lt;<span class="keyword">char</span>&gt; res;</span><br><span class="line">    <span class="comment">// gets(str);</span></span><br><span class="line">    cin.<span class="built_in">get</span>(str, <span class="number">55</span>);</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line">    <span class="keyword">char</span> op, oped;</span><br><span class="line">    cin &gt;&gt; op &gt;&gt; oped;</span><br><span class="line">    <span class="keyword">int</span> sign = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (op == <span class="string">&#x27;D&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (str[i] == oped <span class="keyword">and</span> sign == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sign = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                res.<span class="built_in">push_back</span>(str[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> exts;</span><br><span class="line">        cin &gt;&gt; exts;</span><br><span class="line">        <span class="keyword">if</span> (op == <span class="string">&#x27;I&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (str[i] == oped <span class="keyword">and</span> sign == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(str[i]);</span><br><span class="line">                    res.<span class="built_in">push_back</span>(exts);</span><br><span class="line">                    ;</span><br><span class="line">                    sign = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(str[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (op == <span class="string">&#x27;R&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (str[i] == oped)</span><br><span class="line">                &#123;</span><br><span class="line">                    sign = <span class="number">1</span>;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(exts);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(str[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (sign == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Not exist&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        vector&lt;<span class="keyword">char</span>&gt;::iterator it = res.<span class="built_in">end</span>();</span><br><span class="line">        <span class="keyword">if</span> (op == <span class="string">&#x27;I&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (it != res.<span class="built_in">begin</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                it--;</span><br><span class="line">                cout &lt;&lt; (*it);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            it = res.<span class="built_in">begin</span>();</span><br><span class="line">            <span class="keyword">while</span> (it != res.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                cout &lt;&lt; (*it);</span><br><span class="line">                it++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ACM-二的幂次方-题解</title>
     <url>/2021/02/25/ACM-%E4%BA%8C%E7%9A%84%E5%B9%82%E6%AC%A1%E6%96%B9-%E9%A2%98%E8%A7%A3/</url>
     <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>任何一个正整数都可以用 2 的幂次方表示。</p>
@@ -91,6 +61,36 @@
 <pre><code>pow(x,y)是C语言函数，返回x^y,类型为double
 </code></pre>
 <h3 id="我的代码"><a href="#我的代码" class="headerlink" title="我的代码"></a>我的代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">d</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>)&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;2(0)&quot;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">2</span>)&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;2&quot;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i,s=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;n-<span class="built_in">pow</span>(<span class="number">2</span>,i)&gt;<span class="number">0</span>;i++);</span><br><span class="line">        <span class="keyword">int</span> res=n-<span class="built_in">pow</span>(<span class="number">2</span>,i);</span><br><span class="line">        <span class="keyword">if</span>(res&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            i--;</span><br><span class="line">            res=n-<span class="built_in">pow</span>(<span class="number">2</span>,i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;<span class="number">1</span>)&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;2(&quot;</span>;</span><br><span class="line">            <span class="built_in">d</span>(i);</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;)&quot;</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">&quot;2&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(res!=<span class="number">0</span>)&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;+&quot;</span>;</span><br><span class="line">            <span class="built_in">d</span>(res);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="built_in">d</span>(n);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ACM题解-字符串编辑</title>
+    <url>/2021/02/24/ACM%E9%A2%98%E8%A7%A3-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91/</url>
+    <content><![CDATA[<p>测试数据对字符串的删除，替换，以及插入</p>
+<span id="more"></span>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>从键盘输入一个字符串（长度&lt;=40 个字符），并以字符 ‘.’结束。</p>
+<p>例如：’This is a book.’ 现对该字符串进行编辑，编辑功能有：</p>
+<p>D：删除一个字符，命令的方式为：D a<br>其中a为被删除的字符<br>例如：D s  表示删除字符 ‘s’ ，若字符串中有多个 ‘s’，则删除第一次出现的。<br>如上例中删除的结果为： ‘Thi is a book.’</p>
+<p>I：插入一个字符，命令的格式为：I a1 a2<br>其中a1表示插入到指定字符前面，a2表示将要插入的字符。<br>例如：I s d  表示在指定字符 ‘s’ 的前面插入字符 ‘d’ ，若原串中有多个 ‘s’ ，则插入在最后一个字符的前面。<br>如上例中：<br>原串：’This is a book.’<br>插入后：’This ids a book.’</p>
+<p>R：替换一个字符，命令格式为：<br>R a1 a2  其中a1为被替换的字符，a2为替换的字符，若在原串中有多个a1则应全部替换。<br>例如： 原串： ‘This is a book.’<br>输入命令：R o e<br>替换后的字符串为：’This is a beek.’</p>
+<p>在编辑过程中，若出现被改的字符不存在时，则给出提示信息”Not exist”。</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>每个测试文件只包含一组测试数据，每组输入数据包含两行：</p>
+<p>第一行，输入一个字符串，表示原串；<br>第二行，输入一个字符串，表示命令。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每组输入数据，输出编辑后的字符串，如果被改的字符不存在，则输出”Not exist”（引号不输出）。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><blockquote>
+<p>This is a book.<br>D s</p>
+</blockquote>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><blockquote>
+<p>Thi is a book.</p>
+</blockquote>
+<h2 id="我的代码"><a href="#我的代码" class="headerlink" title="我的代码"></a>我的代码</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">55</span>];</span><br><span class="line">    vector&lt;<span class="keyword">char</span>&gt; res;</span><br><span class="line">    <span class="comment">// gets(str);</span></span><br><span class="line">    cin.<span class="built_in">get</span>(str, <span class="number">55</span>);</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line">    <span class="keyword">char</span> op, oped;</span><br><span class="line">    cin &gt;&gt; op &gt;&gt; oped;</span><br><span class="line">    <span class="keyword">int</span> sign = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (op == <span class="string">&#x27;D&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (str[i] == oped <span class="keyword">and</span> sign == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sign = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                res.<span class="built_in">push_back</span>(str[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> exts;</span><br><span class="line">        cin &gt;&gt; exts;</span><br><span class="line">        <span class="keyword">if</span> (op == <span class="string">&#x27;I&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (str[i] == oped <span class="keyword">and</span> sign == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(str[i]);</span><br><span class="line">                    res.<span class="built_in">push_back</span>(exts);</span><br><span class="line">                    ;</span><br><span class="line">                    sign = <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(str[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (op == <span class="string">&#x27;R&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (str[i] == oped)</span><br><span class="line">                &#123;</span><br><span class="line">                    sign = <span class="number">1</span>;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(exts);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(str[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (sign == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Not exist&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        vector&lt;<span class="keyword">char</span>&gt;::iterator it = res.<span class="built_in">end</span>();</span><br><span class="line">        <span class="keyword">if</span> (op == <span class="string">&#x27;I&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (it != res.<span class="built_in">begin</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                it--;</span><br><span class="line">                cout &lt;&lt; (*it);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            it = res.<span class="built_in">begin</span>();</span><br><span class="line">            <span class="keyword">while</span> (it != res.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                cout &lt;&lt; (*it);</span><br><span class="line">                it++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -146,6 +146,95 @@
       </categories>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo用法</title>
+    <url>/2021/02/25/Hexo%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<p>文章的各种属性、摘要的书写方式</p>
+<span id="more"></span>
+<h3 id="文章属性列表"><a href="#文章属性列表" class="headerlink" title="文章属性列表"></a>文章属性列表</h3><table>
+<thead>
+<tr>
+<th>layout</th>
+<th>layout</th>
+<th>post 或 page</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>title</td>
+<td>文章标题</td>
+<td>文档名</td>
+</tr>
+<tr>
+<td>date</td>
+<td>创建日期</td>
+<td>文档的创建日期</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>修改日期</td>
+<td>文档的修改日期</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>是否开启评论</td>
+<td>true</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>标签</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>分类</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>permalink</td>
+<td>url 中的名字</td>
+<td>文档名</td>
+</tr>
+<tr>
+<td>thumbnail</td>
+<td>文章缩略图</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>banner</td>
+<td>文章缩略图&amp;文章首部 banner</td>
+<td>NULL</td>
+</tr>
+</tbody></table>
+<h3 id="文章摘要"><a href="#文章摘要" class="headerlink" title="文章摘要"></a>文章摘要</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+<p>通过上面这个东西分割摘要与文章主体</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STM32F4xx-库函数工程模板创建</title>
+    <url>/2021/03/30/STM32F4xx-%E5%BA%93%E5%87%BD%E6%95%B0%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA/</url>
+    <content><![CDATA[<p>记录遇到的小问题。</p>
+<span id="more"></span>
+
+<h2 id="下载模板文件"><a href="#下载模板文件" class="headerlink" title="下载模板文件"></a>下载模板文件</h2><p><a href="https://wwa.lanzous.com/ip3Grngmhmf">&gt;&gt;&gt;下载&lt;&lt;&lt;</a><br>确保安装了MDK_Keil5，解压模板文件之后进入USER文件夹内，打开<em>T2.uvprojx</em>即可</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>选择build之后报错，好长好长一串。</p>
+<ol>
+<li>需要在魔术棒的C/C++选项卡内的define中写上<code>STM32F40_41xxx,USE_STDPERIPH_DRIVER</code></li>
+<li>同样是在魔术棒中，target选项卡内，Code Generation框内的ARM Compiler下拉栏中，选择<code>Use default compiler version 5</code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>单片机</category>
+      </categories>
+      <tags>
+        <tag>单片机</tag>
       </tags>
   </entry>
   <entry>
@@ -426,75 +515,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo用法</title>
-    <url>/2021/02/25/Hexo%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<p>文章的各种属性、摘要的书写方式</p>
-<span id="more"></span>
-<h3 id="文章属性列表"><a href="#文章属性列表" class="headerlink" title="文章属性列表"></a>文章属性列表</h3><table>
-<thead>
-<tr>
-<th>layout</th>
-<th>layout</th>
-<th>post 或 page</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>title</td>
-<td>文章标题</td>
-<td>文档名</td>
-</tr>
-<tr>
-<td>date</td>
-<td>创建日期</td>
-<td>文档的创建日期</td>
-</tr>
-<tr>
-<td>updated</td>
-<td>修改日期</td>
-<td>文档的修改日期</td>
-</tr>
-<tr>
-<td>comments</td>
-<td>是否开启评论</td>
-<td>true</td>
-</tr>
-<tr>
-<td>tags</td>
-<td>标签</td>
-<td>NULL</td>
-</tr>
-<tr>
-<td>categories</td>
-<td>分类</td>
-<td>NULL</td>
-</tr>
-<tr>
-<td>permalink</td>
-<td>url 中的名字</td>
-<td>文档名</td>
-</tr>
-<tr>
-<td>thumbnail</td>
-<td>文章缩略图</td>
-<td>NULL</td>
-</tr>
-<tr>
-<td>banner</td>
-<td>文章缩略图&amp;文章首部 banner</td>
-<td>NULL</td>
-</tr>
-</tbody></table>
-<h3 id="文章摘要"><a href="#文章摘要" class="headerlink" title="文章摘要"></a>文章摘要</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
-<p>通过上面这个东西分割摘要与文章主体</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>windows10下vscode配置C++的includePath</title>
     <url>/2021/02/24/windows10%E4%B8%8Bvscode%E9%85%8D%E7%BD%AEC-%E7%9A%84includePath/</url>
     <content><![CDATA[<p>解决：</p>
@@ -532,20 +552,6 @@
         <tag>ACM</tag>
         <tag>C++</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>使用JS获取IP地址的API</title>
-    <url>/2021/03/10/%E4%BD%BF%E7%94%A8JS%E8%8E%B7%E5%8F%96IP%E5%9C%B0%E5%9D%80%E7%9A%84API/</url>
-    <content><![CDATA[<p>昨天突发奇想，制作的一个API，直接通过script标签引用即可</p>
-<span id="more"></span>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">http://api.dimtub.com/ip</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">alert(<span class="string">&quot;YOUR IP ADDRESS: &quot;</span>+ ip); <span class="comment">//在控制台输出ip地址</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这个页面使用了如上这串代码</p>
-<script src=http://api.dimtub.com/ip></script>
-<script>
-alert("YOUR IP ADDRESS: "+ ip); //在控制台输出ip地址
-</script>]]></content>
   </entry>
   <entry>
     <title>人物描写的形容词</title>
@@ -708,6 +714,86 @@ alert("YOUR IP ADDRESS: "+ ip); //在控制台输出ip地址
       </tags>
   </entry>
   <entry>
+    <title>使用JS获取IP地址的API</title>
+    <url>/2021/03/10/%E4%BD%BF%E7%94%A8JS%E8%8E%B7%E5%8F%96IP%E5%9C%B0%E5%9D%80%E7%9A%84API/</url>
+    <content><![CDATA[<p>昨天突发奇想，制作的一个API，直接通过script标签引用即可</p>
+<span id="more"></span>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">http://api.dimtub.com/ip</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">alert(<span class="string">&quot;YOUR IP ADDRESS: &quot;</span>+ ip); <span class="comment">//在控制台输出ip地址</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个页面使用了如上这串代码</p>
+<script src=http://api.dimtub.com/ip></script>
+<script>
+alert("YOUR IP ADDRESS: "+ ip); //在控制台输出ip地址
+</script>]]></content>
+  </entry>
+  <entry>
+    <title>信息状态与攻防-信息安全</title>
+    <url>/2021/04/02/%E4%BF%A1%E6%81%AF%E7%8A%B6%E6%80%81%E4%B8%8E%E6%94%BB%E9%98%B2-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
+    <content><![CDATA[<p>攻击没有好坏之别，不存在没有漏洞的计算机</p>
+<span id="more"></span>
+
+<h2 id="信息的状态"><a href="#信息的状态" class="headerlink" title="信息的状态"></a>信息的状态</h2><ol>
+<li>Processing….加工处理</li>
+<li>Storage…….放着没动</li>
+<li>Transmission..传输中</li>
+</ol>
+<h3 id="Processing"><a href="#Processing" class="headerlink" title="Processing"></a>Processing</h3><p>数据在寄存器或者内存<br><strong>数据属于某一个进程</strong></p>
+<ul>
+<li>进程数据区</li>
+<li>堆栈区</li>
+<li>进程控制块</li>
+</ul>
+<p>缓冲区溢出攻击</p>
+<p>用findPass对winlogon.exe分析，找出登陆用户的账号密码</p>
+<h3 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h3><ol>
+<li>硬盘<ul>
+<li>数据在信箱（硬盘中）</li>
+</ul>
+</li>
+<li>移动设备</li>
+<li>文件形式存储</li>
+</ol>
+<p>硬盘存储分两块</p>
+<ol>
+<li>目录<ul>
+<li>地址</li>
+<li>文件名</li>
+<li>大小</li>
+<li>创建信息</li>
+</ul>
+</li>
+<li>内容<ul>
+<li>真实数据</li>
+</ul>
+</li>
+</ol>
+<h4 id="链式存储"><a href="#链式存储" class="headerlink" title="链式存储"></a>链式存储</h4><p>磁道划分扇区，一块扇区512字节，510字节存放内容，2字节存放下一块数据所在扇区的地址<br>0扇区用于存放磁盘大小之类的信息</p>
+<p><strong>优势</strong><br>读写效率高，顺序存储需要把后边的文件地址前移</p>
+<h4 id="顺序存储"><a href="#顺序存储" class="headerlink" title="顺序存储"></a>顺序存储</h4><p>磁带就是顺序存储</p>
+<h4 id="索引式文件分配"><a href="#索引式文件分配" class="headerlink" title="索引式文件分配"></a>索引式文件分配</h4><p>一块扇区存放数据所在地址的索引</p>
+<h4 id="注册表"><a href="#注册表" class="headerlink" title="注册表"></a>注册表</h4><p>一个非关系型数据库（树形结构）存放设备软硬件信息，90%病毒要修改注册表</p>
+<h3 id="Transmission"><a href="#Transmission" class="headerlink" title="Transmission"></a>Transmission</h3><ul>
+<li>数据在传输介质中</li>
+<li>数据传输是按照一定协议</li>
+<li>常用TCP/IP协议</li>
+</ul>
+<h2 id="攻防模型"><a href="#攻防模型" class="headerlink" title="攻防模型"></a>攻防模型</h2><h3 id="防守"><a href="#防守" class="headerlink" title="防守"></a>防守</h3><p>1。 防火墙<br>2. 入侵检测系统</p>
+<h3 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h3><p>利用系统漏洞，或者协议本身的弱点</p>
+<h4 id="三个层次"><a href="#三个层次" class="headerlink" title="三个层次"></a>三个层次</h4><ol>
+<li>物理层（物理黑客）</li>
+<li>网络层（破坏信息）</li>
+<li>感知层（破坏心理、认知、判断）</li>
+</ol>
+]]></content>
+      <categories>
+        <category>信息安全</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>几款好看的Hexo博客主题</title>
     <url>/2021/02/28/%E5%87%A0%E6%AC%BE%E5%A5%BD%E7%9C%8B%E7%9A%84Hexo%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98/</url>
     <content><![CDATA[<p>各有优缺点，好难选！！！</p>
@@ -738,6 +824,28 @@ alert("YOUR IP ADDRESS: "+ ip); //在控制台输出ip地址
       </tags>
   </entry>
   <entry>
+    <title>几组不等式</title>
+    <url>/2021/03/09/%E5%87%A0%E7%BB%84%E4%B8%8D%E7%AD%89%E5%BC%8F/</url>
+    <content><![CDATA[<p>高中知识</p>
+<span id="more"></span>
+
+<ol>
+<li><p>${a}^{2}+{b}^{2}≥2ab$</p>
+</li>
+<li><p>$ab≤\frac{1}{2}(a^2+b^2)$</p>
+</li>
+<li><p>若a&gt;0,b&gt;0,$\frac{a+b}{2}≥\sqrt{a+b}$</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>分组背包问题</title>
     <url>/2021/03/03/%E5%88%86%E7%BB%84%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>有 N 组物品和一个容量是 V 的背包。</p>
@@ -763,28 +871,6 @@ alert("YOUR IP ADDRESS: "+ ip); //在控制台输出ip地址
       </tags>
   </entry>
   <entry>
-    <title>几组不等式</title>
-    <url>/2021/03/09/%E5%87%A0%E7%BB%84%E4%B8%8D%E7%AD%89%E5%BC%8F/</url>
-    <content><![CDATA[<p>高中知识</p>
-<span id="more"></span>
-
-<ol>
-<li><p>${a}^{2}+{b}^{2}≥2ab$</p>
-</li>
-<li><p>$ab≤\frac{1}{2}(a^2+b^2)$</p>
-</li>
-<li><p>若a&gt;0,b&gt;0,$\frac{a+b}{2}≥\sqrt{a+b}$</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>数学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>单链表-数据结构</title>
     <url>/2021/03/24/%E5%8D%95%E9%93%BE%E8%A1%A8-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<p>单链表…看起来简单，写起来难</p>
@@ -798,68 +884,6 @@ alert("YOUR IP ADDRESS: "+ ip); //在控制台输出ip地址
       <tags>
         <tag>ACM</tag>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>合唱队队形-最长上升子序列与下降子序列</title>
-    <url>/2021/03/11/%E5%90%88%E5%94%B1%E9%98%9F%E9%98%9F%E5%BD%A2-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97%E4%B8%8E%E4%B8%8B%E9%99%8D%E5%AD%90%E5%BA%8F%E5%88%97/</url>
-    <content><![CDATA[<p>动态规划经典题型，难度中等，用到最长上升子序列与最长下降子序列</p>
-<span id="more"></span>
-
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>N 位同学站成一排，音乐老师要请其中的 (N−K) 位同学出列，使得剩下的 K 位同学排成合唱队形。     </p>
-<p>合唱队形是指这样的一种队形：设 K 位同学从左到右依次编号为 1，2…，K，他们的身高分别为 T1，T2，…，TK，  则他们的身高满足 T1&lt;…<Ti>Ti+1&gt;…&gt;TK(1≤i≤K)。     </p>
-<p>你的任务是，已知所有 N 位同学的身高，计算最少需要几位同学出列，可以使得剩下的同学排成合唱队形。</p>
-<p><strong>输入格式</strong><br>输入的第一行是一个整数 N，表示同学的总数。</p>
-<p>第二行有 N 个整数，用空格分隔，第 i 个整数 Ti 是第 i 位同学的身高(厘米)。</p>
-<p><strong>输出格式</strong><br>输出包括一行，这一行只包含一个整数，就是最少需要几位同学出列。</p>
-<p><strong>数据范围</strong><br>2≤N≤100,<br>130≤Ti≤230<br><strong>输入样例：</strong></p>
-<pre><code>8
-186 186 150 200 160 130 197 220
-</code></pre>
-<p><strong>输出样例：</strong></p>
-<pre><code>4
-</code></pre>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">105</span>],f[<span class="number">105</span>],g[<span class="number">105</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;a[i];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//最长上升子序列</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        f[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[j]&lt;a[i]) f[i]=<span class="built_in">max</span>(f[i],f[j]+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//最长下降子序列</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        g[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=n;j&gt;i;j--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[j]&lt;a[i]) g[i]=<span class="built_in">max</span>(g[i],g[j]+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        res=<span class="built_in">max</span>(res,f[i]+g[i]<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;n-res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>C++</tag>
-        <tag>DP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>回文平方</title>
-    <url>/2021/03/06/%E5%9B%9E%E6%96%87%E5%B9%B3%E6%96%B9/</url>
-    <content><![CDATA[<p>又是一道基础题，考察双指针和进制转化</p>
-<span id="more"></span>
-
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>回文数是指数字从前往后读和从后往前读都相同的数字。</p>
-<p>例如数字 12321 就是典型的回文数字。</p>
-<p>现在给定你一个整数 B，请你判断 1∼300 之间的所有整数中，有哪些整数的平方转化为 B 进制后，其 B 进制表示是回文数字。</p>
-<p>输入格式<br>一个整数 B。</p>
-<p>输出格式<br>每行包含两个在 B 进制下表示的数字。</p>
-<p>第一个表示满足平方值转化为 B 进制后是回文数字那个数，第二个数表示第一个数的平方。</p>
-<p>所有满足条件的数字按从小到大顺序依次输出。</p>
-<p>数据范围<br>2≤B≤20,<br>对于大于 9 的数字，用 A 表示 10，用 B 表示 11，以此类推。</p>
-<p>输入样例：</p>
-<blockquote>
-<p>10</p>
-</blockquote>
-<p>输出样例：</p>
-<blockquote>
-<p>1 1<br>2 4<br>3 9<br>11 121<br>22 484<br>26 676<br>101 10201<br>111 12321<br>121 14641<br>202 40804<br>212 44944<br>264 69696</p>
-</blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; a;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">iH</span><span class="params">(string n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=n.<span class="built_in">size</span>()<span class="number">-1</span>;i&lt;j;i++,j--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(n[i]!=n[j]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num&gt;<span class="number">9</span>) <span class="keyword">return</span> num<span class="number">-10</span>+<span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> num+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">base</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string res;</span><br><span class="line">    <span class="keyword">while</span>(n) res+=<span class="built_in">get</span>(n%b),n/=b;</span><br><span class="line">    <span class="built_in">reverse</span>(res.<span class="built_in">begin</span>(),res.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    cin&gt;&gt;b;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">300</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">iH</span>(<span class="built_in">base</span>(i*i,b)))</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="built_in">base</span>(i,b)&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="built_in">base</span>(i*i,b)&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -934,6 +958,68 @@ alert("YOUR IP ADDRESS: "+ ip); //在控制台输出ip地址
       </tags>
   </entry>
   <entry>
+    <title>合唱队队形-最长上升子序列与下降子序列</title>
+    <url>/2021/03/11/%E5%90%88%E5%94%B1%E9%98%9F%E9%98%9F%E5%BD%A2-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97%E4%B8%8E%E4%B8%8B%E9%99%8D%E5%AD%90%E5%BA%8F%E5%88%97/</url>
+    <content><![CDATA[<p>动态规划经典题型，难度中等，用到最长上升子序列与最长下降子序列</p>
+<span id="more"></span>
+
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>N 位同学站成一排，音乐老师要请其中的 (N−K) 位同学出列，使得剩下的 K 位同学排成合唱队形。     </p>
+<p>合唱队形是指这样的一种队形：设 K 位同学从左到右依次编号为 1，2…，K，他们的身高分别为 T1，T2，…，TK，  则他们的身高满足 T1&lt;…<Ti>Ti+1&gt;…&gt;TK(1≤i≤K)。     </p>
+<p>你的任务是，已知所有 N 位同学的身高，计算最少需要几位同学出列，可以使得剩下的同学排成合唱队形。</p>
+<p><strong>输入格式</strong><br>输入的第一行是一个整数 N，表示同学的总数。</p>
+<p>第二行有 N 个整数，用空格分隔，第 i 个整数 Ti 是第 i 位同学的身高(厘米)。</p>
+<p><strong>输出格式</strong><br>输出包括一行，这一行只包含一个整数，就是最少需要几位同学出列。</p>
+<p><strong>数据范围</strong><br>2≤N≤100,<br>130≤Ti≤230<br><strong>输入样例：</strong></p>
+<pre><code>8
+186 186 150 200 160 130 197 220
+</code></pre>
+<p><strong>输出样例：</strong></p>
+<pre><code>4
+</code></pre>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">105</span>],f[<span class="number">105</span>],g[<span class="number">105</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;a[i];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//最长上升子序列</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        f[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;i;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[j]&lt;a[i]) f[i]=<span class="built_in">max</span>(f[i],f[j]+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//最长下降子序列</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        g[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=n;j&gt;i;j--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[j]&lt;a[i]) g[i]=<span class="built_in">max</span>(g[i],g[j]+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        res=<span class="built_in">max</span>(res,f[i]+g[i]<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;n-res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>C++</tag>
+        <tag>DP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>回文平方</title>
+    <url>/2021/03/06/%E5%9B%9E%E6%96%87%E5%B9%B3%E6%96%B9/</url>
+    <content><![CDATA[<p>又是一道基础题，考察双指针和进制转化</p>
+<span id="more"></span>
+
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>回文数是指数字从前往后读和从后往前读都相同的数字。</p>
+<p>例如数字 12321 就是典型的回文数字。</p>
+<p>现在给定你一个整数 B，请你判断 1∼300 之间的所有整数中，有哪些整数的平方转化为 B 进制后，其 B 进制表示是回文数字。</p>
+<p>输入格式<br>一个整数 B。</p>
+<p>输出格式<br>每行包含两个在 B 进制下表示的数字。</p>
+<p>第一个表示满足平方值转化为 B 进制后是回文数字那个数，第二个数表示第一个数的平方。</p>
+<p>所有满足条件的数字按从小到大顺序依次输出。</p>
+<p>数据范围<br>2≤B≤20,<br>对于大于 9 的数字，用 A 表示 10，用 B 表示 11，以此类推。</p>
+<p>输入样例：</p>
+<blockquote>
+<p>10</p>
+</blockquote>
+<p>输出样例：</p>
+<blockquote>
+<p>1 1<br>2 4<br>3 9<br>11 121<br>22 484<br>26 676<br>101 10201<br>111 12321<br>121 14641<br>202 40804<br>212 44944<br>264 69696</p>
+</blockquote>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; a;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">iH</span><span class="params">(string n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=n.<span class="built_in">size</span>()<span class="number">-1</span>;i&lt;j;i++,j--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(n[i]!=n[j]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num&gt;<span class="number">9</span>) <span class="keyword">return</span> num<span class="number">-10</span>+<span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> num+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">base</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string res;</span><br><span class="line">    <span class="keyword">while</span>(n) res+=<span class="built_in">get</span>(n%b),n/=b;</span><br><span class="line">    <span class="built_in">reverse</span>(res.<span class="built_in">begin</span>(),res.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    cin&gt;&gt;b;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">300</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">iH</span>(<span class="built_in">base</span>(i*i,b)))</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="built_in">base</span>(i,b)&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="built_in">base</span>(i*i,b)&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多重背包问题</title>
     <url>/2021/02/27/%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>多重背包就是在完全背包问题上加入个数限制，然而运用的却是01背包和完全背包的思路QAQ</p>
@@ -994,6 +1080,17 @@ alert("YOUR IP ADDRESS: "+ ip); //在控制台输出ip地址
       </tags>
   </entry>
   <entry>
+    <title>常见攻击方法-信息安全</title>
+    <url>/2021/04/09/%E5%B8%B8%E8%A7%81%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>信息安全</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>快速幂以及求幂运算结果的位数</title>
     <url>/2021/02/26/%E5%BF%AB%E9%80%9F%E5%B9%82%E4%BB%A5%E5%8F%8A%E6%B1%82%E5%B9%82%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E4%BD%8D%E6%95%B0/</url>
     <content><![CDATA[<p>快速幂: 时间复杂度O(logn)，求位数: 时间复杂度O(1)</p>
@@ -1012,56 +1109,6 @@ alert("YOUR IP ADDRESS: "+ ip); //在控制台输出ip地址
         <tag>ACM</tag>
         <tag>C++</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>找硬币_哈希表和双指针算法应用</title>
-    <url>/2021/03/10/%E6%89%BE%E7%A1%AC%E5%B8%81-%E5%93%88%E5%B8%8C%E8%A1%A8%E5%92%8C%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<p>说是说哈希表，但是我没有找到hash模板/(ㄒoㄒ)/</p>
-<span id="more"></span>
-
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>伊娃喜欢从整个宇宙中收集硬币。</p>
-<p>有一天，她去了一家宇宙购物中心购物，结账时可以使用各种硬币付款。</p>
-<p>但是，有一个特殊的付款要求：每张帐单，她只能使用恰好两个硬币来准确的支付消费金额。</p>
-<p>给定她拥有的所有硬币的面额，请你帮她确定对于给定的金额，她是否可以找到两个硬币来支付。</p>
-<p>输入格式<br>第一行包含两个整数 N 和 M，分别表示硬币数量以及需要支付的金额。</p>
-<p>第二行包含 N 个整数，表示每个硬币的面额。</p>
-<p>输出格式<br>输出一行，包含两个整数 V1,V2，表示所选的两个硬币的面额，使得 V1≤V2 并且 V1+V2=M。</p>
-<p>如果答案不唯一，则输出 V1 最小的解。</p>
-<p>如果无解，则输出 No Solution。</p>
-<p>数据范围<br>1≤N≤105,<br>1≤M≤1000</p>
-<p>输入样例1：</p>
-<pre><code>8 15
-1 2 8 7 2 4 11 15
-</code></pre>
-<p>输出样例1：</p>
-<pre><code>4 11
-</code></pre>
-<p>输入样例2：</p>
-<pre><code>7 14
-1 8 7 2 4 11 15
-</code></pre>
-<p>输出样例2：</p>
-<pre><code>No Solution
-</code></pre>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) cin&gt;&gt;a[i];</span><br><span class="line">    <span class="built_in">sort</span>(a,a+n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=n<span class="number">-1</span>;i&lt;j;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;j&amp;&amp; a[i]+a[j]&gt;m) j--;</span><br><span class="line">        <span class="keyword">if</span>(a[i]+a[j]==m)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[j];</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;No Solution&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; h;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v1=<span class="number">100000</span>,v2;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> a;</span><br><span class="line">        cin&gt;&gt;a;</span><br><span class="line">        <span class="keyword">int</span> b=m-a;</span><br><span class="line">        h[a]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(h[b]==<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a&gt;b) <span class="built_in">swap</span>(a,b);</span><br><span class="line">            <span class="keyword">if</span>(a&lt;v1)</span><br><span class="line">            &#123;</span><br><span class="line">                v1=a;</span><br><span class="line">                v2=b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(v1==<span class="number">100000</span>) cout&lt;&lt;v1&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;v2;</span><br><span class="line">    <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;No Solution&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><p>从这道题使用hash表效率上不如双指针高，但也不差多少</p>
-]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>ACM</tag>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构考研题目</title>
-    <url>/2021/03/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE/</url>
-    <content><![CDATA[<hr>
-]]></content>
   </entry>
   <entry>
     <title>棋盘挑战_N皇后问题</title>
@@ -1137,12 +1184,46 @@ int main()
 ]]></content>
   </entry>
   <entry>
-    <title>自由进制转化</title>
-    <url>/2021/03/06/%E8%87%AA%E7%94%B1%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/</url>
-    <content><![CDATA[<p>任意进制数转化成任意进制</p>
+    <title>数据结构考研题目</title>
+    <url>/2021/03/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE/</url>
+    <content><![CDATA[<hr>
+]]></content>
+  </entry>
+  <entry>
+    <title>找硬币_哈希表和双指针算法应用</title>
+    <url>/2021/03/10/%E6%89%BE%E7%A1%AC%E5%B8%81-%E5%93%88%E5%B8%8C%E8%A1%A8%E5%92%8C%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<p>说是说哈希表，但是我没有找到hash模板/(ㄒoㄒ)/</p>
 <span id="more"></span>
 
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uget</span><span class="params">(<span class="keyword">char</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(c&gt;<span class="string">&#x27;9&#x27;</span>) <span class="keyword">return</span> c-<span class="string">&#x27;A&#x27;</span>+<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">return</span> c-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">base10</span><span class="params">(string num,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        res=res*b+<span class="built_in">uget</span>(num[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num&gt;<span class="number">9</span>) <span class="keyword">return</span> num<span class="number">-10</span>+<span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> num+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">baseb</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string res;</span><br><span class="line">    <span class="keyword">while</span>(n) res+=<span class="built_in">get</span>(n%b),n/=b;</span><br><span class="line">    <span class="built_in">reverse</span>(res.<span class="built_in">begin</span>(),res.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">base</span><span class="params">(<span class="keyword">int</span> b,string num,<span class="keyword">int</span> b2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">baseb</span>(<span class="built_in">base10</span>(num,b),b2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">base</span>(<span class="number">2</span>,<span class="string">&quot;101&quot;</span>,<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>伊娃喜欢从整个宇宙中收集硬币。</p>
+<p>有一天，她去了一家宇宙购物中心购物，结账时可以使用各种硬币付款。</p>
+<p>但是，有一个特殊的付款要求：每张帐单，她只能使用恰好两个硬币来准确的支付消费金额。</p>
+<p>给定她拥有的所有硬币的面额，请你帮她确定对于给定的金额，她是否可以找到两个硬币来支付。</p>
+<p>输入格式<br>第一行包含两个整数 N 和 M，分别表示硬币数量以及需要支付的金额。</p>
+<p>第二行包含 N 个整数，表示每个硬币的面额。</p>
+<p>输出格式<br>输出一行，包含两个整数 V1,V2，表示所选的两个硬币的面额，使得 V1≤V2 并且 V1+V2=M。</p>
+<p>如果答案不唯一，则输出 V1 最小的解。</p>
+<p>如果无解，则输出 No Solution。</p>
+<p>数据范围<br>1≤N≤105,<br>1≤M≤1000</p>
+<p>输入样例1：</p>
+<pre><code>8 15
+1 2 8 7 2 4 11 15
+</code></pre>
+<p>输出样例1：</p>
+<pre><code>4 11
+</code></pre>
+<p>输入样例2：</p>
+<pre><code>7 14
+1 8 7 2 4 11 15
+</code></pre>
+<p>输出样例2：</p>
+<pre><code>No Solution
+</code></pre>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) cin&gt;&gt;a[i];</span><br><span class="line">    <span class="built_in">sort</span>(a,a+n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=n<span class="number">-1</span>;i&lt;j;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;j&amp;&amp; a[i]+a[j]&gt;m) j--;</span><br><span class="line">        <span class="keyword">if</span>(a[i]+a[j]==m)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[j];</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;No Solution&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; h;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v1=<span class="number">100000</span>,v2;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> a;</span><br><span class="line">        cin&gt;&gt;a;</span><br><span class="line">        <span class="keyword">int</span> b=m-a;</span><br><span class="line">        h[a]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(h[b]==<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a&gt;b) <span class="built_in">swap</span>(a,b);</span><br><span class="line">            <span class="keyword">if</span>(a&lt;v1)</span><br><span class="line">            &#123;</span><br><span class="line">                v1=a;</span><br><span class="line">                v2=b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(v1==<span class="number">100000</span>) cout&lt;&lt;v1&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;v2;</span><br><span class="line">    <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;No Solution&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><p>从这道题使用hash表效率上不如双指针高，但也不差多少</p>
 ]]></content>
       <categories>
         <category>ACM</category>
@@ -1166,6 +1247,22 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>自由进制转化</title>
+    <url>/2021/03/06/%E8%87%AA%E7%94%B1%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/</url>
+    <content><![CDATA[<p>任意进制数转化成任意进制</p>
+<span id="more"></span>
+
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uget</span><span class="params">(<span class="keyword">char</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(c&gt;<span class="string">&#x27;9&#x27;</span>) <span class="keyword">return</span> c-<span class="string">&#x27;A&#x27;</span>+<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">return</span> c-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">base10</span><span class="params">(string num,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        res=res*b+<span class="built_in">uget</span>(num[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num&gt;<span class="number">9</span>) <span class="keyword">return</span> num<span class="number">-10</span>+<span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> num+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">baseb</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string res;</span><br><span class="line">    <span class="keyword">while</span>(n) res+=<span class="built_in">get</span>(n%b),n/=b;</span><br><span class="line">    <span class="built_in">reverse</span>(res.<span class="built_in">begin</span>(),res.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">base</span><span class="params">(<span class="keyword">int</span> b,string num,<span class="keyword">int</span> b2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">baseb</span>(<span class="built_in">base10</span>(num,b),b2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">base</span>(<span class="number">2</span>,<span class="string">&quot;101&quot;</span>,<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>顺序存储结构-数据结构</title>
     <url>/2021/03/23/%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<p>第一次写，实现了快排、头插、尾插、查找之类的方法</p>
@@ -1179,86 +1276,6 @@ int main()
       <tags>
         <tag>ACM</tag>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>STM32F4xx-库函数工程模板创建</title>
-    <url>/2021/03/30/STM32F4xx-%E5%BA%93%E5%87%BD%E6%95%B0%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA/</url>
-    <content><![CDATA[<p>记录遇到的小问题。</p>
-<span id="more"></span>
-
-<h2 id="下载模板文件"><a href="#下载模板文件" class="headerlink" title="下载模板文件"></a>下载模板文件</h2><p><a href="https://wwa.lanzous.com/ip3Grngmhmf">&gt;&gt;&gt;下载&lt;&lt;&lt;</a><br>确保安装了MDK_Keil5，解压模板文件之后进入USER文件夹内，打开<em>T2.uvprojx</em>即可</p>
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>选择build之后报错，好长好长一串。</p>
-<ol>
-<li>需要在魔术棒的C/C++选项卡内的define中写上<code>STM32F40_41xxx,USE_STDPERIPH_DRIVER</code></li>
-<li>同样是在魔术棒中，target选项卡内，Code Generation框内的ARM Compiler下拉栏中，选择<code>Use default compiler version 5</code></li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
-    <title>信息状态与攻防-信息安全</title>
-    <url>/2021/04/02/%E4%BF%A1%E6%81%AF%E7%8A%B6%E6%80%81%E4%B8%8E%E6%94%BB%E9%98%B2-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
-    <content><![CDATA[<p>攻击没有好坏之别，不存在没有漏洞的计算机</p>
-<span id="more"></span>
-
-<h2 id="信息的状态"><a href="#信息的状态" class="headerlink" title="信息的状态"></a>信息的状态</h2><ol>
-<li>Processing….加工处理</li>
-<li>Storage…….放着没动</li>
-<li>Transmission..传输中</li>
-</ol>
-<h3 id="Processing"><a href="#Processing" class="headerlink" title="Processing"></a>Processing</h3><p>数据在寄存器或者内存<br><strong>数据属于某一个进程</strong></p>
-<ul>
-<li>进程数据区</li>
-<li>堆栈区</li>
-<li>进程控制块</li>
-</ul>
-<p>缓冲区溢出攻击</p>
-<p>用findPass对winlogon.exe分析，找出登陆用户的账号密码</p>
-<h3 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h3><ol>
-<li>硬盘<ul>
-<li>数据在信箱（硬盘中）</li>
-</ul>
-</li>
-<li>移动设备</li>
-<li>文件形式存储</li>
-</ol>
-<p>硬盘存储分两块</p>
-<ol>
-<li>目录<ul>
-<li>地址</li>
-<li>文件名</li>
-<li>大小</li>
-<li>创建信息</li>
-</ul>
-</li>
-<li>内容<ul>
-<li>真实数据</li>
-</ul>
-</li>
-</ol>
-<h4 id="链式存储"><a href="#链式存储" class="headerlink" title="链式存储"></a>链式存储</h4><p>磁道划分扇区，一块扇区512字节，510字节存放内容，2字节存放下一块数据所在扇区的地址<br>0扇区用于存放磁盘大小之类的信息</p>
-<p><strong>优势</strong><br>读写效率高，顺序存储需要把后边的文件地址前移</p>
-<h4 id="顺序存储"><a href="#顺序存储" class="headerlink" title="顺序存储"></a>顺序存储</h4><p>磁带就是顺序存储</p>
-<h4 id="索引式文件分配"><a href="#索引式文件分配" class="headerlink" title="索引式文件分配"></a>索引式文件分配</h4><p>一块扇区存放数据所在地址的索引</p>
-<h4 id="注册表"><a href="#注册表" class="headerlink" title="注册表"></a>注册表</h4><p>一个非关系型数据库（树形结构）存放设备软硬件信息，90%病毒要修改注册表</p>
-<h3 id="Transmission"><a href="#Transmission" class="headerlink" title="Transmission"></a>Transmission</h3><ul>
-<li>数据在传输介质中</li>
-<li>数据传输是按照一定协议</li>
-<li>常用TCP/IP协议</li>
-</ul>
-<h2 id="攻防模型"><a href="#攻防模型" class="headerlink" title="攻防模型"></a>攻防模型</h2><h3 id="防守"><a href="#防守" class="headerlink" title="防守"></a>防守</h3><p>1。 防火墙<br>2. 入侵检测系统</p>
-<h3 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h3><p>利用系统漏洞，或者协议本身的弱点</p>
-<h4 id="三个层次"><a href="#三个层次" class="headerlink" title="三个层次"></a>三个层次</h4><ol>
-<li>物理层（物理黑客）</li>
-<li>网络层（破坏信息）</li>
-<li>感知层（破坏心理、认知、判断）</li>
-</ol>
-]]></content>
-      <categories>
-        <category>信息安全</category>
-      </categories>
-      <tags>
-        <tag>信息安全</tag>
       </tags>
   </entry>
 </search>
