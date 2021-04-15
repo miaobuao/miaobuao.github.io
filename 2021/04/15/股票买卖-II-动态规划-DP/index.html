@@ -29,8 +29,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://miaobuao.github.io/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/1.jpg">
 <meta property="og:image" content="https://miaobuao.github.io/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/2.jpg">
+<meta property="og:image" content="https://miaobuao.github.io/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/3.jpg">
+<meta property="og:image" content="https://miaobuao.github.io/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/4.jpg">
 <meta property="article:published_time" content="2021-04-15T00:55:33.000Z">
-<meta property="article:modified_time" content="2021-04-15T01:09:30.597Z">
+<meta property="article:modified_time" content="2021-04-15T01:16:46.315Z">
 <meta property="article:author" content="喵不嗷">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="动态规划">
@@ -220,7 +222,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-04-15 08:55:33 / 修改时间：09:09:30" itemprop="dateCreated datePublished" datetime="2021-04-15T08:55:33+08:00">2021-04-15</time>
+              <time title="创建时间：2021-04-15 08:55:33 / 修改时间：09:16:46" itemprop="dateCreated datePublished" datetime="2021-04-15T08:55:33+08:00">2021-04-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,7 +240,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>1.8k</span>
             </span>
 
         </div>
@@ -285,7 +287,7 @@
 <p><strong>样例解释</strong><br>样例1：在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。共得利润 4+3 = 7。</p>
 <p>样例2：在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。</p>
 <p>样例3：在这种情况下, 不进行任何交易, 所以最大利润为 0。</p>
-<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p><img src="pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/1.jpg" alt="分析1"></p>
+<h2 id="解析1"><a href="#解析1" class="headerlink" title="解析1"></a>解析1</h2><p><img src="pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/1.jpg" alt="分析1"></p>
 <p><img src="pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/2.jpg" alt="分析2"></p>
 <p>一共只22有种状态:</p>
 <p><strong>1. 当前处于未持股状态0：</strong></p>
@@ -298,7 +300,21 @@
 1-&gt;1 （不卖出，继续观望，那么就什么都不发生）
 1-&gt;0 （卖出股票，那么收益就要加上当前市场的股票价格）
 </code></pre>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> f[<span class="number">100005</span>][<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">1</span>]=- <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        f[i][<span class="number">0</span>]=<span class="built_in">max</span>(f[i<span class="number">-1</span>][<span class="number">0</span>],f[i<span class="number">-1</span>][<span class="number">1</span>]+a[i]);</span><br><span class="line">        f[i][<span class="number">1</span>]=<span class="built_in">max</span>(f[i<span class="number">-1</span>][<span class="number">1</span>],f[i<span class="number">-1</span>][<span class="number">0</span>]-a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[n][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> f[<span class="number">100005</span>][<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">1</span>]=- <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        f[i][<span class="number">0</span>]=<span class="built_in">max</span>(f[i<span class="number">-1</span>][<span class="number">0</span>],f[i<span class="number">-1</span>][<span class="number">1</span>]+a[i]);</span><br><span class="line">        f[i][<span class="number">1</span>]=<span class="built_in">max</span>(f[i<span class="number">-1</span>][<span class="number">1</span>],f[i<span class="number">-1</span>][<span class="number">0</span>]-a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[n][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><p><strong>用贪心算法做！</strong><br>纵然，我们可以用DP搜索出所有的方案数，但是通过观察，我们可以发现本题最优解方案存在一定的性质。</p>
+<p>测试样例的折线图形式（绿色标出下降，红色标出上升）：</p>
+<p><img src="pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/3.jpg" alt="折线图"></p>
+<p>考虑一种方案，在每次上升的前一天购入股票，并在上升后的当天卖出的方案</p>
+<pre><code>if (w[i] &gt; w[i - 1])
+    res += w[i] - w[i - 1];
+</code></pre>
+<p>接下来证明该贪心思路得出的方案即是最优解。</p>
+<p><strong>（1）证明贪心解 ≤≤ 最优解：</strong><br>由于贪心解都是取区间长度为 11 的解，因此假设存在于最优解中的某个区间 [i,j][i,j] 的长度 &gt;1&gt;1<br>那么会出现一下三种情况：<br><img src="pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/4.jpg" alt="三种情形"><br>对应三种情形：最优解选取的区间最终点位于上方、下方、相等。</p>
+<p>对于情形一：显然 最优解 &lt;&lt; 贪心解<br>对于情形二：显然 最优解 &lt;&lt; 贪心解<br>对于情形三：毫无疑问，这就是存在于贪心解中的情形，因此 贪心解 == 最优解</p>
+<p>得证</p>
+<p>（2）证明贪心解 ≥≥ 最优解：<br>这部分无需证明，因为贪心解即是合法解，所以他的方案必定大于等于最优解</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>, INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;w[i]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n + <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (w[i] - w[i - <span class="number">1</span>] &gt; <span class="number">0</span>) res += w[i] - w[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, res);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -400,7 +416,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%9E%901"><span class="nav-number">2.</span> <span class="nav-text">解析1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%BA%8C"><span class="nav-number">3.</span> <span class="nav-text">解法二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -474,7 +490,7 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">29k</span>
+    <span title="站点总字数">30k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
