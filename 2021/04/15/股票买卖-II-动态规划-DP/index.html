@@ -20,21 +20,24 @@
     var CONFIG = {"hostname":"miaobuao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="说是说哈希表，但是我没有找到hash模板&#x2F;(ㄒoㄒ)&#x2F;">
+  <meta name="description" content="又是一道DP题！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="找硬币_哈希表和双指针算法应用">
-<meta property="og:url" content="https://miaobuao.github.io/2021/03/10/%E6%89%BE%E7%A1%AC%E5%B8%81-%E5%93%88%E5%B8%8C%E8%A1%A8%E5%92%8C%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:title" content="股票买卖 II-动态规划(DP)">
+<meta property="og:url" content="https://miaobuao.github.io/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/index.html">
 <meta property="og:site_name" content="喵不嗷-博客">
-<meta property="og:description" content="说是说哈希表，但是我没有找到hash模板&#x2F;(ㄒoㄒ)&#x2F;">
+<meta property="og:description" content="又是一道DP题！">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-09T16:09:31.000Z">
-<meta property="article:modified_time" content="2021-03-09T16:15:09.077Z">
+<meta property="og:image" content="https://miaobuao.github.io/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/1.jpg">
+<meta property="og:image" content="https://miaobuao.github.io/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/2.jpg">
+<meta property="article:published_time" content="2021-04-15T00:55:33.000Z">
+<meta property="article:modified_time" content="2021-04-15T01:09:30.597Z">
 <meta property="article:author" content="喵不嗷">
 <meta property="article:tag" content="ACM">
-<meta property="article:tag" content="C++">
+<meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miaobuao.github.io/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/1.jpg">
 
-<link rel="canonical" href="https://miaobuao.github.io/2021/03/10/%E6%89%BE%E7%A1%AC%E5%B8%81-%E5%93%88%E5%B8%8C%E8%A1%A8%E5%92%8C%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95%E5%BA%94%E7%94%A8/">
+<link rel="canonical" href="https://miaobuao.github.io/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/">
 
 
 <script id="page-configurations">
@@ -47,7 +50,7 @@
   };
 </script>
 
-  <title>找硬币_哈希表和双指针算法应用 | 喵不嗷-博客</title>
+  <title>股票买卖 II-动态规划(DP) | 喵不嗷-博客</title>
   
 
 
@@ -193,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://miaobuao.github.io/2021/03/10/%E6%89%BE%E7%A1%AC%E5%B8%81-%E5%93%88%E5%B8%8C%E8%A1%A8%E5%92%8C%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95%E5%BA%94%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="https://miaobuao.github.io/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://q1.qlogo.cn/g?b=qq&nk=617802189&s=100">
@@ -206,7 +209,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          找硬币_哈希表和双指针算法应用
+          股票买卖 II-动态规划(DP)
         </h1>
 
         <div class="post-meta">
@@ -217,7 +220,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-03-10 00:09:31 / 修改时间：00:15:09" itemprop="dateCreated datePublished" datetime="2021-03-10T00:09:31+08:00">2021-03-10</time>
+              <time title="创建时间：2021-04-15 08:55:33 / 修改时间：09:09:30" itemprop="dateCreated datePublished" datetime="2021-04-15T08:55:33+08:00">2021-04-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,7 +238,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>1.1k</span>
             </span>
 
         </div>
@@ -247,38 +250,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>说是说哈希表，但是我没有找到hash模板/(ㄒoㄒ)/</p>
+        <p>又是一道DP题！</p>
 <span id="more"></span>
 
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>伊娃喜欢从整个宇宙中收集硬币。</p>
-<p>有一天，她去了一家宇宙购物中心购物，结账时可以使用各种硬币付款。</p>
-<p>但是，有一个特殊的付款要求：每张帐单，她只能使用恰好两个硬币来准确的支付消费金额。</p>
-<p>给定她拥有的所有硬币的面额，请你帮她确定对于给定的金额，她是否可以找到两个硬币来支付。</p>
-<p>输入格式<br>第一行包含两个整数 N 和 M，分别表示硬币数量以及需要支付的金额。</p>
-<p>第二行包含 N 个整数，表示每个硬币的面额。</p>
-<p>输出格式<br>输出一行，包含两个整数 V1,V2，表示所选的两个硬币的面额，使得 V1≤V2 并且 V1+V2=M。</p>
-<p>如果答案不唯一，则输出 V1 最小的解。</p>
-<p>如果无解，则输出 No Solution。</p>
-<p>数据范围<br>1≤N≤105,<br>1≤M≤1000</p>
-<p>输入样例1：</p>
-<pre><code>8 15
-1 2 8 7 2 4 11 15
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个长度为 N 的数组，数组中的第 i 个数字表示一个给定股票在第 i 天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p>
+<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<p><strong>输入格式</strong><br>第一行包含整数 N，表示数组长度。</p>
+<p>第二行包含 N 个不大于 10000 的正整数，表示完整的数组。</p>
+<p><strong>输出格式</strong><br>输出一个整数，表示最大利润。<br><strong>数据范围</strong></p>
+<pre><code>1≤N≤105
 </code></pre>
-<p>输出样例1：</p>
-<pre><code>4 11
+<p><strong>输入样例1：</strong></p>
+<pre><code>6
+7 1 5 3 6 4
 </code></pre>
-<p>输入样例2：</p>
-<pre><code>7 14
-1 8 7 2 4 11 15
+<p><strong>输出样例1：</strong></p>
+<pre><code>7
 </code></pre>
-<p>输出样例2：</p>
-<pre><code>No Solution
+<p><strong>输入样例2：</strong></p>
+<pre><code>5
+1 2 3 4 5
 </code></pre>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) cin&gt;&gt;a[i];</span><br><span class="line">    <span class="built_in">sort</span>(a,a+n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=n<span class="number">-1</span>;i&lt;j;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;j&amp;&amp; a[i]+a[j]&gt;m) j--;</span><br><span class="line">        <span class="keyword">if</span>(a[i]+a[j]==m)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[j];</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;No Solution&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; h;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v1=<span class="number">100000</span>,v2;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> a;</span><br><span class="line">        cin&gt;&gt;a;</span><br><span class="line">        <span class="keyword">int</span> b=m-a;</span><br><span class="line">        h[a]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(h[b]==<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a&gt;b) <span class="built_in">swap</span>(a,b);</span><br><span class="line">            <span class="keyword">if</span>(a&lt;v1)</span><br><span class="line">            &#123;</span><br><span class="line">                v1=a;</span><br><span class="line">                v2=b;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(v1==<span class="number">100000</span>) cout&lt;&lt;v1&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;v2;</span><br><span class="line">    <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;No Solution&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><p>从这道题使用hash表效率上不如双指针高，但也不差多少</p>
+<p><strong>输出样例2：</strong></p>
+<pre><code>4
+</code></pre>
+<p><strong>输入样例3：</strong></p>
+<pre><code>5
+7 6 4 3 1
+</code></pre>
+<p><strong>输出样例3：</strong></p>
+<pre><code>0
+</code></pre>
+<p><strong>样例解释</strong><br>样例1：在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。共得利润 4+3 = 7。</p>
+<p>样例2：在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。</p>
+<p>样例3：在这种情况下, 不进行任何交易, 所以最大利润为 0。</p>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p><img src="pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/1.jpg" alt="分析1"></p>
+<p><img src="pic/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/2.jpg" alt="分析2"></p>
+<p>一共只22有种状态:</p>
+<p><strong>1. 当前处于未持股状态0：</strong></p>
+<pre><code>对应可以进行的转换：
+0-&gt;0 （不买入，继续观望，那么就什么都不发生）
+0-&gt;1 （买入股票，那么收益就要减去当前市场的股票价格）
+</code></pre>
+<p><strong>2. 当前处于持股状态1：</strong></p>
+<pre><code>对应可以进行的转换：
+1-&gt;1 （不卖出，继续观望，那么就什么都不发生）
+1-&gt;0 （卖出股票，那么收益就要加上当前市场的股票价格）
+</code></pre>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> f[<span class="number">100005</span>][<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">1</span>]=- <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        f[i][<span class="number">0</span>]=<span class="built_in">max</span>(f[i<span class="number">-1</span>][<span class="number">0</span>],f[i<span class="number">-1</span>][<span class="number">1</span>]+a[i]);</span><br><span class="line">        f[i][<span class="number">1</span>]=<span class="built_in">max</span>(f[i<span class="number">-1</span>][<span class="number">1</span>],f[i<span class="number">-1</span>][<span class="number">0</span>]-a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[n][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -309,7 +329,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/ACM/" rel="tag"># ACM</a>
-              <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
           </div>
 
         
@@ -318,13 +338,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/03/09/%E5%87%A0%E7%BB%84%E4%B8%8D%E7%AD%89%E5%BC%8F/" rel="prev" title="几组不等式">
-      <i class="fa fa-chevron-left"></i> 几组不等式
+    <a href="/2021/04/11/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC-%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF%E9%A2%98/" rel="prev" title="表达式求值-算法模板题">
+      <i class="fa fa-chevron-left"></i> 表达式求值-算法模板题
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/03/10/%E4%BD%BF%E7%94%A8JS%E8%8E%B7%E5%8F%96IP%E5%9C%B0%E5%9D%80%E7%9A%84API/" rel="next" title="使用JS获取IP地址的API">
-      使用JS获取IP地址的API <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -383,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88"><span class="nav-number">2.1.</span> <span class="nav-text">双指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">2.2.</span> <span class="nav-text">哈希表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips"><span class="nav-number">2.3.</span> <span class="nav-text">Tips</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
