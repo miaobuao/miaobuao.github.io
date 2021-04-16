@@ -20,18 +20,20 @@
     var CONFIG = {"hostname":"miaobuao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="世与我而相违，复驾言兮焉求？">
-<meta property="og:type" content="website">
-<meta property="og:title" content="喵不嗷-博客">
-<meta property="og:url" content="https://miaobuao.github.io/tags/C/page/2/index.html">
+  <meta name="description" content="访问控制（1）机制-实现安全目标    访问控制对机密性、完整性起直接作用 对与可用性 谁可以颁发网络可用性的网络管理指令 谁可以滥用资源 谁可以获得防止攻击的信息    主体、客体和授权 主体 访问者 客体 访问目标 授权 规定对资源可执行的动作（读、写、执行或拒绝访问）  控制访问策略 最小权限原则 该干啥就给啥权限，别给多余的权限 最小泄露原则 一些事情知道的人越少越好 只给必须的资源  决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="访问控制-信息安全">
+<meta property="og:url" content="https://miaobuao.github.io/2021/04/16/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/index.html">
 <meta property="og:site_name" content="喵不嗷-博客">
-<meta property="og:description" content="世与我而相违，复驾言兮焉求？">
+<meta property="og:description" content="访问控制（1）机制-实现安全目标    访问控制对机密性、完整性起直接作用 对与可用性 谁可以颁发网络可用性的网络管理指令 谁可以滥用资源 谁可以获得防止攻击的信息    主体、客体和授权 主体 访问者 客体 访问目标 授权 规定对资源可执行的动作（读、写、执行或拒绝访问）  控制访问策略 最小权限原则 该干啥就给啥权限，别给多余的权限 最小泄露原则 一些事情知道的人越少越好 只给必须的资源  决">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-16T02:48:42.000Z">
+<meta property="article:modified_time" content="2021-04-16T04:10:08.310Z">
 <meta property="article:author" content="喵不嗷">
-<meta property="article:tag" content="博客,编程,技术,分享,经验,交流">
+<meta property="article:tag" content="信息安全">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://miaobuao.github.io/tags/C/page/2/">
+<link rel="canonical" href="https://miaobuao.github.io/2021/04/16/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">
 
 
 <script id="page-configurations">
@@ -39,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: C++ | 喵不嗷-博客</title>
+  <title>访问控制-信息安全 | 喵不嗷-博客</title>
   
 
 
@@ -183,135 +185,160 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">C++
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://miaobuao.github.io/2021/04/16/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://q1.qlogo.cn/g?b=qq&nk=617802189&s=100">
+      <meta itemprop="name" content="喵不嗷">
+      <meta itemprop="description" content="世与我而相违，复驾言兮焉求？">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="喵不嗷-博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          访问控制-信息安全
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-16 10:48:42 / 修改时间：12:10:08" itemprop="dateCreated datePublished" datetime="2021-04-16T10:48:42+08:00">2021-04-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">信息安全</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>449</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
+        <p>访问控制（1）<br>机制-实现安全目标</p>
+<!--more--->
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-26T11:47:47+08:00"
-              content="2021-02-26">
-          02-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/26/%E5%BF%AB%E9%80%9F%E5%B9%82%E4%BB%A5%E5%8F%8A%E6%B1%82%E5%B9%82%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E4%BD%8D%E6%95%B0/" itemprop="url">
-            <span itemprop="name">快速幂以及求幂运算结果的位数</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-26T11:12:38+08:00"
-              content="2021-02-26">
-          02-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/26/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" itemprop="url">
-            <span itemprop="name">二分查找与快速排序</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-25T21:01:22+08:00"
-              content="2021-02-25">
-          02-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/25/C-%E5%A5%87%E5%81%B6%E6%95%B0%E5%88%A4%E6%96%AD%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95/" itemprop="url">
-            <span itemprop="name">C++奇偶数判断的两种方法</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-25T19:58:46+08:00"
-              content="2021-02-25">
-          02-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/25/ACM-%E4%BA%8C%E7%9A%84%E5%B9%82%E6%AC%A1%E6%96%B9-%E9%A2%98%E8%A7%A3/" itemprop="url">
-            <span itemprop="name">ACM-二的幂次方-题解</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-24T23:04:25+08:00"
-              content="2021-02-24">
-          02-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/24/ACM%E9%A2%98%E8%A7%A3-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91/" itemprop="url">
-            <span itemprop="name">ACM题解-字符串编辑</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+<ul>
+<li>访问控制对机密性、完整性起直接作用</li>
+<li>对与可用性<ol>
+<li>谁可以颁发网络可用性的网络管理指令</li>
+<li>谁可以滥用资源</li>
+<li>谁可以获得防止攻击的信息</li>
+</ol>
+</li>
+</ul>
+<h2 id="主体、客体和授权"><a href="#主体、客体和授权" class="headerlink" title="主体、客体和授权"></a>主体、客体和授权</h2><ol>
+<li>主体<br> 访问者</li>
+<li>客体<br> 访问目标</li>
+<li>授权<br> 规定对资源可执行的动作（读、写、执行或拒绝访问）</li>
+</ol>
+<h2 id="控制访问策略"><a href="#控制访问策略" class="headerlink" title="控制访问策略"></a>控制访问策略</h2><ol>
+<li>最小权限原则<br> 该干啥就给啥权限，别给多余的权限</li>
+<li>最小泄露原则<br> 一些事情知道的人越少越好<br> 只给<strong>必须</strong>的资源</li>
+</ol>
+<h2 id="决定访问权限"><a href="#决定访问权限" class="headerlink" title="决定访问权限"></a>决定访问权限</h2><ul>
+<li>用户分组<ol>
+<li>特殊用户</li>
+<li>一般用户</li>
+<li>审计用户</li>
+</ol>
+</li>
+<li>资源分类</li>
+<li>资源及使用</li>
+<li>访问规则</li>
+</ul>
+<h2 id="主体对客体的访问权可以转让吗？"><a href="#主体对客体的访问权可以转让吗？" class="headerlink" title="主体对客体的访问权可以转让吗？"></a>主体对客体的访问权可以转让吗？</h2><ul>
+<li>自主访问控制<br>  能<br>  （例如Windows，Linux，ios，Android）</li>
+<li>强制访问控制<br>  不能<br>  （学生成绩查询系统，军队汇报系统（下级可以向上级通讯，上级不能向下传递，通过安全标签实现信息单向流通））</li>
+<li>基于角色的访问控制<br>  不能</li>
+</ul>
+<h3 id="1985美国国防部橘皮书"><a href="#1985美国国防部橘皮书" class="headerlink" title="1985美国国防部橘皮书"></a>1985美国国防部橘皮书</h3><p>分七类： A B3 B2 B1 C2 C1 D<br>windows是C2级，实现自主访问控制<br><strong>超过C2级的操作系统不得向中华人民共和国出售</strong></p>
+<h2 id="访问控制的实现机制"><a href="#访问控制的实现机制" class="headerlink" title="访问控制的实现机制"></a>访问控制的实现机制</h2><ol>
+<li><strong>访问控制矩阵</strong><br>稀疏矩阵<br>横向与纵向的压缩，使用链表</li>
+<li><strong>CPU指令集的区域划分</strong></li>
+<li><strong>内存控制</strong></li>
+<li><strong>计时器</strong></li>
+</ol>
 
     </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pic/vx.png" alt="喵不嗷 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pic/alipay.jpg" alt="喵不嗷 支付宝">
+        <p>支付宝</p>
+      </div>
+
   </div>
-  
-  
-  
+</div>
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" rel="tag"># 信息安全</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/" rel="prev" title="股票买卖 II-动态规划(DP)">
+      <i class="fa fa-chevron-left"></i> 股票买卖 II-动态规划(DP)
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/tags/C/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/tags/C/">1</a><span class="page-number current">2</span>
-  </nav>
+  
+  
 
 
 
@@ -363,6 +390,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BD%93%E3%80%81%E5%AE%A2%E4%BD%93%E5%92%8C%E6%8E%88%E6%9D%83"><span class="nav-number">1.</span> <span class="nav-text">主体、客体和授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E8%AE%BF%E9%97%AE%E7%AD%96%E7%95%A5"><span class="nav-number">2.</span> <span class="nav-text">控制访问策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B3%E5%AE%9A%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90"><span class="nav-number">3.</span> <span class="nav-text">决定访问权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BD%93%E5%AF%B9%E5%AE%A2%E4%BD%93%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%83%E5%8F%AF%E4%BB%A5%E8%BD%AC%E8%AE%A9%E5%90%97%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">主体对客体的访问权可以转让吗？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1985%E7%BE%8E%E5%9B%BD%E5%9B%BD%E9%98%B2%E9%83%A8%E6%A9%98%E7%9A%AE%E4%B9%A6"><span class="nav-number">4.1.</span> <span class="nav-text">1985美国国防部橘皮书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">访问控制的实现机制</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
