@@ -1444,4 +1444,128 @@ int main()
         <tag>信息安全</tag>
       </tags>
   </entry>
+  <entry>
+    <title>使用队列走迷宫-BFS&amp;数据结构</title>
+    <url>/2021/04/25/%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97%E8%B5%B0%E8%BF%B7%E5%AE%AB-BFS-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<p>数据结构的作业，写个队列，然后实现走迷宫</p>
+<span id="more"></span>
+
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">position</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line">&#125; position;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Q</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    position p;</span><br><span class="line">    Q *next;</span><br><span class="line">    <span class="built_in">Q</span>(position pos)</span><br><span class="line">    &#123;</span><br><span class="line">        next=<span class="literal">nullptr</span>;</span><br><span class="line">        p=pos;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Q</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        next=<span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(position p)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> temp=next;</span><br><span class="line">        <span class="keyword">while</span>(temp)</span><br><span class="line">        &#123;</span><br><span class="line">            temp=temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        temp=<span class="keyword">new</span> <span class="built_in">Q</span>(p);</span><br><span class="line">        temp-&gt;next=next;</span><br><span class="line">        next=temp;</span><br><span class="line">        <span class="comment">// cout&lt;&lt;temp-&gt;p.y;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">auto</span> temp=next;</span><br><span class="line">        <span class="keyword">while</span>(temp)</span><br><span class="line">        &#123;</span><br><span class="line">            temp=temp-&gt;next;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(next==<span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">position <span class="title">front</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">position <span class="title">pop</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> temp=next;</span><br><span class="line">        next=temp-&gt;next;</span><br><span class="line">        <span class="keyword">return</span> temp-&gt;p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> a[<span class="number">1000</span>][<span class="number">1000</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">1000</span>][<span class="number">1000</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    position start,end;</span><br><span class="line">    <span class="keyword">int</span> dx[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>&#125;,</span><br><span class="line">        dy[<span class="number">4</span>]=&#123;<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">char</span> c;</span><br><span class="line">            cin&gt;&gt;c;</span><br><span class="line">            <span class="keyword">if</span>(c==<span class="string">&#x27;S&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                start.x=i,start.y=j;</span><br><span class="line">                c==<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c==<span class="string">&#x27;E&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                end.x=i,end.y=j;</span><br><span class="line">                c=<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            a[i][j]=c;</span><br><span class="line">        &#125;</span><br><span class="line">    Q q;</span><br><span class="line">    q.<span class="built_in">push</span>(start);</span><br><span class="line">    <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> p=q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">int</span> x=p.x,y=p.y;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;(%d,%d)\n&quot;</span>,x,y);</span><br><span class="line">        f[x][y]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> xx=x+dx[i],yy=y+dy[i];</span><br><span class="line">            <span class="keyword">if</span>(xx&gt;<span class="number">0</span> &amp;&amp; yy&gt;<span class="number">0</span> &amp;&amp; a[xx][yy]!=<span class="string">&#x27;1&#x27;</span> &amp;&amp; f[xx][yy]!=<span class="number">1</span> &amp;&amp; xx&lt;=n &amp;&amp; yy&lt;=m)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(xx==end.x &amp;&amp; yy==end.y)</span><br><span class="line">                &#123;</span><br><span class="line">                    cout&lt;&lt;<span class="string">&quot;FIND!&quot;</span>&lt;&lt;endl;</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                position pos;</span><br><span class="line">                pos.x=xx;</span><br><span class="line">                pos.y=yy;</span><br><span class="line">                q.<span class="built_in">push</span>(pos);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;NOT FOUND!&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解码方法-动态规划-LeetCode每日一题</title>
+    <url>/2021/04/21/%E8%A7%A3%E7%A0%81%E6%96%B9%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</url>
+    <content><![CDATA[<p>LeetCode 每日一题，经典动态规划题</p>
+<span id="more"></span>
+
+<p>好久不更新博客了，主要是因为难题做不出，简单的又没啥好发的。</p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>一条包含字母 A-Z 的消息通过以下映射进行了 编码 ：</p>
+<pre><code>&#39;A&#39; -&gt; 1
+&#39;B&#39; -&gt; 2
+...
+&#39;Z&#39; -&gt; 26
+</code></pre>
+<p>要 <strong>解码</strong> 已编码的消息，所有数字必须基于上述映射的方法，反向映射回字母（可能有多种方法）。例如，”11106” 可以映射为：</p>
+<ul>
+<li>“AAJF” ，将消息分组为 (1 1 10 6)</li>
+<li>“KJF” ，将消息分组为 (11 10 6)</li>
+</ul>
+<p>注意，消息不能分组为  (1 11 06) ，因为 “06” 不能映射为 “F” ，这是由于 “6” 和 “06” 在映射中并不等价。</p>
+<p>给你一个只含数字的 <strong>非空</strong> 字符串 s ，请计算并返回 <strong>解码</strong> 方法的 <strong>总数</strong> 。</p>
+<p>题目数据保证答案肯定是一个 <strong>32 位</strong> 的整数。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：s = &quot;12&quot;
+输出：2
+解释：它可以解码为 &quot;AB&quot;（1 2）或者 &quot;L&quot;（12）。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：s = &quot;226&quot;
+输出：3
+解释：它可以解码为 &quot;BZ&quot; (2 26), &quot;VF&quot; (22 6), 或者 &quot;BBF&quot; (2 2 6) 。
+</code></pre>
+<p><strong>示例 3：</strong></p>
+<pre><code>输入：s = &quot;0&quot;
+输出：0
+解释：没有字符映射到以 0 开头的数字。
+含有 0 的有效映射是 &#39;J&#39; -&gt; &quot;10&quot; 和 &#39;T&#39;-&gt; &quot;20&quot; 。
+由于没有字符，因此没有有效的方法对此进行解码，因为所有数字都需要映射。
+</code></pre>
+<p><strong>示例 4：</strong></p>
+<pre><code>输入：s = &quot;06&quot;
+输出：0
+解释：&quot;06&quot; 不能映射到 &quot;F&quot; ，因为字符串含有前导 0（&quot;6&quot; 和 &quot;06&quot; 在映射中并不等价）。
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1 &lt;= s.length &lt;= 100</li>
+<li>s 只包含数字，并且可能包含前导零。</li>
+</ul>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/decode-ways">原题链接</a></p>
+<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>很显然是动态规划，如果暴搜则时间复杂度为O(2^n),显然不行。</p>
+<p>因为26个字母的映射只能是一位数字，或二位数，</p>
+<p>不难发现对于字符串 s 的某个位置 i 而言，我们只关心「位置 i 自己能否形成独立 item 」和「位置 i 能够与上一位置（i-1）能否形成 item」，而不关心 i-1 之前的位置。</p>
+<p>条件转移方程：</p>
+<p><img src="pic%5C%E8%A7%A3%E7%A0%81%E6%96%B9%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%5C2021-04-21-224829.png" alt="转移方程"></p>
+<p><strong>注意：</strong><br>由于题目存在前导零，而前导零属于无效 item。可以进行特判</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><p>时间复杂度：共有 n 个状态需要被转移。复杂度为 O(n)O(n)<br>空间复杂度：O(n)O(n)</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numDecodings</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">f</span><span class="params">(n+<span class="number">1</span>)</span></span>;</span><br><span class="line">        f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i<span class="number">-1</span>]!=<span class="string">&#x27;0&#x27;</span>) f[i]+=f[i<span class="number">-1</span>];</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">1</span> &amp;&amp; s[i<span class="number">-2</span>]!=<span class="string">&#x27;0&#x27;</span> &amp;&amp; ( ((s[i<span class="number">-2</span>]-<span class="string">&#x27;0&#x27;</span>)*<span class="number">10</span> + (s[i<span class="number">-1</span>]-<span class="string">&#x27;0&#x27;</span>))&lt;=<span class="number">26</span> ) ) f[i]+=f[i<span class="number">-2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>ACM</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>防火墙-信息安全</title>
+    <url>/2021/04/23/%E9%98%B2%E7%81%AB%E5%A2%99-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<p>两个或多个网络间实施网间访问控制策略的一组组件的集合</p>
+<h2 id="Four-General-Techniques-for-Firewall"><a href="#Four-General-Techniques-for-Firewall" class="headerlink" title="Four General Techniques for Firewall"></a>Four General Techniques for Firewall</h2><ol>
+<li><strong>Service Control</strong><br> 上班不允许QQ，屏蔽腾讯数据</li>
+<li><strong>Direction Control</strong><br> 考试不能上外网</li>
+<li><strong>User Control</strong><br> 实名WiFi，或者账号登录，流量包，计费方式控制</li>
+<li><strong>Behavior Control</strong><br> 非正常行为Filter(过滤器)</li>
+</ol>
+<h2 id="防火墙分类"><a href="#防火墙分类" class="headerlink" title="防火墙分类"></a>防火墙分类</h2><ol>
+<li><strong>包过滤</strong><br> 检查数据包包头的目标地址与来源<br> <strong>优点：</strong><ul>
+<li>简单</li>
+<li>便宜</li>
+</ul>
+</li>
+<li><strong>应用代理</strong><br> <strong>特点：</strong><br> 代为访问，转发内容，对于客户机来说，代理服务器就是服务机，对于访问目标来说，代理服务器就是客户机，获取内容之后转发内容</li>
+<li><strong>状态监视防火墙</strong></li>
+<li><strong>复合型防火墙</strong></li>
+</ol>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><pre><code>                  服务机
+                    |
+内网 —— 防火墙 —— 防火墙
+      非军事化区域 =&gt;|
+        (缓冲带)  防火墙
+                    |
+                    外网
+</code></pre>
+<h2 id="入侵检测"><a href="#入侵检测" class="headerlink" title="入侵检测"></a>入侵检测</h2><p>动态监控，监测网络或系统状态（有无异常）</p>
+<ol>
+<li>基于正常行为的入侵检测<br> 误报率高，对新型攻击有效</li>
+<li>12</li>
+</ol>
+]]></content>
+      <categories>
+        <category>信息安全</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+      </tags>
+  </entry>
 </search>
