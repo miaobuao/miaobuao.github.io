@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"miaobuao.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="访问控制（1）    访问控制对机密性、完整性起直接作用 对与可用性 谁可以颁发网络可用性的网络管理指令 谁可以滥用资源 谁可以获得防止攻击的信息    主体、客体和授权 主体 访问者 客体 访问目标 授权 规定对资源可执行的动作（读、写、执行或拒绝访问）  控制访问策略 最小权限原则 该干啥就给啥权限，别给多余的权限 最小泄露原则 一些事情知道的人越少越好 只给必须的资源  决定访问权限 用户分">
+  <meta name="description" content="有Key就是解密，反之是破解。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="访问控制-信息安全">
-<meta property="og:url" content="https://miaobuao.github.io/2021/04/16/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/index.html">
+<meta property="og:title" content="密码学与信息安全-信息安全">
+<meta property="og:url" content="https://miaobuao.github.io/2021/04/30/%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/index.html">
 <meta property="og:site_name" content="喵不嗷-博客">
-<meta property="og:description" content="访问控制（1）    访问控制对机密性、完整性起直接作用 对与可用性 谁可以颁发网络可用性的网络管理指令 谁可以滥用资源 谁可以获得防止攻击的信息    主体、客体和授权 主体 访问者 客体 访问目标 授权 规定对资源可执行的动作（读、写、执行或拒绝访问）  控制访问策略 最小权限原则 该干啥就给啥权限，别给多余的权限 最小泄露原则 一些事情知道的人越少越好 只给必须的资源  决定访问权限 用户分">
+<meta property="og:description" content="有Key就是解密，反之是破解。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-16T02:48:42.000Z">
-<meta property="article:modified_time" content="2021-04-25T09:13:07.918Z">
+<meta property="article:published_time" content="2021-04-30T02:44:55.000Z">
+<meta property="article:modified_time" content="2021-04-30T04:10:17.821Z">
 <meta property="article:author" content="喵不嗷">
 <meta property="article:tag" content="信息安全">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://miaobuao.github.io/2021/04/16/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">
+<link rel="canonical" href="https://miaobuao.github.io/2021/04/30/%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>访问控制-信息安全 | 喵不嗷-博客</title>
+  <title>密码学与信息安全-信息安全 | 喵不嗷-博客</title>
   
 
 
@@ -192,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://miaobuao.github.io/2021/04/16/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">
+    <link itemprop="mainEntityOfPage" href="https://miaobuao.github.io/2021/04/30/%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://q1.qlogo.cn/g?b=qq&nk=617802189&s=100">
@@ -205,7 +205,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          访问控制-信息安全
+          密码学与信息安全-信息安全
         </h1>
 
         <div class="post-meta">
@@ -214,16 +214,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-04-16 10:48:42" itemprop="dateCreated datePublished" datetime="2021-04-16T10:48:42+08:00">2021-04-16</time>
+              <time title="创建时间：2021-04-30 10:44:55 / 修改时间：12:10:17" itemprop="dateCreated datePublished" datetime="2021-04-30T10:44:55+08:00">2021-04-30</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-25 17:13:07" itemprop="dateModified" datetime="2021-04-25T17:13:07+08:00">2021-04-25</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -240,7 +234,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>440</span>
+              <span>288</span>
             </span>
 
         </div>
@@ -252,49 +246,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>访问控制（1）</p>
-<!--more--->
+        <p>有Key就是<strong>解密</strong>，<br>反之是<strong>破解</strong>。</p>
+<span id="more"></span>
 
-<ul>
-<li>访问控制对机密性、完整性起直接作用</li>
-<li>对与可用性<ol>
-<li>谁可以颁发网络可用性的网络管理指令</li>
-<li>谁可以滥用资源</li>
-<li>谁可以获得防止攻击的信息</li>
+<h2 id="香农原则·Shannon’s-Principle"><a href="#香农原则·Shannon’s-Principle" class="headerlink" title="香农原则·Shannon’s Principle"></a>香农原则·Shannon’s Principle</h2><ol>
+<li>Confusion (混淆)(乱)</li>
+<li>Diffusion (散)<br> 修改一点内容，结果大不相同duobiaodaihuan</li>
 </ol>
+<h2 id="古代加密"><a href="#古代加密" class="headerlink" title="古代加密"></a>古代加密</h2><ol>
+<li>单表代换</li>
+<li>多表代换</li>
+</ol>
+<h2 id="对称加密技术"><a href="#对称加密技术" class="headerlink" title="对称加密技术"></a>对称加密技术</h2><ol>
+<li>对称密钥<br> 明文 == key ==&gt; 密文 == key ==&gt; 明文<br> <strong>优点：</strong><pre><code> 速度快
+</code></pre>
+ <strong>目前主流：</strong><pre><code> + DES(美国的IBM设计的)
+     对明文使用Key，十六轮加密，产生一个密钥
+     对密钥使用key，十六轮加密，产生明文。
+     **好处：**
+         只需要使用加密芯片就可以解密
+ + AES(比利时设计)
+</code></pre>
 </li>
-</ul>
-<h2 id="主体、客体和授权"><a href="#主体、客体和授权" class="headerlink" title="主体、客体和授权"></a>主体、客体和授权</h2><ol>
-<li>主体<br> 访问者</li>
-<li>客体<br> 访问目标</li>
-<li>授权<br> 规定对资源可执行的动作（读、写、执行或拒绝访问）</li>
-</ol>
-<h2 id="控制访问策略"><a href="#控制访问策略" class="headerlink" title="控制访问策略"></a>控制访问策略</h2><ol>
-<li>最小权限原则<br> 该干啥就给啥权限，别给多余的权限</li>
-<li>最小泄露原则<br> 一些事情知道的人越少越好<br> 只给<strong>必须</strong>的资源</li>
-</ol>
-<h2 id="决定访问权限"><a href="#决定访问权限" class="headerlink" title="决定访问权限"></a>决定访问权限</h2><ul>
-<li>用户分组<ol>
-<li>特殊用户</li>
-<li>一般用户</li>
-<li>审计用户</li>
-</ol>
+<li>公钥和密钥<br> 明文 == 公钥 ==&gt; 密文 == 私钥 ==&gt; 明文<br> <strong>缺点：</strong><pre><code> 比 *“对称密钥”* 慢很多
+</code></pre>
 </li>
-<li>资源分类</li>
-<li>资源及使用</li>
-<li>访问规则</li>
-</ul>
-<h2 id="主体对客体的访问权可以转让吗？"><a href="#主体对客体的访问权可以转让吗？" class="headerlink" title="主体对客体的访问权可以转让吗？"></a>主体对客体的访问权可以转让吗？</h2><ul>
-<li>自主访问控制<br>  能<br>  （例如Windows，Linux，ios，Android）</li>
-<li>强制访问控制<br>  不能<br>  （学生成绩查询系统，军队汇报系统（下级可以向上级通讯，上级不能向下传递，通过安全标签实现信息单向流通））</li>
-<li>基于角色的访问控制<br>  不能</li>
-</ul>
-<h3 id="1985美国国防部橘皮书"><a href="#1985美国国防部橘皮书" class="headerlink" title="1985美国国防部橘皮书"></a>1985美国国防部橘皮书</h3><p>分七类： A B3 B2 B1 C2 C1 D<br>windows是C2级，实现自主访问控制<br><strong>超过C2级的操作系统不得向中华人民共和国出售</strong></p>
-<h2 id="访问控制的实现机制"><a href="#访问控制的实现机制" class="headerlink" title="访问控制的实现机制"></a>访问控制的实现机制</h2><ol>
-<li><strong>访问控制矩阵</strong><br>稀疏矩阵<br>横向与纵向的压缩，使用链表</li>
-<li><strong>CPU指令集的区域划分</strong></li>
-<li><strong>内存控制</strong></li>
-<li><strong>计时器</strong></li>
 </ol>
 
     </div>
@@ -334,13 +310,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/15/%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96-II-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-DP/" rel="prev" title="股票买卖 II-动态规划(DP)">
-      <i class="fa fa-chevron-left"></i> 股票买卖 II-动态规划(DP)
+    <a href="/2021/04/25/%E4%BD%BF%E7%94%A8%E9%98%9F%E5%88%97%E8%B5%B0%E8%BF%B7%E5%AE%AB-BFS-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="prev" title="使用队列走迷宫-BFS&数据结构">
+      <i class="fa fa-chevron-left"></i> 使用队列走迷宫-BFS&数据结构
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/21/%E8%A7%A3%E7%A0%81%E6%96%B9%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="next" title="解码方法-动态规划-LeetCode每日一题">
-      解码方法-动态规划-LeetCode每日一题 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -399,7 +372,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BD%93%E3%80%81%E5%AE%A2%E4%BD%93%E5%92%8C%E6%8E%88%E6%9D%83"><span class="nav-number">1.</span> <span class="nav-text">主体、客体和授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E8%AE%BF%E9%97%AE%E7%AD%96%E7%95%A5"><span class="nav-number">2.</span> <span class="nav-text">控制访问策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B3%E5%AE%9A%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90"><span class="nav-number">3.</span> <span class="nav-text">决定访问权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BD%93%E5%AF%B9%E5%AE%A2%E4%BD%93%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%83%E5%8F%AF%E4%BB%A5%E8%BD%AC%E8%AE%A9%E5%90%97%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">主体对客体的访问权可以转让吗？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1985%E7%BE%8E%E5%9B%BD%E5%9B%BD%E9%98%B2%E9%83%A8%E6%A9%98%E7%9A%AE%E4%B9%A6"><span class="nav-number">4.1.</span> <span class="nav-text">1985美国国防部橘皮书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">访问控制的实现机制</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%99%E5%86%9C%E5%8E%9F%E5%88%99%C2%B7Shannon%E2%80%99s-Principle"><span class="nav-number">1.</span> <span class="nav-text">香农原则·Shannon’s Principle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A4%E4%BB%A3%E5%8A%A0%E5%AF%86"><span class="nav-number">2.</span> <span class="nav-text">古代加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF"><span class="nav-number">3.</span> <span class="nav-text">对称加密技术</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
