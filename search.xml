@@ -1643,4 +1643,28 @@ int main()
         <tag>资料</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ML机器学习笔记</title>
+    <url>/2021/05/07/ML%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>机器学习的笔记,感谢吴恩达老师的视频教程</p>
+<span id="more"></span>
+
+<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><h3 id="“J函数”和“h函数”"><a href="#“J函数”和“h函数”" class="headerlink" title="“J函数”和“h函数”"></a>“J函数”和“h函数”</h3><ul>
+<li><p>$h(x^{(i)})$：<br>这个函数叫做假设函数，但是他的作用和假设没有很大的关系。<br>这个函数传入的参数$x^{(i)}$表示<em>第i个样本</em>，<br>该函数主要就是在计算一个表达式：<br>$$<br>h(x^{(i)})=\theta_0<em>x^{(i)}_0+\theta_1</em>x^{(i)}_1+…+\theta_n*x^{(i)}_n<br>$$</p>
+</li>
+<li><p>$J(\theta)$：<br>这个函数叫做“代价函数”，该函数的返回值是代入参数$\theta$之后，根据样本计算出来的标准差的0.5倍，公式如下：<br>$$<br>J(\theta)=\frac{1}{2m}\sum^n_{i=0}(h(x^{(i)})-y^i)^2<br>$$至于结果为什么是标准差的一半，在下文进行说明</p>
+</li>
+</ul>
+<h3 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h3><p>$$<br>\theta_j:=\theta_j-\varphi\frac{\partial}{\partial\theta_j}J(\theta)<br>$$</p>
+<p>其中$J(\theta)$指代<strong>代价函数</strong>（有时候我会叫它开销函数），</p>
+<p>需要注意的是，在这个公式中，$\varphi$指代学习率，也就是纠正偏差的幅度，<br><strong>太大</strong>会导致<strong>无法收敛</strong>，<strong>太小</strong>则<strong>消耗过多时间</strong></p>
+<p>无论有多少$\theta$, 都可以使用这种梯度下降法.</p>
+<p>假设我们有<strong>m</strong>个样本，每个样本有<strong>n</strong>个特征，那么我们需要通过梯度下降算法得出n+1个$\theta$的近似值，于是分别记作$\theta_0,\theta_1,\theta_2,…,\theta_n$，通常来说我们的$J(\theta)$，中的$\theta$是一个矩阵，记作$n<em>1$的矩阵(n</em>1的矩阵也称为“向量”)：$\begin{bmatrix}<br>\theta_0 \<br>\theta_2 \<br>… \<br>\theta_n<br>\end{bmatrix}<br>$，与此同时，把样本数据记作：<br>$$<br>A=\begin{bmatrix}<br>1 &amp; x^1_1 &amp; x^1_2 &amp; … &amp;x^1_m &amp; y^1 \<br>1 &amp; x^2_1 &amp; x^2_2 &amp; … &amp;x^2_m &amp; y^2 \<br>… \<br>1 &amp; x^m_1 &amp; x^m_2 &amp; … &amp;x^m_n &amp; y^n<br>\end{bmatrix}$$一个$m*(n+2)$规模的矩阵，其中的最后一列$y^i$是样本特征值的正确结果，也就是我们在代价函数中计算标准差时用到的期望值</p>
+<p>值得一提的是，我们使用$x^{(i)}$指代$\begin{bmatrix}<br>1 &amp; x^i_1 &amp; x^i_2 &amp; … &amp;x^i_n<br>\end{bmatrix}$这样的矩阵，使用$x^{(i)}_j$指代矩阵A中第i行第j个元素</p>
+<p>根据矩阵的乘法规则，可以知道：$\theta<em>x^{(i)}$的结果是一个$1</em>1$的矩阵，而这个1x1矩阵的唯一一个元素的值与$h(x^{(i)})$的结果相同：<br>$$<br>\begin{bmatrix}<br>\theta_0 \<br>\theta_2 \<br>… \<br>\theta_n<br>\end{bmatrix}<br>\begin{bmatrix}<br>1 &amp; x^i_1 &amp; x^i_2 &amp; … &amp;x^i_n<br>\end{bmatrix}=<br>\theta_0<em>x^{(i)}_0+\theta_1</em>x^{(i)}_1+…+\theta_n*x^{(i)}_n=h(x^{(i)})<br>$$</p>
+]]></content>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
 </search>
