@@ -1472,10 +1472,10 @@ int main()
   <entry>
     <title>访问控制-信息安全</title>
     <url>/2021/04/16/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
-    <content><![CDATA[<p>访问控制（1）</p>
+    <content><![CDATA[<p>访问控制~感谢王继林教授的授课</p>
 <!--more--->
 
-<ul>
+<h2 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h2><ul>
 <li>访问控制对机密性、完整性起直接作用</li>
 <li>对与可用性<ol>
 <li>谁可以颁发网络可用性的网络管理指令</li>
@@ -1650,7 +1650,7 @@ int main()
 <span id="more"></span>
 
 <h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><h3 id="“J函数”和“h函数”"><a href="#“J函数”和“h函数”" class="headerlink" title="“J函数”和“h函数”"></a>“J函数”和“h函数”</h3><ul>
-<li><p>$h(x^{(i)})$：<br>这个函数叫做假设函数，但是他的作用和假设没有很大的关系。<br>这个函数传入的参数$x^{(i)}$表示<em>第i个样本</em>，<br>该函数主要就是在计算一个表达式：<br>$$<br>h(x^{(i)})=\theta_0<em>x^{(i)}_0+\theta_1</em>x^{(i)}_1+…+\theta_n*x^{(i)}_n<br>$$</p>
+<li><p>$h(x^{(i)})$：<br>这个函数叫做假设函数，但是他的作用和假设没有很大的关系。<br>这个函数传入的参数$x^{(i)}$表示<em>第i个样本</em>，<br>该函数主要就是在计算一个表达式：<br>$$<br>h(x^{(i)})=\theta_0\times x^{(i)}_0+\theta_1\times x^{(i)}_1+…+\theta_n\times x^{(i)}_n<br>$$</p>
 </li>
 <li><p>$J(\theta)$：<br>这个函数叫做“代价函数”，该函数的返回值是代入参数$\theta$之后，根据样本计算出来的标准差的0.5倍，公式如下：<br>$$<br>J(\theta)=\frac{1}{2m}\sum^n_{i=0}(h(x^{(i)})-y^i)^2<br>$$至于结果为什么是标准差的一半，在下文进行说明</p>
 </li>
@@ -1659,12 +1659,55 @@ int main()
 <p>其中$J(\theta)$指代<strong>代价函数</strong>（有时候我会叫它开销函数），</p>
 <p>需要注意的是，在这个公式中，$\varphi$指代学习率，也就是纠正偏差的幅度，<br><strong>太大</strong>会导致<strong>无法收敛</strong>，<strong>太小</strong>则<strong>消耗过多时间</strong></p>
 <p>无论有多少$\theta$, 都可以使用这种梯度下降法.</p>
-<p>假设我们有<strong>m</strong>个样本，每个样本有<strong>n</strong>个特征，那么我们需要通过梯度下降算法得出n+1个$\theta$的近似值，于是分别记作$\theta_0,\theta_1,\theta_2,…,\theta_n$，通常来说我们的$J(\theta)$，中的$\theta$是一个矩阵，记作$n<em>1$的矩阵(n</em>1的矩阵也称为“向量”)：$\begin{bmatrix}<br>\theta_0 \<br>\theta_2 \<br>… \<br>\theta_n<br>\end{bmatrix}<br>$，与此同时，把样本数据记作：<br>$$<br>A=\begin{bmatrix}<br>1 &amp; x^1_1 &amp; x^1_2 &amp; … &amp;x^1_m &amp; y^1 \<br>1 &amp; x^2_1 &amp; x^2_2 &amp; … &amp;x^2_m &amp; y^2 \<br>… \<br>1 &amp; x^m_1 &amp; x^m_2 &amp; … &amp;x^m_n &amp; y^n<br>\end{bmatrix}$$一个$m*(n+2)$规模的矩阵，其中的最后一列$y^i$是样本特征值的正确结果，也就是我们在代价函数中计算标准差时用到的期望值</p>
+<p>假设我们有<strong>m</strong>个样本，每个样本有<strong>n</strong>个特征，那么我们需要通过梯度下降算法得出n+1个$\theta$的近似值，于是分别记作$\theta_0,\theta_1,\theta_2,…,\theta_n$，通常来说我们的$J(\theta)$，中的$\theta$是一个矩阵，记作$n<em>1$的矩阵(n</em>1的矩阵也称为“向量”)：$\begin{bmatrix}<br>\theta_0 \\<br>\theta_2 \\<br>… \\<br>\theta_n<br>\end{bmatrix}<br>$，与此同时，把样本数据记作：<br>$$<br>A=\begin{bmatrix}<br>1 &amp; x^1_1 &amp; x^1_2 &amp; … &amp;x^1_m &amp; y^1 \\<br>1 &amp; x^2_1 &amp; x^2_2 &amp; … &amp;x^2_m &amp; y^2 \\<br>… \\<br>1 &amp; x^m_1 &amp; x^m_2 &amp; … &amp;x^m_n &amp; y^n<br>\end{bmatrix}$$一个$m*(n+2)$规模的矩阵，其中,矩阵A的第一列是默认的全是1，为了方便计算假设函数，而最后一列$y^i$是样本特征值的正确结果，也就是我们在代价函数中计算标准差时用到的期望值</p>
 <p>值得一提的是，我们使用$x^{(i)}$指代$\begin{bmatrix}<br>1 &amp; x^i_1 &amp; x^i_2 &amp; … &amp;x^i_n<br>\end{bmatrix}$这样的矩阵，使用$x^{(i)}_j$指代矩阵A中第i行第j个元素</p>
-<p>根据矩阵的乘法规则，可以知道：$\theta<em>x^{(i)}$的结果是一个$1</em>1$的矩阵，而这个1x1矩阵的唯一一个元素的值与$h(x^{(i)})$的结果相同：<br>$$<br>\begin{bmatrix}<br>1 &amp; x^i_1 &amp; x^i_2 &amp; … &amp;x^i_n<br>\end{bmatrix}<br>\begin{bmatrix}<br>\theta_0 \<br>\theta_2 \<br>… \<br>\theta_n<br>\end{bmatrix}= \begin{bmatrix}<br>h(x^{(i)})<br>\end{bmatrix} =\begin{bmatrix}<br>\theta_0<em>x^{(i)}_0+\theta_1</em>x^{(i)}_1+…+\theta_n*x^{(i)}_n<br>\end{bmatrix}<br>$$</p>
+<p>根据矩阵的乘法规则，可以知道：$\theta<em>x^{(i)}$的结果是一个$1</em>1$的矩阵，且满足如下式子：<br>$$<br>\begin{bmatrix}<br>1 &amp; x^i_1 &amp; x^i_2 &amp; … &amp;x^i_n<br>\end{bmatrix}<br>\begin{bmatrix}<br>\theta_0 \\<br>\theta_2 \\<br>… \\<br>\theta_n<br>\end{bmatrix}= \begin{bmatrix}<br>h(x^{(i)})<br>\end{bmatrix} =\begin{bmatrix}<br>\theta_0\times x^{(i)}_0+\theta_1\times x^{(i)}_1+…+\theta_n\times x^{(i)}_n<br>\end{bmatrix}<br>$$<br>所以我们可以用$\begin{bmatrix}<br>1 &amp; x^1_1 &amp; x^1_2 &amp; … &amp;x^1_m \\<br>1 &amp; x^2_1 &amp; x^2_2 &amp; … &amp;x^2_m \\<br>… \\<br>1 &amp; x^m_1 &amp; x^m_2 &amp; … &amp;x^m_n<br>\end{bmatrix}<br>\begin{bmatrix}<br>\theta_0 \\<br>\theta_2 \\<br>… \\<br>\theta_n<br>\end{bmatrix}<br>$来对样本进行批量计算。</p>
 ]]></content>
       <tags>
         <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数字签名与消息认证-信息安全</title>
+    <url>/2021/05/07/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E4%B8%8E%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
+    <content><![CDATA[<p>数字签名写借条，就算借条丢了也能还原（王继林教授说支付宝就用的这个数字签名）</p>
+<span id="more"></span>
+
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>以电子形式模拟搜狐写签名（hand-written signature）</p>
+<ul>
+<li>Unforgeability<br>  不可伪造</li>
+<li>Undeniability<br>  不可抵赖</li>
+</ul>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>依赖于被签署的文件</li>
+<li>快速计算（compute）</li>
+<li>任何人都能验证</li>
+<li>易于存储<br>  should be short enough</li>
+</ul>
+<h2 id="Attacks-on-digital-signature"><a href="#Attacks-on-digital-signature" class="headerlink" title="Attacks on digital signature"></a>Attacks on digital signature</h2><p><strong>Attack type：</strong></p>
+<ul>
+<li>key-only attack<br>  只知道公钥，想办法伪造（攻击难度大，所以比较容易防治）</li>
+<li>Known-message attack<br>  已知一部分消息及其签名，对新消息使用就签名想办法伪造</li>
+<li>Chosen-message attack<br>  对相似消息的签名进行分析，想办法签名新的消息</li>
+</ul>
+<p>对于上面这个无序列表，某个方案能抗击下面的攻击，则必然能抗击上面的攻击。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>signer使用私钥对msg签名，验证者使用signer的公钥对签名进行验证</p>
+<p><strong>Usage：</strong><br>off-line：签名<br>on-line：验证</p>
+<p>a想要验证b是不是b，则对b发送m，b使用b的私钥对m进行签名，a使用b的公钥对m的签名进行验证，如果b是真的b，则验证通过，反之通不过<br><strong>Digital Signature Law is Infrastructure</strong></p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
+<li>基于纠错码</li>
+<li>基于椭圆切线</li>
+<li>基于 two hard problem<br>  典型的：<ol>
+<li>RSA（基于大数分解）<br> 消息可能很大，所以需要先hash下，变成256位，再签名<br> 现在一般是使用sha-256进行hash</li>
+<li>ElGamal（离散对数）</li>
+</ol>
+</li>
+</ul>
+<p><strong>E-cash：</strong><br>电子签名，基于盲签名</p>
+]]></content>
+      <tags>
+        <tag>信息安全</tag>
       </tags>
   </entry>
 </search>
