@@ -3056,7 +3056,7 @@ int main()
 </ol>
 <h2 id="1-对称密钥的分发"><a href="#1-对称密钥的分发" class="headerlink" title="1. 对称密钥的分发"></a>1. 对称密钥的分发</h2><ol>
 <li>一方产生，然后安全传给另一方<br>eg: Key和消息不走同一个信道，比如短信验证码</li>
-<li>两方协商产生<br>Diffie-Hellman密钥协商协议:<br>Alice &lt;—-&gt; Bob<br>Alice –g–&gt; Bob<br>Alice –p–&gt; Bob<br>Alice –y1–&gt; Bob<br>Alice &lt;–y2– Bob<br>y1 = g^a mod p<br>y2 = g^b mod p<br>y1 &amp; y2 是加密的消息，a &amp; b是私钥<br>Alice 获取到y2之后， msg1 = y2^a mod p<br>Bob 获取到y1之后， msg2 = y1^b mod p<br>最后 msg1 = msg2</li>
+<li>两方协商产生<br>Diffie-Hellman密钥协商协议:<br>Alice &lt;—-&gt; Bob<br>Alice –g–&gt; Bob<br>Alice &lt;–p– Bob<br>Alice –y1–&gt; Bob<br>Alice &lt;–y2– Bob<br>y1 = g^a mod p<br>y2 = p^b mod g<br>y1 &amp; y2 是加密的消息，a &amp; b是私钥<br>Alice 获取到y2之后， msg1 = y2^a mod p<br>Bob 获取到y1之后， msg2 = y1^b mod p<br>最后 msg1 = msg2</li>
 <li>通过可信赖的第三方参与产生(太复杂了)</li>
 </ol>
 <h2 id="2-公钥加密体制的密钥管理"><a href="#2-公钥加密体制的密钥管理" class="headerlink" title="2. 公钥加密体制的密钥管理"></a>2. 公钥加密体制的密钥管理</h2><p>网络证书颁发机构（赛门杰克）</p>
