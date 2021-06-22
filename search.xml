@@ -3180,7 +3180,7 @@ int main()
     <content><![CDATA[<p>由于学校服务器维护，外网不可进入，顾转载以便师生查阅</p>
 <span id="more"></span>
 
-<script src="http://www.dimtub.com/js/jquery.min.js"></script>
+<script href="https://miaobuao.gitee.io/js/jquery.min.js"></script>
 
 <p style='color:red'><b>附件在最后</b></p>
 
