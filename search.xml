@@ -1114,36 +1114,6 @@ FIND!
       </tags>
   </entry>
   <entry>
-    <title>合唱队队形-最长上升子序列与下降子序列</title>
-    <url>/2021/03/11/%E5%90%88%E5%94%B1%E9%98%9F%E9%98%9F%E5%BD%A2-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97%E4%B8%8E%E4%B8%8B%E9%99%8D%E5%AD%90%E5%BA%8F%E5%88%97/</url>
-    <content><![CDATA[<p>动态规划经典题型，难度中等，用到最长上升子序列与最长下降子序列</p>
-<span id="more"></span>
-
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>N 位同学站成一排，音乐老师要请其中的 (N−K) 位同学出列，使得剩下的 K 位同学排成合唱队形。     </p>
-<p>合唱队形是指这样的一种队形：设 K 位同学从左到右依次编号为 1，2…，K，他们的身高分别为 T1，T2，…，TK，  则他们的身高满足 T1&lt;…<Ti>Ti+1&gt;…&gt;TK(1≤i≤K)。     </p>
-<p>你的任务是，已知所有 N 位同学的身高，计算最少需要几位同学出列，可以使得剩下的同学排成合唱队形。</p>
-<p><strong>输入格式</strong><br>输入的第一行是一个整数 N，表示同学的总数。</p>
-<p>第二行有 N 个整数，用空格分隔，第 i 个整数 Ti 是第 i 位同学的身高(厘米)。</p>
-<p><strong>输出格式</strong><br>输出包括一行，这一行只包含一个整数，就是最少需要几位同学出列。</p>
-<p><strong>数据范围</strong><br>2≤N≤100,<br>130≤Ti≤230<br><strong>输入样例：</strong></p>
-<pre><code>8
-186 186 150 200 160 130 197 220
-</code></pre>
-<p><strong>输出样例：</strong></p>
-<pre><code>4
-</code></pre>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">int</span> a[<span class="hljs-number">105</span>],f[<span class="hljs-number">105</span>],g[<span class="hljs-number">105</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin&gt;&gt;a[i];<br><br>    <span class="hljs-comment">//最长上升子序列</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    &#123;<br>        f[i]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;i;j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(a[j]&lt;a[i]) f[i]=<span class="hljs-built_in">max</span>(f[i],f[j]+<span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">//最长下降子序列</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=n;i&gt;<span class="hljs-number">0</span>;i--)<br>    &#123;<br>        g[i]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=n;j&gt;i;j--)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(a[j]&lt;a[i]) g[i]=<span class="hljs-built_in">max</span>(g[i],g[j]+<span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">int</span> res=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    &#123;<br>        res=<span class="hljs-built_in">max</span>(res,f[i]+g[i]<span class="hljs-number">-1</span>);<br>    &#125;<br>    cout&lt;&lt;n-res;<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>C++</tag>
-        <tag>DP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>哈希函数与随机数-信息与网络安全</title>
     <url>/2021/03/26/%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0%E4%B8%8E%E9%9A%8F%E6%9C%BA%E6%95%B0-%E4%BF%A1%E6%81%AF%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</url>
     <content><![CDATA[<p>上课笔记</p>
@@ -1196,6 +1166,36 @@ FIND!
       </categories>
       <tags>
         <tag>信息安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>合唱队队形-最长上升子序列与下降子序列</title>
+    <url>/2021/03/11/%E5%90%88%E5%94%B1%E9%98%9F%E9%98%9F%E5%BD%A2-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97%E4%B8%8E%E4%B8%8B%E9%99%8D%E5%AD%90%E5%BA%8F%E5%88%97/</url>
+    <content><![CDATA[<p>动态规划经典题型，难度中等，用到最长上升子序列与最长下降子序列</p>
+<span id="more"></span>
+
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>N 位同学站成一排，音乐老师要请其中的 (N−K) 位同学出列，使得剩下的 K 位同学排成合唱队形。     </p>
+<p>合唱队形是指这样的一种队形：设 K 位同学从左到右依次编号为 1，2…，K，他们的身高分别为 T1，T2，…，TK，  则他们的身高满足 T1&lt;…<Ti>Ti+1&gt;…&gt;TK(1≤i≤K)。     </p>
+<p>你的任务是，已知所有 N 位同学的身高，计算最少需要几位同学出列，可以使得剩下的同学排成合唱队形。</p>
+<p><strong>输入格式</strong><br>输入的第一行是一个整数 N，表示同学的总数。</p>
+<p>第二行有 N 个整数，用空格分隔，第 i 个整数 Ti 是第 i 位同学的身高(厘米)。</p>
+<p><strong>输出格式</strong><br>输出包括一行，这一行只包含一个整数，就是最少需要几位同学出列。</p>
+<p><strong>数据范围</strong><br>2≤N≤100,<br>130≤Ti≤230<br><strong>输入样例：</strong></p>
+<pre><code>8
+186 186 150 200 160 130 197 220
+</code></pre>
+<p><strong>输出样例：</strong></p>
+<pre><code>4
+</code></pre>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h1><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">int</span> a[<span class="hljs-number">105</span>],f[<span class="hljs-number">105</span>],g[<span class="hljs-number">105</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) cin&gt;&gt;a[i];<br><br>    <span class="hljs-comment">//最长上升子序列</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    &#123;<br>        f[i]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;i;j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(a[j]&lt;a[i]) f[i]=<span class="hljs-built_in">max</span>(f[i],f[j]+<span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">//最长下降子序列</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=n;i&gt;<span class="hljs-number">0</span>;i--)<br>    &#123;<br>        g[i]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=n;j&gt;i;j--)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(a[j]&lt;a[i]) g[i]=<span class="hljs-built_in">max</span>(g[i],g[j]+<span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">int</span> res=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)<br>    &#123;<br>        res=<span class="hljs-built_in">max</span>(res,f[i]+g[i]<span class="hljs-number">-1</span>);<br>    &#125;<br>    cout&lt;&lt;n-res;<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>C++</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -1405,49 +1405,6 @@ FIND!
       </tags>
   </entry>
   <entry>
-    <title>数字签名与消息认证-信息安全</title>
-    <url>/2021/05/07/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E4%B8%8E%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
-    <content><![CDATA[<p>数字签名写借条，就算借条丢了也能还原（王继林教授说支付宝就用的这个数字签名）</p>
-<span id="more"></span>
-
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>以电子形式模拟搜狐写签名（hand-written signature）</p>
-<ul>
-<li>Unforgeability<br>  不可伪造</li>
-<li>Undeniability<br>  不可抵赖</li>
-</ul>
-<p><strong>Requirements:</strong></p>
-<ul>
-<li>依赖于被签署的文件</li>
-<li>快速计算（compute）</li>
-<li>任何人都能验证</li>
-<li>易于存储<br>  should be short enough</li>
-</ul>
-<h2 id="Attacks-on-digital-signature"><a href="#Attacks-on-digital-signature" class="headerlink" title="Attacks on digital signature"></a>Attacks on digital signature</h2><p><strong>Attack type：</strong></p>
-<ul>
-<li>key-only attack<br>  只知道公钥，想办法伪造（攻击难度大，所以比较容易防治）</li>
-<li>Known-message attack<br>  已知一部分消息及其签名，对新消息使用就签名想办法伪造</li>
-<li>Chosen-message attack<br>  对相似消息的签名进行分析，想办法签名新的消息</li>
-</ul>
-<p>对于上面这个无序列表，某个方案能抗击下面的攻击，则必然能抗击上面的攻击。</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>signer使用私钥对msg签名，验证者使用signer的公钥对签名进行验证</p>
-<p><strong>Usage：</strong><br>off-line：签名<br>on-line：验证</p>
-<p>a想要验证b是不是b，则对b发送m，b使用b的私钥对m进行签名，a使用b的公钥对m的签名进行验证，如果b是真的b，则验证通过，反之通不过<br><strong>Digital Signature Law is Infrastructure</strong></p>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
-<li>基于纠错码</li>
-<li>基于椭圆切线</li>
-<li>基于 two hard problem<br>  典型的：<ol>
-<li>RSA（基于大数分解）<br> 消息可能很大，所以需要先hash下，变成256位，再签名<br> 现在一般是使用sha-256进行hash</li>
-<li>ElGamal（离散对数）</li>
-</ol>
-</li>
-</ul>
-<p><strong>E-cash：</strong><br>电子签名，基于盲签名</p>
-]]></content>
-      <tags>
-        <tag>信息安全</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>找硬币_哈希表和双指针算法应用</title>
     <url>/2021/03/10/%E6%89%BE%E7%A1%AC%E5%B8%81-%E5%93%88%E5%B8%8C%E8%A1%A8%E5%92%8C%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<p>说是说哈希表，但是我没有找到hash模板/(ㄒoㄒ)/</p>
@@ -1489,6 +1446,49 @@ FIND!
       <tags>
         <tag>算法</tag>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数字签名与消息认证-信息安全</title>
+    <url>/2021/05/07/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E4%B8%8E%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
+    <content><![CDATA[<p>数字签名写借条，就算借条丢了也能还原（王继林教授说支付宝就用的这个数字签名）</p>
+<span id="more"></span>
+
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>以电子形式模拟搜狐写签名（hand-written signature）</p>
+<ul>
+<li>Unforgeability<br>  不可伪造</li>
+<li>Undeniability<br>  不可抵赖</li>
+</ul>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>依赖于被签署的文件</li>
+<li>快速计算（compute）</li>
+<li>任何人都能验证</li>
+<li>易于存储<br>  should be short enough</li>
+</ul>
+<h2 id="Attacks-on-digital-signature"><a href="#Attacks-on-digital-signature" class="headerlink" title="Attacks on digital signature"></a>Attacks on digital signature</h2><p><strong>Attack type：</strong></p>
+<ul>
+<li>key-only attack<br>  只知道公钥，想办法伪造（攻击难度大，所以比较容易防治）</li>
+<li>Known-message attack<br>  已知一部分消息及其签名，对新消息使用就签名想办法伪造</li>
+<li>Chosen-message attack<br>  对相似消息的签名进行分析，想办法签名新的消息</li>
+</ul>
+<p>对于上面这个无序列表，某个方案能抗击下面的攻击，则必然能抗击上面的攻击。</p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p>signer使用私钥对msg签名，验证者使用signer的公钥对签名进行验证</p>
+<p><strong>Usage：</strong><br>off-line：签名<br>on-line：验证</p>
+<p>a想要验证b是不是b，则对b发送m，b使用b的私钥对m进行签名，a使用b的公钥对m的签名进行验证，如果b是真的b，则验证通过，反之通不过<br><strong>Digital Signature Law is Infrastructure</strong></p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
+<li>基于纠错码</li>
+<li>基于椭圆切线</li>
+<li>基于 two hard problem<br>  典型的：<ol>
+<li>RSA（基于大数分解）<br> 消息可能很大，所以需要先hash下，变成256位，再签名<br> 现在一般是使用sha-256进行hash</li>
+<li>ElGamal（离散对数）</li>
+</ol>
+</li>
+</ul>
+<p><strong>E-cash：</strong><br>电子签名，基于盲签名</p>
+]]></content>
+      <tags>
+        <tag>信息安全</tag>
       </tags>
   </entry>
   <entry>
@@ -1575,54 +1575,6 @@ int main()
       <tags>
         <tag>算法</tag>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网络安全协议与VPN-信息安全</title>
-    <url>/2021/05/21/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE%E4%B8%8EVPN-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
-    <content><![CDATA[<p><strong>第十二章 前情提要：</strong></p>
-<table>
-    <tr>
-        <td>NTC网卡</td>
-        <td>IP</td>
-        <td>Transport传输层(TCP)</td>
-        <td>应用层（数据）</td>
-    </tr>
-</table>
-
-<span id="more"></span>
-
-<h2 id="VPN是什么"><a href="#VPN是什么" class="headerlink" title="VPN是什么"></a>VPN是什么</h2><p><strong>Virtual Private Network：</strong><br>虚拟专用网。<br>利用密码协议进行安全数据传输的都叫VPN</p>
-<h2 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h2><p>在传输层与数据之间加一层SSL层，对数据进行加密</p>
-<p>在应用层前加上技术参数（如加密方式等处理流程），国内<strong>百分之九十九</strong>网站都使用SSL协议，代价小<br>即<strong>端到端加密</strong></p>
-<h2 id="IPSec-AH-ESP"><a href="#IPSec-AH-ESP" class="headerlink" title="IPSec(AH/ESP)"></a>IPSec(AH/ESP)</h2><p>IKE：本质上使用David-哈夫曼密钥交换协议，用于解决密钥交换问题</p>
-<p>AH：轻量级保护，只能保护数据不被修改，</p>
-<p>ESP：重量级，保护不被修改且不被查看</p>
-<p><strong>ESP：</strong><br>封装安全载荷。<br>使用对称加密算法</p>
-<ul>
-<li><p>Encryption<br>  PC5，IDE等</p>
-</li>
-<li><p>Authentication<br>HMAC-MD5-96<br>HMAC-SHA-1-96</p>
-</li>
-<li><p>鉴别首部AH</p>
-</li>
-<li><p>封装安全载荷ESP</p>
-</li>
-<li><p>加上新的IP2IP</p>
-</li>
-</ul>
-<p><strong>地址到地址加密</strong><br>在IP与TCP之间加密<br>主要应用于<em>翻墙</em></p>
-<ul>
-<li>传输模式<br>  不对IP进行保护</li>
-<li>隧道模式<br>  添加外部IP，对原始IP进行保护</li>
-</ul>
-<h2 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h2><p>路由器在网卡与IP之间加一层加密</p>
-]]></content>
-      <categories>
-        <category>信息安全</category>
-      </categories>
-      <tags>
-        <tag>信息安全</tag>
       </tags>
   </entry>
   <entry>
@@ -1717,6 +1669,90 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>网络安全协议与VPN-信息安全</title>
+    <url>/2021/05/21/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE%E4%B8%8EVPN-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</url>
+    <content><![CDATA[<p><strong>第十二章 前情提要：</strong></p>
+<table>
+    <tr>
+        <td>NTC网卡</td>
+        <td>IP</td>
+        <td>Transport传输层(TCP)</td>
+        <td>应用层（数据）</td>
+    </tr>
+</table>
+
+<span id="more"></span>
+
+<h2 id="VPN是什么"><a href="#VPN是什么" class="headerlink" title="VPN是什么"></a>VPN是什么</h2><p><strong>Virtual Private Network：</strong><br>虚拟专用网。<br>利用密码协议进行安全数据传输的都叫VPN</p>
+<h2 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h2><p>在传输层与数据之间加一层SSL层，对数据进行加密</p>
+<p>在应用层前加上技术参数（如加密方式等处理流程），国内<strong>百分之九十九</strong>网站都使用SSL协议，代价小<br>即<strong>端到端加密</strong></p>
+<h2 id="IPSec-AH-ESP"><a href="#IPSec-AH-ESP" class="headerlink" title="IPSec(AH/ESP)"></a>IPSec(AH/ESP)</h2><p>IKE：本质上使用David-哈夫曼密钥交换协议，用于解决密钥交换问题</p>
+<p>AH：轻量级保护，只能保护数据不被修改，</p>
+<p>ESP：重量级，保护不被修改且不被查看</p>
+<p><strong>ESP：</strong><br>封装安全载荷。<br>使用对称加密算法</p>
+<ul>
+<li><p>Encryption<br>  PC5，IDE等</p>
+</li>
+<li><p>Authentication<br>HMAC-MD5-96<br>HMAC-SHA-1-96</p>
+</li>
+<li><p>鉴别首部AH</p>
+</li>
+<li><p>封装安全载荷ESP</p>
+</li>
+<li><p>加上新的IP2IP</p>
+</li>
+</ul>
+<p><strong>地址到地址加密</strong><br>在IP与TCP之间加密<br>主要应用于<em>翻墙</em></p>
+<ul>
+<li>传输模式<br>  不对IP进行保护</li>
+<li>隧道模式<br>  添加外部IP，对原始IP进行保护</li>
+</ul>
+<h2 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h2><p>路由器在网卡与IP之间加一层加密</p>
+]]></content>
+      <categories>
+        <category>信息安全</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>表达式求值-算法模板题</title>
+    <url>/2021/04/11/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC-%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF%E9%A2%98/</url>
+    <content><![CDATA[<p>表达式求值，用到了栈结构来模拟树</p>
+<span id="more"></span>
+
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个表达式，其中运算符仅包含 +,-,*,/（加 减 乘 整除），可能包含括号，请你求出表达式的最终值。</p>
+<p>注意:</p>
+<ul>
+<li>数据保证给定的表达式合法。</li>
+<li>题目保证符号 - 只作为减号出现，不会作为负号出现，例如，-1+2,(2+2)*(-(1+1)+2) 之类表达式均不会出现。</li>
+<li>题目保证表达式中所有数字均为正整数。</li>
+<li>题目保证表达式在中间计算过程以及结果中，均不超过 231−1。</li>
+<li>题目中的整除是指向 0 取整，也就是说对于大于 0 的结果向下取整，例如 5/3=1，对于小于 0 的结果向上取整，例如 5/(1−4)=−1。</li>
+<li>C++和Java中的整除默认是向零取整；Python中的整除//默认向下取整，因此Python的eval()函数中的整除也是向下取整，在本题中不能直接使用。</li>
+</ul>
+<p><strong>输入格式</strong><br>共一行，为给定表达式。</p>
+<p><strong>输出格式</strong><br>共一行，为表达式的结果。</p>
+<p><strong>数据范围</strong><br>表达式的长度不超过 105。</p>
+<p><strong>输入样例：</strong></p>
+<blockquote>
+<p>(2+2)*(1+1)</p>
+</blockquote>
+<p><strong>输出样例：</strong></p>
+<blockquote>
+<p>8</p>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>stack&lt;<span class="hljs-keyword">int</span>&gt; num;<br>stack&lt;<span class="hljs-keyword">char</span>&gt; op;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">eval</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">auto</span> b = num.<span class="hljs-built_in">top</span>();<br>    num.<span class="hljs-built_in">pop</span>();<br>    <span class="hljs-keyword">auto</span> a = num.<span class="hljs-built_in">top</span>();<br>    num.<span class="hljs-built_in">pop</span>();<br>    <span class="hljs-keyword">auto</span> c = op.<span class="hljs-built_in">top</span>();<br>    op.<span class="hljs-built_in">pop</span>();<br>    <span class="hljs-keyword">int</span> x;<br>    <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;+&#x27;</span>)<br>        x = a + b;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;-&#x27;</span>)<br>        x = a - b;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;*&#x27;</span>)<br>        x = a * b;<br>    <span class="hljs-keyword">else</span><br>        x = a / b;<br>    num.<span class="hljs-built_in">push</span>(x);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; pr&#123;&#123;<span class="hljs-string">&#x27;+&#x27;</span>, <span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-string">&#x27;-&#x27;</span>, <span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-string">&#x27;*&#x27;</span>, <span class="hljs-number">2</span>&#125;, &#123;<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-number">2</span>&#125;&#125;;<br>    string str;<br>    cin &gt;&gt; str;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; str.<span class="hljs-built_in">size</span>(); i++)<br>    &#123;<br>        <span class="hljs-keyword">auto</span> c = str[i];<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isdigit</span>(c))<br>        &#123;<br>            <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, j = i;<br>            <span class="hljs-keyword">while</span> (j &lt; str.<span class="hljs-built_in">size</span>() &amp;&amp; <span class="hljs-built_in">isdigit</span>(str[j]))<br>            &#123;<br>                x = x * <span class="hljs-number">10</span> + str[j++] - <span class="hljs-string">&#x27;0&#x27;</span>;<br>            &#125;<br>            i = j - <span class="hljs-number">1</span>;<br>            num.<span class="hljs-built_in">push</span>(x);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;(&#x27;</span>)<br>            op.<span class="hljs-built_in">push</span>(c);<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;)&#x27;</span>)<br>        &#123;<br>            <span class="hljs-keyword">while</span> (op.<span class="hljs-built_in">top</span>() != <span class="hljs-string">&#x27;(&#x27;</span>)<br>                <span class="hljs-built_in">eval</span>();<br>            op.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-keyword">while</span> (op.<span class="hljs-built_in">size</span>() &amp;&amp; pr[op.<span class="hljs-built_in">top</span>()] &gt;= pr[c])<br>                <span class="hljs-built_in">eval</span>();<br>            op.<span class="hljs-built_in">push</span>(c);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">while</span> (op.<span class="hljs-built_in">size</span>())<br>        <span class="hljs-built_in">eval</span>();<br>    cout &lt;&lt; num.<span class="hljs-built_in">top</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解码方法-动态规划-LeetCode每日一题</title>
     <url>/2021/04/21/%E8%A7%A3%E7%A0%81%E6%96%B9%E6%B3%95-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</url>
     <content><![CDATA[<p>LeetCode 每日一题，经典动态规划题</p>
@@ -1780,42 +1816,6 @@ int main()
       <tags>
         <tag>算法</tag>
         <tag>动态规划</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>表达式求值-算法模板题</title>
-    <url>/2021/04/11/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC-%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF%E9%A2%98/</url>
-    <content><![CDATA[<p>表达式求值，用到了栈结构来模拟树</p>
-<span id="more"></span>
-
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个表达式，其中运算符仅包含 +,-,*,/（加 减 乘 整除），可能包含括号，请你求出表达式的最终值。</p>
-<p>注意:</p>
-<ul>
-<li>数据保证给定的表达式合法。</li>
-<li>题目保证符号 - 只作为减号出现，不会作为负号出现，例如，-1+2,(2+2)*(-(1+1)+2) 之类表达式均不会出现。</li>
-<li>题目保证表达式中所有数字均为正整数。</li>
-<li>题目保证表达式在中间计算过程以及结果中，均不超过 231−1。</li>
-<li>题目中的整除是指向 0 取整，也就是说对于大于 0 的结果向下取整，例如 5/3=1，对于小于 0 的结果向上取整，例如 5/(1−4)=−1。</li>
-<li>C++和Java中的整除默认是向零取整；Python中的整除//默认向下取整，因此Python的eval()函数中的整除也是向下取整，在本题中不能直接使用。</li>
-</ul>
-<p><strong>输入格式</strong><br>共一行，为给定表达式。</p>
-<p><strong>输出格式</strong><br>共一行，为表达式的结果。</p>
-<p><strong>数据范围</strong><br>表达式的长度不超过 105。</p>
-<p><strong>输入样例：</strong></p>
-<blockquote>
-<p>(2+2)*(1+1)</p>
-</blockquote>
-<p><strong>输出样例：</strong></p>
-<blockquote>
-<p>8</p>
-</blockquote>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>stack&lt;<span class="hljs-keyword">int</span>&gt; num;<br>stack&lt;<span class="hljs-keyword">char</span>&gt; op;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">eval</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">auto</span> b = num.<span class="hljs-built_in">top</span>();<br>    num.<span class="hljs-built_in">pop</span>();<br>    <span class="hljs-keyword">auto</span> a = num.<span class="hljs-built_in">top</span>();<br>    num.<span class="hljs-built_in">pop</span>();<br>    <span class="hljs-keyword">auto</span> c = op.<span class="hljs-built_in">top</span>();<br>    op.<span class="hljs-built_in">pop</span>();<br>    <span class="hljs-keyword">int</span> x;<br>    <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;+&#x27;</span>)<br>        x = a + b;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;-&#x27;</span>)<br>        x = a - b;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;*&#x27;</span>)<br>        x = a * b;<br>    <span class="hljs-keyword">else</span><br>        x = a / b;<br>    num.<span class="hljs-built_in">push</span>(x);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; pr&#123;&#123;<span class="hljs-string">&#x27;+&#x27;</span>, <span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-string">&#x27;-&#x27;</span>, <span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-string">&#x27;*&#x27;</span>, <span class="hljs-number">2</span>&#125;, &#123;<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-number">2</span>&#125;&#125;;<br>    string str;<br>    cin &gt;&gt; str;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; str.<span class="hljs-built_in">size</span>(); i++)<br>    &#123;<br>        <span class="hljs-keyword">auto</span> c = str[i];<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isdigit</span>(c))<br>        &#123;<br>            <span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, j = i;<br>            <span class="hljs-keyword">while</span> (j &lt; str.<span class="hljs-built_in">size</span>() &amp;&amp; <span class="hljs-built_in">isdigit</span>(str[j]))<br>            &#123;<br>                x = x * <span class="hljs-number">10</span> + str[j++] - <span class="hljs-string">&#x27;0&#x27;</span>;<br>            &#125;<br>            i = j - <span class="hljs-number">1</span>;<br>            num.<span class="hljs-built_in">push</span>(x);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;(&#x27;</span>)<br>            op.<span class="hljs-built_in">push</span>(c);<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;)&#x27;</span>)<br>        &#123;<br>            <span class="hljs-keyword">while</span> (op.<span class="hljs-built_in">top</span>() != <span class="hljs-string">&#x27;(&#x27;</span>)<br>                <span class="hljs-built_in">eval</span>();<br>            op.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-keyword">while</span> (op.<span class="hljs-built_in">size</span>() &amp;&amp; pr[op.<span class="hljs-built_in">top</span>()] &gt;= pr[c])<br>                <span class="hljs-built_in">eval</span>();<br>            op.<span class="hljs-built_in">push</span>(c);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">while</span> (op.<span class="hljs-built_in">size</span>())<br>        <span class="hljs-built_in">eval</span>();<br>    cout &lt;&lt; num.<span class="hljs-built_in">top</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
