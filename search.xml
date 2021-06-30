@@ -3359,4 +3359,139 @@ int main()
         <tag>技能树</tag>
       </tags>
   </entry>
+  <entry>
+    <title>嵌入式名词解释</title>
+    <url>/2021/06/30/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/</url>
+    <content><![CDATA[<p>记载了在我学习单片机过程中遇到的名词</p>
+<span id="more"></span>
+
+<h2 id="VCC-电源电压"><a href="#VCC-电源电压" class="headerlink" title="VCC (电源电压)"></a>VCC (电源电压)</h2><p>Volt Current Condenser,在电子电路中，VCC是电路的供电电压.<br>C=circuit 表示电路的意思, 即接入电路的电压.</p>
+<h2 id="VDD-器件内部的工作电压"><a href="#VDD-器件内部的工作电压" class="headerlink" title="VDD (器件内部的工作电压)"></a>VDD (器件内部的工作电压)</h2><p>D=device 表示器件的意思, 即器件内部的工作电压.</p>
+<h2 id="VSS-地或电源负极"><a href="#VSS-地或电源负极" class="headerlink" title="VSS (地或电源负极)"></a>VSS (地或电源负极)</h2><p>Vss 源极电源电压, 在 CMOS 电路中指负电源, 在单电源时指零伏或接地,通常指电路公共接地端电压或电源负极。</p>
+<h2 id="AHB-高级高性能总线"><a href="#AHB-高级高性能总线" class="headerlink" title="AHB (高级高性能总线)"></a>AHB (高级高性能总线)</h2><p>Advanced High Performance Bus, 如同USB（Universal Serial Bus）一样，也是一种总线接口。<br>AHB主要用于高性能模块(如CPU、DMA和DSP等)之间的连接，作为SoC的片上系统总线，它包括以下一些特性：</p>
+<ol>
+<li>单个时钟边沿操作</li>
+<li>非三态的实现方式</li>
+<li>支持突发传输</li>
+<li>支持分段传输</li>
+<li>支持多个主控制器</li>
+<li>可配置32位~128位总线宽度</li>
+<li>支持字节、半字和字的传输。</li>
+</ol>
+<h2 id="IIC-集成电路总线"><a href="#IIC-集成电路总线" class="headerlink" title="IIC (集成电路总线)"></a>IIC (集成电路总线)</h2><p>Inter-Integrated Circuit,一种串行通信总线，使用多主从架构，由飞利浦公司在1980年代为了让主板、嵌入式系统或手机用以连接低速周边设备而发展。<br>I2C串行总线一般有两根信号线，一根是双向的数据线SDA，另一根是时钟线SCL。所有接到I2C总线设备上的串行数据SDA都接到总线的SDA上，各设备的时钟线SCL接到总线的SCL上。</p>
+<h2 id="SDA-I2C总线的数据信号线"><a href="#SDA-I2C总线的数据信号线" class="headerlink" title="SDA (I2C总线的数据信号线)"></a>SDA (I2C总线的数据信号线)</h2><p>SerialData</p>
+<h2 id="SCL-I2C总线的时钟信号线"><a href="#SCL-I2C总线的时钟信号线" class="headerlink" title="SCL (I2C总线的时钟信号线)"></a>SCL (I2C总线的时钟信号线)</h2><h2 id="UART-通用异步收发传输器"><a href="#UART-通用异步收发传输器" class="headerlink" title="UART (通用异步收发传输器)"></a>UART (通用异步收发传输器)</h2><p>Universal Asynchronous Receiver/Transmitter,它可以将要传输的资料在串行通信与并行通信之间加以转换。，UART通常被集成于其他通讯接口的连结上，作为把并行输入信号转成串行输出信号的芯片。</p>
+<h2 id="ADC-模拟数字转换器"><a href="#ADC-模拟数字转换器" class="headerlink" title="ADC (模拟数字转换器)"></a>ADC (模拟数字转换器)</h2><p>Analog to digital converter,通常是指一个将模拟信号转变为数字信号的电子元件。</p>
+]]></content>
+      <categories>
+        <category>嵌入式</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>stm32</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构期末考试范围</title>
+    <url>/2021/06/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4/</url>
+    <content><![CDATA[<p>周志光老师划分的范围qwq,<br>本来不紧张的，划完就紧张了…</p>
+<span id="more"></span>
+
+<h2 id="线性表-顺序存储"><a href="#线性表-顺序存储" class="headerlink" title="线性表-顺序存储"></a>线性表-顺序存储</h2><blockquote>
+<p>零个或多个数据元素的有限序列</p>
+</blockquote>
+<h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3><p>1．集合元素是有限个<br>2．除最后一个元素之外，均有唯一的后继(后件)。<br>3．除第一个元素之外，均有唯一的前驱(前件)。</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p>InitList(*L) 初始化操作，建立一个空的线性表<br>IsListEmpty(L) 判断线性表是否为空，若为空，返回true，否则false<br>ClearList(*L)  清空线性表<br>GetElem(L, i, *e) 将线性表L中的第i个位置的元素返回给e<br>LocateElem(L, e)  在线性表L中查找与给定值e相等的元素，如果查找成功，返回该元素在表中序号表示成功；否则，返回0表示失败。<br>ListInsert(*L, i, e) 在线性表L中的第i个位置插入新元素e<br>ListDelete(*L, i, *e) 删除线性表L中第i个位置元素，并用e返回其值<br>ListLength(L) 返回线性表L的长度，即元素个数.</p>
+<h3 id="结构体定义"><a href="#结构体定义" class="headerlink" title="结构体定义"></a>结构体定义</h3><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int</span> ElemType;<br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">&#123;</span><br>	ElemType data[MAXSIZE];<br>	<span class="hljs-keyword">int</span> length;<br>&#125;SqList;<br></code></pre></td></tr></table></figure>
+
+<p>数组data的存储位置<br>线性表的最大存储容量<br>线性表的当前长度</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p><strong>优点：</strong><br>无须为表示表中元素的逻辑关系而额外增加存储空间；<br>可以快速地存取任一位置的元素。</p>
+<p><strong>缺点：</strong><br>插入和删除需要移动大量元素；<br>当线性表长度变化较大时，难以确定存储空间的容量；<br>造成存储空间的碎片。</p>
+<h2 id="线性表-链式存储"><a href="#线性表-链式存储" class="headerlink" title="线性表-链式存储"></a>线性表-链式存储</h2><blockquote>
+<p>为了表示每个数据元素ai与其直接后继元素ai+1之间的逻辑关系，对于数据元素ai来说，除了存储其本身的信息之外，还需存储一个指示其直接后继的信息（即直接后继ai+1的存储位置）。我们把存储数据元素信息的空间称为数据域；把存储后继位置的空间称为指针域。指针域中存储的信息称为指针或链。这两部分信息组成数据元素的存储映像，称为结点（Node）。</p>
+</blockquote>
+<h3 id="头指针和头节点"><a href="#头指针和头节点" class="headerlink" title="头指针和头节点"></a>头指针和头节点</h3><p><strong>头指针：</strong><br>链表中第一个结点的存储位置叫做头指针</p>
+<p>头指针是指向链表第一个结点的指针，若链表有头结点，则是指向头结点的指针；<br>头指针具有标识作用，所以常用头指针冠以链表的名字；<br>无论链表是否为空，头指针不为空，头指针是链表的必要元素。</p>
+<p><strong>头结点：</strong><br>为了更方便对链表的操作，会在单链表的第一个结点之前增加一个结点，称为头结点。</p>
+<p>头结点是为了操作的统一和方便而设立的，放在第一个元素之前，其数据域一般无意义；<br>有了头结点，在对第一个结点前插入结点和删除第一个结点，其操作和其他结点的操作就统一了；<br>头结点不一定是链表的必要元素。</p>
+<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span></span><br><span class="hljs-class">&#123;</span><br>	ElemType data;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span>* <span class="hljs-title">next</span>;</span><br>&#125;Node;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span>* <span class="hljs-title">LinkList</span>;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="单链表与顺序存储的对比"><a href="#单链表与顺序存储的对比" class="headerlink" title="单链表与顺序存储的对比"></a>单链表与顺序存储的对比</h2><p><strong>存储分配方式：</strong><br>顺序存储结构用一段连续的存储空间依次存储线性表的数据元素；<br>单链表采用链式存储结构，用一组任意的存储单元存放线性表的元素；</p>
+<p><strong>时间性能：</strong></p>
+<ul>
+<li><strong>查找</strong><br>  顺序存储结构O(1)<br>  单链表O(n)</li>
+<li><strong>插入和删除</strong><br>  顺序存储结构需要平均移动表长一半的元素，时间复杂度为O(n)<br>  单链表在获得某位置的指针后，插入和删除的时间仅为O(1)</li>
+</ul>
+<p><strong>空间性能：</strong></p>
+<ol>
+<li>顺序存储结构需要预分配存储空间，分大了，浪费，分小了，不够用；</li>
+<li>单链表不需要分配存储空间，只要内存空间有，就可以分配，元素的个数更是不受限制</li>
+</ol>
+<h2 id="静态链表"><a href="#静态链表" class="headerlink" title="静态链表"></a>静态链表</h2><p><strong>用数组来代替指针：</strong><br>数组的每一个下标都对应一个data和cur；<br>data中存放数据；<br>cur存放该元素的后继元素的下标；<br>线性表链式存储结构的游标实现法</p>
+<h3 id="结构体-1"><a href="#结构体-1" class="headerlink" title="结构体"></a>结构体</h3><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">&#123;</span><br>	ElemType data;<br>	<span class="hljs-keyword">int</span> cur;<br>&#125;Component, StaticLinkList[MAXSIZE];<br></code></pre></td></tr></table></figure>
+
+<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><p>第一个元素的cur存放备用链表第一个结点的下标；<br>最后一个元素的cur存放当前链表第一个有数值元素的下标；</p>
+<h2 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h2><p>将单链表中终端结点的指针由空指针改为指向头结点，就使整个单链表形成一个环，这种头尾相连的单链表称为单循环链表，简称循环链表</p>
+<h2 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h2><p>在单链表的每个结点中，再设置一个指向其前驱结点的指针。</p>
+<h3 id="结构体-2"><a href="#结构体-2" class="headerlink" title="结构体"></a>结构体</h3><figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">DulNode</span></span><br><span class="hljs-class">&#123;</span><br>	ElemType data;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">DulNode</span>* <span class="hljs-title">prior</span>;</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">DulNode</span>* <span class="hljs-title">next</span>;</span><br>&#125;DulNode,*DulLinkList;<br></code></pre></td></tr></table></figure>
+
+<h2 id="线性表-作业"><a href="#线性表-作业" class="headerlink" title="线性表-作业"></a>线性表-作业</h2><p><strong>线性表的基本操作：</strong><br>插入，删除，查找，…<br>线性表的复杂操作<br>并集，交集，…</p>
+<p><strong>PAT题目集合：</strong><br>两个有序链表序列的合并<br>两个有序链表序列的交集<br>一元多项式的乘法与加法运算<br>打印选课学生名单<br>一元多项式求导<br>Reversing Linked List</p>
+<!-- 还没更新的 内容 -->
+<!--
+队列
+
+循环队列
+
+对空堆满的条件
+
+算法复杂度（排序算法）
+计算方法，为什么要算
+
+栈
+
+树，
+重点：二叉树
+
+比如给后续遍历，写中序遍历
+
+各种遍历结果
+
+
+平衡二叉树
+
+
+二叉树编程
+
+算法设计，创建二叉树
+
+
+数据结构的概念、
+
+数据结构，算法，程序之间的关系
+
+
+dj斯特拉算法复杂度，优缺点，
+
+写最小生成树
+
+某一种排序的第一次划分结果
+
+编程题：
+
+二叉树一系列问题（遍历...之类的）
+单链表（插入删除，创建）
+栈，队列
+图（遍历....）
+最短路径
+最小生成树，
+
+
+原理题目:
+
+哈夫曼编码，哈夫曼树，排序（归并，快排，堆排序）
+
+平衡二叉树看PPT，重点，课上讲的少
+-->]]></content>
+  </entry>
 </search>
