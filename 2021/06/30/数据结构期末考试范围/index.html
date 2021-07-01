@@ -25,7 +25,7 @@
     orderedList: false,
     collapseDepth: 2,
   });
-})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/monokai.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/monokai.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">喵不嗷</a></h1><p>世与我而相违，复驾言兮焉求？</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">数据结构期末考试范围</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">数据结构期末考试范围</a></h2><span class="post__date">2021-06-30</span></div></div><div class="article__content"><p>周志光老师划分的范围qwq,<br>本来不紧张的，划完就紧张了…</p>
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/monokai.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/monokai.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">喵不嗷</a></h1><p>世与我而相违，复驾言兮焉求？</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">数据结构期末考试范围</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">数据结构期末考试范围</a></h2><span class="post__date">2021-06-30</span><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="post__tags">#数据结构</span></a></div></div><div class="article__content"><p>周志光老师划分的范围qwq,<br>本来不紧张的，划完就紧张了…</p>
 <span id="more"></span>
 
 <h2 id="线性表-顺序存储"><a href="#线性表-顺序存储" class="headerlink" title="线性表-顺序存储"></a>线性表-顺序存储</h2><blockquote>
@@ -68,6 +68,290 @@
 
 <h2 id="线性表-作业"><a href="#线性表-作业" class="headerlink" title="线性表-作业"></a>线性表-作业</h2><p><strong>线性表的基本操作：</strong><br>插入，删除，查找，…<br>线性表的复杂操作<br>并集，交集，…</p>
 <p><strong>PAT题目集合：</strong><br>两个有序链表序列的合并<br>两个有序链表序列的交集<br>一元多项式的乘法与加法运算<br>打印选课学生名单<br>一元多项式求导<br>Reversing Linked List</p>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>栈（Stack）是限定仅在表尾进行插入和删除操作的<strong>线性表</strong>。</p>
+<ul>
+<li>栈是线性表，即栈的元素具有线性关系，即前驱后继关系</li>
+<li>线性表可以在表中任何位置进行插入、删除操作</li>
+<li>栈只能在表尾进行插入、删除操作</li>
+<li>表尾称为栈顶</li>
+</ul>
+<p><strong>插入操作：</strong><br>进栈、压栈、入栈</p>
+<p><strong>删除操作：</strong><br>出栈、弹栈</p>
+<p><strong>应用：</strong></p>
+<p>递归<br>四则运算表达式求值</p>
+<h3 id="顺序栈"><a href="#顺序栈" class="headerlink" title="顺序栈"></a>顺序栈</h3><p>同线性表，元素具有相同的类型，相邻元素具有前驱和后继关系。</p>
+<h4 id="结构体-3"><a href="#结构体-3" class="headerlink" title="结构体"></a>结构体</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">&#123;</span><br>	ElemType data[MAXSIZE];<br>	<span class="hljs-keyword">int</span> top;<br>&#125;SqStack;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h4><p><strong>优点：</strong><br>后进先出规则的实现；<br>插入、删除尤其方便；</p>
+<p><strong>缺点：</strong><br>栈的大小是固定的；</p>
+<h3 id="链栈"><a href="#链栈" class="headerlink" title="链栈"></a>链栈</h3><h4 id="结构体-4"><a href="#结构体-4" class="headerlink" title="结构体"></a>结构体</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StackNode</span></span><br><span class="hljs-class">&#123;</span><br>	ElemType data;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StackNode</span>* <span class="hljs-title">next</span>;</span><br>&#125;StackNode, *LinkStackPtr;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LinkStack</span></span><br><span class="hljs-class">&#123;</span><br>	LinkStackPtr top;<br>	<span class="hljs-keyword">int</span> count;<br>&#125;LinkStack;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h3><p>**InitStack ( *S )**：初始化操作.建立一个空栈S。<br>**DestroyStack ( *S )**：若栈存在，則销毁它。<br>**ClearStack (*S)**：将栈清空。<br><strong>StackEmpty ( S )</strong>:若栈为空，返回true,否則返回 false。<br>**GetTop (S,*e)**：若栈存在且非空，用e返回S的栈顶元素。<br>**Push (*S,e)**：若栈S存在，插入新元素e到栈S中并成为栈頂元素。<br>**Pop (*S,*e)**：删除栈S中栈顶元素，并用e返回其值。<br>**StackLength (S)**：返回回栈S的元素个数。</p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>队列（Queue）是只允许在一端进行插入操作，而在另一端进行删除操作的线性表。</p>
+<p>队列是一种先进先出（First In First Out）的线性表，简称FIFO。<br>允许插入的一端称为<strong>队尾</strong>；<br>允许删除的一端称为<strong>队头</strong>。</p>
+<h3 id="基本操作-2"><a href="#基本操作-2" class="headerlink" title="基本操作"></a>基本操作</h3><p>**InitQueue(*Q)**：初始化操作，建立一个空队列Q；<br>**DestroyQueue(*Q)**：若队列Q存在，則销毀它；<br>**ClearQueue(*Q)**：将队列 Q 清空；<br>**QueueEmpty(Q)**：若队列Q为空，则true，否則false；<br>**GetHead(Q, *e)**：若队列Q存在且非空，用e返因队列Q的队头元素；<br>**EnQueue(*Q,e)**：若队列Q存在，插入新元素e到队列Q中并成为队尾元素；<br>**DeQueue(*Q, *e)**：刪除队列Q中队头，并用e返回其值；<br>**QueueLength(Q)**：送回队列Q的元素个数。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<li><p>出队的时候，队列中所有元素都要向前移动一个位置，复杂度为O(n)；</p>
+</li>
+<li><p>队列的大小是固定的；</p>
+</li>
+</ol>
+<h3 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h3><p>循环队列解决<strong>假溢出问题</strong></p>
+<h4 id="结构体-5"><a href="#结构体-5" class="headerlink" title="结构体"></a>结构体</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">&#123;</span><br>	ElymType data[MAXSIZE];<br>	<span class="hljs-keyword">int</span> front;<br>	<span class="hljs-keyword">int</span> rear;<br>&#125;SqQueque;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>头尾相接的顺序存储结构—循环队列<br>rear==front时，队空<br>rear+1== front，队满</p>
+<p><strong>队空判断</strong>：<br>rear==front<br><strong>队满判断：</strong><br>（rear+1）%QueueSize==front<br><strong>队长判断：</strong><br>(rear-front+QueueSize)%QueueSize</p>
+<h3 id="链式队列"><a href="#链式队列" class="headerlink" title="链式队列"></a>链式队列</h3><p>队列的链式存储结构，其实就是线性表的单链表，只不过它只能尾进头出而已，我们把它称为链队列。</p>
+<h4 id="结构体-6"><a href="#结构体-6" class="headerlink" title="结构体"></a>结构体</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">QNode</span></span><br><span class="hljs-class">&#123;</span><br>	ElymType data;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">QNode</span>* <span class="hljs-title">next</span>;</span><br>&#125;QNode, *QueuePtr;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">&#123;</span><br>	QueuePtr front;<br>	QueuePtr rear;<br>&#125;LinkQueue;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="栈与队列-作业"><a href="#栈与队列-作业" class="headerlink" title="栈与队列 作业"></a>栈与队列 作业</h2><p><strong>栈：</strong><br>顺序栈基本操作<br>链栈基本操作<br>四则混合运算（基于栈的实现）</p>
+<p><strong>队列：</strong><br>顺序队列基本操作<br>链队列基本操作<br>迷宫问题</p>
+<h2 id="串"><a href="#串" class="headerlink" title="串"></a>串</h2><p>串（string）是由零个或多个字符组成的有限序列，又名字符串。</p>
+<p>串中的元素仅由一个字符组成，相邻元素具有前驱和后继关系.</p>
+<h3 id="顺序存储"><a href="#顺序存储" class="headerlink" title="顺序存储"></a>顺序存储</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">mystring</span>&#123;</span><br>    <span class="hljs-keyword">char</span> str[MaxStrSize];	<br>    <span class="hljs-keyword">int</span> length;<br>&#125;MyString;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="链式存储"><a href="#链式存储" class="headerlink" title="链式存储"></a>链式存储</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>&#123;</span><br>    <span class="hljs-keyword">char</span> data;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span> *<span class="hljs-title">next</span>;</span><br>&#125;LinkStrNode;<br><span class="hljs-keyword">typedef</span> LinkStrNode * LinkString; <br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="基本操作-3"><a href="#基本操作-3" class="headerlink" title="基本操作"></a>基本操作</h3><p>**StrAssign (&amp;T, chars)**：初始条件chars是字符串常量；操作结果生成一个其值等于chars的串T；<br>**StrCopy (&amp;T, S)**：初始条件串S存在；操作结果由串S复制得串T；<br>**StrEmpty(S)**：初始条件串S存在；操作结果若S为空串，则返回TRUE，否则返回FALSE；<br>**StrCompare(S, T)**：初始条件串S和T存在；操作结果若S&gt;T，则返回值&gt;0；若S=T，则返回值＝0；若S &lt; T，则返回值 &lt; 0；<br>**StrLength(S)**：初始条件串S存在；操作结果返回S的元素个数，称为串的长度。</p>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><p>树（Tree）是n个结点的有限集合，n=0是空树。在任意一棵非空树中：</p>
+<h3 id="特征-1"><a href="#特征-1" class="headerlink" title="特征"></a>特征</h3><ul>
+<li>有且仅有一个特定的称为根的结点；</li>
+<li>其余结点可分为m个互不相交的有限集；</li>
+<li>每个有限集本身又是一棵树，并且称为根的子树。</li>
+</ul>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><strong>结点的度：</strong><br>结点所拥有子树的数目</p>
+<p><strong>叶子结点：</strong><br>度为0的结点</p>
+<p><strong>分支结点或非终端结点：</strong><br>根结点<br>内部结点</p>
+<p><strong>树的度：</strong><br>树中各个结点的度的最大值</p>
+<p><strong>孩子结点：</strong><br>结点的子树的根称为孩子结点</p>
+<p><strong>双亲结点：</strong><br>该结点称为孩子结点的双亲结点</p>
+<p><strong>兄弟结点：</strong><br>同一个双亲的孩子之间互称兄弟结点</p>
+<p><strong>祖先结点：</strong><br>从根结点到该结点所经分支上的所有结点</p>
+<p><strong>子孙结点：</strong><br>以该结点为根的子树中，任意一个结点就是该结点的子孙结点</p>
+<p><strong>树的层次：</strong><br>树根为第1层，根的孩子为第2层</p>
+<p><strong>树的深度：</strong><br>树中结点最大层数为树的深度或高度</p>
+<p><strong>有序树：</strong><br>各个子树是从左到右，不能互换的</p>
+<p><strong>森林：</strong><br>m棵互不相交的树的集合</p>
+<h3 id="ADT-抽象数据类型"><a href="#ADT-抽象数据类型" class="headerlink" title="ADT (抽象数据类型)"></a>ADT (抽象数据类型)</h3><p><strong>Data：</strong><br>具有相同数据类型，具有层次关系的数据</p>
+<p><strong>Operation：</strong><br><strong>InitTree(&amp;T)</strong>; //构造空树T。<br><strong>DestroyTree(&amp;T)</strong>;//销毁树T。<br><strong>CreateTree(&amp;T,definition)</strong>;//构造树T<br><strong>ClearTree(&amp;T)</strong>; //将树T清为空树。<br><strong>TreeEmpty(T)</strong>;  //若T为空树，则返回TRUE;<br><strong>TreeDepth(T)</strong>;  //返回Ｔ的深度。<br><strong>Root(T);</strong>//返回T的根。</p>
+<h3 id="基本操作-4"><a href="#基本操作-4" class="headerlink" title="基本操作"></a>基本操作</h3><p><strong>Value(T,cur_e)</strong>;//返回cur_e的值。<br><strong>Assign(T,cur_e,value)</strong>; //结点cur_e赋值为value。<br><strong>Parent(T,cur_e)</strong>; //若cur_e是T的非根结点，则返回它的双亲;<br><strong>LeftChild(T,cur_e)</strong>; //返回最左孩子;<br><strong>RightSibling(T,cur_e);</strong> //返回它的右兄弟;<br><strong>InsertChild(&amp;T,&amp;p,i,c)</strong>; //插入c为Ｔ中ｐ指结点的第ｉ棵子树。<br><strong>DeleteChild(&amp;T,&amp;p,i)</strong>; //删除Ｔ中ｐ所指结点的第ｉ棵子树。<br><strong>TraverseTree(T)</strong> //按某种次序对T的每个结点遍历</p>
+<h3 id="双亲表示法-结构体"><a href="#双亲表示法-结构体" class="headerlink" title="双亲表示法-结构体"></a>双亲表示法-结构体</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> //节点结构</span><br><span class="hljs-class">&#123;</span><br>    TElemType data;<br>	<span class="hljs-keyword">int</span> parent; <span class="hljs-comment">//双亲位置域</span><br>&#125;PTNode;<br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> //树结构</span><br><span class="hljs-class">&#123;</span><br>    PTNode node[MAX_TREE_SIZE];<br>    <span class="hljs-keyword">int</span> r, n; <span class="hljs-comment">//根的位置和节点个数</span><br>&#125;PTree;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="孩子表示法"><a href="#孩子表示法" class="headerlink" title="孩子表示法"></a>孩子表示法</h3><p>每个结点有多个指针域<br>每个指针指向一棵子树的根结点<br>多重链表表示法</p>
+<h3 id="结构体-7"><a href="#结构体-7" class="headerlink" title="结构体"></a>结构体</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">CTNode</span>      //孩子结点链</span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-keyword">int</span> child;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">CTNode</span> *<span class="hljs-title">next</span>;</span><br>&#125; *ChildPtr;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">CTBox</span>      //孩子结点链</span><br><span class="hljs-class">&#123;</span><br>   <span class="hljs-keyword">char</span> data;<br>   ChildPtr firstchild;<br>&#125;CTBox;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>            //树状结构</span><br><span class="hljs-class">&#123;</span><br>    CTBox nodes[MAX_TREE_SIZE];<br>    <span class="hljs-keyword">int</span> r, n;<br>&#125; CTree ;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="孩子双亲表示法"><a href="#孩子双亲表示法" class="headerlink" title="孩子双亲表示法"></a>孩子双亲表示法</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">CTNode</span>     //孩子结点链</span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-keyword">int</span> child;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">CTNode</span> *<span class="hljs-title">next</span>;</span><br>&#125; *ChildPtr;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">CTBox</span>      //孩子结点链</span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-keyword">char</span> data;<br>    <span class="hljs-keyword">int</span>  parent;<br>    ChildPtr firstchild;<br>&#125;CTBox;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>            //树状结构</span><br><span class="hljs-class">&#123;</span><br>    CTBox nodes[MAX_TREE_SIZE];<br>    <span class="hljs-keyword">int</span> r, n;<br>&#125; CTree ;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="孩子兄弟表示法"><a href="#孩子兄弟表示法" class="headerlink" title="孩子兄弟表示法"></a>孩子兄弟表示法</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> </span><br><span class="hljs-class">&#123;</span><br>    DataType element;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> * <span class="hljs-title">pFirstChild</span>;</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> * <span class="hljs-title">pNextSibling</span>;</span><br>&#125;*Tree;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树（Binary Tree）是n个结点的有限集合，该集合或者为空集，或者由一个根结点和两个互不相交的、分别称为根结点的左子树和右子树的二叉树组成。</p>
+<h3 id="特征-2"><a href="#特征-2" class="headerlink" title="特征"></a>特征</h3><ol>
+<li>每个结点最多有两棵子树</li>
+<li>左子树和右子树是有顺序的</li>
+<li>即使某结点只有一棵子树，也要区分它是左子树还是右子树</li>
+</ol>
+<h3 id="形态"><a href="#形态" class="headerlink" title="形态"></a>形态</h3><ul>
+<li>空二叉树</li>
+<li>只有一个根结点</li>
+<li>根结点只有左子树</li>
+<li>根结点只有右子树</li>
+<li>根结点既有左子树又有右子树</li>
+</ul>
+<h3 id="特殊二叉树"><a href="#特殊二叉树" class="headerlink" title="特殊二叉树"></a>特殊二叉树</h3><p><strong>斜树：</strong><br>所有结点都只有左子树的二叉树称为左斜树；<br>所有结点都只有右子树的二叉树称为右斜树；</p>
+<p><strong>满二叉树：</strong><br>所有结点都存在左子树和右子树，并且所有叶子结点都在同一层上。<br>叶子结点只能位于最下层<br>非叶结点的度一定是2<br>同样深度的二叉树中，满二叉树的结点最多</p>
+<p><strong>完全二叉树：</strong><br>对于一棵有n个结点的二叉树按程序标号，如果编号为i的结点与同样深度的满二叉树编号为i的结点在二叉树中的位置完全相同。<br>叶子结点只能出现于最下两层<br>最下层的叶子结点一定连续位置<br>导数第二层，若有叶子结点，一定都在右布连续位置<br>如果结点度为1，则该结点只能有左孩子<br>同样结点数的二叉树，完全二叉树的深度最小</p>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>二叉树的第 <strong>i</strong> 层之多有 **2<sup>(i-1) </sup>**个结点；</p>
+<p>深度为 <strong>k</strong> 的二叉树至多有 <strong>2<sup>k</sup>-1</strong> 个结点；</p>
+<p>任何一棵二叉树T，如果其终端结点的个数为n0，度为2的结点数为n2，则n0=n2+1；</p>
+<p>具有 <strong>n</strong> 个结点的完全二叉树深度为 <strong>int(log<sub>2</sub>n)+1</strong>；</p>
+<p>如果对一棵有n个结点的完全二叉树的结点按层序编号，对任意一个结点i，有：</p>
+<ul>
+<li>如果i=1，则结点i是二叉树的根；</li>
+<li>如果i&gt;1，则其双亲结点int(i/2);</li>
+<li>如果2i&gt;n，则结点i无左孩子；</li>
+<li>如果2i+1&gt;n，则结点i无右孩子；</li>
+</ul>
+<h3 id="二叉树顺序存储-作业"><a href="#二叉树顺序存储-作业" class="headerlink" title="二叉树顺序存储-作业"></a>二叉树顺序存储-作业</h3><p><strong>课后作业：</strong><br>定义二叉树顺序存储结构<br>创建、清空二叉树<br>求二叉树的深度<br>求二叉树结点的个数<br>求任何一个结点的左孩子，右孩子结点<br>求任何一个结点的双亲结点</p>
+<h3 id="二叉链表"><a href="#二叉链表" class="headerlink" title="二叉链表"></a>二叉链表</h3><p>二叉树每个结点最多有两个孩子，可以为二叉树结点设置1个数据域和2个指针域</p>
+<h4 id="结构体-8"><a href="#结构体-8" class="headerlink" title="结构体"></a>结构体</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span>&#123;</span>      <br>    ElemType data;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> *<span class="hljs-title">lchild</span>;</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> *<span class="hljs-title">rchild</span>;</span>  <br>&#125;BiTNode, *BiTree; <br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h3><ol>
+<li><p><strong>前序遍历</strong></p>
+<p>先遍历根结点<br>依次前序遍历左子树和右子树</p>
+</li>
+<li><p><strong>中序遍历</strong></p>
+<p>从根结点开始<br>中序遍历左子树<br>访问根结点<br>中序遍历右子树</p>
+</li>
+<li><p><strong>后序遍历</strong></p>
+<p>从根结点开始<br>后序遍历左子树<br>后序遍历右子树<br>访问根结点</p>
+</li>
+<li><p><strong>层序遍历</strong></p>
+</li>
+</ol>
+<h3 id="线索二叉树"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h3><p>Threaded Binary Tree</p>
+<ul>
+<li>空指针废物利用，分别指向当前结点的前驱结点和后继结点；</li>
+<li>变废为宝的空指针称为线索；</li>
+<li>加上线索的二叉树称为线索二叉树。</li>
+</ul>
+<h3 id="结构体-9"><a href="#结构体-9" class="headerlink" title="结构体"></a>结构体</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">char</span> ElemType; <span class="hljs-comment">//数据类型</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> &#123;</span>Link,Thread&#125; PointerTag; <br><span class="hljs-comment">//Link==0表示左、右孩子结点，Thread==1表示指向前驱或后继的线索</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BiThrNode</span></span><br><span class="hljs-class">&#123;</span><br>      ElemType data;<br>      <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BiThrNode</span>* <span class="hljs-title">lchild</span>,* <span class="hljs-title">rchild</span>;</span><br>      PointerTag ltag;<br>      PointerTag rtag;<br>&#125; BiThrNode,*BiThrTree; <br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="森林，树，二叉树！"><a href="#森林，树，二叉树！" class="headerlink" title="森林，树，二叉树！"></a>森林，树，二叉树！</h2><h3 id="树转换成二叉树"><a href="#树转换成二叉树" class="headerlink" title="树转换成二叉树"></a>树转换成二叉树</h3><p><strong>STEP1. 加线：</strong></p>
+<p>所有兄弟结点之间加一条线；</p>
+<p><strong>STEP2. 去线：</strong></p>
+<p>对于树中每个结点，只保留其与第一个孩子结点的连线，删除其与其它孩子结点之间的连线；</p>
+<p><strong>STEP3. 层次调整：</strong></p>
+<p>以树的根结点为轴心，讲整个树顺时针旋转一定角度，使之层次分明。</p>
+<p><img src="/pic/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4/commonTree2bt.png"></p>
+<center style="font-size:12px">树转换为二叉树</center>
+
+
+
+<h3 id="森林转二叉树"><a href="#森林转二叉树" class="headerlink" title="森林转二叉树"></a>森林转二叉树</h3><p><img src="/pic/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4/forest2bt.png"></p>
+<ol>
+<li>把每棵树转换为二叉树；</li>
+<li>第一棵二叉树不动，从第二棵二叉树开始，依次把后一棵二叉树的根结点作为前一棵树叶子节点的右孩子；</li>
+</ol>
+<h3 id="二叉树转树"><a href="#二叉树转树" class="headerlink" title="二叉树转树"></a>二叉树转树</h3><blockquote>
+<p> 加线，去线，层次调整</p>
+</blockquote>
+<p><img src="/pic/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4/bt2commonTree.png"></p>
+<h3 id="二叉树转森林"><a href="#二叉树转森林" class="headerlink" title="二叉树转森林"></a>二叉树转森林</h3><p>从根结点开始，若右孩子存在，则删除连接右孩子的线；<br>将得到的一系列二叉树转换为树；</p>
+<p><img src="/pic/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4/bt2forest.png"></p>
+<h3 id="树的遍历"><a href="#树的遍历" class="headerlink" title="树的遍历"></a>树的遍历</h3><p><strong>先根遍历：</strong><br>首先访问树的根结点，然后依次先根遍历根的每棵子树；</p>
+<p><strong>后根遍历：</strong><br>依次后根遍历每棵子树，然后再访问根结点；</p>
+<h2 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h2><blockquote>
+<p> <strong>前缀编码：</strong></p>
+<p>即较短的编码不能是任何较长的编码的前缀，这样解析的时候才不会混淆</p>
+</blockquote>
+<p>把要编码的字符放在二叉树的叶子上，所有的左节点是0，右节点是1，从根浏览到叶子上，因为字符只能出现在树叶上，任何一个字符的路径都不会是另一字符路径的前缀路径，符合前缀原则编码就可以得到。</p>
+<p>构造更优的二叉树，原则就是权重越大的叶子，距离根应该越近，而我们的终级目标是生成“最优”的二叉树，最优二叉树必须符合下面两个条件：</p>
+<ol>
+<li>所有上层节点都大于等于下层节点。</li>
+<li>某节点，设其较大的子节点为ｍ，较小的子节点为ｎ，ｍ下的任一层的所有节点都应大于等于ｎ下的该层的所有节点。</li>
+</ol>
+<h3 id="构造哈夫曼树"><a href="#构造哈夫曼树" class="headerlink" title="构造哈夫曼树"></a>构造哈夫曼树</h3><ol>
+<li>从各个节点中找出最小的两个节点，给它们建一个父节点，值为这两个节点之和。 </li>
+<li>从节点序列中去除这两个节点，加入它们的父节点到序列中。</li>
+<li>重复上面两个步骤，直到节点序列中只剩下唯一一个节点。这时一棵最优二叉树就已经建成了，它的根就是剩下的这个节点。 </li>
+</ol>
+<h3 id="结构体-10"><a href="#结构体-10" class="headerlink" title="结构体"></a>结构体</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 哈夫曼树节点</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">HuffNode</span>&#123;</span><br>    <span class="hljs-keyword">int</span> weight;<br>    <span class="hljs-keyword">char</span> ch;<br>    string code;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">HuffNode</span> *<span class="hljs-title">rchild</span>;</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">HuffNode</span> *<span class="hljs-title">lchild</span>;</span><br>&#125;HuffMan;<br><br><span class="hljs-comment">// 哈夫曼队列</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span>&#123;</span><br>    HuffMan *data;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> *<span class="hljs-title">next</span>;</span><br>&#125;ListNode;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span><br>    ListNode *front;<br>    ListNode *rear;<br>&#125;Queue;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="树-作业"><a href="#树-作业" class="headerlink" title="树-作业"></a>树-作业</h2><p>二叉树的建立<br>二叉树的遍历<br>二叉树ADT基本操作<br>二叉树线索化<br>线索二叉树的遍历<br>哈夫曼编码</p>
+<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p>是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为：G（V，E）。其中，G表示一个图，V是图G中顶点的集合，E是图G中边的集合</p>
+<p><strong>各种类型：</strong></p>
+<ul>
+<li>无向图</li>
+<li>有向图</li>
+<li>简单图</li>
+<li>无向完全图</li>
+<li>有向完全图</li>
+<li>稀疏图</li>
+<li>稠密图</li>
+<li>带权图</li>
+</ul>
+<h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p><strong>路径：</strong><br>树中根结点到任何一个结点的路径</p>
+<p><strong>环：</strong><br>第一个顶点和最后一个顶点相同的路径</p>
+<p><strong>简单路径：</strong><br>顶点不重复出现的路径</p>
+<p><strong>简单环：</strong><br>除第一个和最后一个顶点外，其余顶点不重复出现的回路</p>
+<p><strong>连通图：</strong></p>
+<ul>
+<li>无向图中，如果从顶点u到顶点v有路径，则称u和v是联通的</li>
+<li>如果图中任意两个顶点u和v都是连通的，则称该图为连通图</li>
+</ul>
+<p><strong>连通分量：</strong></p>
+<p>无向图的极大连通子图称为<strong>连通分量</strong>( Connected Component)</p>
+<p><strong>强连通图：</strong><br>有向图中，对于每一对顶点u和v，都存在由u到v和由v到u的路径，则称该图为强连通图。</p>
+<p><strong>强连通分量：</strong><br>有向图中的极大强连通子图称为有向图的强连通分量。</p>
+<p><strong>生成树：</strong></p>
+<p>一个连通图的生成树是一个极小连通子图，它含有图中全部的n个顶点，但只有足以构成一棵树的n-1条边。</p>
+<p><img src="/pic/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95%E8%8C%83%E5%9B%B4/genTree.png"></p>
+<h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><p>图的邻接矩阵存储方式是用两个数组来表示图。一个一维数组存储图中顶点信息，一个二维数组（成为邻接矩阵）存储图中边的信息。</p>
+<h4 id="结构体-11"><a href="#结构体-11" class="headerlink" title="结构体"></a>结构体</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> </span><br><span class="hljs-class">&#123;</span><br>        VertexType vexs[MAXVEX];<br>        EdgeType arc[MAXVEX][MAXVEX];<br>        <span class="hljs-keyword">int</span> numVertexes,numEdges;<br>&#125;MGraph;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h3><ul>
+<li>图中顶点用一个一维数组存储；</li>
+<li>图中每个顶点v的所有邻接点构成一个线性表。</li>
+</ul>
+<h4 id="结构体-12"><a href="#结构体-12" class="headerlink" title="结构体"></a>结构体</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">EdgeNode</span></span><br><span class="hljs-class">&#123;</span><br>	<span class="hljs-keyword">int</span> adjvex; <span class="hljs-comment">//邻接点</span><br>	EdgeWeight weight; <span class="hljs-comment">//权值</span><br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">EdgeNode</span>* <span class="hljs-title">next</span>;</span> <span class="hljs-comment">//指向下一条边</span><br>&#125;EdgeNode;<br><br><span class="hljs-keyword">typedef</span> string VertexType; <span class="hljs-comment">//顶点类型</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span></span><br><span class="hljs-class">&#123;</span><br>	VertexType data;<br>	EdgeNode* pFirstEdge; <span class="hljs-comment">//指示第一条边</span><br>&#125;VertexNode;<br><br><span class="hljs-keyword">typedef</span> VertexNode AdjList[MAXVEX];<span class="hljs-comment">//邻接表</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>  </span><br><span class="hljs-class">&#123;</span><br>	AdjList adjList; <span class="hljs-comment">//邻接表</span><br>	<span class="hljs-keyword">int</span> iVexNum; <span class="hljs-comment">//顶点个数</span><br>	<span class="hljs-keyword">int</span> iEdgeNum; <span class="hljs-comment">//边数</span><br>&#125;AdjListGraph;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><p>构造连通网的最小代价生成树成为最小生成树</p>
+<p>使用不同的遍历图的方法，可以得到不同的生成树；从不同的顶点出发，也可能得到不同的生成树。<br>按照生成树的定义，n个顶点的连通网络的生成树有n个顶点、n-1条边。</p>
+<p><strong>构造最小生成树的准则：</strong></p>
+<ol>
+<li>用且仅用n-1条边来联结n个顶点；</li>
+<li>不能使用产生回路的边；</li>
+<li>各边上的权值的总和达到最小。</li>
+</ol>
+<h4 id="克鲁斯卡尔-Kruskal-算法"><a href="#克鲁斯卡尔-Kruskal-算法" class="headerlink" title="克鲁斯卡尔 (Kruskal) 算法"></a>克鲁斯卡尔 (Kruskal) 算法</h4><p><strong>基本思想：</strong><br>设有一个有n个顶点的连通网络N={V,E}, 最初先构造一个只有n个顶点,没有边的非连通图T={V,$\varnothing$}, 图中每个顶点自成一个连通分量。当在 E 中选到一条具有最小权值的边时, 若该边的两个顶点落在不同的连通分量上，则将此边加入到 T 中; 否则将此边舍去，重新选择一条权值最小的边。如此重复下去, 直到所有顶点在同一个连通分量上为止。</p>
+<h4 id="普里姆-Prim-算法"><a href="#普里姆-Prim-算法" class="headerlink" title="普里姆(Prim)算法"></a>普里姆(Prim)算法</h4><p><strong>基本思想：</strong></p>
+<ol>
+<li>从连通网络N={V,E}中的某一顶点u0出发,选择与它关联的具有最小权值的边 (u0,v),将其顶点加入到生成树顶点集合U中。</li>
+<li>以后每一步从一个顶点在U中,而另一个顶点不在U中的各条边中选择权值最小的边(u,v),把顶点v加入到集合 U 中。如此继续下去,直到网络中的所有顶点都加入到生成树顶点集合U中为止。</li>
+</ol>
+<h3 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h3><p>对于网图来说，最短路径是指两顶点之间经过的边上权值之和最少的路径，并且我们称路径上的第一个顶点是源点，最后一个顶点是终点。</p>
+<h4 id="单源最短路径"><a href="#单源最短路径" class="headerlink" title="单源最短路径"></a>单源最短路径</h4><p>给定一个带权有向图 G=(V,E)，其中每条边的权是一个非负实数。另外，还给定 V 中的一个顶点，称为源。现在我们要计算从源到所有其他各顶点的最短路径长度。这里的长度是指路上各边权之和。这个问题通常称为单源最短路径问题。</p>
+<h4 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h4><ol>
+<li>按路径长度的递增次序,逐步产生顶点v到其它各顶点的最短路径。</li>
+<li>即首先求出长度最短的一条最短路径，再参照它求出长度次短的一条最短路径，依次类推，直到从顶点v到其它各顶点的最短路径全部求出为止。</li>
+</ol>
+<h3 id="图-作业"><a href="#图-作业" class="headerlink" title="图-作业"></a>图-作业</h3><p><strong>图的存储结构：</strong></p>
+<ul>
+<li>邻接矩阵</li>
+<li>邻接表</li>
+</ul>
+<p><strong>图的遍历：</strong></p>
+<ul>
+<li>深度优先遍历</li>
+<li>广度优先历</li>
+</ul>
+<p><strong>图的算法：</strong></p>
+<ul>
+<li>最小生成树（Prim，Kruskal）</li>
+<li>单源最短路径</li>
+</ul>
+<h3 id="图-自学内容"><a href="#图-自学内容" class="headerlink" title="图-自学内容"></a>图-自学内容</h3><p><strong>存储结构：</strong></p>
+<ul>
+<li>十字链表</li>
+<li>邻接多重表</li>
+</ul>
+<p><strong>单源最短路径：</strong></p>
+<ul>
+<li>Floyd算法</li>
+</ul>
+<p><strong>拓扑排序</strong></p>
+<p><strong>关键路径</strong></p>
+<p>…</p>
 <!-- 还没更新的 内容 -->
 <!--
 队列
