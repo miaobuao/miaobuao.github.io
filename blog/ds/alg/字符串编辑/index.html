@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang=zh><head><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><link href=/favicon.svg rel=icon type=image/svg+xml><meta content="Astro v4.11.5" name=generator><link href=https://yangqiuyi.com/blog/ds/alg/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91/ rel=canonical><title>字符串编辑</title><meta content=字符串编辑 name=title><meta name=description><meta content=website property=og:type><meta content=https://yangqiuyi.com/blog/ds/alg/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91/ property=og:url><meta content=字符串编辑 property=og:title><meta property=og:description><meta content=https://yangqiuyi.com/blog/ds/alg/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91/ property=og:image><meta content=summary_large_image property=twitter:card><meta content=https://yangqiuyi.com/blog/ds/alg/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91/ property=twitter:url><meta content=字符串编辑 property=twitter:title><meta property=twitter:description><meta content=https://yangqiuyi.com/blog/ds/alg/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91/ property=twitter:image><script>const mql=window.matchMedia("(prefers-color-scheme: dark)"),isDark=()=>"dark"===getThemePreference();function getThemePreference(){return"undefined"!=typeof localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme"):mql.matches?"dark":"light"}function updateTheme(){document.documentElement.classList[isDark()?"add":"remove"]("dark")}updateTheme(),mql.addEventListener("change",updateTheme)</script><link href=/_astro/_slug_.Cxo9WDFq.css rel=stylesheet><style>.prose{width:100%;word-break:break-all}.prose img{max-width:100%}</style><script type=module>var u="@vercel/speed-insights",l="1.0.12",f=()=>{window.si||(window.si=function(...e){(window.siq=window.siq||[]).push(e)})};function v(){return typeof window<"u"}function p(){try{}catch{}return"production"}function a(){return"development"===p()}function w(e,t){if(!e||!t)return e;let r=e;try{const e=Object.entries(t);for(const[t,n]of e)if(!Array.isArray(n)){const e=c(n);e.test(r)&&(r=r.replace(e,`/[${t}]`))}for(const[t,n]of e)if(Array.isArray(n)){const e=c(n.join("/"));e.test(r)&&(r=r.replace(e,`/[...${t}]`))}return r}catch{return e}}function c(e){return new RegExp(`/${m(e)}(?=[/?#]|$)`)}function m(e){return e.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}var d="https://va.vercel-scripts.com/v1/speed-insights",h=`${d}/script.js`,S=`${d}/script.debug.js`,g="/_vercel/speed-insights/script.js";function R(e={}){var t;if(!v()||null===e.route)return null;f();const r=e.dsn?h:g,n=e.scriptSrc||(a()?S:r);if(document.head.querySelector(`script[src*="${n}"]`))return null;e.beforeSend&&(null==(t=window.si)||t.call(window,"beforeSend",e.beforeSend));const s=document.createElement("script");return s.src=n,s.defer=!0,s.dataset.sdkn=u+(e.framework?`/${e.framework}`:""),s.dataset.sdkv=l,e.sampleRate&&(s.dataset.sampleRate=e.sampleRate.toString()),e.route&&(s.dataset.route=e.route),e.endpoint&&(s.dataset.endpoint=e.endpoint),e.dsn&&(s.dataset.dsn=e.dsn),a()&&!1===e.debug&&(s.dataset.debug="false"),s.onerror=()=>{console.log(`[Vercel Speed Insights] Failed to load script from ${n}. Please check if any content blockers are enabled and try again.`)},document.head.appendChild(s),{setRoute:e=>{s.dataset.route=e??void 0}}}customElements.define("vercel-speed-insights",class extends HTMLElement{constructor(){super();try{const e=JSON.parse(this.dataset.props??"{}"),t=JSON.parse(this.dataset.params??"{}");R({route:w(this.dataset.pathname??"",t),...e,framework:"astro",beforeSend:window.speedInsightsBeforeSend})}catch(e){throw new Error(`Failed to parse SpeedInsights properties: ${e}`)}}})</script><script type=module src=/_astro/page.D3gCUAtq.js></script></head><body><vercel-speed-insights data-params={&#34;slug&#34;:&#34;ds/alg/字符串编辑&#34;} data-pathname=/blog/ds/alg/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91/ data-props={}></vercel-speed-insights><div class="flex items-center bg-base-100 flex-row sticky top-0"><a href=/ class="btn btn-ghost text-xl">Meo&#39;s Blog</a><ul class="gap-x-1 menu menu-horizontal px-1"><li><a href=/ >Blog</a></li><li><a href=/about>About Me</a></li></ul></div><main class="flex items-center justify-center"><article class="dark:prose-invert p-4 prose"><p>测试数据对字符串的删除，替换，以及插入</p><h2 id=题目描述>题目描述</h2><p>从键盘输入一个字符串（长度&#x3C;=40 个字符），并以字符 ’.’结束。</p><p>例如：‘This is a book.’ 现对该字符串进行编辑，编辑功能有：</p><p>D：删除一个字符，命令的方式为：D a<br>其中a为被删除的字符 例如：D s 表示删除字符 ‘s’ ，若字符串中有多个 ‘s’，则删除第一次出现的。 如上例中删除的结果为： ‘Thi is a book.’</p><p>I：插入一个字符，命令的格式为：I a1 a2<br>其中a1表示插入到指定字符前面，a2表示将要插入的字符。 例如：I s d 表示在指定字符 ‘s’ 的前面插入字符 ‘d’ ，若原串中有多个 ‘s’ ，则插入在最后一个字符的前面。 如上例中： 原串：‘This is a book.’ 插入后：‘This ids a book.’</p><p>R：替换一个字符，命令格式为： R a1 a2 其中a1为被替换的字符，a2为替换的字符，若在原串中有多个a1则应全部替换。 例如： 原串： ‘This is a book.’ 输入命令：R o e 替换后的字符串为：‘This is a beek.’</p><p>在编辑过程中，若出现被改的字符不存在时，则给出提示信息”Not exist”。</p><h2 id=输入>输入</h2><p>每个测试文件只包含一组测试数据，每组输入数据包含两行：</p><p>第一行，输入一个字符串，表示原串； 第二行，输入一个字符串，表示命令。</p><h2 id=输出>输出</h2><p>对于每组输入数据，输出编辑后的字符串，如果被改的字符不存在，则输出”Not exist”（引号不输出）。</p><h2 id=样例输入>样例输入</h2><blockquote><p>This is a book. D s</p></blockquote><h2 id=样例输出>样例输出</h2><blockquote><p>Thi is a book.</p></blockquote><h2 id=我的代码>我的代码</h2><pre class="astro-code github-dark" data-language=cpp style=background-color:#24292e;color:#e1e4e8;overflow-x:auto tabindex=0><code><span class=line><span style=color:#f97583>#include</span><span style=color:#9ecbff> &#x3C;bits/stdc++.h></span></span>
+<span class=line><span style=color:#f97583>using</span><span style=color:#f97583> namespace</span><span style=color:#b392f0> std</span><span style=color:#e1e4e8>;</span></span>
+<span class=line><span style=color:#f97583>int</span><span style=color:#b392f0> main</span><span style=color:#e1e4e8>()</span></span>
+<span class=line><span style=color:#e1e4e8>{</span></span>
+<span class=line><span style=color:#f97583>	char</span><span style=color:#e1e4e8> str[</span><span style=color:#79b8ff>55</span><span style=color:#e1e4e8>];</span></span>
+<span class=line><span style=color:#e1e4e8>	vector</span><span style=color:#f97583>&#x3C;char></span><span style=color:#e1e4e8> res;</span></span>
+<span class=line><span style=color:#6a737d>	// gets(str);</span></span>
+<span class=line><span style=color:#e1e4e8>	cin.</span><span style=color:#b392f0>get</span><span style=color:#e1e4e8>(str, </span><span style=color:#79b8ff>55</span><span style=color:#e1e4e8>);</span></span>
+<span class=line><span style=color:#f97583>	int</span><span style=color:#e1e4e8> len </span><span style=color:#f97583>=</span><span style=color:#b392f0> strlen</span><span style=color:#e1e4e8>(str);</span></span>
+<span class=line><span style=color:#f97583>	char</span><span style=color:#e1e4e8> op, oped;</span></span>
+<span class=line><span style=color:#e1e4e8>	cin </span><span style=color:#f97583>>></span><span style=color:#e1e4e8> op </span><span style=color:#f97583>>></span><span style=color:#e1e4e8> oped;</span></span>
+<span class=line><span style=color:#f97583>	int</span><span style=color:#e1e4e8> sign </span><span style=color:#f97583>=</span><span style=color:#79b8ff> 0</span><span style=color:#e1e4e8>;</span></span>
+<span class=line><span style=color:#f97583>	if</span><span style=color:#e1e4e8> (op </span><span style=color:#f97583>==</span><span style=color:#9ecbff> 'D'</span><span style=color:#e1e4e8>)</span></span>
+<span class=line><span style=color:#e1e4e8>	{</span></span>
+<span class=line><span style=color:#f97583>		for</span><span style=color:#e1e4e8> (</span><span style=color:#f97583>int</span><span style=color:#e1e4e8> i </span><span style=color:#f97583>=</span><span style=color:#79b8ff> 0</span><span style=color:#e1e4e8>; i </span><span style=color:#f97583>&#x3C;</span><span style=color:#e1e4e8> len; i</span><span style=color:#f97583>++</span><span style=color:#e1e4e8>)</span></span>
+<span class=line><span style=color:#e1e4e8>		{</span></span>
+<span class=line><span style=color:#f97583>			if</span><span style=color:#e1e4e8> (str[i] </span><span style=color:#f97583>==</span><span style=color:#e1e4e8> oped </span><span style=color:#f97583>and</span><span style=color:#e1e4e8> sign </span><span style=color:#f97583>==</span><span style=color:#79b8ff> 0</span><span style=color:#e1e4e8>)</span></span>
+<span class=line><span style=color:#e1e4e8>			{</span></span>
+<span class=line><span style=color:#e1e4e8>				sign </span><span style=color:#f97583>=</span><span style=color:#79b8ff> 1</span><span style=color:#e1e4e8>;</span></span>
+<span class=line><span style=color:#e1e4e8>			}</span></span>
+<span class=line><span style=color:#f97583>			else</span></span>
+<span class=line><span style=color:#e1e4e8>			{</span></span>
+<span class=line><span style=color:#e1e4e8>				res.</span><span style=color:#b392f0>push_back</span><span style=color:#e1e4e8>(str[i]);</span></span>
+<span class=line><span style=color:#e1e4e8>			}</span></span>
+<span class=line><span style=color:#e1e4e8>		}</span></span>
+<span class=line><span style=color:#e1e4e8>	}</span></span>
+<span class=line><span style=color:#f97583>	else</span></span>
+<span class=line><span style=color:#e1e4e8>	{</span></span>
+<span class=line><span style=color:#f97583>		char</span><span style=color:#e1e4e8> exts;</span></span>
+<span class=line><span style=color:#e1e4e8>		cin </span><span style=color:#f97583>>></span><span style=color:#e1e4e8> exts;</span></span>
+<span class=line><span style=color:#f97583>		if</span><span style=color:#e1e4e8> (op </span><span style=color:#f97583>==</span><span style=color:#9ecbff> 'I'</span><span style=color:#e1e4e8>)</span></span>
+<span class=line><span style=color:#e1e4e8>		{</span></span>
+<span class=line><span style=color:#f97583>			for</span><span style=color:#e1e4e8> (</span><span style=color:#f97583>int</span><span style=color:#e1e4e8> i </span><span style=color:#f97583>=</span><span style=color:#e1e4e8> len </span><span style=color:#f97583>-</span><span style=color:#79b8ff> 1</span><span style=color:#e1e4e8>; i </span><span style=color:#f97583>>=</span><span style=color:#79b8ff> 0</span><span style=color:#e1e4e8>; i</span><span style=color:#f97583>--</span><span style=color:#e1e4e8>)</span></span>
+<span class=line><span style=color:#e1e4e8>			{</span></span>
+<span class=line><span style=color:#f97583>				if</span><span style=color:#e1e4e8> (str[i] </span><span style=color:#f97583>==</span><span style=color:#e1e4e8> oped </span><span style=color:#f97583>and</span><span style=color:#e1e4e8> sign </span><span style=color:#f97583>==</span><span style=color:#79b8ff> 0</span><span style=color:#e1e4e8>)</span></span>
+<span class=line><span style=color:#e1e4e8>				{</span></span>
+<span class=line><span style=color:#e1e4e8>					res.</span><span style=color:#b392f0>push_back</span><span style=color:#e1e4e8>(str[i]);</span></span>
+<span class=line><span style=color:#e1e4e8>					res.</span><span style=color:#b392f0>push_back</span><span style=color:#e1e4e8>(exts);</span></span>
+<span class=line><span style=color:#e1e4e8>					;</span></span>
+<span class=line><span style=color:#e1e4e8>					sign </span><span style=color:#f97583>=</span><span style=color:#79b8ff> 1</span><span style=color:#e1e4e8>;</span></span>
+<span class=line><span style=color:#e1e4e8>				}</span></span>
+<span class=line><span style=color:#f97583>				else</span></span>
+<span class=line><span style=color:#e1e4e8>				{</span></span>
+<span class=line><span style=color:#e1e4e8>					res.</span><span style=color:#b392f0>push_back</span><span style=color:#e1e4e8>(str[i]);</span></span>
+<span class=line><span style=color:#e1e4e8>				}</span></span>
+<span class=line><span style=color:#e1e4e8>			}</span></span>
+<span class=line><span style=color:#e1e4e8>		}</span></span>
+<span class=line><span style=color:#f97583>		else</span><span style=color:#f97583> if</span><span style=color:#e1e4e8> (op </span><span style=color:#f97583>==</span><span style=color:#9ecbff> 'R'</span><span style=color:#e1e4e8>)</span></span>
+<span class=line><span style=color:#e1e4e8>		{</span></span>
+<span class=line><span style=color:#f97583>			for</span><span style=color:#e1e4e8> (</span><span style=color:#f97583>int</span><span style=color:#e1e4e8> i </span><span style=color:#f97583>=</span><span style=color:#79b8ff> 0</span><span style=color:#e1e4e8>; i </span><span style=color:#f97583>&#x3C;</span><span style=color:#e1e4e8> len; i</span><span style=color:#f97583>++</span><span style=color:#e1e4e8>)</span></span>
+<span class=line><span style=color:#e1e4e8>			{</span></span>
+<span class=line><span style=color:#f97583>				if</span><span style=color:#e1e4e8> (str[i] </span><span style=color:#f97583>==</span><span style=color:#e1e4e8> oped)</span></span>
+<span class=line><span style=color:#e1e4e8>				{</span></span>
+<span class=line><span style=color:#e1e4e8>					sign </span><span style=color:#f97583>=</span><span style=color:#79b8ff> 1</span><span style=color:#e1e4e8>;</span></span>
+<span class=line><span style=color:#e1e4e8>					res.</span><span style=color:#b392f0>push_back</span><span style=color:#e1e4e8>(exts);</span></span>
+<span class=line><span style=color:#e1e4e8>				}</span></span>
+<span class=line><span style=color:#f97583>				else</span></span>
+<span class=line><span style=color:#e1e4e8>				{</span></span>
+<span class=line><span style=color:#e1e4e8>					res.</span><span style=color:#b392f0>push_back</span><span style=color:#e1e4e8>(str[i]);</span></span>
+<span class=line><span style=color:#e1e4e8>				}</span></span>
+<span class=line><span style=color:#e1e4e8>			}</span></span>
+<span class=line><span style=color:#e1e4e8>		}</span></span>
+<span class=line><span style=color:#e1e4e8>	}</span></span>
+<span class=line><span style=color:#f97583>	if</span><span style=color:#e1e4e8> (sign </span><span style=color:#f97583>==</span><span style=color:#79b8ff> 0</span><span style=color:#e1e4e8>)</span></span>
+<span class=line><span style=color:#e1e4e8>	{</span></span>
+<span class=line><span style=color:#e1e4e8>		cout </span><span style=color:#f97583>&#x3C;&#x3C;</span><span style=color:#9ecbff> "Not exist"</span><span style=color:#e1e4e8>;</span></span>
+<span class=line><span style=color:#e1e4e8>	}</span></span>
+<span class=line><span style=color:#f97583>	else</span></span>
+<span class=line><span style=color:#e1e4e8>	{</span></span>
+<span class=line><span style=color:#b392f0>		vector</span><span style=color:#e1e4e8>&#x3C;</span><span style=color:#f97583>char</span><span style=color:#e1e4e8>>::iterator it </span><span style=color:#f97583>=</span><span style=color:#e1e4e8> res.</span><span style=color:#b392f0>end</span><span style=color:#e1e4e8>();</span></span>
+<span class=line><span style=color:#f97583>		if</span><span style=color:#e1e4e8> (op </span><span style=color:#f97583>==</span><span style=color:#9ecbff> 'I'</span><span style=color:#e1e4e8>)</span></span>
+<span class=line><span style=color:#e1e4e8>		{</span></span>
+<span class=line><span style=color:#f97583>			while</span><span style=color:#e1e4e8> (it </span><span style=color:#f97583>!=</span><span style=color:#e1e4e8> res.</span><span style=color:#b392f0>begin</span><span style=color:#e1e4e8>())</span></span>
+<span class=line><span style=color:#e1e4e8>			{</span></span>
+<span class=line><span style=color:#e1e4e8>				it</span><span style=color:#f97583>--</span><span style=color:#e1e4e8>;</span></span>
+<span class=line><span style=color:#e1e4e8>				cout </span><span style=color:#f97583>&#x3C;&#x3C;</span><span style=color:#e1e4e8> (</span><span style=color:#f97583>*</span><span style=color:#e1e4e8>it);</span></span>
+<span class=line><span style=color:#e1e4e8>			}</span></span>
+<span class=line><span style=color:#e1e4e8>		}</span></span>
+<span class=line><span style=color:#f97583>		else</span></span>
+<span class=line><span style=color:#e1e4e8>		{</span></span>
+<span class=line><span style=color:#e1e4e8>			it </span><span style=color:#f97583>=</span><span style=color:#e1e4e8> res.</span><span style=color:#b392f0>begin</span><span style=color:#e1e4e8>();</span></span>
+<span class=line><span style=color:#f97583>			while</span><span style=color:#e1e4e8> (it </span><span style=color:#f97583>!=</span><span style=color:#e1e4e8> res.</span><span style=color:#b392f0>end</span><span style=color:#e1e4e8>())</span></span>
+<span class=line><span style=color:#e1e4e8>			{</span></span>
+<span class=line><span style=color:#e1e4e8>				cout </span><span style=color:#f97583>&#x3C;&#x3C;</span><span style=color:#e1e4e8> (</span><span style=color:#f97583>*</span><span style=color:#e1e4e8>it);</span></span>
+<span class=line><span style=color:#e1e4e8>				it</span><span style=color:#f97583>++</span><span style=color:#e1e4e8>;</span></span>
+<span class=line><span style=color:#e1e4e8>			}</span></span>
+<span class=line><span style=color:#e1e4e8>		}</span></span>
+<span class=line><span style=color:#e1e4e8>	}</span></span>
+<span class=line><span style=color:#e1e4e8>}</span></span>
+<span class=line></span></code></pre></article></main><footer class="flex items-center justify-center w-full">&copy; 2024 @杨秋逸 . All rights reserved.</footer></body></html>
