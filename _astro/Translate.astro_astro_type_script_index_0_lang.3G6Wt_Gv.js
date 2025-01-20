@@ -1,0 +1,1 @@
+import{g as e,t as a}from"./index.Dru2ArX9.js";class s extends HTMLElement{get locale(){return e()}get text(){const t=this.dataset.t||"";return a({locale:this.locale,text:t})}update(){this.innerText!==this.text&&(this.innerText=this.text)}connectedCallback(){this.update(),setInterval(()=>{this.update()},1e3)}}customElements.define("t-text",s);
