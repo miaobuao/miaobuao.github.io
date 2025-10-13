@@ -1,0 +1,162 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>FastAPI完成跨域发送Cookie</title><!-- Open Graph / Facebook --><meta property="og:title" content="FastAPI完成跨域发送Cookie"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/kai-fa/fastapiwan-cheng-kua-yu-fa-song-cookie/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.C9d8-rub.css">
+<style>progressive-image[data-astro-cid-abowd3st]{display:block}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-e4bffkdr-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-4h24v5rq-2"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen"> <div class="absolute w-screen h-screen"> <script type="module">function r(a,t,n){customElements.get(a)||customElements.define(a,t,n)}const s=new Promise(a=>{document.readyState==="complete"&&a();function t(){window.removeEventListener("load",t),a()}window.addEventListener("load",t)});class d extends HTMLElement{constructor(){super(...arguments),this.loaded=!1,this.handleLoaded=async()=>{this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded),await s;const t=this.originalImageUrl;if(!t)throw new Error("need `data-url`");const n=i=>{this.loaded=!0,e.removeEventListener("load",n),e.removeEventListener("error",n),!(i.type==="error"||i instanceof ErrorEvent)&&(e.setAttribute("class",`absolute inset-0 transition-opacity duration-1000 opacity-0 ${this.imageClass}`),this.appendChild(e),setTimeout(()=>{e.classList.add("opacity-100")}))},e=new Image;e.addEventListener("load",n),e.addEventListener("error",n),e.src=t}}get thumbnailImage(){return this.querySelector("img")}get originalImageUrl(){return this.dataset.url}get imageClass(){return this.dataset.imageClass}connectedCallback(){this.loaded||(this.thumbnailImage?.complete?this.handleLoaded():(this.thumbnailImage?.addEventListener("load",this.handleLoaded),this.thumbnailImage?.addEventListener("error",this.handleLoaded)))}disconnectedCallback(){this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded)}}r("progressive-image",d);</script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full" data-astro-cid-abowd3st="true" class="relative size-full"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full" data-astro-cid-abowd3st> </progressive-image>  </div>  <div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-fit sm:max-w-48 lg:max-w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:p-2 sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy" data-astro-transition-scope="astro-4h24v5rq-2"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a>  <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/gallery"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--image-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Gallery
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-e4bffkdr-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> FastAPI完成跨域发送Cookie </p> <p class="text-sm"> 杨秋逸 · 2022-10-19 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <p>这个问题搞到了凌晨四点，太气了，网上的都是不完整的！甚至错的！
+前后端都要设置，才能完成跨域Cookie！</p>
+<h2 id="后端"><a href="#后端">后端</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> fastapi.middleware.cors </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> CORSMiddleware</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> FastAPI</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">origins </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">[</span><span style="color:#9ECBFF">'http://127.0.0.1:5173'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"http://localhost:5173"</span><span style="color:#79b8ff">]</span></span>
+<span class="line"><span style="color:#E1E4E8">app.add_middleware</span><span style="color:#79b8ff">(</span></span>
+<span class="line"><span style="color:#E1E4E8">    CORSMiddleware,</span></span>
+<span class="line"><span style="color:#FFAB70">    allow_origins</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">origins,</span></span>
+<span class="line"><span style="color:#FFAB70">    allow_credentials</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    allow_methods</span><span style="color:#F97583">=</span><span style="color:#ffab70">[</span><span style="color:#9ECBFF">"*"</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    allow_headers</span><span style="color:#F97583">=</span><span style="color:#ffab70">[</span><span style="color:#9ECBFF">"*"</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">    max_age</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79b8ff">)</span></span></code></pre>
+<p>origins必须指定，<strong>不能为星号(*)</strong><sup><a href="#user-content-fn-https://fastapi.tiangolo.com/tutorial/cors/" id="user-content-fnref-https://fastapi.tiangolo.com/tutorial/cors/" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup></p>
+<p><code>allow_credentials</code>必须是True</p>
+<p>而且根据约定，我们必须在set-cookie时，<strong>把SameSite设置为none</strong><sup><a href="#user-content-fn-https://developer.mozilla.org/en-us/docs/web/http/headers/set-cookie" id="user-content-fnref-https://developer.mozilla.org/en-us/docs/web/http/headers/set-cookie" data-footnote-ref="" aria-describedby="footnote-label">2</a></sup></p>
+<p>在fastapi里需要这样:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="py"><code><span class="line"><span style="color:#B392F0">@router.post</span><span style="color:#79b8ff">(</span><span style="color:#9ECBFF">"/login"</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> def</span><span style="color:#B392F0"> login</span><span style="color:#79b8ff">(</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        response: Response</span></span>
+<span class="line"><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    response.set_cookie</span><span style="color:#79b8ff">(</span><span style="color:#9ECBFF">"token"</span><span style="color:#E1E4E8">, access_token, </span><span style="color:#FFAB70">max_age</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">age, </span><span style="color:#FFAB70">httponly</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">samesite</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'none'</span><span style="color:#79b8ff">)</span></span></code></pre>
+<p>注意是字符串none而不是None</p>
+<p>但是在这种情况下就只能同时设置secure, 表示只能在Https中使用跨站设置cookie</p>
+<h2 id="前端"><a href="#前端">前端</a></h2>
+<p>请求的时候必须把withCredentials 设置为true
+例如我使用axios：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> axios </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "axios"</span></span>
+<span class="line"><span style="color:#E1E4E8">axios.defaults.withCredentials </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span></span></code></pre>
+<h2 id="为什么还没完"><a href="#为什么还没完">为什么还没完!</a></h2>
+<p>虽然我们已经按照格式设置完了, 但是我们还是会看到后端设置的cookie被阻止了! 因为SameSite=None的时候, 浏览器不会报错 但是再devTools的网络里看到, cookie没有设置成功, 必须再设置一个Secure, <del>我说实话你要是没看我这篇文章, 估计要自己要琢磨好久(逃)</del>
+但是我们是本地环境, 浏览器里都是127.0.0.1或者localhost, 所以为了开ssl, 还需要安装一个软件
+`mkcert : <a href="https://github.com/FiloSottile/mkcert/releases">https://github.com/FiloSottile/mkcert/releases</a>
+下载地址都给出来了 怎么用就不说了…反正windows就是双击运行 会把证书安装在电脑上, 还会再软件所在的目录下生成两个文件,一个是cert证书文件 一个是private key私钥
+接下来我要说fastapi怎么用uvicorn开ssl了, 其他框架的可以退出了()</p>
+<h2 id="完结撒花-fastapi开启https"><a href="#完结撒花-fastapi开启https">完结撒花 FastAPI开启HTTPS🌸</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># run.py</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> uvicorn</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    uvicorn.run</span><span style="color:#79b8ff">(</span></span>
+<span class="line"><span style="color:#9ECBFF">        "app.main:app"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">        host</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'0.0.0.0'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">        port</span><span style="color:#F97583">=</span><span style="color:#79B8FF">8000</span><span style="color:#E1E4E8">, </span></span>
+<span class="line"><span style="color:#FFAB70">        reload</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span></span>
+<span class="line"><span style="color:#FFAB70">        ssl_keyfile</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"./localhost+1-key.pem"</span><span style="color:#E1E4E8">, </span></span>
+<span class="line"><span style="color:#FFAB70">        ssl_certfile</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"./localhost+1.pem"</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#79b8ff">)</span></span></code></pre>
+<p>新建一个run.py用来启动服务, 我把mkcert生成的两个文件复制到这里来了, 在最后三行写的就是他们的路径.
+当然我们也可以用uvicorn指令启动..</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">uvicorn</span><span style="color:#9ECBFF"> app.main:app</span><span style="color:#79B8FF"> --port</span><span style="color:#79B8FF"> 8011</span><span style="color:#79B8FF"> --host</span><span style="color:#79B8FF"> 0.0.0.0</span><span style="color:#79B8FF"> --reload</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --ssl-keyfile</span><span style="color:#9ECBFF"> ./privkey.pem</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --ssl-certfile</span><span style="color:#9ECBFF"> ./fullchain.pem</span></span></code></pre>
+<p>这指令你可不能直接用…因为我又给文件换了个名字 反正格式就是这样, <del>自己改去</del></p>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-https://fastapi.tiangolo.com/tutorial/cors/">
+<p><a href="https://fastapi.tiangolo.com/tutorial/cors/">https://fastapi.tiangolo.com/tutorial/cors/</a> <a href="#user-content-fnref-https://fastapi.tiangolo.com/tutorial/cors/" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-https://developer.mozilla.org/en-us/docs/web/http/headers/set-cookie">
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie</a> <a href="#user-content-fnref-https://developer.mozilla.org/en-us/docs/web/http/headers/set-cookie" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.D5vIIIa7.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div>  </div> </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

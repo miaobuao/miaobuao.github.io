@@ -1,0 +1,142 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>判断 IPv4 地址是内网还是外网</title><!-- Open Graph / Facebook --><meta property="og:title" content="判断 IPv4 地址是内网还是外网"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/%E5%BC%80%E5%8F%91/%E5%88%A4%E6%96%AD-ipv4-%E5%9C%B0%E5%9D%80%E6%98%AF%E5%86%85%E7%BD%91%E8%BF%98%E6%98%AF%E5%A4%96%E7%BD%91/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.C9d8-rub.css">
+<style>progressive-image[data-astro-cid-abowd3st]{display:block}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-e4bffkdr-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-4h24v5rq-2"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen"> <div class="absolute w-screen h-screen"> <script type="module">function r(a,t,n){customElements.get(a)||customElements.define(a,t,n)}const s=new Promise(a=>{document.readyState==="complete"&&a();function t(){window.removeEventListener("load",t),a()}window.addEventListener("load",t)});class d extends HTMLElement{constructor(){super(...arguments),this.loaded=!1,this.handleLoaded=async()=>{this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded),await s;const t=this.originalImageUrl;if(!t)throw new Error("need `data-url`");const n=i=>{this.loaded=!0,e.removeEventListener("load",n),e.removeEventListener("error",n),!(i.type==="error"||i instanceof ErrorEvent)&&(e.setAttribute("class",`absolute inset-0 transition-opacity duration-1000 opacity-0 ${this.imageClass}`),this.appendChild(e),setTimeout(()=>{e.classList.add("opacity-100")}))},e=new Image;e.addEventListener("load",n),e.addEventListener("error",n),e.src=t}}get thumbnailImage(){return this.querySelector("img")}get originalImageUrl(){return this.dataset.url}get imageClass(){return this.dataset.imageClass}connectedCallback(){this.loaded||(this.thumbnailImage?.complete?this.handleLoaded():(this.thumbnailImage?.addEventListener("load",this.handleLoaded),this.thumbnailImage?.addEventListener("error",this.handleLoaded)))}disconnectedCallback(){this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded)}}r("progressive-image",d);</script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full" data-astro-cid-abowd3st="true" class="relative size-full"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full" data-astro-cid-abowd3st> </progressive-image>  </div>  <div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-fit sm:max-w-48 lg:max-w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:p-2 sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy" data-astro-transition-scope="astro-4h24v5rq-2"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a>  <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/gallery"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--image-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Gallery
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-e4bffkdr-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 判断 IPv4 地址是内网还是外网 </p> <p class="text-sm"> 杨秋逸 · 2024-12-09 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <h1 id="判断-ipv4-地址是内网还是外网"><a href="#判断-ipv4-地址是内网还是外网">判断 IPv4 地址是内网还是外网</a></h1>
+<p>最近在做文件下载接口, 为了防止用户使用该接口传播违规文件, 需要确保下载文件的IP与上传文件的IP相同, 同时又要允许内网服务访问该接口, 因此需要写个方法来判断是否为内网 IP.</p>
+<p>方法比较简单, 从IP地址的范围即可判断<sup><a href="#user-content-fn-https://zh-hans.ipshu.com/tell_ip_within_1_minute" id="user-content-fnref-https://zh-hans.ipshu.com/tell_ip_within_1_minute" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup>, 内网IP地址有3个IP地址段, 分别对应A、B、C 三类网络：</p>
+<ol>
+<li>10.0.0.0 ~ 10.255.255.255</li>
+<li>172.16.0.0 ~ 172.31.255.255</li>
+<li>192.168.0.0 ~ 192.168.255.255</li>
+</ol>
+<p>需要注意的是传入的IP地址可能是 IPv4 映射地址(用来在 IPv6 环境中表示 IPv4 地址), 例如: <code>::ffff:192.168.2.131</code>, 因此选择使用正则提取 IPv4 地址.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> isIntranetIPv4Address</span><span style="color:#79b8ff">(</span><span style="color:#FFAB70">addr</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> string</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">	const</span><span style="color:#79B8FF"> reg</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> /</span><span style="color:#DBEDFF">(::ffff:)</span><span style="color:#F97583">?</span><span style="color:#DBEDFF">(</span><span style="color:#79B8FF">\d</span><span style="color:#F97583">+</span><span style="color:#DBEDFF">)</span><span style="color:#85E89D;font-weight:bold">\.</span><span style="color:#DBEDFF">(</span><span style="color:#79B8FF">\d</span><span style="color:#F97583">+</span><span style="color:#DBEDFF">)</span><span style="color:#85E89D;font-weight:bold">\.</span><span style="color:#DBEDFF">(</span><span style="color:#79B8FF">\d</span><span style="color:#F97583">+</span><span style="color:#DBEDFF">)</span><span style="color:#85E89D;font-weight:bold">\.</span><span style="color:#DBEDFF">(</span><span style="color:#79B8FF">\d</span><span style="color:#F97583">+</span><span style="color:#DBEDFF">)</span><span style="color:#F97583">$</span><span style="color:#9ECBFF">/</span><span style="color:#F97583">g</span></span>
+<span class="line"><span style="color:#F97583">	const</span><span style="color:#79B8FF"> match</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> addr.</span><span style="color:#B392F0">matchAll</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">reg</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">	const</span><span style="color:#79B8FF"> segments</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> Array.</span><span style="color:#B392F0">from</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">match</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">at</span><span style="color:#ffab70">(</span><span style="color:#79B8FF">0</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">?.</span><span style="color:#B392F0">slice</span><span style="color:#ffab70">(</span><span style="color:#79B8FF">2</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">map</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">Number</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">	if</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">segments</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">		return</span><span style="color:#79B8FF"> false</span></span>
+<span class="line"><span style="color:#E1E4E8">	</span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">	switch</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">segments</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">		case</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">			// 10.0.0.0 ~ 10.255.255.255</span></span>
+<span class="line"><span style="color:#F97583">			return</span><span style="color:#79B8FF"> true</span></span>
+<span class="line"><span style="color:#F97583">		case</span><span style="color:#79B8FF"> 172</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">			// 172.16.0.0 ~ 172.31.255.255</span></span>
+<span class="line"><span style="color:#F97583">			if</span><span style="color:#E1E4E8"> </span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">segments</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">1</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">></span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 16</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#E1E4E8"> segments</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">1</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 31</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> true</span></span>
+<span class="line"><span style="color:#F97583">			break</span></span>
+<span class="line"><span style="color:#F97583">		case</span><span style="color:#79B8FF"> 192</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#6A737D">			// 192.168.0.0 ~ 192.168.255.255</span></span>
+<span class="line"><span style="color:#F97583">			if</span><span style="color:#E1E4E8"> </span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">segments</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">1</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">===</span><span style="color:#79B8FF"> 168</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> true</span></span>
+<span class="line"><span style="color:#F97583">			break</span></span>
+<span class="line"><span style="color:#E1E4E8">	</span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">	return</span><span style="color:#79B8FF"> false</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">isIntranetIPv4Address</span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">'10.100.200.255'</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// true</span></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">isIntranetIPv4Address</span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">'172.16.0.1'</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// true</span></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">isIntranetIPv4Address</span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">'172.31.255.255'</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// true</span></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">isIntranetIPv4Address</span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">'192.168.0.1'</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// true</span></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">isIntranetIPv4Address</span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">'::ffff:192.168.0.1'</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// true</span></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">isIntranetIPv4Address</span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">'12.34.56.78'</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// false</span></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">isIntranetIPv4Address</span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">'invalid.ip'</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// false</span></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">isIntranetIPv4Address</span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">'256.0.0.1'</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// false</span></span></code></pre>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-https://zh-hans.ipshu.com/tell_ip_within_1_minute">
+<p><a href="https://zh-hans.ipshu.com/tell_IP_within_1_minute">https://zh-hans.ipshu.com/tell_IP_within_1_minute</a> <a href="#user-content-fnref-https://zh-hans.ipshu.com/tell_ip_within_1_minute" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.D5vIIIa7.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div>  </div> </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

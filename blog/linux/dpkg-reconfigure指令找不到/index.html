@@ -1,0 +1,101 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>dpkg-reconfigure指令找不到?</title><!-- Open Graph / Facebook --><meta property="og:title" content="dpkg-reconfigure指令找不到?"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/linux/dpkg-reconfigure%E6%8C%87%E4%BB%A4%E6%89%BE%E4%B8%8D%E5%88%B0/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.C9d8-rub.css">
+<style>progressive-image[data-astro-cid-abowd3st]{display:block}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-e4bffkdr-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-4h24v5rq-2"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen"> <div class="absolute w-screen h-screen"> <script type="module">function r(a,t,n){customElements.get(a)||customElements.define(a,t,n)}const s=new Promise(a=>{document.readyState==="complete"&&a();function t(){window.removeEventListener("load",t),a()}window.addEventListener("load",t)});class d extends HTMLElement{constructor(){super(...arguments),this.loaded=!1,this.handleLoaded=async()=>{this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded),await s;const t=this.originalImageUrl;if(!t)throw new Error("need `data-url`");const n=i=>{this.loaded=!0,e.removeEventListener("load",n),e.removeEventListener("error",n),!(i.type==="error"||i instanceof ErrorEvent)&&(e.setAttribute("class",`absolute inset-0 transition-opacity duration-1000 opacity-0 ${this.imageClass}`),this.appendChild(e),setTimeout(()=>{e.classList.add("opacity-100")}))},e=new Image;e.addEventListener("load",n),e.addEventListener("error",n),e.src=t}}get thumbnailImage(){return this.querySelector("img")}get originalImageUrl(){return this.dataset.url}get imageClass(){return this.dataset.imageClass}connectedCallback(){this.loaded||(this.thumbnailImage?.complete?this.handleLoaded():(this.thumbnailImage?.addEventListener("load",this.handleLoaded),this.thumbnailImage?.addEventListener("error",this.handleLoaded)))}disconnectedCallback(){this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded)}}r("progressive-image",d);</script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full" data-astro-cid-abowd3st="true" class="relative size-full"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full" data-astro-cid-abowd3st> </progressive-image>  </div>  <div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-fit sm:max-w-48 lg:max-w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:p-2 sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy" data-astro-transition-scope="astro-4h24v5rq-2"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a>  <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/gallery"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--image-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Gallery
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-e4bffkdr-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> dpkg-reconfigure指令找不到? </p> <p class="text-sm"> 杨秋逸 · 2024-11-17 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <h1 id="dpkg-reconfigure指令找不到"><a href="#dpkg-reconfigure指令找不到">dpkg-reconfigure指令找不到?</a></h1>
+<p>一般来说 <code>dpkg-reconfigure</code> 这个指令是在 <code>debconf</code> 这个包里, 可以先试试通过apt安装这个包.</p>
+<p>其次, 这个指令在 <code>/usr/sbin/dpkg-reconfigure</code>, 这个路径需要用root用户登录才行，所以非root用户直接执行 dpkg-reconfigure 肯定是找不到的。</p>
+<p>而通过su命令切换到root之后，虽然是切换到了root权限，但是因为Debian系统官方的更改，直接使用su命令切换并没有切换到root用户的PATH，因此必须通过 <code>su -</code> 切换到 root 才行!</p>
+<h3 id="参考"><a href="#参考">参考</a></h3>
+<p><a href="https://blog.csdn.net/qq_19440071/article/details/133591237">dpkg-reconfigure命令找不到问题解决</a></p>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.D5vIIIa7.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div>  </div> </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

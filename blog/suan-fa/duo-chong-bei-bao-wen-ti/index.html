@@ -1,0 +1,206 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>多重背包问题</title><!-- Open Graph / Facebook --><meta property="og:title" content="多重背包问题"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/suan-fa/duo-chong-bei-bao-wen-ti/"><meta name="description" content="多重背包就是在完全背包问题上加入个数限制，然而运用的却是01背包和完全背包的思路QAQ
+"><meta property="og:description" content="多重背包就是在完全背包问题上加入个数限制，然而运用的却是01背包和完全背包的思路QAQ
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.C9d8-rub.css">
+<style>progressive-image[data-astro-cid-abowd3st]{display:block}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-e4bffkdr-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-4h24v5rq-2"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen"> <div class="absolute w-screen h-screen"> <script type="module">function r(a,t,n){customElements.get(a)||customElements.define(a,t,n)}const s=new Promise(a=>{document.readyState==="complete"&&a();function t(){window.removeEventListener("load",t),a()}window.addEventListener("load",t)});class d extends HTMLElement{constructor(){super(...arguments),this.loaded=!1,this.handleLoaded=async()=>{this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded),await s;const t=this.originalImageUrl;if(!t)throw new Error("need `data-url`");const n=i=>{this.loaded=!0,e.removeEventListener("load",n),e.removeEventListener("error",n),!(i.type==="error"||i instanceof ErrorEvent)&&(e.setAttribute("class",`absolute inset-0 transition-opacity duration-1000 opacity-0 ${this.imageClass}`),this.appendChild(e),setTimeout(()=>{e.classList.add("opacity-100")}))},e=new Image;e.addEventListener("load",n),e.addEventListener("error",n),e.src=t}}get thumbnailImage(){return this.querySelector("img")}get originalImageUrl(){return this.dataset.url}get imageClass(){return this.dataset.imageClass}connectedCallback(){this.loaded||(this.thumbnailImage?.complete?this.handleLoaded():(this.thumbnailImage?.addEventListener("load",this.handleLoaded),this.thumbnailImage?.addEventListener("error",this.handleLoaded)))}disconnectedCallback(){this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded)}}r("progressive-image",d);</script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full" data-astro-cid-abowd3st="true" class="relative size-full"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full" data-astro-cid-abowd3st> </progressive-image>  </div>  <div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-fit sm:max-w-48 lg:max-w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:p-2 sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy" data-astro-transition-scope="astro-4h24v5rq-2"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a>  <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/gallery"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--image-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Gallery
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-e4bffkdr-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 多重背包问题 </p> <p class="text-sm"> 杨秋逸 · 2021-02-28 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <p>多重背包就是在完全背包问题上加入个数限制，然而运用的却是01背包和完全背包的思路QAQ</p>
+<!--more-->
+<h2 id="多重背包i-小数据量"><a href="#多重背包i-小数据量">多重背包I-小数据量</a></h2>
+<h3 id="问题描述"><a href="#问题描述">问题描述</a></h3>
+<p>有 N 种物品和一个容量是 V 的背包。</p>
+<p>第 i 种物品最多有 s<del>i</del> 件，每件体积是 v<del>i</del>，价值是 w<del>i</del>。</p>
+<p>求解将哪些物品装入背包，可使物品体积总和不超过背包容量，且价值总和最大。
+输出最大价值。</p>
+<p>输入格式
+第一行两个整数，N，V，用空格隔开，分别表示物品种数和背包容积。</p>
+<p>接下来有 N 行，每行三个整数 v<del>i</del>,w<del>i</del>,s<del>i</del>，用空格隔开，分别表示第 i 种物品的体积、价值和数量。</p>
+<p>输出格式
+输出一个整数，表示最大价值。</p>
+<p>数据范围
+0 &#x3C; N,V ≤ 100
+0 &#x3C; v<del>i</del>,w<del>i</del>,s<del>i</del> ≤ 100</p>
+<p>输入样例
+4 5
+1 2 3
+2 4 1
+3 4 3
+4 5 2
+输出样例：
+10</p>
+<h3 id="思路"><a href="#思路">思路</a></h3>
+<p>小数据量仅仅在完全背包上加个循环，从0-k枚举，时间复杂度相当大</p>
+<h3 id="code"><a href="#code">Code</a></h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> f</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">10005</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> n,m;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">n</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">m;</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> w</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">10005</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">,v</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">10005</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">,s</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">10005</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">n;i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">v</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">w</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">s</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">n;i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> j</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">m;j</span><span style="color:#F97583">></span><span style="color:#F97583">=</span><span style="color:#E1E4E8">v</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">i</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">;j</span><span style="color:#F97583">--</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> k</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;k</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">s</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">i</span><span style="color:#b392f0">]</span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8">k</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">v</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">i</span><span style="color:#b392f0">]</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">j;k</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#E1E4E8">                f</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">j</span><span style="color:#b392f0">]</span><span style="color:#F97583">=</span><span style="color:#B392F0">max</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">f</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">j</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">,f</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">j</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">k</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">v</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">]</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">k</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">w</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">f</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">m</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<h2 id="多重背包ii-大数据"><a href="#多重背包ii-大数据">多重背包II-大数据</a></h2>
+<h3 id="问题描述-1"><a href="#问题描述-1">问题描述</a></h3>
+<p>与<a href="#%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85I-%E5%B0%8F%E6%95%B0%E6%8D%AE%E9%87%8F">多重背包I</a>没有太大区别，仅仅是数据范围扩大了
+0 &#x3C; N ≤ 1000
+0 &#x3C; V ≤ 2000
+0 &#x3C; v<del>i</del>,w<del>i</del>,s<del>i</del> ≤ 2000</p>
+<p>题目给出提示：</p>
+<blockquote>
+<p>提示：
+本题考查多重背包的二进制优化方法。</p>
+</blockquote>
+<h3 id="思考"><a href="#思考">思考</a></h3>
+<p>我们可以用1和2搭配出0-3之间的任意数，
+可以用1，2，4搭配出0-7中的任意数
+以此类推，我们可以用1,2,4,8,…,2^n^拼凑出0~2×2^n^-1区间内任意一个数，最后，多重背包就转化成了01背包问题。</p>
+<p>举个例子：
+我们有100个苹果，选择的方式有101种，但是我们可以把100拆成1，2，4，8，16，32，<strong>37</strong>，我们可以用这些数字加出0~100范围内的任意一个整数。
+可能你会感到疑惑，为什么最后一个数字是<strong>37</strong>，而不是64。让我们思考一下，假设最后一个数字是64，那我们排列组合之后可以得到127个数字！</p>
+<p>把这些苹果的组合看作一个整体，也就是说现在我们有a,b,c,d,e,f,g这七件物品，他们的价值分别是 1，2，4，8，16，32，37，我们可以通过选择要或者不要这七件物品，排列出100只苹果的101种可能。</p>
+<h3 id="code-1"><a href="#code-1">Code</a></h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> f</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">25000</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> w</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">25000</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">,v</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">25000</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">,s</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">25000</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> n,m;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">n</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">m;</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> a,b,c;</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> cnt</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">n;i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#E1E4E8">        cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">a</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">b</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">c;</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> base</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">;c</span><span style="color:#F97583">></span><span style="color:#F97583">=</span><span style="color:#E1E4E8">base</span><span style="color:#F97583">*</span><span style="color:#79B8FF">2</span><span style="color:#F97583">||</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">c</span><span style="color:#F97583">==</span><span style="color:#79B8FF">1</span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8">base</span><span style="color:#F97583">==</span><span style="color:#79B8FF">1</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;base</span><span style="color:#F97583">*=</span><span style="color:#79B8FF">2</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            s</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">cnt</span><span style="color:#79b8ff">]</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">base;</span></span>
+<span class="line"><span style="color:#E1E4E8">            w</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">cnt</span><span style="color:#79b8ff">]</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">base</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">b;</span></span>
+<span class="line"><span style="color:#E1E4E8">            v</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">cnt</span><span style="color:#79b8ff">]</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">base</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">a;</span></span>
+<span class="line"><span style="color:#E1E4E8">            cnt</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">c</span><span style="color:#F97583">></span><span style="color:#F97583">=</span><span style="color:#E1E4E8">s</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">cnt</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#79b8ff">]</span><span style="color:#F97583">*</span><span style="color:#79B8FF">2</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            s</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">cnt</span><span style="color:#79b8ff">]</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">c</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">s</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">cnt</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#79b8ff">]</span><span style="color:#F97583">*</span><span style="color:#79B8FF">2</span><span style="color:#F97583">+</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            w</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">cnt</span><span style="color:#79b8ff">]</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">s</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">cnt</span><span style="color:#79b8ff">]</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">b;</span></span>
+<span class="line"><span style="color:#E1E4E8">            v</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">cnt</span><span style="color:#79b8ff">]</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">s</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">cnt</span><span style="color:#79b8ff">]</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">a;</span></span>
+<span class="line"><span style="color:#E1E4E8">            cnt</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">cnt;i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#b392f0">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> j</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">m;j</span><span style="color:#F97583">></span><span style="color:#F97583">=</span><span style="color:#E1E4E8">v</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;j</span><span style="color:#F97583">--</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            f</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">j</span><span style="color:#79b8ff">]</span><span style="color:#F97583">=</span><span style="color:#B392F0">max</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">f</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">j</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">,f</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">j</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">v</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">i</span><span style="color:#b392f0">]</span><span style="color:#ffab70">]</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">w</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">f</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">m</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.D5vIIIa7.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div>  </div> </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

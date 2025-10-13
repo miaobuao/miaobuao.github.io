@@ -1,0 +1,176 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>回文平方</title><!-- Open Graph / Facebook --><meta property="og:title" content="回文平方"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/suan-fa/hui-wen-ping-fang/"><meta name="description" content="又是一道基础题，考察双指针和进制转化
+
+"><meta property="og:description" content="又是一道基础题，考察双指针和进制转化
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.C9d8-rub.css">
+<style>progressive-image[data-astro-cid-abowd3st]{display:block}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-e4bffkdr-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-4h24v5rq-2"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen"> <div class="absolute w-screen h-screen"> <script type="module">function r(a,t,n){customElements.get(a)||customElements.define(a,t,n)}const s=new Promise(a=>{document.readyState==="complete"&&a();function t(){window.removeEventListener("load",t),a()}window.addEventListener("load",t)});class d extends HTMLElement{constructor(){super(...arguments),this.loaded=!1,this.handleLoaded=async()=>{this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded),await s;const t=this.originalImageUrl;if(!t)throw new Error("need `data-url`");const n=i=>{this.loaded=!0,e.removeEventListener("load",n),e.removeEventListener("error",n),!(i.type==="error"||i instanceof ErrorEvent)&&(e.setAttribute("class",`absolute inset-0 transition-opacity duration-1000 opacity-0 ${this.imageClass}`),this.appendChild(e),setTimeout(()=>{e.classList.add("opacity-100")}))},e=new Image;e.addEventListener("load",n),e.addEventListener("error",n),e.src=t}}get thumbnailImage(){return this.querySelector("img")}get originalImageUrl(){return this.dataset.url}get imageClass(){return this.dataset.imageClass}connectedCallback(){this.loaded||(this.thumbnailImage?.complete?this.handleLoaded():(this.thumbnailImage?.addEventListener("load",this.handleLoaded),this.thumbnailImage?.addEventListener("error",this.handleLoaded)))}disconnectedCallback(){this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded)}}r("progressive-image",d);</script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full" data-astro-cid-abowd3st="true" class="relative size-full"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full" data-astro-cid-abowd3st> </progressive-image>  </div>  <div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-fit sm:max-w-48 lg:max-w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:p-2 sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy" data-astro-transition-scope="astro-4h24v5rq-2"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a>  <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/gallery"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--image-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Gallery
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-e4bffkdr-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 回文平方 </p> <p class="text-sm"> 杨秋逸 · 2021-03-06 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <p>又是一道基础题，考察双指针和进制转化</p>
+<!--more-->
+<h2 id="题目"><a href="#题目">题目</a></h2>
+<p>回文数是指数字从前往后读和从后往前读都相同的数字。</p>
+<p>例如数字 12321 就是典型的回文数字。</p>
+<p>现在给定你一个整数 B，请你判断 1∼300 之间的所有整数中，有哪些整数的平方转化为 B 进制后，其 B 进制表示是回文数字。</p>
+<p>输入格式
+一个整数 B。</p>
+<p>输出格式
+每行包含两个在 B 进制下表示的数字。</p>
+<p>第一个表示满足平方值转化为 B 进制后是回文数字那个数，第二个数表示第一个数的平方。</p>
+<p>所有满足条件的数字按从小到大顺序依次输出。</p>
+<p>数据范围
+2≤B≤20,
+对于大于 9 的数字，用 A 表示 10，用 B 表示 11，以此类推。</p>
+<p>输入样例：</p>
+<blockquote>
+<p>10</p>
+</blockquote>
+<p>输出样例：</p>
+<blockquote>
+<p>1 1
+2 4
+3 9
+11 121
+22 484
+26 676
+101 10201
+111 12321
+121 14641
+202 40804
+212 44944
+264 69696</p>
+</blockquote>
+<h2 id="code"><a href="#code">Code</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">map</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">,</span><span style="color:#F97583">int</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> a;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">bool</span><span style="color:#B392F0"> iH</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">string</span><span style="color:#FFAB70"> n</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,j</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">n.</span><span style="color:#B392F0">size</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">j;i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">,j</span><span style="color:#F97583">--</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">n</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#F97583">!=</span><span style="color:#E1E4E8">n</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">j</span><span style="color:#79b8ff">]</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#B392F0"> get</span><span style="color:#79b8ff">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> num</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">num</span><span style="color:#F97583">></span><span style="color:#79B8FF">9</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> num</span><span style="color:#F97583">-</span><span style="color:#79B8FF">10</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">'A'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> num</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">'0'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">string</span><span style="color:#B392F0"> base</span><span style="color:#79b8ff">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> n</span><span style="color:#E1E4E8">,</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> b</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    string res;</span></span>
+<span class="line"><span style="color:#F97583">    while</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">n</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> res</span><span style="color:#F97583">+=</span><span style="color:#B392F0">get</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">n</span><span style="color:#F97583">%</span><span style="color:#E1E4E8">b</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">,n</span><span style="color:#F97583">/=</span><span style="color:#E1E4E8">b;</span></span>
+<span class="line"><span style="color:#B392F0">    reverse</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">res.</span><span style="color:#B392F0">begin</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8">,res.</span><span style="color:#B392F0">end</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> res;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> b;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">b;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#b392f0">(</span><span style="color:#B392F0">iH</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">base</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">i</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">i,b</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#B392F0">base</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i,b</span><span style="color:#79b8ff">)</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">" "</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#B392F0">base</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">i,b</span><span style="color:#79b8ff">)</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">endl;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.D5vIIIa7.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div>  </div> </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

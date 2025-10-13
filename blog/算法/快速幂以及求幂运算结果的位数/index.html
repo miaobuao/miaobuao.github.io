@@ -1,0 +1,140 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>快速幂以及求幂运算结果的位数</title><!-- Open Graph / Facebook --><meta property="og:title" content="快速幂以及求幂运算结果的位数"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/%E7%AE%97%E6%B3%95/%E5%BF%AB%E9%80%9F%E5%B9%82%E4%BB%A5%E5%8F%8A%E6%B1%82%E5%B9%82%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E7%9A%84%E4%BD%8D%E6%95%B0/"><meta name="description" content="快速幂: 时间复杂度O(logn)，求位数: 时间复杂度O(1)
+"><meta property="og:description" content="快速幂: 时间复杂度O(logn)，求位数: 时间复杂度O(1)
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.C9d8-rub.css">
+<style>progressive-image[data-astro-cid-abowd3st]{display:block}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-e4bffkdr-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-e4bffkdr-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-e4bffkdr-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-4h24v5rq-2"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-4h24v5rq-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-4h24v5rq-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen"> <div class="absolute w-screen h-screen"> <script type="module">function r(a,t,n){customElements.get(a)||customElements.define(a,t,n)}const s=new Promise(a=>{document.readyState==="complete"&&a();function t(){window.removeEventListener("load",t),a()}window.addEventListener("load",t)});class d extends HTMLElement{constructor(){super(...arguments),this.loaded=!1,this.handleLoaded=async()=>{this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded),await s;const t=this.originalImageUrl;if(!t)throw new Error("need `data-url`");const n=i=>{this.loaded=!0,e.removeEventListener("load",n),e.removeEventListener("error",n),!(i.type==="error"||i instanceof ErrorEvent)&&(e.setAttribute("class",`absolute inset-0 transition-opacity duration-1000 opacity-0 ${this.imageClass}`),this.appendChild(e),setTimeout(()=>{e.classList.add("opacity-100")}))},e=new Image;e.addEventListener("load",n),e.addEventListener("error",n),e.src=t}}get thumbnailImage(){return this.querySelector("img")}get originalImageUrl(){return this.dataset.url}get imageClass(){return this.dataset.imageClass}connectedCallback(){this.loaded||(this.thumbnailImage?.complete?this.handleLoaded():(this.thumbnailImage?.addEventListener("load",this.handleLoaded),this.thumbnailImage?.addEventListener("error",this.handleLoaded)))}disconnectedCallback(){this.thumbnailImage?.removeEventListener("load",this.handleLoaded),this.thumbnailImage?.removeEventListener("error",this.handleLoaded)}}r("progressive-image",d);</script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full" data-astro-cid-abowd3st="true" class="relative size-full"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full" data-astro-cid-abowd3st> </progressive-image>  </div>  <div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-fit sm:max-w-48 lg:max-w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:p-2 sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy" data-astro-transition-scope="astro-4h24v5rq-2"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a>  <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/gallery"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--image-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Gallery
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-e4bffkdr-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 快速幂以及求幂运算结果的位数 </p> <p class="text-sm"> 杨秋逸 · 2021-02-26 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <p>快速幂: 时间复杂度O(logn)，求位数: 时间复杂度O(1)</p>
+<!--more-->
+<h2 id="位数"><a href="#位数">位数</a></h2>
+<p>我们知道 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">10^n</annotation></semantics></math></span> 的长度是 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n+1</annotation></semantics></math></span> ，所以只要把底数变成10，就可以计算结果的长度，同时又知道<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>n</mi></msup><mo>=</mo><msup><mrow><mo stretchy="false">(</mo><msup><mn>10</mn><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mi>x</mi></mrow></msup><mo stretchy="false">)</mo></mrow><mi>n</mi></msup><mo>=</mo><msup><mn>10</mn><mrow><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>x</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x^n={(10^{logx})}^n=10^{nlogx}</annotation></semantics></math></span>，所以<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">x^n</annotation></semantics></math></span>的长度就是<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">nlogx+1</annotation></semantics></math></span>，C++数学库当中有log10()函数，可以很方便地计算<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>10</mn></msub><mi>x</mi></mrow><annotation encoding="application/x-tex">log_{10}x</annotation></semantics></math></span></p>
+<h2 id="快速幂"><a href="#快速幂">快速幂</a></h2>
+<p>这玩意儿不难，比如<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mn>13</mn></msup></mrow><annotation encoding="application/x-tex">a^{13}</annotation></semantics></math></span>，指数13转化为二进制是1101，然后再把1101转化成十进制，就是<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>0</mn></msup><mo>+</mo><msup><mn>0</mn><mn>1</mn></msup><mo>+</mo><msup><mn>2</mn><mn>2</mn></msup><mo>+</mo><msup><mn>2</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">2^0+0^1+2^2+2^3</annotation></semantics></math></span>，因此可以把<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mn>13</mn></msup></mrow><annotation encoding="application/x-tex">a^{13}</annotation></semantics></math></span>看成<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mrow><msup><mn>2</mn><mn>0</mn></msup><mo>+</mo><msup><mn>0</mn><mn>1</mn></msup><mo>+</mo><msup><mn>2</mn><mn>2</mn></msup><mo>+</mo><msup><mn>2</mn><mn>3</mn></msup></mrow></msup></mrow><annotation encoding="application/x-tex">a^{2^0+0^1+2^2+2^3}</annotation></semantics></math></span>，也就是 <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><msup><mn>2</mn><mn>0</mn></msup></msup><msup><mi>a</mi><mn>0</mn></msup><msup><mi>a</mi><msup><mn>2</mn><mn>2</mn></msup></msup><msup><mi>a</mi><msup><mn>2</mn><mn>4</mn></msup></msup></mrow><annotation encoding="application/x-tex">a^{2^0} a^0 a^{2^2} a^{2^4}</annotation></semantics></math></span> ，所以需要用到循环，并且指数转化为二进制之后有几位，就需要循环几次。</p>
+<h4 id="code"><a href="#code">Code</a></h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">//快速幂</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> poww</span><span style="color:#79b8ff">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> base</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> index</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> res </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    while</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">index </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> 0</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> </span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">index </span><span style="color:#F97583">&#x26;</span><span style="color:#79B8FF"> 1</span><span style="color:#F97583"> !=</span><span style="color:#79B8FF"> 0</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            res </span><span style="color:#F97583">*=</span><span style="color:#E1E4E8"> base;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">        base </span><span style="color:#F97583">*=</span><span style="color:#E1E4E8"> base;</span></span>
+<span class="line"><span style="color:#E1E4E8">        index </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span><span style="color:#6A737D">  //删除最后一位二进制位，举个例子，11001>>=1,结果就是1100</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> res;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> base</span><span style="color:#F97583">=</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,index</span><span style="color:#F97583">=</span><span style="color:#79B8FF">13</span><span style="color:#E1E4E8">;</span><span style="color:#6A737D">  // 求 2 的 13 次方</span></span>
+<span class="line"><span style="color:#E1E4E8">    cout </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF"> "reslut:"</span><span style="color:#F97583"> </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#B392F0"> poww</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">base,index</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> endl;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cout </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF"> "length:"</span></span>
+<span class="line"><span style="color:#F97583">         </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583"> int</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">index</span><span style="color:#F97583">*</span><span style="color:#B392F0">log10</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">base</span><span style="color:#b392f0">)</span><span style="color:#F97583">+</span><span style="color:#79B8FF">1</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span><span style="color:#6A737D"> //计算位数</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<p>通过观察代码，可以发现每循环一次，base就会进行一次自乘
+第1次循环：res=base=2,base=base×base=4
+第2次循环：res没有变，因为13转化成小数后第二位是0，所以res=res×1，base=base×base=16
+第3次循环：res=res×base=2×16=32，base=base×base=256
+第四次循环，也就是最后一次循环：
+res=res×256=2×16×256,base=256*256
+最后return res;
+原本需要13次循环才能算出2^13，现在只要四次，快了很多。</p>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.D5vIIIa7.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div>  </div> </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>
