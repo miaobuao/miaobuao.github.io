@@ -1,0 +1,56 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>数字签名与消息认证</title><!-- Open Graph / Facebook --><meta property="og:title" content="数字签名与消息认证"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/da-xue/xin-xi-an-quan/shu-zi-qian-ming-yu-xiao-xi-ren-zheng/"><meta name="description" content="数字签名写借条，就算借条丢了也能还原（王继林教授说支付宝就用的这个数字签名）
+
+"><meta property="og:description" content="数字签名写借条，就算借条丢了也能还原（王继林教授说支付宝就用的这个数字签名）
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 数字签名与消息认证 </p> <p class="text-sm"> 杨秋逸 · 2021-05-07 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <p>数字签名写借条，就算借条丢了也能还原（王继林教授说支付宝就用的这个数字签名）</p>
+<!--more-->
+<h2 id="定义"><a href="#定义">定义</a></h2>
+<p>以电子形式模拟搜狐写签名（hand-written signature）</p>
+<ul>
+<li>Unforgeability
+不可伪造</li>
+<li>Undeniability
+不可抵赖</li>
+</ul>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>依赖于被签署的文件</li>
+<li>快速计算（compute）</li>
+<li>任何人都能验证</li>
+<li>易于存储
+should be short enough</li>
+</ul>
+<h2 id="attacks-on-digital-signature"><a href="#attacks-on-digital-signature">Attacks on digital signature</a></h2>
+<p><strong>Attack type：</strong></p>
+<ul>
+<li>key-only attack
+只知道公钥，想办法伪造（攻击难度大，所以比较容易防治）</li>
+<li>Known-message attack
+已知一部分消息及其签名，对新消息使用就签名想办法伪造</li>
+<li>Chosen-message attack
+对相似消息的签名进行分析，想办法签名新的消息</li>
+</ul>
+<p>对于上面这个无序列表，某个方案能抗击下面的攻击，则必然能抗击上面的攻击。</p>
+<h2 id="流程"><a href="#流程">流程</a></h2>
+<p>signer使用私钥对msg签名，验证者使用signer的公钥对签名进行验证</p>
+<p><strong>Usage：</strong>
+off-line：签名
+on-line：验证</p>
+<p>a想要验证b是不是b，则对b发送m，b使用b的私钥对m进行签名，a使用b的公钥对m的签名进行验证，如果b是真的b，则验证通过，反之通不过
+<strong>Digital Signature Law is Infrastructure</strong></p>
+<h2 id="算法"><a href="#算法">算法</a></h2>
+<ul>
+<li>基于纠错码</li>
+<li>基于椭圆切线</li>
+<li>基于 two hard problem
+典型的：
+<ol>
+<li>RSA（基于大数分解）
+消息可能很大，所以需要先hash下，变成256位，再签名
+现在一般是使用sha-256进行hash</li>
+<li>ElGamal（离散对数）</li>
+</ol>
+</li>
+</ul>
+<p><strong>E-cash：</strong>
+电子签名，基于盲签名</p>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

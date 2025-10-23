@@ -1,0 +1,15 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>KVM中安装Windows11跳过检验</title><!-- Open Graph / Facebook --><meta property="og:title" content="KVM中安装Windows11跳过检验"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/linux/kvmzhong-an-zhuang-windows11tiao-guo-jian-yan/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> KVM中安装Windows11跳过检验 </p> <p class="text-sm"> 杨秋逸 · 2023-10-07 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="kvm中安装windows11跳过检验"><a href="#kvm中安装windows11跳过检验">KVM中安装Windows11跳过检验</a></h1>
+<h2 id="win11-专业版激活密钥"><a href="#win11-专业版激活密钥">win11 专业版激活密钥</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>J8WVF-9X3GM-4WVYC-VDHQG-42CXT</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>7Y64F-88DCY-Y6WTC-H33D2-64QHF</span></span></code></pre>
+<p><a href="https://zhuanlan.zhihu.com/p/637930518">https://zhuanlan.zhihu.com/p/637930518</a></p>
+<h2 id="跳过校验"><a href="#跳过校验">跳过校验</a></h2>
+<p>1、首先正常进行系统更新升级，依旧等待弹窗出现，不要关闭。
+2、直接按下键盘上的“shift+F10”快捷键打开命令输入行。
+3、接着在命令输入行中输入“regedit”回车确定，进入注册表编辑器。
+4、然后在注册表中定位到如下位置“HKEY_LOCAL_MACHINE\SYSTEM\Setup”
+5、在其中创建一个项，将它命名为“LabConfig”的项，接着在其中创建两个DWORD值。
+6、其中一个值命名为“BypassTPMCheck”，双击打开它，将值改为“00000001”。
+安装升级Win11时如何跳过系统检测？
+7、另一个DWORD值命名为“BypassSecureBootCheck”，值改为“00000001”即可。</p>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

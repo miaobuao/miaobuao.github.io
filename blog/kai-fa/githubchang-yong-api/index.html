@@ -1,0 +1,202 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CQKIrR8a.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>GitHub常用API</title><!-- Open Graph / Facebook --><meta property="og:title" content="GitHub常用API"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/kai-fa/githubchang-yong-api/"><meta name="description" content="**api地址区分大小写**
+
+"><meta property="og:description" content="**api地址区分大小写**
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css">
+<style>progressive-image[data-astro-cid-njl3qch2]{display:block}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-uniujczg-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen pointer-events-none"> <div class="absolute w-screen h-screen pointer-events-none" data-astro-transition-persist="bg"> <script type="module" src="/_astro/ProgressiveImage.astro_astro_type_script_index_0_lang.Zsl7yvEt.js"></script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2="true" class="relative size-full pointer-events-none"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2> </progressive-image>  </div> <div class="pointer-events-auto"><div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-50 lg:w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4" data-astro-transition-persist="author-info"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism sm:p-2"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/archive"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--calendar] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Archive
+ </div> </a>   <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none hidden sm:flex" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none max-sm:flex hidden" role="button" tabindex="0" href="/finder"> <div class="flex justify-center items-center"> <i class="icon-[ix--navigation] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Finder
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z2plROE" component-url="/_astro/WindowsList.De5TXCyW.js" component-export="WindowsList" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;className&quot;:[0,&quot;flex-1 hidden sm:flex flex-col gap-1 overflow-auto px-2&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowsList&quot;,&quot;value&quot;:&quot;solid-js&quot;}"></astro-island> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-uniujczg-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> GitHub常用API </p> <p class="text-sm"> 杨秋逸 · 2021-07-12 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <p><strong>api地址区分大小写</strong></p>
+<!--more-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>功能</th><th>api地址</th><th>请求方式</th><th>请求参数</th><th>返回参数</th><th>例子</th></tr></thead><tbody><tr><td>获取用户信息</td><td><a href="https://api.github.com/users/">https://api.github.com/users/</a></td><td>get</td><td>path路径： 用户名</td><td><code>一个用户对象</code></td><td><a href="https://api.github.com/users/ygunoil">https://api.github.com/users/ygunoil</a></td></tr><tr><td>获取用户所有仓库</td><td><a href="https://api.github.com/users/%7B%E7%94%A8%E6%88%B7%E5%90%8D%7D/repos">https://api.github.com/users/{用户名}/repos</a></td><td>get</td><td>path路径： 用户名</td><td><code>返回一个数组</code></td><td><a href="https://api.github.com/users/ygunoil/repos">https://api.github.com/users/ygunoil/repos</a></td></tr><tr><td>获取某个仓库的详细信息</td><td><a href="https://api.github.com/repos/ygunoil/Common-functions">https://api.github.com/repos/{用户名}/</a>{仓库名}</td><td>get</td><td>path路径： 用户名 和 仓库名</td><td><code>返回一个仓库对象</code></td><td><a href="https://api.github.com/repos/ygunoil/Common-functions">https://api.github.com/repos/ygunoil/Common-functions</a></td></tr><tr><td>获取某个仓库里根目录文件或文件夹数组</td><td><a href="https://api.github.com/repos/ygunoil/Common-functions/contents">https://api.github.com/repos/</a><a href="https://api.github.com/repos/ygunoil/Common-functions">/{用户名}/</a><a href="https://api.github.com/repos/ygunoil/Common-functions/contents">{仓库名}/contents</a></td><td>get</td><td>path路径： 用户名 和 仓库名</td><td><code>返回一个首层文件或文件夹数组</code></td><td><a href="https://api.github.com/repos/ygunoil/Common-functions/contents">https://api.github.com/repos/ygunoil/Common-functions/contents</a></td></tr><tr><td>获取某个仓库里子目录文件或文件夹数组</td><td><a href="https://api.github.com/repos/ygunoil/Common-functions/contents">https://api.github.com/repos/</a><a href="https://api.github.com/repos/ygunoil/Common-functions">/{用户名}/</a><a href="https://api.github.com/repos/ygunoil/Common-functions/contents">{仓库名}/contents</a>/{文件名或文件夹名}</td><td>get</td><td>path路径： 用户名 和 仓库名和文件名或文件夹名</td><td>返回一个文件数组</td><td><a href="https://api.github.com/repos/ygunoil/Common-functions/contents/utilshttps://api.github.com/repos/ygunoil/Common-functions/contents/utils/Currency/CurrencyFormat.js">https://api.github.com/repos/ygunoil/Common-functions/contents/utilshttps://api.github.com/repos/ygunoil/Common-functions/contents/utils/Currency/CurrencyFormat.js</a></td></tr><tr><td>获取某文件的原始内容（Raw）</td><td><a href="https://api.github.com/repos/ygunoil/Common-functions/contents">1. 通过上面的文件信息中提取<code>download_url</code>这条链接，就能获取它的原始内容了。</a><a href="https://api.github.com/repos/ygunoil/Common-functions/contents">2. 或者直接访问：<code>https://raw.githubusercontent.com/{用户名}/{仓库名}/{分支名}/</code></a>{文件路径}</td><td>get</td><td>path路径： 用户名 和 仓库名和文件l路径</td><td>返回一个文件内容的字符串</td><td><a href="https://raw.githubusercontent.com/ygunoil/Common-functions/master/utils/Currency/CurrencyFormat.js">https://raw.githubusercontent.com/ygunoil/Common-functions/master/utils/Currency/CurrencyFormat.js</a></td></tr><tr><td>获取某个用户的跟随者列表</td><td><a href="https://api.github.com/users/%7B%E7%94%A8%E6%88%B7%E5%90%8D%7D/followers">https://api.github.com/users/{用户名}/followers</a></td><td>get</td><td>path路径： 用户名</td><td><code>返回一个数组</code></td><td><a href="https://api.github.com/users/ygunoil/followers">https://api.github.com/users/ygunoil/followers</a></td></tr><tr><td>获取某个用户正在关注谁列表</td><td><a href="https://api.github.com/users/%7B%E7%94%A8%E6%88%B7%E5%90%8D%7D%7D/following">https://api.github.com/users/{用户名}}/following</a></td><td>get</td><td>path路径： 用户名</td><td>返回一个数组</td><td><a href="https://api.github.com/users/ygunoil/following">https://api.github.com/users/ygunoil/following</a></td></tr><tr><td>获取某个用户加入的组织列表</td><td><a href="https://api.github.com/users/ygunoil/orgs">https://api.github.com/users/{用户名}/orgs</a></td><td>get</td><td>path路径： 用户名</td><td>返回一个数组</td><td><a href="https://api.github.com/users/ygunoil/orgs">https://api.github.com/users/ygunoil/orgs</a></td></tr><tr><td>repo中所有的commits列表</td><td><a href="https://api.github.com/repos/%7B%E7%94%A8%E6%88%B7%E5%90%8D%7D/%7B%E4%BB%93%E5%BA%93%E5%90%8D%7D/commits">https://api.github.com/repos/{用户名}/{仓库名}/commits</a></td><td>get</td><td></td><td></td><td></td></tr><tr><td>某一条commit详情</td><td><a href="https://api.github.com/repos/%7B%E7%94%A8%E6%88%B7%E5%90%8D%7D/%7B%E4%BB%93%E5%BA%93%E5%90%8D%7D/commits/%7B%E6%9F%90%E4%B8%80%E6%9D%A1commit%E7%9A%84SHA%7D">https://api.github.com/repos/{用户名}/{仓库名}/commits/{某一条commit的SHA}</a></td><td>get</td><td></td><td></td><td></td></tr><tr><td>issues列表</td><td><a href="https://api.github.com/repos/%7B%E7%94%A8%E6%88%B7%E5%90%8D%7D/%7B%E4%BB%93%E5%BA%93%E5%90%8D%7D/issues">https://api.github.com/repos/{用户名}/{仓库名}/issues</a></td><td>get</td><td></td><td></td><td></td></tr><tr><td>某条issue详情</td><td><a href="https://api.github.com/repos/%7B%E7%94%A8%E6%88%B7%E5%90%8D%7D/%7B%E4%BB%93%E5%BA%93%E5%90%8D%7D/issues/%7B%E5%BA%8F%E5%8F%B7%7D">https://api.github.com/repos/{用户名}/{仓库名}/issues/{序号}</a></td><td>get</td><td>issues都是以1,2,3这样的序列排号的</td><td></td><td></td></tr><tr><td>某issue中的comments列表</td><td><a href="https://api.github.com/repos/%7B%E7%94%A8%E6%88%B7%E5%90%8D%7D/%7B%E4%BB%93%E5%BA%93%E5%90%8D%7D/issues/%7B%E5%BA%8F%E5%8F%B7%7D/comments">https://api.github.com/repos/{用户名}/{仓库名}/issues/{序号}/comments</a></td><td>get</td><td></td><td></td><td></td></tr><tr><td>某comment详情</td><td><a href="https://api.github.com/repos/%7B%E7%94%A8%E6%88%B7%E5%90%8D%7D/%7B%E4%BB%93%E5%BA%93%E5%90%8D%7D/issues/comments/%7B%E8%AF%84%E8%AE%BA%E8%AF%A6%E6%83%85%E7%9A%84ID%7D">https://api.github.com/repos/{用户名}/{仓库名}/issues/comments/{评论详情的ID}</a></td><td>get</td><td>评论ID是从issues列表中获得的</td><td></td><td></td></tr></tbody></table>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div></div> </div><astro-island uid="gD63X" component-url="/_astro/WindowManager.DgB5G-u_.js" component-export="WindowManager" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;class&quot;:[0,&quot;invisible md:visible not-md:pointer-events-none&quot;],&quot;data-astro-transition-persist&quot;:[0,&quot;wm&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowManager&quot;,&quot;value&quot;:&quot;solid-js&quot;}" data-astro-transition-persist="wm"></astro-island>  </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

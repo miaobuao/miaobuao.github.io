@@ -1,0 +1,90 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>找硬币_哈希表和双指针算法应用</title><!-- Open Graph / Facebook --><meta property="og:title" content="找硬币_哈希表和双指针算法应用"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/suan-fa/zhao-ying-bi_ha-xi-biao-he-shuang-zhi-zhen-suan-fa-ying-yong/"><meta name="description" content="说是说哈希表，但是我没有找到hash模板/(ㄒoㄒ)/
+
+"><meta property="og:description" content="说是说哈希表，但是我没有找到hash模板/(ㄒoㄒ)/
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 找硬币_哈希表和双指针算法应用 </p> <p class="text-sm"> 杨秋逸 · 2021-03-10 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <p>说是说哈希表，但是我没有找到hash模板/(ㄒoㄒ)/</p>
+<!--more-->
+<h2 id="题目"><a href="#题目">题目</a></h2>
+<p>伊娃喜欢从整个宇宙中收集硬币。</p>
+<p>有一天，她去了一家宇宙购物中心购物，结账时可以使用各种硬币付款。</p>
+<p>但是，有一个特殊的付款要求：每张帐单，她只能使用恰好两个硬币来准确的支付消费金额。</p>
+<p>给定她拥有的所有硬币的面额，请你帮她确定对于给定的金额，她是否可以找到两个硬币来支付。</p>
+<p>输入格式
+第一行包含两个整数 N 和 M，分别表示硬币数量以及需要支付的金额。</p>
+<p>第二行包含 N 个整数，表示每个硬币的面额。</p>
+<p>输出格式
+输出一行，包含两个整数 V1,V2，表示所选的两个硬币的面额，使得 V1≤V2 并且 V1+V2=M。</p>
+<p>如果答案不唯一，则输出 V1 最小的解。</p>
+<p>如果无解，则输出 No Solution。</p>
+<p>数据范围
+1≤N≤105,
+1≤M≤1000</p>
+<p>输入样例1：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>8 15</span></span>
+<span class="line"><span>1 2 8 7 2 4 11 15</span></span></code></pre>
+<p>输出样例1：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>4 11</span></span></code></pre>
+<p>输入样例2：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>7 14</span></span>
+<span class="line"><span>1 8 7 2 4 11 15</span></span></code></pre>
+<p>输出样例2：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>No Solution</span></span></code></pre>
+<h2 id="题解"><a href="#题解">题解</a></h2>
+<h3 id="双指针"><a href="#双指针">双指针</a></h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> a</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">100005</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> n,m;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">n</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">m;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">n;i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">a</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">    sort</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">a,a</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">n</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,j</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">n</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">j;i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        while</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">i</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">j</span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> a</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">a</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">j</span><span style="color:#79b8ff">]</span><span style="color:#F97583">></span><span style="color:#E1E4E8">m</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8"> j</span><span style="color:#F97583">--</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">a</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">a</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">j</span><span style="color:#79b8ff">]</span><span style="color:#F97583">==</span><span style="color:#E1E4E8">m</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">a</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">" "</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">a</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">j</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">"No Solution"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<h3 id="哈希表"><a href="#哈希表">哈希表</a></h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">map</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">,</span><span style="color:#F97583">int</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> h;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> v1</span><span style="color:#F97583">=</span><span style="color:#79B8FF">100000</span><span style="color:#E1E4E8">,v2;</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> n,m;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">n</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">m;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">n;i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> a;</span></span>
+<span class="line"><span style="color:#E1E4E8">        cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">a;</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> b</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">m</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">a;</span></span>
+<span class="line"><span style="color:#E1E4E8">        h</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">a</span><span style="color:#b392f0">]</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">h</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">b</span><span style="color:#79b8ff">]</span><span style="color:#F97583">==</span><span style="color:#79B8FF">1</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a</span><span style="color:#F97583">></span><span style="color:#E1E4E8">b</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">swap</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a,b</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">v1</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#E1E4E8">                v1</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">a;</span></span>
+<span class="line"><span style="color:#E1E4E8">                v2</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">b;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#79b8ff">}</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">v1</span><span style="color:#F97583">==</span><span style="color:#79B8FF">100000</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">v1</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">" "</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">v2;</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#E1E4E8"> cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">"No Solution"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<h3 id="tips"><a href="#tips">Tips</a></h3>
+<p>从这道题使用hash表效率上不如双指针高，但也不差多少</p>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

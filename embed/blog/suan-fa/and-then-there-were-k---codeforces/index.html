@@ -1,0 +1,53 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>And Then There Were K - CodeForces</title><!-- Open Graph / Facebook --><meta property="og:title" content="And Then There Were K - CodeForces"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/suan-fa/and-then-there-were-k---codeforces/"><meta name="description" content="一看到TLE就知道这是技巧题了...
+
+"><meta property="og:description" content="一看到TLE就知道这是技巧题了...
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> And Then There Were K - CodeForces </p> <p class="text-sm"> 杨秋逸 · 2021-05-21 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <p>一看到TLE就知道这是技巧题了…</p>
+<!--more-->
+<center><b>A. And Then There Were K</b>
+<p><font style="font-size:smaller">time limit per test1 second
+memory limit per test256 megabytes
+input: standard input
+output: standard output</font></p>
+</center>
+<p>Given an integer n, find the maximum value of integer k such that the following condition holds:</p>
+<center>n &#x26; (n−1) &#x26; (n−2) &#x26; (n−3) &#x26; ... (k) = 0</center>
+<p>where &#x26; denotes the <a href="https://en.wikipedia.org/wiki/Bitwise_operation#AND">bitwise AND operation</a>.</p>
+<p><strong>Input:</strong>
+The first line contains a single integer t (1≤t≤3⋅104). Then t test cases follow.</p>
+<p>The first line of each test case contains a single integer n (1≤n≤109).</p>
+<p><strong>Output:</strong>
+For each test case, output a single integer — the required integer k.</p>
+<p><strong>Example:</strong>
+input</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>3</span></span>
+<span class="line"><span>2</span></span>
+<span class="line"><span>5</span></span>
+<span class="line"><span>17</span></span></code></pre>
+<p>output</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1</span></span>
+<span class="line"><span>3</span></span>
+<span class="line"><span>15</span></span></code></pre>
+<p><strong>Note:</strong>
+In the first testcase, the maximum value for which the continuous &#x26; operation gives 0 value, is 1.</p>
+<p>In the second testcase, the maximum value for which the continuous &#x26; operation gives 0 value, is 3. No value greater then 3, say for example 4, will give the &#x26; sum 0.</p>
+<p>5 &#x26; 4 ≠ 0,
+5 &#x26; 4 &#x26; 3 = 0.</p>
+<p>Hence, 3 is the answer.</p>
+<h2 id="code"><a href="#code">code</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> a;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> a;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> a; i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> n;</span></span>
+<span class="line"><span style="color:#E1E4E8">        cin </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> n;</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> h</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        while</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">h</span><span style="color:#F97583">*</span><span style="color:#79B8FF">2</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">n</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8"> h</span><span style="color:#F97583">*=</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">h</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">endl;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

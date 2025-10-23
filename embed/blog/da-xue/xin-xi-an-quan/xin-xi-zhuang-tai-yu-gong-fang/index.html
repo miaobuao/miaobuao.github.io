@@ -1,0 +1,77 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信息状态与攻防</title><!-- Open Graph / Facebook --><meta property="og:title" content="信息状态与攻防"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/da-xue/xin-xi-an-quan/xin-xi-zhuang-tai-yu-gong-fang/"><meta name="description" content="攻击没有好坏之别，不存在没有漏洞的计算机
+
+"><meta property="og:description" content="攻击没有好坏之别，不存在没有漏洞的计算机
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 信息状态与攻防 </p> <p class="text-sm"> 杨秋逸 · 2021-04-02 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <p>攻击没有好坏之别，不存在没有漏洞的计算机</p>
+<!--more-->
+<h2 id="信息的状态"><a href="#信息的状态">信息的状态</a></h2>
+<ol>
+<li>Processing…加工处理</li>
+<li>Storage…放着没动</li>
+<li>Transmission..传输中</li>
+</ol>
+<h3 id="processing"><a href="#processing">Processing</a></h3>
+<p>数据在寄存器或者内存
+<strong>数据属于某一个进程</strong></p>
+<ul>
+<li>进程数据区</li>
+<li>堆栈区</li>
+<li>进程控制块</li>
+</ul>
+<p>缓冲区溢出攻击</p>
+<p>用findPass对winlogon.exe分析，找出登陆用户的账号密码</p>
+<h3 id="storage"><a href="#storage">Storage</a></h3>
+<ol>
+<li>硬盘
+<ul>
+<li>数据在信箱（硬盘中）</li>
+</ul>
+</li>
+<li>移动设备</li>
+<li>文件形式存储</li>
+</ol>
+<p>硬盘存储分两块</p>
+<ol>
+<li>目录
+<ul>
+<li>地址</li>
+<li>文件名</li>
+<li>大小</li>
+<li>创建信息</li>
+</ul>
+</li>
+<li>内容
+<ul>
+<li>真实数据</li>
+</ul>
+</li>
+</ol>
+<h4 id="链式存储"><a href="#链式存储">链式存储</a></h4>
+<p>磁道划分扇区，一块扇区512字节，510字节存放内容，2字节存放下一块数据所在扇区的地址
+0扇区用于存放磁盘大小之类的信息</p>
+<p><strong>优势</strong>
+读写效率高，顺序存储需要把后边的文件地址前移</p>
+<h4 id="顺序存储"><a href="#顺序存储">顺序存储</a></h4>
+<p>磁带就是顺序存储</p>
+<h4 id="索引式文件分配"><a href="#索引式文件分配">索引式文件分配</a></h4>
+<p>一块扇区存放数据所在地址的索引</p>
+<h4 id="注册表"><a href="#注册表">注册表</a></h4>
+<p>一个非关系型数据库（树形结构）存放设备软硬件信息，90%病毒要修改注册表</p>
+<h3 id="transmission"><a href="#transmission">Transmission</a></h3>
+<ul>
+<li>数据在传输介质中</li>
+<li>数据传输是按照一定协议</li>
+<li>常用TCP/IP协议</li>
+</ul>
+<h2 id="攻防模型"><a href="#攻防模型">攻防模型</a></h2>
+<h3 id="防守"><a href="#防守">防守</a></h3>
+<p>1。 防火墙
+2. 入侵检测系统</p>
+<h3 id="攻击"><a href="#攻击">攻击</a></h3>
+<p>利用系统漏洞，或者协议本身的弱点</p>
+<h4 id="三个层次"><a href="#三个层次">三个层次</a></h4>
+<ol>
+<li>物理层（物理黑客）</li>
+<li>网络层（破坏信息）</li>
+<li>感知层（破坏心理、认知、判断）</li>
+</ol>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

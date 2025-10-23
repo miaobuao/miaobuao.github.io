@@ -1,0 +1,95 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>表达式求值-算法模板题</title><!-- Open Graph / Facebook --><meta property="og:title" content="表达式求值-算法模板题"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/suan-fa/biao-da-shi-qiu-zhi-suan-fa-mo-ban-ti/"><meta name="description" content="表达式求值，用到了栈结构来模拟树
+
+"><meta property="og:description" content="表达式求值，用到了栈结构来模拟树
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 表达式求值-算法模板题 </p> <p class="text-sm"> 杨秋逸 · 2021-04-11 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <p>表达式求值，用到了栈结构来模拟树</p>
+<!--more-->
+<h2 id="题目"><a href="#题目">题目</a></h2>
+<p>给定一个表达式，其中运算符仅包含 +,-,*,/（加 减 乘 整除），可能包含括号，请你求出表达式的最终值。</p>
+<p>注意:</p>
+<ul>
+<li>数据保证给定的表达式合法。</li>
+<li>题目保证符号 - 只作为减号出现，不会作为负号出现，例如，-1+2,(2+2)*(-(1+1)+2) 之类表达式均不会出现。</li>
+<li>题目保证表达式中所有数字均为正整数。</li>
+<li>题目保证表达式在中间计算过程以及结果中，均不超过 231−1。</li>
+<li>题目中的整除是指向 0 取整，也就是说对于大于 0 的结果向下取整，例如 5/3=1，对于小于 0 的结果向上取整，例如 5/(1−4)=−1。</li>
+<li>C++和Java中的整除默认是向零取整；Python中的整除//默认向下取整，因此Python的eval()函数中的整除也是向下取整，在本题中不能直接使用。</li>
+</ul>
+<p><strong>输入格式</strong>
+共一行，为给定表达式。</p>
+<p><strong>输出格式</strong>
+共一行，为表达式的结果。</p>
+<p><strong>数据范围</strong>
+表达式的长度不超过 105。</p>
+<p><strong>输入样例：</strong></p>
+<blockquote>
+<p>(2+2)*(1+1)</p>
+</blockquote>
+<p><strong>输出样例：</strong></p>
+<blockquote>
+<p>8</p>
+</blockquote>
+<h2 id="代码"><a href="#代码">代码</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">stack</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">int</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> num;</span></span>
+<span class="line"><span style="color:#E1E4E8">stack</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">char</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> op;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> eval</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    auto</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> num.</span><span style="color:#B392F0">top</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    num.</span><span style="color:#B392F0">pop</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    auto</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> num.</span><span style="color:#B392F0">top</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    num.</span><span style="color:#B392F0">pop</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    auto</span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> op.</span><span style="color:#B392F0">top</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    op.</span><span style="color:#B392F0">pop</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> x;</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">c </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> '+'</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b;</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">c </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> '-'</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> b;</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">c </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> '*'</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> b;</span></span>
+<span class="line"><span style="color:#F97583">    else</span></span>
+<span class="line"><span style="color:#E1E4E8">        x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> b;</span></span>
+<span class="line"><span style="color:#E1E4E8">    num.</span><span style="color:#B392F0">push</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    map</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">char</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> pr</span><span style="color:#ffab70">{</span><span style="color:#b392f0">{</span><span style="color:#9ECBFF">'+'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#b392f0">}</span><span style="color:#E1E4E8">, </span><span style="color:#b392f0">{</span><span style="color:#9ECBFF">'-'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#b392f0">}</span><span style="color:#E1E4E8">, </span><span style="color:#b392f0">{</span><span style="color:#9ECBFF">'*'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#b392f0">}</span><span style="color:#E1E4E8">, </span><span style="color:#b392f0">{</span><span style="color:#9ECBFF">'/'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#b392f0">}</span><span style="color:#ffab70">}</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    string str;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> str;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> str.</span><span style="color:#B392F0">size</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        auto</span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> str</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">i</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> </span><span style="color:#b392f0">(</span><span style="color:#B392F0">isdigit</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">c</span><span style="color:#79b8ff">)</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#F97583">            int</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">, j </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> i;</span></span>
+<span class="line"><span style="color:#F97583">            while</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">j </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> str.</span><span style="color:#B392F0">size</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#B392F0"> isdigit</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">str</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">j</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#E1E4E8">                x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 10</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> str</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">j</span><span style="color:#F97583">++</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">-</span><span style="color:#9ECBFF"> '0'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#79b8ff">}</span></span>
+<span class="line"><span style="color:#E1E4E8">            i </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> j </span><span style="color:#F97583">-</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            num.</span><span style="color:#B392F0">push</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#F97583">        else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> </span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">c </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> '('</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            op.</span><span style="color:#B392F0">push</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">c</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> </span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">c </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> ')'</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#F97583">            while</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">op.</span><span style="color:#B392F0">top</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">!=</span><span style="color:#9ECBFF"> '('</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#B392F0">                eval</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            op.</span><span style="color:#B392F0">pop</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#F97583">        else</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#F97583">            while</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">op.</span><span style="color:#B392F0">size</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> pr</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">op.</span><span style="color:#B392F0">top</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">></span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pr</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">c</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#B392F0">                eval</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            op.</span><span style="color:#B392F0">push</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">c</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">    while</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">op.</span><span style="color:#B392F0">size</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#B392F0">        eval</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cout </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> num.</span><span style="color:#B392F0">top</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

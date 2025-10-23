@@ -1,0 +1,57 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>小米 AX3000T 刷机</title><!-- Open Graph / Facebook --><meta property="og:title" content="小米 AX3000T 刷机"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/homelab/%E5%B0%8F%E7%B1%B3-ax3000t-%E5%88%B7%E6%9C%BA/"><meta name="description" content="本文的路由器为 AX3000T，出厂固件 1.0.63，设备名 RD03，其他型号的路由器仅供参考！
+
+"><meta property="og:description" content="本文的路由器为 AX3000T，出厂固件 1.0.63，设备名 RD03，其他型号的路由器仅供参考！
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 小米 AX3000T 刷机 </p> <p class="text-sm"> 杨秋逸 · 2024-12-11 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <p>本文的路由器为 AX3000T，出厂固件 1.0.63，设备名 RD03，其他型号的路由器仅供参考！</p>
+<!-- more -->
+<h2 id="开启-ssh"><a href="#开启-ssh">开启 SSH</a></h2>
+<p>首先，我使用 <a href="https://github.com/openwrt-xiaomi/xmir-patcher">xmir-patcher</a>给路由器开启 SSH 服务，并固化<sup><a href="#user-content-fn-https://www.right.com.cn/forum/thread-8404955-1-1.html" id="user-content-fnref-https://www.right.com.cn/forum/thread-8404955-1-1.html" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup>：</p>
+<ol>
+<li>先选择 <code>1 - Set IP-address</code> 来设置路由器的IP地址（一般是192.168.31.1）</li>
+<li>在选择 <code>2 - Connect to device (install exploit)</code> 来开启SSH服务，这一步可能需要输入WiFi密码</li>
+<li>选择<code>8 - {{{ Other functions }}}</code></li>
+<li>选择<code>2 - Change root password</code>, 来设置root密码</li>
+</ol>
+<p>此时 SSH 已经顺利启动了, 但是每次重启之后都会丢失, 为此我们需要固化 SSH:</p>
+<ol>
+<li>还是在 xmir-patcher 里选择 <code>8 - {{{ Other functions }}}</code></li>
+<li>然后选择 <code>7 - Install permanent SSH</code></li>
+</ol>
+<p>🆗 至此, 第一步已经完成了, 可以尝试使用 SSH 连接路由器试试, 如果遇到报错 <code>Unable to negotiate with 192.168.31.1 port 22: no matching host key type found. Their offer: ssh-rsa</code>, 可以尝试使用这条指令来连接<sup><a href="#user-content-fn-https://www.right.com.cn/forum/thread-8238692-1-1.html" id="user-content-fnref-https://www.right.com.cn/forum/thread-8238692-1-1.html" data-footnote-ref="" aria-describedby="footnote-label">2</a></sup>:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">ssh</span><span style="color:#79B8FF"> -o</span><span style="color:#9ECBFF"> HostKeyAlgorithms=+ssh-rsa</span><span style="color:#79B8FF"> -o</span><span style="color:#9ECBFF"> PubkeyAcceptedKeyTypes=+ssh-rsa</span><span style="color:#9ECBFF"> root@192.168.31.1</span></span></code></pre>
+<p><strong>本文暂不包含备份固件的说明，从这里开始请自行做好备份或其他预防措施！</strong></p>
+<h2 id="刷入系统"><a href="#刷入系统">刷入系统</a></h2>
+<h3 id="准备工作"><a href="#准备工作">准备工作</a></h3>
+<p>在刷系统前，需要事先准备好两个文件，分别是 uboot 和 immortalWrt。</p>
+<h4 id="下载-uboot"><a href="#下载-uboot">下载 uboot</a></h4>
+<p>uboot 和 breed 都是 bootloader，可以作为底层来运行我们的路由器固件（最常见的固件是 openwrt），能够有效防止在刷机过程中因意外导致路由器变砖的情况。</p>
+<p>我看了很多文章，基本上都是给 AX3000T 刷 uboot 系统，稳妥起见，本文也选择 uboot。</p>
+<p>进入 <a href="https://github.com/hanwckf/bl-mt798x/releases">https://github.com/hanwckf/bl-mt798x/releases</a> 下载作者提供的最新的压缩包，解压之后里面有对应芯片以及对应路由器型号的分区文件，我们选择 <code>mt7981_ax3000t-fip-fixed-parts-multi-layout.bin</code>，其中 <code>fip</code> 表示要刷入路由器的FIP分区，<code>multi-layout</code> 表示可以选择多种布局模式（下文会介绍）。</p>
+<h4 id="下载-immortalwrt"><a href="#下载-immortalwrt">下载 immortalWrt</a></h4>
+<p>进入 <a href="https://firmware-selector.immortalwrt.org/?version=23.05.2&#x26;target=mediatek%2Ffilogic&#x26;id=xiaomi_mi-router-ax3000t">https://firmware-selector.immortalwrt.org/?version=23.05.2&#x26;target=mediatek%2Ffilogic&#x26;id=xiaomi_mi-router-ax3000t</a> 选择下载 <code>SYSUPGRADE</code>。</p>
+<h3 id="刷入-uboot"><a href="#刷入-uboot">刷入 uboot</a></h3>
+<p><strong>从这里开始可能会对路由器造成破坏，请谨慎！</strong></p>
+<p>上文中，我们为路由器启动了 SSH 服务，因此这里我们能够通过 scp 把我们下载的 <code>mt7981_ax3000t-fip-fixed-parts-multi-layout.bin</code> 上传到路由器的 /tmp 目录下。</p>
+<p>然后执行这条指令，把数据写入FIP分区：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">mtd</span><span style="color:#9ECBFF"> write</span><span style="color:#9ECBFF"> /tmp/mt7981_ax3000t-fip-fixed-parts-multi-layout.bin</span><span style="color:#9ECBFF"> FIP</span></span></code></pre>
+<p>接着，我们把路由器电源拔掉，按住reset键不松手，同时接通电源，当看到LED灯变成蓝色时松手。到这一步，我们已经顺利把 uboot 刷入路由器了，但是想要进入 uboot 的WebUI，还需要动动手操作一下：</p>
+<ol>
+<li>使用网线把路由器和电脑连接</li>
+<li>连接上路由器后，把电脑的IP改为静态IP：192.168.1.2，子网掩码是 255.255.255.0</li>
+<li>在浏览器点开 <a href="http://192.168.1.1">http://192.168.1.1</a></li>
+</ol>
+<p><img alt="uboot webui" loading="lazy" decoding="async" fetchpriority="auto" width="1023" height="712" src="/_astro/image-1.C4IOTuZj_17LNgn.webp" ></p>
+<p>这里我们选择 default<sup><a href="#user-content-fn-https://github.com/hanwckf/bl-mt798x/issues/52#issuecomment-2066323602" id="user-content-fnref-https://github.com/hanwckf/bl-mt798x/issues/52#issuecomment-2066323602" data-footnote-ref="" aria-describedby="footnote-label">3</a></sup>，然后上传 immortalWrt，提交之后他就会自动重启，等待一段时间。看到蓝灯常亮，说明刷入成功, 在浏览器打开 <a href="http://192.168.1.1">http://192.168.1.1</a> 可以看到刚刚刷入的 immortalWrt 的WebUI。</p>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-https://www.right.com.cn/forum/thread-8404955-1-1.html">
+<p><a href="https://www.right.com.cn/forum/thread-8404955-1-1.html">https://www.right.com.cn/forum/thread-8404955-1-1.html</a> <a href="#user-content-fnref-https://www.right.com.cn/forum/thread-8404955-1-1.html" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-https://www.right.com.cn/forum/thread-8238692-1-1.html">
+<p><a href="https://www.right.com.cn/FORUM/thread-8238692-1-1.html">https://www.right.com.cn/FORUM/thread-8238692-1-1.html</a> <a href="#user-content-fnref-https://www.right.com.cn/forum/thread-8238692-1-1.html" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-https://github.com/hanwckf/bl-mt798x/issues/52#issuecomment-2066323602">
+<p><a href="https://github.com/hanwckf/bl-mt798x/issues/52#issuecomment-2066323602">https://github.com/hanwckf/bl-mt798x/issues/52#issuecomment-2066323602</a> <a href="#user-content-fnref-https://github.com/hanwckf/bl-mt798x/issues/52#issuecomment-2066323602" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CQKIrR8a.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>家用 NAS 折腾记</title><!-- Open Graph / Facebook --><meta property="og:title" content="家用 NAS 折腾记"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/homelab/%E5%AE%B6%E7%94%A8-nas-%E6%8A%98%E8%85%BE%E8%AE%B0/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css">
+<style>progressive-image[data-astro-cid-njl3qch2]{display:block}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-uniujczg-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen pointer-events-none"> <div class="absolute w-screen h-screen pointer-events-none" data-astro-transition-persist="bg"> <script type="module" src="/_astro/ProgressiveImage.astro_astro_type_script_index_0_lang.Zsl7yvEt.js"></script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2="true" class="relative size-full pointer-events-none"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2> </progressive-image>  </div> <div class="pointer-events-auto"><div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-50 lg:w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4" data-astro-transition-persist="author-info"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism sm:p-2"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/archive"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--calendar] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Archive
+ </div> </a>   <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none hidden sm:flex" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none max-sm:flex hidden" role="button" tabindex="0" href="/finder"> <div class="flex justify-center items-center"> <i class="icon-[ix--navigation] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Finder
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z2plROE" component-url="/_astro/WindowsList.De5TXCyW.js" component-export="WindowsList" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;className&quot;:[0,&quot;flex-1 hidden sm:flex flex-col gap-1 overflow-auto px-2&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowsList&quot;,&quot;value&quot;:&quot;solid-js&quot;}"></astro-island> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-uniujczg-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 家用 NAS 折腾记 </p> <p class="text-sm"> 杨秋逸 · 2024-11-27 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <h1 id="家用-nas-折腾记"><a href="#家用-nas-折腾记">家用 NAS 折腾记</a></h1>
+<h2 id="前言"><a href="#前言">前言</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>每位 Minecraft 玩家最终都会走上 HomeLab 的不归路。</span></span></code></pre>
+<p>从初中开始，我就幻想着拥有一台自己的服务器，部署一些服务，囿于各种限制，迟迟未能实现。时过境迁，在2023年，我的室友<code>阿珑</code><a href="https://www.bilibili.com/video/BV1o24y1K7mh/?spm_id_from=333.999.0.0">玩起了 NAS</a>，这对我造成了不小的震撼，遂下决心，要搞一台自己的 NAS。</p>
+<p>历尽千辛万苦，我得到了比较满意的方案，写此文以记之。本文会从软硬件多方面进行详细的介绍，希望对正在看这篇文章的你有所帮助。</p>
+<h2 id="硬件"><a href="#硬件">硬件</a></h2>
+<p>硬件对于我来说是最艰难的一步，不仅仅是因为平时没有接触这方面的经验，更因为硬件的种类繁多，经常挑花了眼。</p>
+<h2 id="综述"><a href="#综述">综述</a></h2>
+<p>该小节会介绍现有的协议，分析其优劣。</p>
+<h3 id="ftp"><a href="#ftp">FTP</a></h3>
+<p>最经典的文件传输协议，具有较好的跨平台性，通用性强；支持断点续传和多文件同时上传</p>
+<p><strong>缺点：</strong></p>
+<p>由于FTP在传输过程中默认使用明文传输，因此安全性较低</p>
+<h3 id="smb"><a href="#smb">SMB</a></h3>
+<p>Windows 系统开箱即用的协议，在内网中使用体验非常 Nice。如果你是在<strong>内网</strong>的 Windows 上使用，可以考虑此协议。</p>
+<p><strong>缺点：</strong></p>
+<p>由于过于普及，经常爆出漏洞，若 NAS 中保存了一些隐私数据，那么我非常不建议把 SMB 协议暴露在外网中使用。</p>
+<h3 id="nfs"><a href="#nfs">NFS</a></h3>
+<p>NFS 协议，是 Linux 内核默认支持的文件传输协议，具有不错的性能，但是没有鉴权功能，因此只能在内网中使用。如果你是在<strong>内网</strong>的 Linux 上使用，可以考虑此协议。</p>
+<h3 id="webdav"><a href="#webdav">WebDAV</a></h3>
+<p>WebDav 基于 HTTP 协议，默认是明文传输，安全性较低，所以在实际使用时会再套一层 TLS 协议，可以有效抵御中间人攻击。</p>
+<h3 id="sftp"><a href="#sftp">SFTP</a></h3>
+<p>基于 SSH 的文件传输协议，牺牲了一部分性能，换来了非凡的安全性。</p>
+<h2 id="我的方案"><a href="#我的方案">我的方案</a></h2>
+<p>最后我选择了 SFTP 协议，虽然性能比较低，但是考虑到我主要是远程使用，网速比较慢，在实际使用时根本不会达到 SSH 的性能瓶颈，所以这是最适合我的一种方案，如果你也是远程使用，可以考虑这个方案。</p>
+<p>我选择使用 SFTPGo 来创建 SFTP Service，因为他提供了 WebUI，可以很方便地远程管理用户和密钥。</p>
+<p>SFTPGo 提供了几种安装方式，对我而言最适合的就是使用 Docker 部署。</p>
+<h3 id="使用-sftpgo-创建-sftp-服务"><a href="#使用-sftpgo-创建-sftp-服务">使用 SFTPGo 创建 SFTP 服务</a></h3>
+<h3 id="使用-rclone-挂载-sftp"><a href="#使用-rclone-挂载-sftp">使用 Rclone 挂载 SFTP</a></h3>
+<p>诚然，市面上有很多挂载工具，例如大名鼎鼎的 RaiDrive，但是有广告，而且有限制，只能挂载有限数量的网盘，因此我使用了一段时间后，最终选择切换到 Rclone。</p>
+<p>如果你比较讨厌命令行，那么真心推荐 RaiDrive，除了上述两个缺点，基本可以满足大部分日常使用的需求。</p>
+<p>话不多说，开始折腾 Rclone！</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">Rclone</span><span style="color:#9ECBFF"> mount</span><span style="color:#9ECBFF"> truenas-main-sftp:/mnt</span><span style="color:#9ECBFF"> Z:</span></span></code></pre>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div></div> </div><astro-island uid="gD63X" component-url="/_astro/WindowManager.DgB5G-u_.js" component-export="WindowManager" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;class&quot;:[0,&quot;invisible md:visible not-md:pointer-events-none&quot;],&quot;data-astro-transition-persist&quot;:[0,&quot;wm&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowManager&quot;,&quot;value&quot;:&quot;solid-js&quot;}" data-astro-transition-persist="wm"></astro-island>  </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

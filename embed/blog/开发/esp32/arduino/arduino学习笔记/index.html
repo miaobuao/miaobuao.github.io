@@ -1,0 +1,35 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Arduino学习笔记</title><!-- Open Graph / Facebook --><meta property="og:title" content="Arduino学习笔记"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/%E5%BC%80%E5%8F%91/esp32/arduino/arduino%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> Arduino学习笔记 </p> <p class="text-sm"> 杨秋逸 · 2023-06-02 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="arduino学习笔记"><a href="#arduino学习笔记">Arduino学习笔记</a></h1>
+<h2 id="pinmodepin-mode"><a href="#pinmodepin-mode">pinMode(pin, mode)</a></h2>
+<p><strong>mode</strong><sup><a href="#user-content-fn-http://www.taichi-maker.com/homepage/reference-index/arduino-code-reference/pinmode/" id="user-content-fnref-http://www.taichi-maker.com/homepage/reference-index/arduino-code-reference/pinmode/" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup>:</p>
+<p>INPUT sets the GPIO as input without pullup or pulldown (high impedance).<sup><a href="#user-content-fn-https://espressif-docs.readthedocs-hosted.com/projects/arduino-esp32/en/latest/api/gpio.html" id="user-content-fnref-https://espressif-docs.readthedocs-hosted.com/projects/arduino-esp32/en/latest/api/gpio.html" data-footnote-ref="" aria-describedby="footnote-label">2</a></sup></p>
+<p>OUTPUT sets the GPIO as output/read mode.</p>
+<p>INPUT_PULLDOWN sets the GPIO as input with the internal pulldown.</p>
+<p>INPUT_PULLUP sets the GPIO as input with the internal pullup.</p>
+<ul>
+<li>output</li>
+</ul>
+<p>当引脚设置为输出（OUTPUT）模式时，引脚为低阻抗状态。这意味着Arduino可以向其它电路元器件提供电流。也就是说，Arduino引脚在输出（OUTPUT）模式下可以点亮LED或者驱动电机。（如果被驱动的电机需要超过40mA的电流，Arduino将需要三极管或其它辅助元件来驱动他们。）</p>
+<ul>
+<li>input</li>
+</ul>
+<p>当引脚设置为输入（INPUT）模式时，引脚为高阻抗状态（100兆欧）。此时该引脚可用于读取传感器信号或开关信号。</p>
+<p>::: warning
+当Arduino引脚设置为输入（INPUT）模式或者输入上拉（INPUT_PULLUP）模式，请勿将该引脚与负压或者高于5V的电压相连，否则可能会损坏Arduino控制器。
+:::</p>
+<ul>
+<li>input_pullup</li>
+</ul>
+<p>Arduino 微控制器自带内部上拉电阻。如果你需要使用该内部上拉电阻，可以通过pinMode()将引脚设置为输入上拉（INPUT_PULLUP）模式。</p>
+<p>::: warning
+当Arduino引脚设置为输入（INPUT）模式或者输入上拉（INPUT_PULLUP）模式，请勿将该引脚与负压或者高于5V的电压相连，否则可能会损坏Arduino控制器。
+:::</p>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-http://www.taichi-maker.com/homepage/reference-index/arduino-code-reference/pinmode/">
+<p><a href="http://www.taichi-maker.com/homepage/reference-index/arduino-code-reference/pinmode/">http://www.taichi-maker.com/homepage/reference-index/arduino-code-reference/pinmode/</a> <a href="#user-content-fnref-http://www.taichi-maker.com/homepage/reference-index/arduino-code-reference/pinmode/" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-https://espressif-docs.readthedocs-hosted.com/projects/arduino-esp32/en/latest/api/gpio.html">
+<p><a href="https://espressif-docs.readthedocs-hosted.com/projects/arduino-esp32/en/latest/api/gpio.html">https://espressif-docs.readthedocs-hosted.com/projects/arduino-esp32/en/latest/api/gpio.html</a> <a href="#user-content-fnref-https://espressif-docs.readthedocs-hosted.com/projects/arduino-esp32/en/latest/api/gpio.html" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

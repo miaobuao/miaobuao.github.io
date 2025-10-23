@@ -1,0 +1,81 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>01背包问题</title><!-- Open Graph / Facebook --><meta property="og:title" content="01背包问题"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/suan-fa/01bei-bao-wen-ti/"><meta name="description" content="# 01背包问题
+
+经典的背包问题，只能选择要 or 不要
+
+"><meta property="og:description" content="# 01背包问题
+
+经典的背包问题，只能选择要 or 不要
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 01背包问题 </p> <p class="text-sm"> 杨秋逸 · 2021-02-28 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="01背包问题"><a href="#01背包问题">01背包问题</a></h1>
+<p>经典的背包问题，只能选择要 or 不要</p>
+<!--more-->
+<h2 id="问题"><a href="#问题">问题</a></h2>
+<p>有 N 件物品和一个容量是 V 的背包。每件物品只能使用一次。</p>
+<p>第 i 件物品的体积是 vi，价值是 wi。</p>
+<p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。
+输出最大价值。</p>
+<p>输入格式
+第一行两个整数，N，V，用空格隔开，分别表示物品数量和背包容积。</p>
+<p>接下来有 N 行，每行两个整数 vi,wi，用空格隔开，分别表示第 i 件物品的体积和价值。</p>
+<p>输出格式
+输出一个整数，表示最大价值。</p>
+<p>数据范围
+0&#x3C;N,V≤1000
+0&#x3C;vi,wi≤1000
+输入样例
+4 5
+1 2
+2 4
+3 4
+4 5
+输出样例：
+8</p>
+<h2 id="朴素版本-code"><a href="#朴素版本-code">朴素版本-COde</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> f</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">1005</span><span style="color:#79b8ff">]</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">1005</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> n, m;</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> w</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1005</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, v</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1005</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> n </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> m;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> n; i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        cin </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> v</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> w</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> n; i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> </span><span style="color:#b392f0">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> j </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; j </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> m; j</span><span style="color:#F97583">++</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            f</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">j</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> f</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i </span><span style="color:#F97583">-</span><span style="color:#79B8FF"> 1</span><span style="color:#79b8ff">]</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">j</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">j </span><span style="color:#F97583">></span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> v</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#E1E4E8">                f</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">j</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#B392F0"> max</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">f</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">i</span><span style="color:#b392f0">]</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">j</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">, f</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">i </span><span style="color:#F97583">-</span><span style="color:#79B8FF"> 1</span><span style="color:#b392f0">]</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">j </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> v</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> w</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">i</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#79b8ff">}</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">f</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">n</span><span style="color:#ffab70">]</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">m</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<h2 id="空间优化版本"><a href="#空间优化版本">空间优化版本</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> f</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">1005</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> n, m;</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> w</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1005</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, v</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1005</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> n </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> m;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> n; i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        cin </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> v</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> w</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> n; i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> j </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> m; j </span><span style="color:#F97583">></span><span style="color:#F97583">=</span><span style="color:#E1E4E8">v</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">i</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">; j</span><span style="color:#F97583">--</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            f</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">j</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#B392F0"> max</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">f</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">j</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">, f</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">j </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> v</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> w</span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">i</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">f</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">m</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<p><a href="https://www.acwing.com/problem/content/2/">AcWing-原题</a></p>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

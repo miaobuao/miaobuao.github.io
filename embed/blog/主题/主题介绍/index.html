@@ -1,0 +1,57 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>主题介绍</title><!-- Open Graph / Facebook --><meta property="og:title" content="主题介绍"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/%E4%B8%BB%E9%A2%98/%E4%B8%BB%E9%A2%98%E4%BB%8B%E7%BB%8D/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 主题介绍 </p> <p class="text-sm"> 杨秋逸 · 2024-11-26 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="主题介绍"><a href="#主题介绍">主题介绍</a></h1>
+<p>我的博客主题是基于 Astro 自己 DIY 的, 暂时还没有名字. 本文会介绍该主题的功能特性!</p>
+<h2 id="front-matter"><a href="#front-matter">Front Matter</a></h2>
+<p>Markdown 文件有两个主要部分：front matter 和内容. Front matter 一般是是 yaml 格式的, 记录了文章的一些元信息, 如发布时间, 文章的标题和标签等.</p>
+<p>在我使用了很多别人的主题之后, 我对其有了自己的一些认识: 很多信息是冗余的.</p>
+<p>例如文章标题, 完全可以用文件名来做为默认值, 当修改了文件名, 文章的标题也会发生更新. 这个主题的特点是, 每个字段都有自动推断缺失值的能力, 这意味着你完全可以不用写 front matter! 不过我还是建议填写一些必要的字段, 以便于后期切换其他主题.</p>
+<p>下面是一个完整的 front matter, 可以看到其中的 <code>date</code>, <code>ctime</code>, <code>pubDate</code> 都是相同的含义, 这是为了兼容从其他框架 (如hexo) 迁移过来的文档, 实际使用时只要选一个自己习惯的用法即可:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#B392F0">---</span></span>
+<span class="line"><span style="color:#85E89D">title</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">文章的标题</span></span>
+<span class="line"><span style="color:#85E89D">description</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">文章的描述</span></span>
+<span class="line"><span style="color:#85E89D">tags</span><span style="color:#E1E4E8">: </span><span style="color:#79b8ff">[</span><span style="color:#9ECBFF">标签1</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">标签2</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">标签3</span><span style="color:#79b8ff">]</span></span>
+<span class="line"><span style="color:#85E89D">date</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2024-07-22 15:36:38</span></span>
+<span class="line"><span style="color:#85E89D">ctime</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2024-07-22 15:36:38</span></span>
+<span class="line"><span style="color:#85E89D">mtime</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2024-07-23 00:00:00</span></span>
+<span class="line"><span style="color:#85E89D">pubDate</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2024-07-22 15:36:38</span></span>
+<span class="line"><span style="color:#85E89D">updatedDate</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">2024-07-23 00:00:00</span></span>
+<span class="line"><span style="color:#85E89D">heroImage</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">./images/cover.jpg</span></span>
+<span class="line"><span style="color:#85E89D">cover</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">./images/cover.jpg</span></span>
+<span class="line"><span style="color:#85E89D">draft</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span></span>
+<span class="line"><span style="color:#B392F0">---</span></span></code></pre>
+<h3 id="参数解释"><a href="#参数解释">参数解释</a></h3>
+<h4 id="title"><a href="#title">title</a></h4>
+<p><em>type: string</em></p>
+<p>文章标题，会显示在主页的文章列表中。</p>
+<p>缺省时按以下规则顺延推断：</p>
+<ol>
+<li>Markdown 内的一级标题</li>
+<li>Markdown 文件名（不包含文件拓展名 <code>.md</code>）</li>
+</ol>
+<h4 id="description"><a href="#description">description</a></h4>
+<p><em>type: string</em></p>
+<p>文章描述，会显示在文章详情页的文章内容中。</p>
+<p>缺省时按以下规则顺延推断：</p>
+<ol>
+<li>Markdown 内 <code>&#x3C;!-- more --></code> 之前的所有文本内容</li>
+<li>Markdown 内的第一个段落</li>
+</ol>
+<h4 id="tags"><a href="#tags">tags</a></h4>
+<p><em>type: string[]</em></p>
+<p>文章标签，常用于标记文章的所属领域或类别.</p>
+<p>缺省时会把文档的路径解析为 Tags. 例如 <code>/os/linux/Linux指令介绍.md</code>, 会被解析为<code>tags: [os, linux]</code></p>
+<h4 id="datectimepubdate"><a href="#datectimepubdate">date、ctime、pubDate</a></h4>
+<p><em>type: string</em></p>
+<p>都表示文章发布时间，一般格式为 <code>YYYY-MM-DD HH:mm:ss</code></p>
+<p>之所以用三个属性来表示文章的发布时间，是为了兼容 <code>hexo</code> 和其他主题</p>
+<p>缺省时会使用该文章在 git log 中记录的第一次提交时间.</p>
+<h4 id="mtimeupdateddate"><a href="#mtimeupdateddate">mtime、updatedDate</a></h4>
+<p><em>type: string</em></p>
+<p>都表示文章更新时间，一般格式为 <code>YYYY-MM-DD HH:mm:ss</code></p>
+<p>使用两个字段，同样是为了兼容 <code>hexo</code> 和其他主题</p>
+<p>缺省时使用该文章在 git log 中记录的最后一次提交时间</p>
+<h4 id="heroimagecover"><a href="#heroimagecover">heroImage、cover</a></h4>
+<p><em>type: string</em></p>
+<p>文章的封面图，会显示在首页的文章列表中. 省略时这篇文章就没有封面了.</p>
+<h4 id="draft"><a href="#draft">draft</a></h4>
+<p><em>type: boolean</em></p>
+<p>是否为草稿. 标记为草稿的文章不会被被编译.</p>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

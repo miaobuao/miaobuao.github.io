@@ -1,0 +1,53 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>部署 llama3 + Web UI 实现外网访问</title><!-- Open Graph / Facebook --><meta property="og:title" content="部署 llama3 + Web UI 实现外网访问"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/llm/bu-shu-llama3--web-ui-shi-xian-wai-wang-fang-wen/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 部署 llama3 + Web UI 实现外网访问 </p> <p class="text-sm"> 杨秋逸 · 2024-04-26 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="部署-llama3--web-ui-实现外网访问"><a href="#部署-llama3--web-ui-实现外网访问">部署 llama3 + Web UI 实现外网访问</a></h1>
+<p>首先安装 nvidia 驱动和 docker, 为了让容器可以使用显卡，需要安装 NVIDIA Container Toolkit(NVIDIA Docker) , 此处不做赘述。</p>
+<h2 id="启动-nvidia-cuda-容器"><a href="#启动-nvidia-cuda-容器">启动 nvidia cuda 容器</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> -it</span><span style="color:#79B8FF"> --gpus</span><span style="color:#9ECBFF"> all</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --ipc=host</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --ulimit</span><span style="color:#9ECBFF"> memlock=</span><span style="color:#79B8FF">-1</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --ulimit</span><span style="color:#9ECBFF"> stack=</span><span style="color:#79B8FF">67108864</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --name</span><span style="color:#9ECBFF"> llama</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#9ECBFF">    nvcr.io/nvidia/pytorch:23.03-py3</span><span style="color:#9ECBFF"> bash</span></span></code></pre>
+<p>下载 <a href="https://huggingface.co/jartine/Meta-Llama-3-8B-Instruct-llamafile/resolve/main/Meta-Llama-3-8B-Instruct.Q5_K_M.llamafile">llama3 8B</a></p>
+<p>授予可执行权限</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">chmod</span><span style="color:#9ECBFF"> +x</span><span style="color:#9ECBFF"> Meta-Llama-3-8B-Instruct.Q5_K_M.llamafile</span></span></code></pre>
+<p>在 tmux 中运行该应用</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">./Meta-Llama-3-8B-Instruct.Q5_K_M.llamafile</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --gpu</span><span style="color:#9ECBFF"> nvidia</span><span style="color:#79B8FF"> -ngl</span><span style="color:#79B8FF"> 999</span><span style="color:#79B8FF"> -c</span><span style="color:#79B8FF"> 4096</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --port</span><span style="color:#79B8FF"> 8080</span></span></code></pre>
+<h2 id="启动-webui-容器"><a href="#启动-webui-容器">启动 WebUI 容器</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> pull</span><span style="color:#9ECBFF"> yidadaa/chatgpt-next-web</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> -d</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --net</span><span style="color:#9ECBFF"> container:llama</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    -e</span><span style="color:#9ECBFF"> OPENAI_API_KEY=''</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    -e</span><span style="color:#9ECBFF"> CODE=</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">YOUR</span><span style="color:#9ECBFF"> PW</span><span style="color:#E1E4E8">D</span><span style="color:#F97583">></span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    -e</span><span style="color:#9ECBFF"> BASE_URL=http://localhost:8080</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --name</span><span style="color:#9ECBFF"> llama-webui</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#9ECBFF">    yidadaa/chatgpt-next-web</span></span></code></pre>
+<h2 id="使用-cloudflare-tunnel-转发"><a href="#使用-cloudflare-tunnel-转发">使用 Cloudflare Tunnel 转发</a></h2>
+<p><img alt="alt text" loading="lazy" decoding="async" fetchpriority="auto" width="2253" height="1344" src="/_astro/image.gVpDe6tg_Z2uO1YT.webp" ></p>
+<p><img alt="alt text" loading="lazy" decoding="async" fetchpriority="auto" width="1464" height="850" src="/_astro/image-1.BXWdfMrG_L6DCU.webp" ></p>
+<p>点击创建 Tunnel</p>
+<p><img alt="alt text" loading="lazy" decoding="async" fetchpriority="auto" width="1245" height="1073" src="/_astro/image-2.B3gFozpl_63NAR.webp" ></p>
+<p>点击<code>Docker</code>，然后复制下面的指令</p>
+<p><img alt="alt text" loading="lazy" decoding="async" fetchpriority="auto" width="1850" height="956" src="/_astro/image-3.DLxPfeMB_Z27MhBQ.webp" ></p>
+<p>添加<code>--net</code>和<code>--name</code>参数，然后粘贴到主机的终端里执行：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --net</span><span style="color:#9ECBFF"> container:llama-webui</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    --name</span><span style="color:#9ECBFF"> llama-tunnel</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#9ECBFF">    cloudflare/cloudflared:latest</span><span style="color:#9ECBFF"> tunnel</span><span style="color:#79B8FF"> --no-autoupdate</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> --token</span><span style="color:#F97583"> </span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">YOUR</span><span style="color:#9ECBFF"> TOKE</span><span style="color:#E1E4E8">N</span><span style="color:#F97583">></span></span></code></pre>
+<p><img alt="alt text" loading="lazy" decoding="async" fetchpriority="auto" width="1600" height="647" src="/_astro/image-4.B3mQXi_U_ZaWMjx.webp" ></p>
+<p>执行成功后，返回 cloudflare 的网页，可以看到 connectors 里面多出来了一个连接</p>
+<p><strong>tips: 该指令建议在 tmux 中执行</strong></p>
+<p><img alt="alt text" loading="lazy" decoding="async" fetchpriority="auto" width="1843" height="840" src="/_astro/image-5.DRlKxRv5_Z1My0o4.webp" ></p>
+<p>点击下一步，输入 subdomain，选择 domain，path 空着即可，协议选择 http,由于 webui 默认开在 3000 端口，所以 URL 处输入 <code>localhost:3000</code></p>
+<p><img alt="alt text" loading="lazy" decoding="async" fetchpriority="auto" width="1511" height="621" src="/_astro/image-6.DwjwpsND_Z1EAzzY.webp" ></p>
+<p>保存之后，就可以在外网访问了！</p>
+<h2 id="参考"><a href="#参考">参考</a></h2>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/212772001">Docker 网络模式详解及容器间网络通信</a></li>
+<li><a href="https://github.com/Mozilla-Ocho/llamafile">llamafile</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/644914669">使用 Docker 快速上手官方版 LLaMA2 开源大模型</a></li>
+<li><a href="https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel-23-03.html">PyTorch container - nvidia</a></li>
+<li><a href="https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web">ChatGPT-Next-Web</a></li>
+</ul>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

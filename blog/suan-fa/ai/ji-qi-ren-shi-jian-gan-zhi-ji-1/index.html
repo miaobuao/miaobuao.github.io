@@ -1,0 +1,297 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CQKIrR8a.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>机器人实践-感知机（1）</title><!-- Open Graph / Facebook --><meta property="og:title" content="机器人实践-感知机（1）"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/suan-fa/ai/ji-qi-ren-shi-jian-gan-zhi-ji-1/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css">
+<style>progressive-image[data-astro-cid-njl3qch2]{display:block}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-uniujczg-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen pointer-events-none"> <div class="absolute w-screen h-screen pointer-events-none" data-astro-transition-persist="bg"> <script type="module" src="/_astro/ProgressiveImage.astro_astro_type_script_index_0_lang.Zsl7yvEt.js"></script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2="true" class="relative size-full pointer-events-none"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2> </progressive-image>  </div> <div class="pointer-events-auto"><div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-50 lg:w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4" data-astro-transition-persist="author-info"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism sm:p-2"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/archive"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--calendar] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Archive
+ </div> </a>   <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none hidden sm:flex" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none max-sm:flex hidden" role="button" tabindex="0" href="/finder"> <div class="flex justify-center items-center"> <i class="icon-[ix--navigation] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Finder
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z2plROE" component-url="/_astro/WindowsList.De5TXCyW.js" component-export="WindowsList" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;className&quot;:[0,&quot;flex-1 hidden sm:flex flex-col gap-1 overflow-auto px-2&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowsList&quot;,&quot;value&quot;:&quot;solid-js&quot;}"></astro-island> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-uniujczg-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 机器人实践-感知机（1） </p> <p class="text-sm"> 杨秋逸 · 2022-03-02 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <p>感知机接收多个输入信号，输出一个信号。这里所说的“信号”可以想象成电流或河流那样具备“流动性”的东西。像电流流过导线，向前方输送电子一样，感知机的信号也会形成流，向前方输送信息。但是，和实际的电流不同的是，感知机的信号只有“流/不流”（1/0）两种取值。<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup></p>
+<p>感知机的数学公式如下：</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>y</mi><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.16em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo separator="true">,</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>≤</mo><mi>θ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo separator="true">,</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>></mo><mi>θ</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">y = \left\{
+    \begin{matrix}
+        0  , w_1x_1 + w_2x_2\le\theta \\ 
+        1  ,w_1x_1 + w_2x_2\gt\theta
+    \end{matrix}
+    \right.</annotation></semantics></math></span>
+<p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_1, x_2</annotation></semantics></math></span>是输入；<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>w</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">w_1, w_2</annotation></semantics></math></span>是权重(weight),；<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span>代表阈值，当<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>></mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">w_1x_1+w_2x_2\gt\theta</annotation></semantics></math></span>代表神经元被激活了，反之未被激活。
+<img alt="感知机网络图" loading="lazy" decoding="async" fetchpriority="auto" width="310" height="228" src="/_astro/1646209262323.CFsEK_p9_ZLHrr8.webp" ></p>
+<center style="font-size:10px;margin-bottom:10px;">一个⚪代表一个神经元</center>
+<p>我们把公式中的<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span>移到左边，得到</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>y</mi><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.16em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo separator="true">,</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>+</mo><mi>b</mi><mo>≤</mo><mn>0</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo separator="true">,</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>+</mo><mi>b</mi><mo>></mo><mn>0</mn></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">y = \left\{
+    \begin{matrix}
+        0  , w_1x_1 + w_2x_2+b\le 0 \\ 
+        1  ,w_1x_1 + w_2x_2+b\gt 0
+    \end{matrix}
+    \right.</annotation></semantics></math></span>
+<p>其中<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mo>−</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">b=-\theta</annotation></semantics></math></span>， 我们把b称为偏置(bias)</p>
+<p>我们可以把这个公式形象化地想象成这副样子：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="702" height="434" src="/_astro/1647362892310.CdrU3aCq_1Pah6H.webp" ></p>
+<h2 id="用感知机实现逻辑门"><a href="#用感知机实现逻辑门">用感知机实现逻辑门</a></h2>
+<p><strong>与门实现：</strong></p>
+<p>与门只有在两个输入都为1时，才会返回1，否则返回0，它的真值表如下：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>x1</th><th>x2</th><th>y</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></tbody></table>
+<p>我们可以把与门可视化：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1396" height="969" src="/_astro/1647359412136.BctXg-1Y_Z1eaBJi.webp" >
+黄色圈圈代表0，红色圈圈代表1，只需要用一条紫色的直线，就可以把0和1区分开来，这就是传说中的线性可分。
+注意：<strong>这条紫色的直线并不唯一</strong></p>
+<p><strong>Python实现：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> numpy </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> np</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> AND</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x1, x2</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x1, x2, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    w </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> np.sum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">w</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">></span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">:   </span><span style="color:#6A737D"># x1*w1+x2*w2 + b > 0</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">test </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">[</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D"># 测试</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> test:</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x, AND</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">, x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">1</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span></code></pre>
+<p>运行结果：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="txt"><code><span class="line"><span>[0, 0] 0</span></span>
+<span class="line"><span>[0, 1] 0</span></span>
+<span class="line"><span>[1, 0] 0</span></span>
+<span class="line"><span>[1, 1] 1</span></span></code></pre>
+<p>在以上代码中，我们把<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>w</mi><mn>2</mn></msub><mo separator="true">,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">w_1, w_2, b</annotation></semantics></math></span>分别设置为1, 1, -1, 事实上有无穷多的取值，同样可以达到我们的预期，比如 (0.5, 0.5, -0.7)</p>
+<p><strong>或门实现：</strong></p>
+<p>或门：只要存在一个输入为1，则结果是1，否则为0
+同样我们可以把或门的所有结果在坐标轴上表示出来：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1100" height="901" src="/_astro/1647359815428.DLONZmCB_Z1y24sv.webp" >
+黄色圈圈在这里表示1，红色表示0，同样可以轻松找到无数条直线进行分离</p>
+<p><strong>Python实现：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> numpy </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> np</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> OR</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x1, x2</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x1, x2, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    w </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0.6</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> np.sum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">w</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">></span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    test </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">[</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">]</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> test:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x, OR</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">, x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">1</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span></code></pre>
+<p>运行结果：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="txt"><code><span class="line"><span>[0, 0] 0</span></span>
+<span class="line"><span>[0, 1] 1</span></span>
+<span class="line"><span>[1, 0] 1</span></span>
+<span class="line"><span>[1, 1] 1</span></span></code></pre>
+<p><strong>与非门实现：</strong>
+与非门就是把与门的结果取反</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>x1</th><th>x2</th><th>y</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr><tr><td><img  loading="lazy" decoding="async" fetchpriority="auto" width="1276" height="1046" src="/_astro/1647360018607.3fCArSik_ZefHtm.webp" ></td><td></td><td></td></tr><tr><td>红色代表1，黄色代表0，依然可以找到至少一条直线进行分割</td><td></td><td></td></tr></tbody></table>
+<p><strong>Python实现：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> numpy </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> np</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> NAND</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x1, x2</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x1, x2, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    w </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.7</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> np.sum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">w</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">></span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    test </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">[</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">]</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> test:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x, NAND</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">, x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">1</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span></code></pre>
+<p>运行结果：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="txt"><code><span class="line"><span>[0, 0] 1</span></span>
+<span class="line"><span>[0, 1] 1</span></span>
+<span class="line"><span>[1, 0] 1</span></span>
+<span class="line"><span>[1, 1] 0</span></span></code></pre>
+<p><strong>异或门实现：</strong>
+异或门的真值表：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>x1</th><th>x2</th><th>y</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></tbody></table>
+<p>不妨把异或门也画出来：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1302" height="1103" src="/_astro/1647361396841.Dmlk6S5d_VG2fB.webp" >
+然后我们发现，没有办法划出一条直线，使得红色点与黄色点分布在直线的两边。
+说人话就是：找不到一条直线，对黄色点与红色点进行分类。
+结论：<strong>异或门无法使用单层感知机实现</strong>。</p>
+<p>但是经过逻辑推导之后，发现异或门可以用与非门和或门组合实现。
+首先要认识与门、或门、与非门的符号表示;
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="507" height="106" src="/_astro/1646212010692.ozTgYaZ1_Z1ppQ6K.webp" >
+然后我们可以这样表示异或门：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="993" height="299" src="/_astro/1646212059793.OkcJTwXS_Z2h4lH7.webp" ></p>
+<p><strong>Python实现：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> XOR</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a, b</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    x1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> OR</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a, b</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D"># s1</span></span>
+<span class="line"><span style="color:#E1E4E8">    x2 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> NAND</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a, b</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D"># s2</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> NAND</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x1, x2</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D"># y</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    test </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">[</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">]</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> test:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x, XOR</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">, x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">1</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span></code></pre>
+<p>运行结果：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="txt"><code><span class="line"><span>[0, 0] 1</span></span>
+<span class="line"><span>[0, 1] 0</span></span>
+<span class="line"><span>[1, 0] 0</span></span>
+<span class="line"><span>[1, 1] 1</span></span></code></pre>
+<p>结合了上面写的NAND和OR函数，我们就实现异或门啦~
+实际上我们把不同种感知机进行组合的过程就可以看作是多层感知机：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="689" src="/_astro/1646212281451.DXfIY-ou_jj4Qg.webp" >
+上图中的s1, s2代表的就是代码中对应的注释的位置</p>
+<p><a href="/blog/算法/ai/机器人实践-感知机2">>>>感知机（2）&#x3C;&#x3C;&#x3C;</a></p>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-1">
+<p>深度学习入门：基于Python的理论与实现. [日］斋藤康毅 <a href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div></div> </div><astro-island uid="gD63X" component-url="/_astro/WindowManager.DgB5G-u_.js" component-export="WindowManager" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;class&quot;:[0,&quot;invisible md:visible not-md:pointer-events-none&quot;],&quot;data-astro-transition-persist&quot;:[0,&quot;wm&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowManager&quot;,&quot;value&quot;:&quot;solid-js&quot;}" data-astro-transition-persist="wm"></astro-island>  </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

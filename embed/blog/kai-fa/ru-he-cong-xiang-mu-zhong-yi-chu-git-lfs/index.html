@@ -1,0 +1,48 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>如何从项目中移除git-lfs</title><!-- Open Graph / Facebook --><meta property="og:title" content="如何从项目中移除git-lfs"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/kai-fa/ru-he-cong-xiang-mu-zhong-yi-chu-git-lfs/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 如何从项目中移除git-lfs </p> <p class="text-sm"> 杨秋逸 · 2025-01-14 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="如何从项目中移除git-lfs"><a href="#如何从项目中移除git-lfs">如何从项目中移除git-lfs</a></h1>
+<h2 id="git-lfs"><a href="#git-lfs">Git LFS</a></h2>
+<p>Git LFS（Large File Storage）是 Git 的一个扩展，用于处理和管理大型文件和二进制文件。引入 Git LFS 的主要原因包括：</p>
+<ol>
+<li>
+<p><strong>减小仓库体积</strong>：普通的 Git 仓库在处理大文件时，仓库的体积会迅速增大，因为 Git 会保存每个版本的完整文件。Git LFS 通过只在本地存储文件的指针，而不是文件的完整内容，减小了仓库的体积。</p>
+</li>
+<li>
+<p><strong>提高性能</strong>：由于 Git 不擅长处理大文件，克隆、拉取和推送操作在有大文件的仓库中会变得非常慢。Git LFS 通过只在需要时下载大文件，提高了这些操作的性能。</p>
+</li>
+<li>
+<p><strong>优化存储</strong>：Git LFS 将大文件存储在一个专门的服务器上，而不是在 Git 仓库中。这使得仓库的存储更加高效，并且可以利用专门的存储解决方案来管理大文件。</p>
+</li>
+</ol>
+<h2 id="为什么不要使用-git-lfs-1"><a href="#为什么不要使用-git-lfs-1">为什么不要使用 Git LFS <sup></sup></a><a href="#user-content-fn-https://news.ycombinator.com/item?id=27134972" id="user-content-fnref-https://news.ycombinator.com/item?id=27134972" data-footnote-ref="" aria-describedby="footnote-label">1</a></h2>
+<p>Git LFS 是一把双刃剑, 他之所以厉害, 是因为他把文件替换成了指针, 而之所以不建议使用, 也是因为他把文件替换成了指针.</p>
+<h3 id="1-git-lfs-是一个临时解决方案"><a href="#1-git-lfs-是一个临时解决方案">1. Git LFS 是一个临时解决方案</a></h3>
+<p>Git LFS 是在 Git 项目之外开发的，目的是填补 Git 在处理大型文件方面的不足。随着 Git 的不断发展，如果 Git 未来提供了更好的原生支持，Git LFS 的价值将不再存在，这意味着 Git LFS 只是一个临时的解决方案。</p>
+<h3 id="2-git-lfs-是不可逆的"><a href="#2-git-lfs-是不可逆的">2. Git LFS 是不可逆的</a></h3>
+<p>一旦在仓库中使用了 Git LFS，移除它将是一个不可逆的决定，需要重写历史并丢失原始的提交 SHA。重写历史在许多情况下是非常昂贵的，尤其是在专业环境中。即使短期内可以接受重写历史，未来的情况也可能发生变化。</p>
+<p>在 Mercurial 中，LFS 在某种程度上是一种检出仓库的实现细节。它意味着不改变仓库内容本身（数据），而只是改变你获取该数据的方式。然而在 Git LFS 中，数据本身必须被修改才能成为 LFS 数据，并且”LFS 标志”会被记录在历史中。</p>
+<h3 id="3-git-lfs-增加了复杂性"><a href="#3-git-lfs-增加了复杂性">3. Git LFS 增加了复杂性</a></h3>
+<p>对于 Git 用户来说，Git LFS 增加了额外的复杂性。用户需要安装、配置并了解 Git LFS 的存在。版本控制应该简单易用，大型文件处理也应该如此。Git LFS 的用户体验虽然不错，但由于它不在 Git 核心产品中，其可用性存在上限。此外，Git LFS 也会增加服务器操作的复杂性，因为需要支持一个额外的 HTTP 服务器来处理 LFS 访问。</p>
+<h2 id="如何从已经使用了-lfs-的项目中移除-lfs-2"><a href="#如何从已经使用了-lfs-的项目中移除-lfs-2">如何从已经使用了 LFS 的项目中移除 LFS <sup></sup></a><a href="#user-content-fn-https://github.com/git-lfs/git-lfs/issues/3026" id="user-content-fnref-https://github.com/git-lfs/git-lfs/issues/3026" data-footnote-ref="" aria-describedby="footnote-label">2</a></h2>
+<p>首先给你的git安装上lfs:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> lfs</span><span style="color:#9ECBFF"> install</span></span></code></pre>
+<p>然后clone你的仓库, 在你爹项目下把lfs的文件指针都拉下来, 使其变成真实的文件:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> lfs</span><span style="color:#9ECBFF"> pull</span></span></code></pre>
+<p><strong>确保你的文件已经不再是指针之后</strong>, 我们可以移除 <code>.gitattributes</code> 里的 lfs 相关内容.</p>
+<p>接下来, 我们可以尝试列出所有标记为 lfs 的文件, 这条指令理论上会输出所有被标记为 lfs 的文件:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> lfs</span><span style="color:#9ECBFF"> ls-files</span></span></code></pre>
+<p>我们需要为每个 lfs 文件都清理掉其在 git 中的缓存:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> rm</span><span style="color:#79B8FF"> --cached</span><span style="color:#F97583"> </span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">文件路</span><span style="color:#E1E4E8">径</span><span style="color:#F97583">></span></span></code></pre>
+<p>如果项目里有很多文件的话, 这会是一个费时费力的操作, 不过好在我们可以使用管道操作来简化这一过程:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> lfs</span><span style="color:#9ECBFF"> ls-files</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> cut</span><span style="color:#79B8FF"> -f</span><span style="color:#79B8FF"> 3</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> ' '</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> xargs</span><span style="color:#9ECBFF"> git</span><span style="color:#9ECBFF"> rm</span><span style="color:#79B8FF"> --cached</span></span></code></pre>
+<p>然后我们可以用 <code>git add</code> 来提交修改后的文件 (主要是把文件从指针替换成了原始文件). 并且提交你修改后的 <code>.gitattributes</code> 文件.</p>
+<p><strong>请在 commit 之前确保你的文件确实已经从文件指针变成了原始文件!</strong></p>
+<p>至此, 我们已经成功把 git-lfs 从我们的项目中移除了.</p>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-https://news.ycombinator.com/item?id=27134972">
+<p><a href="https://news.ycombinator.com/item?id=27134972">https://news.ycombinator.com/item?id=27134972</a> <a href="#user-content-fnref-https://news.ycombinator.com/item?id=27134972" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-https://github.com/git-lfs/git-lfs/issues/3026">
+<p><a href="https://github.com/git-lfs/git-lfs/issues/3026">https://github.com/git-lfs/git-lfs/issues/3026</a> <a href="#user-content-fnref-https://github.com/git-lfs/git-lfs/issues/3026" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

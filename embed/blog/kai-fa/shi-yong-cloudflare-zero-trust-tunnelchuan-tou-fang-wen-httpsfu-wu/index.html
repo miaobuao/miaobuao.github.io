@@ -1,0 +1,39 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>使用Cloudflare Zero Trust Tunnel穿透访问HTTPS服务</title><!-- Open Graph / Facebook --><meta property="og:title" content="使用Cloudflare Zero Trust Tunnel穿透访问HTTPS服务"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/kai-fa/shi-yong-cloudflare-zero-trust-tunnelchuan-tou-fang-wen-httpsfu-wu/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 使用Cloudflare Zero Trust Tunnel穿透访问HTTPS服务 </p> <p class="text-sm"> 杨秋逸 · 2023-07-21 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="使用-cloudflare-zero-trust-tunnel-穿透访问-https-服务"><a href="#使用-cloudflare-zero-trust-tunnel-穿透访问-https-服务">使用 Cloudflare Zero Trust Tunnel 穿透访问 HTTPS 服务</a></h1>
+<p>创建 https 和 http 的过程是一样的, 特别注意的是, 由于 cf 在客户机和源服务器之间充当了代理, 因此客户机访问的实际上是 CF 的服务器, 而不是直接访问源服务器, 同时又因为 CF 会默认开启 HTTPS 功能, 因此<strong>源服务器并不需要开启 https</strong>, 源服务器开启的依然是 http 服务.</p>
+<directive-box-info><p>此处<code>源服务器</code>就是运行服务程序的机器</p></directive-box-info>
+<h2 id="tunnel-的通用配置"><a href="#tunnel-的通用配置">Tunnel 的通用配置</a></h2>
+<ol>
+<li>域名托管到 CF</li>
+<li>安装 cloudflared</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb &#x26;&#x26;</span></span>
+<span class="line"><span>sudo dpkg -i cloudflared.deb</span></span></code></pre>
+<ol start="3">
+<li>登录</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cloudflared tunnel login</span></span></code></pre>
+<ol start="4">
+<li>创建隧道</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cloudflare tunnel create &#x3C;TUNNEL NAME></span></span></code></pre>
+<ol start="5">
+<li>创建解析记录</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cloudflared tunnel route dns &#x3C;TUNNEL NAME> &#x3C;xxxx.exmaple.com></span></span></code></pre>
+<ol start="6">
+<li>编辑 tunnel 的配置文件</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yml"><code><span class="line"><span style="color:#85E89D">tunnel</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">&#x3C;TUNNEL ID></span></span>
+<span class="line"><span style="color:#85E89D">credentials-file</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">/xxx/&#x3C;ID>.json</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">ingress</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">hostname</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">xxxx.example.com</span></span>
+<span class="line"><span style="color:#85E89D">    service</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">http://localhost:888</span></span>
+<span class="line"><span style="color:#E1E4E8">  - </span><span style="color:#85E89D">service</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">http_status:404</span></span></code></pre>
+<p>上面的<code>xxxx.exmaple.com</code>也就是在第四步创建的 dns 记录的 URL, 需要注意的是这里的 service 的协议需要填写 <strong>http</strong>, 而不是 https</p>
+<p>因为 cf 的代理会自动开启 https, 所以并不需要在本地使用 ssl/tls(https).</p>
+<ol start="7">
+<li>运行配置</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">cloudflared</span><span style="color:#9ECBFF"> tunnel</span><span style="color:#9ECBFF"> run</span><span style="color:#F97583"> </span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">TUNNEL</span><span style="color:#9ECBFF"> NAM</span><span style="color:#E1E4E8">E</span><span style="color:#F97583">></span></span></code></pre>
+<p>这时候直接访问<code>https://xxxx.example.com</code>即可.</p>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

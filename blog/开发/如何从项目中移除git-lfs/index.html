@@ -1,0 +1,110 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CQKIrR8a.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>如何从项目中移除git-lfs</title><!-- Open Graph / Facebook --><meta property="og:title" content="如何从项目中移除git-lfs"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/%E5%BC%80%E5%8F%91/%E5%A6%82%E4%BD%95%E4%BB%8E%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%A7%BB%E9%99%A4git-lfs/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css">
+<style>progressive-image[data-astro-cid-njl3qch2]{display:block}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-uniujczg-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen pointer-events-none"> <div class="absolute w-screen h-screen pointer-events-none" data-astro-transition-persist="bg"> <script type="module" src="/_astro/ProgressiveImage.astro_astro_type_script_index_0_lang.Zsl7yvEt.js"></script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2="true" class="relative size-full pointer-events-none"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2> </progressive-image>  </div> <div class="pointer-events-auto"><div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-50 lg:w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4" data-astro-transition-persist="author-info"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism sm:p-2"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/archive"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--calendar] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Archive
+ </div> </a>   <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none hidden sm:flex" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none max-sm:flex hidden" role="button" tabindex="0" href="/finder"> <div class="flex justify-center items-center"> <i class="icon-[ix--navigation] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Finder
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z2plROE" component-url="/_astro/WindowsList.De5TXCyW.js" component-export="WindowsList" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;className&quot;:[0,&quot;flex-1 hidden sm:flex flex-col gap-1 overflow-auto px-2&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowsList&quot;,&quot;value&quot;:&quot;solid-js&quot;}"></astro-island> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-uniujczg-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 如何从项目中移除git-lfs </p> <p class="text-sm"> 杨秋逸 · 2025-01-14 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <h1 id="如何从项目中移除git-lfs"><a href="#如何从项目中移除git-lfs">如何从项目中移除git-lfs</a></h1>
+<h2 id="git-lfs"><a href="#git-lfs">Git LFS</a></h2>
+<p>Git LFS（Large File Storage）是 Git 的一个扩展，用于处理和管理大型文件和二进制文件。引入 Git LFS 的主要原因包括：</p>
+<ol>
+<li>
+<p><strong>减小仓库体积</strong>：普通的 Git 仓库在处理大文件时，仓库的体积会迅速增大，因为 Git 会保存每个版本的完整文件。Git LFS 通过只在本地存储文件的指针，而不是文件的完整内容，减小了仓库的体积。</p>
+</li>
+<li>
+<p><strong>提高性能</strong>：由于 Git 不擅长处理大文件，克隆、拉取和推送操作在有大文件的仓库中会变得非常慢。Git LFS 通过只在需要时下载大文件，提高了这些操作的性能。</p>
+</li>
+<li>
+<p><strong>优化存储</strong>：Git LFS 将大文件存储在一个专门的服务器上，而不是在 Git 仓库中。这使得仓库的存储更加高效，并且可以利用专门的存储解决方案来管理大文件。</p>
+</li>
+</ol>
+<h2 id="为什么不要使用-git-lfs-1"><a href="#为什么不要使用-git-lfs-1">为什么不要使用 Git LFS <sup></sup></a><a href="#user-content-fn-https://news.ycombinator.com/item?id=27134972" id="user-content-fnref-https://news.ycombinator.com/item?id=27134972" data-footnote-ref="" aria-describedby="footnote-label">1</a></h2>
+<p>Git LFS 是一把双刃剑, 他之所以厉害, 是因为他把文件替换成了指针, 而之所以不建议使用, 也是因为他把文件替换成了指针.</p>
+<h3 id="1-git-lfs-是一个临时解决方案"><a href="#1-git-lfs-是一个临时解决方案">1. Git LFS 是一个临时解决方案</a></h3>
+<p>Git LFS 是在 Git 项目之外开发的，目的是填补 Git 在处理大型文件方面的不足。随着 Git 的不断发展，如果 Git 未来提供了更好的原生支持，Git LFS 的价值将不再存在，这意味着 Git LFS 只是一个临时的解决方案。</p>
+<h3 id="2-git-lfs-是不可逆的"><a href="#2-git-lfs-是不可逆的">2. Git LFS 是不可逆的</a></h3>
+<p>一旦在仓库中使用了 Git LFS，移除它将是一个不可逆的决定，需要重写历史并丢失原始的提交 SHA。重写历史在许多情况下是非常昂贵的，尤其是在专业环境中。即使短期内可以接受重写历史，未来的情况也可能发生变化。</p>
+<p>在 Mercurial 中，LFS 在某种程度上是一种检出仓库的实现细节。它意味着不改变仓库内容本身（数据），而只是改变你获取该数据的方式。然而在 Git LFS 中，数据本身必须被修改才能成为 LFS 数据，并且”LFS 标志”会被记录在历史中。</p>
+<h3 id="3-git-lfs-增加了复杂性"><a href="#3-git-lfs-增加了复杂性">3. Git LFS 增加了复杂性</a></h3>
+<p>对于 Git 用户来说，Git LFS 增加了额外的复杂性。用户需要安装、配置并了解 Git LFS 的存在。版本控制应该简单易用，大型文件处理也应该如此。Git LFS 的用户体验虽然不错，但由于它不在 Git 核心产品中，其可用性存在上限。此外，Git LFS 也会增加服务器操作的复杂性，因为需要支持一个额外的 HTTP 服务器来处理 LFS 访问。</p>
+<h2 id="如何从已经使用了-lfs-的项目中移除-lfs-2"><a href="#如何从已经使用了-lfs-的项目中移除-lfs-2">如何从已经使用了 LFS 的项目中移除 LFS <sup></sup></a><a href="#user-content-fn-https://github.com/git-lfs/git-lfs/issues/3026" id="user-content-fnref-https://github.com/git-lfs/git-lfs/issues/3026" data-footnote-ref="" aria-describedby="footnote-label">2</a></h2>
+<p>首先给你的git安装上lfs:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> lfs</span><span style="color:#9ECBFF"> install</span></span></code></pre>
+<p>然后clone你的仓库, 在你爹项目下把lfs的文件指针都拉下来, 使其变成真实的文件:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> lfs</span><span style="color:#9ECBFF"> pull</span></span></code></pre>
+<p><strong>确保你的文件已经不再是指针之后</strong>, 我们可以移除 <code>.gitattributes</code> 里的 lfs 相关内容.</p>
+<p>接下来, 我们可以尝试列出所有标记为 lfs 的文件, 这条指令理论上会输出所有被标记为 lfs 的文件:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> lfs</span><span style="color:#9ECBFF"> ls-files</span></span></code></pre>
+<p>我们需要为每个 lfs 文件都清理掉其在 git 中的缓存:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> rm</span><span style="color:#79B8FF"> --cached</span><span style="color:#F97583"> </span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">文件路</span><span style="color:#E1E4E8">径</span><span style="color:#F97583">></span></span></code></pre>
+<p>如果项目里有很多文件的话, 这会是一个费时费力的操作, 不过好在我们可以使用管道操作来简化这一过程:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> lfs</span><span style="color:#9ECBFF"> ls-files</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> cut</span><span style="color:#79B8FF"> -f</span><span style="color:#79B8FF"> 3</span><span style="color:#79B8FF"> -d</span><span style="color:#9ECBFF"> ' '</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> xargs</span><span style="color:#9ECBFF"> git</span><span style="color:#9ECBFF"> rm</span><span style="color:#79B8FF"> --cached</span></span></code></pre>
+<p>然后我们可以用 <code>git add</code> 来提交修改后的文件 (主要是把文件从指针替换成了原始文件). 并且提交你修改后的 <code>.gitattributes</code> 文件.</p>
+<p><strong>请在 commit 之前确保你的文件确实已经从文件指针变成了原始文件!</strong></p>
+<p>至此, 我们已经成功把 git-lfs 从我们的项目中移除了.</p>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-https://news.ycombinator.com/item?id=27134972">
+<p><a href="https://news.ycombinator.com/item?id=27134972">https://news.ycombinator.com/item?id=27134972</a> <a href="#user-content-fnref-https://news.ycombinator.com/item?id=27134972" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-https://github.com/git-lfs/git-lfs/issues/3026">
+<p><a href="https://github.com/git-lfs/git-lfs/issues/3026">https://github.com/git-lfs/git-lfs/issues/3026</a> <a href="#user-content-fnref-https://github.com/git-lfs/git-lfs/issues/3026" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div></div> </div><astro-island uid="gD63X" component-url="/_astro/WindowManager.DgB5G-u_.js" component-export="WindowManager" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;class&quot;:[0,&quot;invisible md:visible not-md:pointer-events-none&quot;],&quot;data-astro-transition-persist&quot;:[0,&quot;wm&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowManager&quot;,&quot;value&quot;:&quot;solid-js&quot;}" data-astro-transition-persist="wm"></astro-island>  </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

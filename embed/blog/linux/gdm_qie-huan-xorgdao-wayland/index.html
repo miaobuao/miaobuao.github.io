@@ -1,0 +1,13 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>GDM: 切换xorg到wayland</title><!-- Open Graph / Facebook --><meta property="og:title" content="GDM: 切换xorg到wayland"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/linux/gdm_qie-huan-xorgdao-wayland/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> GDM: 切换xorg到wayland </p> <p class="text-sm"> 杨秋逸 · 2023-06-20 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="gdm-切换xorg到wayland"><a href="#gdm-切换xorg到wayland">GDM: 切换xorg到wayland</a></h1>
+<p>主要有两个配置文件</p>
+<ul>
+<li>/etc/gdm/custom.conf</li>
+<li>/usr/lib/udev/rules.d/61-gdm.rules</li>
+</ul>
+<p>第一个文件的<code>WaylandEnable=false</code>表示关闭wayland，如果这句话被注释掉，就表示启用</p>
+<p>另一个文件中加入</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>LABEL="gdm_prefer_wayland"</span></span>
+<span class="line"><span>RUN+="/usr/lib/gdm-runtime-config set daemon PreferredDisplayServer wayland"</span></span>
+<span class="line"><span>GOTO="gdm_end"</span></span></code></pre>
+<p>然后在开头加上</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GOTO = "gdm_prefer_wayland"</span></span></code></pre>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

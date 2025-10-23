@@ -1,0 +1,27 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>修复/重装MS Store</title><!-- Open Graph / Facebook --><meta property="og:title" content="修复/重装MS Store"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/%E5%BC%80%E5%8F%91/%E4%BF%AE%E5%A4%8D%E9%87%8D%E8%A3%85ms-store/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 修复/重装MS Store </p> <p class="text-sm"> 杨秋逸 · 2022-05-17 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <p>昨天在下载Ubuntu on windows 时，一直提示安装失败，然后我把Microsoft Store给卸载了…之后费了好大劲才装回来。</p>
+<ol start="0">
+<li>
+<p><strong>使用管理员身份运行PowerShell</strong></p>
+</li>
+<li>
+<p><strong>删除原来的微软Store</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">get-appxpackage</span><span style="color:#79B8FF"> *</span><span style="color:#9ECBFF">store</span><span style="color:#79B8FF">*</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> remove-Appxpackage</span></span></code></pre>
+</li>
+<li>
+<p><strong>获取包的全名</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">Get-AppxPackage</span><span style="color:#79B8FF"> -allusers</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> Select</span><span style="color:#9ECBFF"> Name,</span><span style="color:#9ECBFF"> PackageFullName</span><span style="color:#F97583"> |</span><span style="color:#E1E4E8"> select-string </span><span style="color:#9ECBFF">"WindowsStore"</span></span></code></pre>
+</li>
+</ol>
+<p>执行完上边的指令之后，我们会得到以下的输出
+@{Name=Microsoft.WindowsStore; PackageFullName=<span style="color:red;">Microsoft.WindowsStore_22204.1401.3.0_x64__8wekyb3d8bbwe</span>}</p>
+<p>我们需要把上面红色的文字复制下来（<strong>注意：请以个人电脑上的实际输出为准！</strong>），这就是我们需要的包全名。</p>
+<ol start="3">
+<li><strong>安装</strong>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">add-appxpackage</span><span style="color:#79B8FF"> -register</span><span style="color:#9ECBFF"> "C:\Program Files\WindowsApps\&#x3C;包全名>\AppxManifest.xml"</span><span style="color:#79B8FF"> -disabledevelopmentmode</span></span></code></pre>
+</li>
+</ol>
+<p>把&#x3C;包全名>替换成第2步复制的文本即可。</p>
+<ol start="4">
+<li><strong>结束</strong>
+等待一会儿之后就可以重新打开Microsoft Store了。</li>
+</ol>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

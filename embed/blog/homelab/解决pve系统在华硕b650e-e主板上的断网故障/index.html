@@ -1,0 +1,25 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>解决PVE系统在华硕B650e-e主板上的断网故障</title><!-- Open Graph / Facebook --><meta property="og:title" content="解决PVE系统在华硕B650e-e主板上的断网故障"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/homelab/%E8%A7%A3%E5%86%B3pve%E7%B3%BB%E7%BB%9F%E5%9C%A8%E5%8D%8E%E7%A1%95b650e-e%E4%B8%BB%E6%9D%BF%E4%B8%8A%E7%9A%84%E6%96%AD%E7%BD%91%E6%95%85%E9%9A%9C/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 解决PVE系统在华硕B650e-e主板上的断网故障 </p> <p class="text-sm"> 杨秋逸 · 2024-07-30 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="解决-pve-系统在华硕-b650e-e-主板上的断网故障"><a href="#解决-pve-系统在华硕-b650e-e-主板上的断网故障">解决 PVE 系统在华硕 B650e-e 主板上的断网故障</a></h1>
+<p>如果您使用的是华硕的 B650e-e 主板，并且搭配了 I225-V 网卡，您可能会遇到在 Linux 系统上长时间工作后突然断网的问题。这个问题可能表现为系统不定期地断开网络连接，且除了重启外，其他方法似乎都无法恢复网络连接。</p>
+<h2 id="转载声明"><a href="#转载声明">转载声明</a></h2>
+<p>本文内容部分参考自<a href="https://blog.hentioe.dev/posts/asus-x670e-linux-network-fault.html">绅士喵的博客</a>，感谢作者的分享。</p>
+<h2 id="检查问题"><a href="#检查问题">检查问题</a></h2>
+<p>当您遇到断网问题时，可以通过 <code>journalctl</code> 命令来检查系统日志，确认是否发生了故障。运行以下命令：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">journalctl</span><span style="color:#79B8FF"> -b</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> grep</span><span style="color:#79B8FF"> -i</span><span style="color:#9ECBFF"> eno1</span></span></code></pre>
+<p>如果看到类似以下的错误信息：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>[时间戳] kernel: igc 0000:0c:00.0 eno1: PCIe link lost, device now detached</span></span></code></pre>
+<p>这表明网卡的 PCIe 链接丢失了，设备已经从总线上分离。这种情况下，尝试使用其他命令来恢复网络连接通常是无效的。</p>
+<p>用 <code>dmesg</code> 进一步寻找可用信息:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">dmesg</span><span style="color:#79B8FF"> -T</span><span style="color:#F97583"> |</span><span style="color:#B392F0"> grep</span><span style="color:#79B8FF"> -i</span><span style="color:#9ECBFF"> igc</span></span></code></pre>
+<p>可以看到igc 模块发生崩溃:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>[时间戳] 0000:0c:00.0: igc failed to read reg 0xc030</span></span></code></pre>
+<h2 id="修复方法"><a href="#修复方法">修复方法</a></h2>
+<p>为了避免这个问题，您可以尝试添加以下两个内核启动参数：</p>
+<ul>
+<li>pcie_port_pm=off</li>
+<li>pcie_aspm.policy=performance</li>
+</ul>
+<p>具体来说,对于使用 GRUB 引导的系统，编辑 /etc/default/grub 文件，将上述参数<strong>追加</strong>到 GRUB_CMDLINE_LINUX_DEFAULT 选项中：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#E1E4E8">GRUB_CMDLINE_LINUX_DEFAULT</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"pcie_port_pm=off pcie_aspm.policy=performance"</span></span></code></pre>
+<p>然后执行 <code>sudo update-grub</code> 并重启系统。</p>
+<h2 id="问题原因"><a href="#问题原因">问题原因</a></h2>
+<p>尽管目前尚不清楚这个问题的底层原因，但根据用户反馈和一些社区讨论，这个问题可能需要华硕、Intel 和 Linux 社区的共同努力来解决。遗憾的是，华硕对于 Linux 系统的支持似乎并不积极。</p>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

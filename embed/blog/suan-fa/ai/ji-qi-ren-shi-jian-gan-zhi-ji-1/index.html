@@ -1,0 +1,235 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>机器人实践-感知机（1）</title><!-- Open Graph / Facebook --><meta property="og:title" content="机器人实践-感知机（1）"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/suan-fa/ai/ji-qi-ren-shi-jian-gan-zhi-ji-1/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 机器人实践-感知机（1） </p> <p class="text-sm"> 杨秋逸 · 2022-03-02 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <p>感知机接收多个输入信号，输出一个信号。这里所说的“信号”可以想象成电流或河流那样具备“流动性”的东西。像电流流过导线，向前方输送电子一样，感知机的信号也会形成流，向前方输送信息。但是，和实际的电流不同的是，感知机的信号只有“流/不流”（1/0）两种取值。<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup></p>
+<p>感知机的数学公式如下：</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>y</mi><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.16em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo separator="true">,</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>≤</mo><mi>θ</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo separator="true">,</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>></mo><mi>θ</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">y = \left\{
+    \begin{matrix}
+        0  , w_1x_1 + w_2x_2\le\theta \\ 
+        1  ,w_1x_1 + w_2x_2\gt\theta
+    \end{matrix}
+    \right.</annotation></semantics></math></span>
+<p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_1, x_2</annotation></semantics></math></span>是输入；<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>w</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">w_1, w_2</annotation></semantics></math></span>是权重(weight),；<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span>代表阈值，当<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>></mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">w_1x_1+w_2x_2\gt\theta</annotation></semantics></math></span>代表神经元被激活了，反之未被激活。
+<img alt="感知机网络图" loading="lazy" decoding="async" fetchpriority="auto" width="310" height="228" src="/_astro/1646209262323.CFsEK_p9_ZLHrr8.webp" ></p>
+<center style="font-size:10px;margin-bottom:10px;">一个⚪代表一个神经元</center>
+<p>我们把公式中的<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span>移到左边，得到</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>y</mi><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.16em" columnalign="center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mo separator="true">,</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>+</mo><mi>b</mi><mo>≤</mo><mn>0</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo separator="true">,</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>+</mo><mi>b</mi><mo>></mo><mn>0</mn></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">y = \left\{
+    \begin{matrix}
+        0  , w_1x_1 + w_2x_2+b\le 0 \\ 
+        1  ,w_1x_1 + w_2x_2+b\gt 0
+    \end{matrix}
+    \right.</annotation></semantics></math></span>
+<p>其中<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mo>−</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">b=-\theta</annotation></semantics></math></span>， 我们把b称为偏置(bias)</p>
+<p>我们可以把这个公式形象化地想象成这副样子：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="702" height="434" src="/_astro/1647362892310.CdrU3aCq_1Pah6H.webp" ></p>
+<h2 id="用感知机实现逻辑门"><a href="#用感知机实现逻辑门">用感知机实现逻辑门</a></h2>
+<p><strong>与门实现：</strong></p>
+<p>与门只有在两个输入都为1时，才会返回1，否则返回0，它的真值表如下：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>x1</th><th>x2</th><th>y</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></tbody></table>
+<p>我们可以把与门可视化：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1396" height="969" src="/_astro/1647359412136.BctXg-1Y_Z1eaBJi.webp" >
+黄色圈圈代表0，红色圈圈代表1，只需要用一条紫色的直线，就可以把0和1区分开来，这就是传说中的线性可分。
+注意：<strong>这条紫色的直线并不唯一</strong></p>
+<p><strong>Python实现：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> numpy </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> np</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> AND</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x1, x2</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x1, x2, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    w </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> np.sum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">w</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">></span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">:   </span><span style="color:#6A737D"># x1*w1+x2*w2 + b > 0</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">test </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">[</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D"># 测试</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> test:</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x, AND</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">, x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">1</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span></code></pre>
+<p>运行结果：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="txt"><code><span class="line"><span>[0, 0] 0</span></span>
+<span class="line"><span>[0, 1] 0</span></span>
+<span class="line"><span>[1, 0] 0</span></span>
+<span class="line"><span>[1, 1] 1</span></span></code></pre>
+<p>在以上代码中，我们把<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>w</mi><mn>2</mn></msub><mo separator="true">,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">w_1, w_2, b</annotation></semantics></math></span>分别设置为1, 1, -1, 事实上有无穷多的取值，同样可以达到我们的预期，比如 (0.5, 0.5, -0.7)</p>
+<p><strong>或门实现：</strong></p>
+<p>或门：只要存在一个输入为1，则结果是1，否则为0
+同样我们可以把或门的所有结果在坐标轴上表示出来：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1100" height="901" src="/_astro/1647359815428.DLONZmCB_Z1y24sv.webp" >
+黄色圈圈在这里表示1，红色表示0，同样可以轻松找到无数条直线进行分离</p>
+<p><strong>Python实现：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> numpy </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> np</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> OR</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x1, x2</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x1, x2, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    w </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0.6</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> np.sum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">w</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">></span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    test </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">[</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">]</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> test:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x, OR</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">, x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">1</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span></code></pre>
+<p>运行结果：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="txt"><code><span class="line"><span>[0, 0] 0</span></span>
+<span class="line"><span>[0, 1] 1</span></span>
+<span class="line"><span>[1, 0] 1</span></span>
+<span class="line"><span>[1, 1] 1</span></span></code></pre>
+<p><strong>与非门实现：</strong>
+与非门就是把与门的结果取反</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>x1</th><th>x2</th><th>y</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr><tr><td><img  loading="lazy" decoding="async" fetchpriority="auto" width="1276" height="1046" src="/_astro/1647360018607.3fCArSik_ZefHtm.webp" ></td><td></td><td></td></tr><tr><td>红色代表1，黄色代表0，依然可以找到至少一条直线进行分割</td><td></td><td></td></tr></tbody></table>
+<p><strong>Python实现：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> numpy </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> np</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> NAND</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x1, x2</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x1, x2, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    w </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> np.array</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">[</span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">-</span><span style="color:#79B8FF">0.5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0.7</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> np.sum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">w</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">></span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    test </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">[</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">]</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> test:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x, NAND</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">, x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">1</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span></code></pre>
+<p>运行结果：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="txt"><code><span class="line"><span>[0, 0] 1</span></span>
+<span class="line"><span>[0, 1] 1</span></span>
+<span class="line"><span>[1, 0] 1</span></span>
+<span class="line"><span>[1, 1] 0</span></span></code></pre>
+<p><strong>异或门实现：</strong>
+异或门的真值表：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>x1</th><th>x2</th><th>y</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></tbody></table>
+<p>不妨把异或门也画出来：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1302" height="1103" src="/_astro/1647361396841.Dmlk6S5d_VG2fB.webp" >
+然后我们发现，没有办法划出一条直线，使得红色点与黄色点分布在直线的两边。
+说人话就是：找不到一条直线，对黄色点与红色点进行分类。
+结论：<strong>异或门无法使用单层感知机实现</strong>。</p>
+<p>但是经过逻辑推导之后，发现异或门可以用与非门和或门组合实现。
+首先要认识与门、或门、与非门的符号表示;
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="507" height="106" src="/_astro/1646212010692.ozTgYaZ1_Z1ppQ6K.webp" >
+然后我们可以这样表示异或门：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="993" height="299" src="/_astro/1646212059793.OkcJTwXS_Z2h4lH7.webp" ></p>
+<p><strong>Python实现：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> XOR</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a, b</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    x1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> OR</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a, b</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D"># s1</span></span>
+<span class="line"><span style="color:#E1E4E8">    x2 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> NAND</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a, b</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D"># s2</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> NAND</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x1, x2</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D"># y</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    test </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">[</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">]</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> test:</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">x, XOR</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">]</span><span style="color:#E1E4E8">, x</span><span style="color:#b392f0">[</span><span style="color:#79B8FF">1</span><span style="color:#b392f0">]</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span></code></pre>
+<p>运行结果：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="txt"><code><span class="line"><span>[0, 0] 1</span></span>
+<span class="line"><span>[0, 1] 0</span></span>
+<span class="line"><span>[1, 0] 0</span></span>
+<span class="line"><span>[1, 1] 1</span></span></code></pre>
+<p>结合了上面写的NAND和OR函数，我们就实现异或门啦~
+实际上我们把不同种感知机进行组合的过程就可以看作是多层感知机：
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1376" height="689" src="/_astro/1646212281451.DXfIY-ou_jj4Qg.webp" >
+上图中的s1, s2代表的就是代码中对应的注释的位置</p>
+<p><a href="/blog/算法/ai/机器人实践-感知机2">>>>感知机（2）&#x3C;&#x3C;&#x3C;</a></p>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-1">
+<p>深度学习入门：基于Python的理论与实现. [日］斋藤康毅 <a href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

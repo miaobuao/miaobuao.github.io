@@ -1,0 +1,55 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CloudFlare 代理 FastAPI 隐藏真实 IP</title><!-- Open Graph / Facebook --><meta property="og:title" content="CloudFlare 代理 FastAPI 隐藏真实 IP"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/kai-fa/cfdai-li-fastapi/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> CloudFlare 代理 FastAPI 隐藏真实 IP </p> <p class="text-sm"> 杨秋逸 · 2023-03-29 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="cloudflare-代理-fastapi-隐藏真实-ip"><a href="#cloudflare-代理-fastapi-隐藏真实-ip">CloudFlare 代理 FastAPI 隐藏真实 IP</a></h1>
+<p>这东西真是有很多坑啊~</p>
+<p>::: warning
+CloudFlare 免费版不支持四级域名(sub4.sub3.example.com)
+:::</p>
+<p>国内没备案的域名不可以使用 80 和 443 端口, 因此我把 fastapi 开在了 8011 端口, 但是 CF 不支持代理 8011 端口. 👉<a href="https://developers.cloudflare.com/fundamentals/get-started/reference/network-ports/">CloudFlare 支持的端口</a></p>
+<p>可以看到 CF 除了 80, 443 端口还支持一些其他端口的代理, 本文使用 <code>8443</code> 端口</p>
+<h2 id="修改域名的名称服务器"><a href="#修改域名的名称服务器">修改域名的名称服务器</a></h2>
+<p>在 CF <a href="https://dash.cloudflare.com/">控制台</a>添加站点, 然后 CF 会让我们在域名提供商处把 DNS 设置为 CF 提供的名称服务器</p>
+<p>我的域名提供商是阿里云, 所以进入阿里云控制台修改 DNS:</p>
+<p><img alt="图 1" loading="lazy" decoding="async" fetchpriority="auto" width="328" height="810" src="/_astro/2023-03-29_09_01_55_990.CIXSZoBZ_dvm63.webp" ></p>
+<p>然后就成功把在 CF 控制台激活了我们的域名(全球 DNS 同步一般需要 48-72 小时, 所以我去睡了一觉)</p>
+<h2 id="申请-ssl-证书"><a href="#申请-ssl-证书">申请 SSL 证书</a></h2>
+<p>在 CF 控制台点击一个域名进入仪表盘, 可以在侧栏看到 SSL/TLS 下有很多种证书:
+<img alt="图 2" loading="lazy" decoding="async" fetchpriority="auto" width="399" height="684" src="/_astro/2023-03-29_09_06_03_264.DlqjK_VQ_Z1tkekn.webp" ></p>
+<p>CF 代理模式大致如下:</p>
+<p><img alt="图 3" loading="lazy" decoding="async" fetchpriority="auto" width="766" height="288" src="/_astro/2023-03-29_09_07_46_859.rBKH0Fjw_Z21uTqz.webp" ></p>
+<p>可以看到浏览器的请求首先发给 CF 服务器, 然后由 CF 服务器对我们的源服务器发起请求, 最后把我们的源服务器返回的内容返回给浏览器</p>
+<p>然后我们就看可以理解这些不同的证书是怎么用的了.<sup><a href="#user-content-fn-https://machbbs.com/hostloc/486252" id="user-content-fnref-https://machbbs.com/hostloc/486252" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup></p>
+<ol>
+<li><strong>边缘证书</strong>: 由受信 CA 颁布的证书, 会被浏览器认为是安全的</li>
+<li><strong>客户端证书</strong>: 客户端证书就是需要使用这个证书才能访问你的网站，否则 cf 会拦下</li>
+<li><strong>源服务器证书</strong>: cloudflare 的自签证书, 只有 cf 自己会信任, 但如果不然通过 CF 代理,直接访问域名的话, 浏览器会显示不安全.</li>
+</ol>
+<p>所以我们要申请一个源服务器证书.</p>
+<p>申请好之后会生成两个字符串. 分别是<code>源证书</code>和<code>私钥</code>, 需要把这两个保存到服务器上, 一会儿配置 nginx 开启 SSL 的时候需要.</p>
+<p>我分别保存为<code>/root/cert/example.com.cert</code>, <code>/root/cert/example.com.key</code>. <code>xxx</code>是域名(比如: example.com)</p>
+<h2 id="配置-nginx"><a href="#配置-nginx">配置 Nginx</a></h2>
+<p>这里只给出server的配置方法.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="nginx"><code><span class="line"><span style="color:#F97583">server</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    listen </span><span style="color:#79B8FF">8443</span><span style="color:#E1E4E8"> ssl;</span></span>
+<span class="line"><span style="color:#F97583">    server_name </span><span style="color:#E1E4E8">example.com;</span></span>
+<span class="line"><span style="color:#F97583">    ssl_certificate </span><span style="color:#E1E4E8">/root/cert/exmaple.com.cert;</span></span>
+<span class="line"><span style="color:#F97583">    ssl_certificate_key </span><span style="color:#E1E4E8">/root/cert/example.com.key;</span></span>
+<span class="line"><span style="color:#F97583">    location</span><span style="color:#B392F0"> / </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        proxy_pass </span><span style="color:#E1E4E8">http://localhost:8011; // </span><span style="color:#b392f0">[</span><span style="color:#E1E4E8">!</span><span style="color:#F97583">code</span><span style="color:#E1E4E8"> warning</span><span style="color:#b392f0">]</span></span>
+<span class="line"><span style="color:#F97583">        proxy_set_header </span><span style="color:#E1E4E8">Host $host;</span></span>
+<span class="line"><span style="color:#F97583">        proxy_set_header </span><span style="color:#E1E4E8">X-Real-IP $remote_addr;</span></span>
+<span class="line"><span style="color:#F97583">        proxy_set_header </span><span style="color:#E1E4E8">X-Forwarded-For $proxy_add_x_forwarded_for;</span></span>
+<span class="line"><span style="color:#F97583">        proxy_set_header </span><span style="color:#E1E4E8">X-Forwarded-Proto https;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<p>我的fastapi开在8011端口, 因此proxy_passs设置为<code>http://localhost:8011</code></p>
+<h2 id="开启fastapi"><a href="#开启fastapi">开启FastAPI</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">uvicorn</span><span style="color:#9ECBFF"> app.main:app</span><span style="color:#79B8FF"> --host</span><span style="color:#79B8FF"> 0.0.0.0</span><span style="color:#79B8FF"> --port</span><span style="color:#79B8FF"> 8011</span><span style="color:#79B8FF"> --reload</span></span></code></pre>
+<h2 id="结束"><a href="#结束">结束</a></h2>
+<p>到这里就配置完成了. 可以通过curl测试一下:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#9ECBFF"> https://{YOUR</span><span style="color:#9ECBFF"> DOMAIN}:8443</span></span></code></pre>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-https://machbbs.com/hostloc/486252">
+<p><a href="https://machbbs.com/hostloc/486252">https://machbbs.com/hostloc/486252</a> <a href="#user-content-fnref-https://machbbs.com/hostloc/486252" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

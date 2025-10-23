@@ -1,0 +1,58 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ubuntu20.04 安装 MongoDB 和 MongoShell</title><!-- Open Graph / Facebook --><meta property="og:title" content="Ubuntu20.04 安装 MongoDB 和 MongoShell"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/linux/ub2004an-zhuang-mongodb/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> Ubuntu20.04 安装 MongoDB 和 MongoShell </p> <p class="text-sm"> 杨秋逸 · 2023-04-03 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="ubuntu2004-安装-mongodb-和-mongoshell"><a href="#ubuntu2004-安装-mongodb-和-mongoshell">Ubuntu20.04 安装 MongoDB 和 MongoShell</a></h1>
+<p>之前用 apt 安装的 Mongo3.x, 先卸载!</p>
+<h2 id="卸载1"><a href="#卸载1">卸载<sup></sup></a><a href="#user-content-fn-https://zhuanlan.zhihu.com/p/347614929" id="user-content-fnref-https://zhuanlan.zhihu.com/p/347614929" data-footnote-ref="" aria-describedby="footnote-label">1</a></h2>
+<ol>
+<li>
+<p>停止 mongodb 服务
+sudo service mongod stop</p>
+</li>
+<li>
+<p>卸载 mongodb
+sudo apt-get remove mongodb</p>
+</li>
+<li>
+<p>移除相关包
+sudo apt-get purge mongodb-org
+sudo apt-get purge mongodb
+sudo apt-get autoremove
+sudo apt-get autorclean</p>
+</li>
+<li>
+<p>移除相关目录
+sudo rm -r /var/log/mongodb
+sudo rm -r /var/lib/mongodb</p>
+</li>
+<li>
+<p>查看系统还有哪些残留的文件或目录
+whereis mongo
+whereis mongodb
+whereis mongod
+which mongo
+which mongodb
+which mongod</p>
+</li>
+</ol>
+<h2 id="安装"><a href="#安装">安装</a></h2>
+<p>::: warning
+我是 Ubuntu20.04, 其他版本可能不能这样安装!
+可以通过<code>lsb_release -dc</code>指令查看自己的发行版
+:::</p>
+<p>分别下载这些 deb 包然后用<code>sudo dpkg -i xxxx.deb</code>来安装</p>
+<ul>
+<li><a href="https://www.mongodb.com/try/download/community">MongoDB Community Server</a>
+MongoDB 的服务端</li>
+<li><a href="https://www.mongodb.com/try/download/compass">MongoDB Shell Download</a>
+MongoShell 在 6.x 版本需要单独下载安装(和以前的<code>mongo</code>指令类似), 通过<code>mongosh</code>进入 mongo shell</li>
+<li><a href="https://www.mongodb.com/try/download/database-tools">MongoDB Command Line Database Tools Download</a>
+这里有<code>mongodump</code>和<code>mongorestore</code><sup><a href="#user-content-fn-https://www.mongodb.com/docs/database-tools/" id="user-content-fnref-https://www.mongodb.com/docs/database-tools/" data-footnote-ref="" aria-describedby="footnote-label">2</a></sup></li>
+</ul>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-https://zhuanlan.zhihu.com/p/347614929">
+<p><a href="https://zhuanlan.zhihu.com/p/347614929">https://zhuanlan.zhihu.com/p/347614929</a> <a href="#user-content-fnref-https://zhuanlan.zhihu.com/p/347614929" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-https://www.mongodb.com/docs/database-tools/">
+<p><a href="https://www.mongodb.com/docs/database-tools/">https://www.mongodb.com/docs/database-tools/</a> <a href="#user-content-fnref-https://www.mongodb.com/docs/database-tools/" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

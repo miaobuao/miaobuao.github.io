@@ -1,0 +1,49 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Charles 抓包导致 langchain 报错的解决方案</title><!-- Open Graph / Facebook --><meta property="og:title" content="Charles 抓包导致 langchain 报错的解决方案"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/kai-fa/charles-zhua-bao-dao-zhi-langchain-bao-cuo-de-jie-jue-fang-an/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> Charles 抓包导致 langchain 报错的解决方案 </p> <p class="text-sm"> 杨秋逸 · 2025-08-12 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="charles-抓包导致-langchain-报错的解决方案"><a href="#charles-抓包导致-langchain-报错的解决方案">Charles 抓包导致 langchain 报错的解决方案</a></h1>
+<p>在开发环境中，使用 Charles 作为代理服务器来监控 Python 应用（如 LangChain 或 OpenAI SDK）的网络流量时抓包失败，显示 <code>You may need to configure your browser or application to trust the Charles Root Certificate. See SSL Proxying in the Help menu</code></p>
+<p>问题的核心在于，Python 生态中主流的 HTTP 客户端库，包括 requests 及其异步对应 httpx（LangChain 与新版 OpenAI SDK 的底层依赖），默认不调用操作系统的信任库。它们依赖于一个名为 certifi 的 Python 包，该包提供了一套独立的、硬编码的、受信任的根证书颁发机构（CA）证书集。因此，即使 Charles 根证书在系统中受信任，但它并未包含在 Python 环境所使用的 certifi 证书包内。这导致当 Python 应用尝试通过 Charles 代理与 HTTPS 端点通信时，由于无法在 certifi 的信任链中找到有效的根证书，SSL 证书验证失败。</p>
+<h2 id="方法一设置环境变量"><a href="#方法一设置环境变量">方法一：设置环境变量</a></h2>
+<p>首先在 Charles 中导出 SSL 证书，然后在终端里设置环境变量：</p>
+<ul>
+<li>
+<p><strong>macOS / Linux:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F97583">export</span><span style="color:#E1E4E8"> SSL_CERT_FILE</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"/path/to/charles.pem"</span></span>
+<span class="line"><span style="color:#B392F0">python</span><span style="color:#9ECBFF"> your_script.py</span></span></code></pre>
+</li>
+<li>
+<p><strong>Windows (PowerShell):</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="powershell"><code><span class="line"><span style="color:#E1E4E8">$</span><span style="color:#79B8FF">env:</span><span style="color:#E1E4E8">SSL_CERT_FILE </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "C:\path\to\charles.pem"</span></span>
+<span class="line"><span style="color:#E1E4E8">python your_script.py</span></span></code></pre>
+</li>
+</ul>
+<h3 id="方法二把-charles-证书加进-certifi-的信任列表里"><a href="#方法二把-charles-证书加进-certifi-的信任列表里">方法二：把 Charles 证书加进 certifi 的信任列表里</a></h3>
+<ol>
+<li>
+<p><strong>在 Charles 中导出 SSL 证书</strong></p>
+</li>
+<li>
+<p><strong>找到 Python 证书包位置：</strong></p>
+</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> certifi</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">certifi.where</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span></code></pre>
+<ol start="3">
+<li><strong>把 Charles 证书加进去：</strong></li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># macOS / Linux</span></span>
+<span class="line"><span style="color:#B392F0">cat</span><span style="color:#9ECBFF"> /path/to/charles.pem</span><span style="color:#F97583"> </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#9ECBFF"> /path/to/certifi/cacert.pem</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Windows</span></span>
+<span class="line"><span style="color:#79B8FF">type</span><span style="color:#9ECBFF"> C:</span><span style="color:#79B8FF">\p</span><span style="color:#9ECBFF">ath</span><span style="color:#79B8FF">\t</span><span style="color:#9ECBFF">o</span><span style="color:#79B8FF">\c</span><span style="color:#9ECBFF">harles.pem</span><span style="color:#F97583"> </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#9ECBFF"> C:</span><span style="color:#79B8FF">\p</span><span style="color:#9ECBFF">ath</span><span style="color:#79B8FF">\t</span><span style="color:#9ECBFF">o</span><span style="color:#79B8FF">\c</span><span style="color:#9ECBFF">ertifi</span><span style="color:#79B8FF">\c</span><span style="color:#9ECBFF">acert.pem</span></span></code></pre>
+<h3 id="方法三代码中关闭安全检查"><a href="#方法三代码中关闭安全检查">方法三：代码中关闭安全检查</a></h3>
+<p>修改代码，在运行时跳过验证：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> httpx</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> langchain_openai </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> ChatOpenAI</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">insecure_client </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> httpx.Client</span><span style="color:#79b8ff">(</span><span style="color:#FFAB70">verify</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">insecure__async_client</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">httpx.AsyncClient</span><span style="color:#79b8ff">(</span><span style="color:#FFAB70">verify</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#79b8ff">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">llm </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ChatOpenAI</span><span style="color:#79b8ff">(</span></span>
+<span class="line"><span style="color:#6A737D">    # ...</span></span>
+<span class="line"><span style="color:#FFAB70">    http_client</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">insecure_client,</span></span>
+<span class="line"><span style="color:#FFAB70">    async_client</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">insecure__async_client</span></span>
+<span class="line"><span style="color:#79b8ff">)</span></span></code></pre>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

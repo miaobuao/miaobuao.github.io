@@ -1,0 +1,60 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>x86汇编基础</title><!-- Open Graph / Facebook --><meta property="og:title" content="x86汇编基础"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/%E8%AE%A1%E7%BB%84/x86%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> x86汇编基础 </p> <p class="text-sm"> 杨秋逸 · 2023-07-25 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="x86-汇编基础"><a href="#x86-汇编基础">x86 汇编基础</a></h1>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="2107" height="1195" src="/_astro/image-23.2JsMM-bh_Z2gOSr8.webp" ></p>
+<p>eg: mov
+<img alt="mov" loading="lazy" decoding="async" fetchpriority="auto" width="1914" height="943" src="/_astro/image-24.Bt439cfU_Z15AD1G.webp" ></p>
+<h2 id="寄存器"><a href="#寄存器">寄存器</a></h2>
+<p><img alt="E__" loading="lazy" decoding="async" fetchpriority="auto" width="1299" height="1014" src="/_astro/image-25.CyH35Asf_Z2knTid.webp" ></p>
+<ul>
+<li>AX, BX, CX, …: 通用寄存器的 E 去掉的话, 意思是使用该寄存器的低十六位.</li>
+<li>AH, BH, CH, …: 表示使用 AX, BX, CX, …的高 8 位</li>
+<li>AL, BL, CL, …: 表示使用 AX, BX, CX, …的低 8 位</li>
+</ul>
+<p><img alt="HL" loading="lazy" decoding="async" fetchpriority="auto" width="754" height="489" src="/_astro/image-26.eqOsf5cc_1K3Q3u.webp" ></p>
+<h2 id="各种寻址方式"><a href="#各种寻址方式">各种寻址方式</a></h2>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="2128" height="676" src="/_astro/image-27.nve_46zN_Z2nIOVp.webp" ></p>
+<h2 id="常用汇编指令"><a href="#常用汇编指令">常用汇编指令</a></h2>
+<p><strong>x86 汇编语言中两个操作数不可以都来自主存, 不然访存次数太多了, 执行会很慢</strong></p>
+<h3 id="常见算术运算指令"><a href="#常见算术运算指令">常见算术运算指令</a></h3>
+<p><img alt="算术运算指令" loading="lazy" decoding="async" fetchpriority="auto" width="1465" height="762" src="/_astro/image-28.Bwemb4Hp_Z1Q0eJn.webp" >
+<img alt="add/sub" loading="lazy" decoding="async" fetchpriority="auto" width="1258" height="321" src="/_astro/image-29.Cyv6UwbB_1ED6in.webp" ></p>
+<h3 id="常见逻辑运算指令"><a href="#常见逻辑运算指令">常见逻辑运算指令</a></h3>
+<p><img alt="逻辑运算指令" loading="lazy" decoding="async" fetchpriority="auto" width="1342" height="484" src="/_astro/image-30.B5pjPH6j_2eCVbq.webp" ></p>
+<h3 id="att-格式"><a href="#att-格式">AT&#x26;T 格式</a></h3>
+<ul>
+<li>AT&#x26;T: Unix/Linux 常用格式(贝尔实验室发明)</li>
+<li>Intel: Windows 常用</li>
+</ul>
+<p><img alt="AT&amp;#x26;T v.s. Intel" loading="lazy" decoding="async" fetchpriority="auto" width="1396" height="715" src="/_astro/image-31.CifCbzuG_s0lOw.webp" ></p>
+<p>如此看来还是 Intel 格式比较简洁, 符合笔者的口味().</p>
+<h3 id="if-else"><a href="#if-else">if-else</a></h3>
+<p><img alt="if else" loading="lazy" decoding="async" fetchpriority="auto" width="1294" height="507" src="/_astro/image-32.D7ZpVRq5_Cya13.webp" ></p>
+<h3 id="循环"><a href="#循环">循环</a></h3>
+<p><img alt="for" loading="lazy" decoding="async" fetchpriority="auto" width="1383" height="621" src="/_astro/image-33.CSNpv4ew_2gdVU0.webp" ></p>
+<p><strong>loop:</strong></p>
+<p><img alt="LOOP" loading="lazy" decoding="async" fetchpriority="auto" width="1452" height="634" src="/_astro/image-34.DU6cKa29_1Rym86.webp" ></p>
+<h2 id="函数调用"><a href="#函数调用">函数调用</a></h2>
+<p>x86 系统中, 默认以 4 字节作为栈的操作单位.</p>
+<p><code>EBP</code>堆栈基指针, 指向当前栈帧的”底部(高地址)”,</p>
+<p><code>ESP</code>堆栈顶指针, 指向当前栈帧的”顶部(低地址)”</p>
+<ul>
+<li><code>call</code>: 把 IP 压栈, 然后无条件转移至被调用函数的第一条指令.</li>
+<li><code>ret</code>: IP 旧值出栈, 无条件转移至旧值.</li>
+<li><code>Push &#x3C;val></code>: ESP-4, 再把<code>&#x3C;val></code>压入</li>
+<li><code>Pop &#x3C;Addr></code>: 栈顶元素写入<code>&#x3C;Addr></code>, 再让 ESP+4</li>
+</ul>
+<h3 id="切换栈帧"><a href="#切换栈帧">切换栈帧</a></h3>
+<p>进入函数时:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="asm"><code><span class="line"><span style="color:#F97583">push</span><span style="color:#79B8FF"> ebp</span></span>
+<span class="line"><span style="color:#F97583">mov</span><span style="color:#79B8FF"> ebp</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">esp</span></span></code></pre>
+<p>等价于:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="asm"><code><span class="line"><span style="color:#F97583">enter</span></span></code></pre>
+<p>退出函数时:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="asm"><code><span class="line"><span style="color:#F97583">mov</span><span style="color:#79B8FF"> esp</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">ebp</span></span>
+<span class="line"><span style="color:#F97583">pop</span><span style="color:#79B8FF"> ebp</span></span></code></pre>
+<p>等价于:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>leave</span></span></code></pre>
+<p><del>妙啊</del></p>
+<p><img alt="总结" loading="lazy" decoding="async" fetchpriority="auto" width="1410" height="703" src="/_astro/image-35.osRqpR-a_1O5aof.webp" >
+<img alt="总结" loading="lazy" decoding="async" fetchpriority="auto" width="1447" height="825" src="/_astro/image-36.B8HkRWIX_Z13q14p.webp" ></p>
+<h2 id="cisc-和-risc"><a href="#cisc-和-risc">CISC 和 RISC</a></h2>
+<p><img alt="CISC &amp;#x26; RISC" loading="lazy" decoding="async" fetchpriority="auto" width="1467" height="637" src="/_astro/image-37.DDUV7r4R_Z1h1FI6.webp" ></p>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>华为路由器IPv6公网访问</title><!-- Open Graph / Facebook --><meta property="og:title" content="华为路由器IPv6公网访问"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/homelab/hua-wei-lu-you-qi-ipv6gong-wang-fang-wen/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 华为路由器IPv6公网访问 </p> <p class="text-sm"> 杨秋逸 · 2023-05-03 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="华为路由器ipv6公网访问"><a href="#华为路由器ipv6公网访问">华为路由器IPv6公网访问</a></h1>
+<h2 id="桥接模式介绍"><a href="#桥接模式介绍">桥接模式介绍</a></h2>
+<p>桥接模式（Bridge Mode）是路由器的一种工作模式，与常见的路由模式不同。在桥接模式下，路由器会关闭自身的DHCP、NAT等功能，仅作为网桥使用，直接传递运营商分配的IP地址。</p>
+<h3 id="工作原理"><a href="#工作原理">工作原理</a></h3>
+<ul>
+<li>路由器仅作为交换机使用，不进行NAT转换</li>
+<li>设备可以直接获取运营商分配的公网IP地址</li>
+<li>网络拓扑更加简单，减少了一层NAT转换</li>
+</ul>
+<h3 id="优点"><a href="#优点">优点</a></h3>
+<ul>
+<li>网络延迟更低</li>
+<li>更容易配置端口映射</li>
+<li>便于实现IPv6直连</li>
+<li>有利于某些对NAT敏感的应用（如游戏、P2P程序）</li>
+</ul>
+<h3 id="缺点"><a href="#缺点">缺点</a></h3>
+<ul>
+<li>安全性相对较低，设备直接暴露在公网</li>
+<li>需要额外的防火墙配置</li>
+<li>同时在线设备数量受限于运营商分配的IP地址数量</li>
+</ul>
+<h2 id="配置步骤"><a href="#配置步骤">配置步骤</a></h2>
+<ol>
+<li>
+<p><strong>前期准备</strong></p>
+<ul>
+<li>打电话让电信开通IPv6功能</li>
+<li>确认路由器支持桥接模式</li>
+</ul>
+</li>
+<li>
+<p><strong>路由器配置</strong></p>
+<ul>
+<li>登录路由器管理页面</li>
+<li>找到”我要上网”设置</li>
+<li>将工作模式切换为桥接模式</li>
+<li>关闭路由器防火墙</li>
+</ul>
+</li>
+<li>
+<p><strong>设备配置</strong></p>
+<ul>
+<li>关闭电脑防火墙</li>
+<li>等待设备获取新的IP地址</li>
+</ul>
+</li>
+</ol>
+<h2 id="验证方法"><a href="#验证方法">验证方法</a></h2>
+<p>使用以下命令检查是否成功获取IPv6地址：</p>
+<ul>
+<li>Windows: <code>ipconfig /all</code></li>
+<li>Mac/Linux: <code>ifconfig</code></li>
+</ul>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

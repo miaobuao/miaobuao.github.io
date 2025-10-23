@@ -1,0 +1,37 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ubuntu配置nginx</title><!-- Open Graph / Facebook --><meta property="og:title" content="Ubuntu配置nginx"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/linux/ubuntu%E9%85%8D%E7%BD%AEnginx/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> Ubuntu配置nginx </p> <p class="text-sm"> 杨秋逸 · 2022-08-16 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <ol>
+<li>安装</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> apt</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> nginx</span></span></code></pre>
+<ol start="2">
+<li>检查状态</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">systemctl</span><span style="color:#9ECBFF"> status</span><span style="color:#9ECBFF"> nginx</span></span></code></pre>
+<p>若成功开启则有如下输出：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="txt"><code><span class="line"><span>● nginx.service - A high performance web server and a reverse proxy server</span></span>
+<span class="line"><span>     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)</span></span>
+<span class="line"><span>     Active: active (running) since Mon 2022-08-15 17:52:46 CST; 1min 39s ago</span></span>
+<span class="line"><span>       Docs: man:nginx(8)</span></span>
+<span class="line"><span>   Main PID: 65533 (nginx)</span></span>
+<span class="line"><span>      Tasks: 3 (limit: 4612)</span></span>
+<span class="line"><span>     Memory: 5.0M</span></span>
+<span class="line"><span>     CGroup: /system.slice/nginx.service</span></span>
+<span class="line"><span>             ├─65533 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;</span></span>
+<span class="line"><span>             ├─65534 nginx: worker process</span></span>
+<span class="line"><span>             └─65535 nginx: worker process</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Aug 15 17:52:46 244-ub20 systemd[1]: Starting A high performance web server and a reverse proxy server...</span></span>
+<span class="line"><span>Aug 15 17:52:46 244-ub20 systemd[1]: Started A high performance web server and a reverse proxy server.</span></span></code></pre>
+<p>此时电脑上输入服务器的ip就可以看到一个欢迎页面了</p>
+<h2 id="nginx-配置文件结构以及最佳实践"><a href="#nginx-配置文件结构以及最佳实践">Nginx 配置文件结构以及最佳实践</a></h2>
+<p>所有的 Nginx 配置文件都在<code>/etc/nginx/</code>目录下。
+主要的 Nginx 配置文件是<code>/etc/nginx/nginx.conf</code>
+为每个域名创建一个独立的配置文件，便于维护服务器。你可以按照需要定义任意多的 block 文件。
+Nginx 服务器配置文件被储存在/etc/nginx/sites-available目录下。在<code>/etc/nginx/sites-enabled</code>目录下的配置文件都将被 Nginx 使用。
+最佳推荐是使用标准的命名方式。例如，如果你的域名是mydomain.com，那么配置文件应该被命名为<code>/etc/nginx/sites-available/mydomain.com.conf</code>
+如果你在域名服务器配置块中有可重用的配置段，把这些配置段摘出来，做成一小段可重用的配置。
+Nginx 日志文件(access.log 和 error.log)定位在<code>/var/log/nginx/</code>目录下。推荐为每个服务器配置块，配置一个不同的access和error。
+你可以将你的网站根目录设置在任何你想要的地方。最常用的网站根目录位置包括：
+<code>/home/&#x3C;user_name>/&#x3C;site_name></code>
+<code>/var/www/&#x3C;site_name></code>
+<code>/var/www/html/&#x3C;site_name></code>
+<code>/opt/&#x3C;site_name></code></p>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

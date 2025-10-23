@@ -1,0 +1,347 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CQKIrR8a.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Kotlin学习记录</title><!-- Open Graph / Facebook --><meta property="og:title" content="Kotlin学习记录"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/%E5%BC%80%E5%8F%91/kotlin%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><meta name="description" content="记录了kotlin基本语法
+
+
+"><meta property="og:description" content="记录了kotlin基本语法
+
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css">
+<style>progressive-image[data-astro-cid-njl3qch2]{display:block}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-uniujczg-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen pointer-events-none"> <div class="absolute w-screen h-screen pointer-events-none" data-astro-transition-persist="bg"> <script type="module" src="/_astro/ProgressiveImage.astro_astro_type_script_index_0_lang.Zsl7yvEt.js"></script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2="true" class="relative size-full pointer-events-none"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2> </progressive-image>  </div> <div class="pointer-events-auto"><div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-50 lg:w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4" data-astro-transition-persist="author-info"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism sm:p-2"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/archive"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--calendar] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Archive
+ </div> </a>   <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none hidden sm:flex" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none max-sm:flex hidden" role="button" tabindex="0" href="/finder"> <div class="flex justify-center items-center"> <i class="icon-[ix--navigation] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Finder
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z2plROE" component-url="/_astro/WindowsList.De5TXCyW.js" component-export="WindowsList" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;className&quot;:[0,&quot;flex-1 hidden sm:flex flex-col gap-1 overflow-auto px-2&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowsList&quot;,&quot;value&quot;:&quot;solid-js&quot;}"></astro-island> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-uniujczg-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> Kotlin学习记录 </p> <p class="text-sm"> 杨秋逸 · 2021-11-23 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <p>记录了kotlin基本语法</p>
+<!--more-->
+<h2 id="基础语法"><a href="#基础语法">基础语法</a></h2>
+<h3 id="注释"><a href="#注释">注释</a></h3>
+<p>Kotlin 支持单行和多行注释：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#6A737D">// 单行注释</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/* </span></span>
+<span class="line"><span style="color:#6A737D">   多行的</span></span>
+<span class="line"><span style="color:#6A737D">      块注释。</span></span>
+<span class="line"><span style="color:#6A737D">*/</span></span></code></pre>
+<h3 id="定义常量与变量"><a href="#定义常量与变量">定义常量与变量</a></h3>
+<p>可变变量定义：var 关键字</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">标识符</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8"> : </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">类型</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#F97583"> </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">初始化值</span><span style="color:#F97583">></span></span></code></pre>
+<p>不可变变量定义：val 关键字，只能赋值一次的变量(类似Java中final修饰的变量)</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">标识符</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8"> : </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">类型</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#F97583"> </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">初始化值</span><span style="color:#F97583">></span></span></code></pre>
+<p>常量与变量都可以没有初始化值,但是在<strong>引用前必须初始化</strong></p>
+<p><strong>编译器支持自动类型判断</strong>,即声明时可以不指定类型,由编译器判断。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> a: </span><span style="color:#B392F0">Int</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#6A737D">       // 系统自动推断变量类型为Int</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> c: </span><span style="color:#B392F0">Int</span><span style="color:#6A737D">      // 如果不在声明时初始化则必须提供变量类型</span></span>
+<span class="line"><span style="color:#E1E4E8">c </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#6A737D">           // 明确赋值</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 5</span><span style="color:#6A737D">        // 系统自动推断变量类型为Int</span></span>
+<span class="line"><span style="color:#E1E4E8">x </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 1</span><span style="color:#6A737D">           // 变量可修改</span></span></code></pre>
+<h3 id="函数定义"><a href="#函数定义">函数定义</a></h3>
+<p>函数定义使用关键字 fun，参数格式为：参数 : 类型</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> sum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">, b: </span><span style="color:#B392F0">Int</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">{</span><span style="color:#E1E4E8">   </span><span style="color:#6A737D">// 两个Int类型的形参，返回值也是Int类型（Int首字母要大写！）</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<p>表达式作为函数体，返回类型自动推断：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> sum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">, b: </span><span style="color:#B392F0">Int</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> fun</span><span style="color:#B392F0"> sum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">, b: </span><span style="color:#B392F0">Int</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Int</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b   </span><span style="color:#6A737D">// public修饰的方法则必须明确写出返回类型</span></span></code></pre>
+<p>无返回值的函数(类似Java中的void)：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#6A737D">// 如果是返回 Unit类型，则可以省略(对于public方法也是这样)：</span></span>
+<span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> printSum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">, b: </span><span style="color:#B392F0">Int</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Unit</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">{</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// 不省略Unit</span></span>
+<span class="line"><span style="color:#B392F0">    print</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> fun</span><span style="color:#B392F0"> printSum</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">, b: </span><span style="color:#B392F0">Int</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">{</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// 省略Unit</span></span>
+<span class="line"><span style="color:#B392F0">    print</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<h3 id="可变长参数函数"><a href="#可变长参数函数">可变长参数函数</a></h3>
+<p>函数的变长参数可以用 <strong>vararg</strong> 关键字进行标识：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> vars</span><span style="color:#79b8ff">(</span><span style="color:#F97583">vararg</span><span style="color:#E1E4E8"> v:</span><span style="color:#B392F0">Int</span><span style="color:#79b8ff">)</span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">vt </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> v</span><span style="color:#ffab70">)</span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#B392F0">        print</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">vt</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">args: </span><span style="color:#B392F0">Array</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">></span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#B392F0">    vars</span><span style="color:#ffab70">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">5</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">  </span><span style="color:#6A737D">// 输出12345</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<h3 id="lambda匿名函数"><a href="#lambda匿名函数">lambda(匿名函数)</a></h3>
+<p>lambda表达式使用实例：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">args: </span><span style="color:#B392F0">Array</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">></span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    val</span><span style="color:#E1E4E8"> sumLambda: </span><span style="color:#ffab70">(</span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">Int</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> -</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">Int</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">{</span><span style="color:#E1E4E8">x,y </span><span style="color:#F97583">-</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> x</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">y</span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#B392F0">    println</span><span style="color:#ffab70">(</span><span style="color:#B392F0">sumLambda</span><span style="color:#b392f0">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">2</span><span style="color:#b392f0">)</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">  </span><span style="color:#6A737D">// 输出 3</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<h3 id="字符串模板"><a href="#字符串模板">字符串模板</a></h3>
+<p>有两种模板：</p>
+<p><strong>${ 表达式 }</strong></p>
+<p><strong>$+变量名</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="php"><code><span class="line"><span style="color:#F97583">var</span><span style="color:#79B8FF"> a</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#6A737D">// 模板中的简单名称：</span></span>
+<span class="line"><span style="color:#79B8FF">val</span><span style="color:#79B8FF"> s1</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "a is </span><span style="color:#E1E4E8">$a</span><span style="color:#9ECBFF">"</span><span style="color:#6A737D">   // “a is 1”</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">a</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 2</span></span>
+<span class="line"><span style="color:#6A737D">// 模板中的表达式：</span></span>
+<span class="line"><span style="color:#79B8FF">val</span><span style="color:#79B8FF"> s2</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "${s1.replace("</span><span style="color:#79B8FF">is</span><span style="color:#9ECBFF">", "</span><span style="color:#79B8FF">was</span><span style="color:#9ECBFF">")}, but now is </span><span style="color:#E1E4E8">$a</span><span style="color:#9ECBFF">"</span><span style="color:#6A737D">  // "a was 1, but now is 2"</span></span></code></pre>
+<h3 id="null检查机制"><a href="#null检查机制">NULL检查机制</a></h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#6A737D">// 类型后面加?表示可为空</span></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> age: </span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">? </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "23"</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#6A737D">// age是空则抛出空指针异常</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> ages </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> age</span><span style="color:#F97583">!!</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">toInt</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#6A737D">// age是空则 ages1 = null, 否则 ages1 = age.toInt()</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> ages1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> age?.</span><span style="color:#B392F0">toInt</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#6A737D">// age为空则 ages2 = -1, 否则 ages2 = age.toInt()</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> ages2 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> age?.</span><span style="color:#B392F0">toInt</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> ?: </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span></span></code></pre>
+<p>当一个引用可能为 null 值，也有可能不为 null 时, 对应的类型声明必须明确地标记成 可为 null 。</p>
+<p>当 myFun函数 的返回值不是Int类型时，返回 null</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> myFun</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">str: </span><span style="color:#B392F0">String</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">? </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#6A737D">  // ...</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<h3 id="类型检测及自动类型转换"><a href="#类型检测及自动类型转换">类型检测及自动类型转换</a></h3>
+<p>我们可以使用 is 运算符检测一个表达式是否某类型的一个实例</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> myFun</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">obj: </span><span style="color:#B392F0">Any</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">? </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">obj </span><span style="color:#F97583">is</span><span style="color:#E1E4E8"> String</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#6A737D">    // 做过类型判断以后，obj会被系统自动转换为String类型</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> obj.length </span><span style="color:#6A737D">// 这里的obj时String类型</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span><span style="color:#ffab70">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  /* </span></span>
+<span class="line"><span style="color:#6A737D">     假如这里有代码，则这里的obj是Any类型</span></span>
+<span class="line"><span style="color:#6A737D">   	 .........</span></span>
+<span class="line"><span style="color:#6A737D">   */</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#79B8FF"> null</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<p>Kotlin 非常智能， 如下：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> myFun</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">obj: </span><span style="color:#B392F0">Any</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">? </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#6A737D">  // 在 `&#x26;&#x26;` 运算符的右侧, `obj` 的类型会被自动转换为 `String`</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">obj </span><span style="color:#F97583">is</span><span style="color:#E1E4E8"> String </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> obj.length </span><span style="color:#F97583">></span><span style="color:#79B8FF"> 0</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> obj.length</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#79B8FF"> null</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<p>如果 &#x26;&#x26;  运算符左边是false， 则不会执行右边的判断， 所以一旦需要检验右边的真值，意味着左边必然为true，也就是说：obj是String类型。</p>
+<h3 id="区间"><a href="#区间">区间</a></h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> 1</span><span style="color:#F97583">..</span><span style="color:#79B8FF">4</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// 输出“1234” 等同于 1 &#x3C;= i &#x26;&#x26; i &#x3C;= 4</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> 4</span><span style="color:#F97583">..</span><span style="color:#79B8FF">1</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// 什么都不输出</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> 1</span><span style="color:#F97583">..</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8"> step </span><span style="color:#79B8FF">2</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// 使用 step 指定步长, 输出“13”</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> 4</span><span style="color:#E1E4E8"> downTo </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8"> step </span><span style="color:#79B8FF">2</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#B392F0">print</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// 从大到小遍历，输出“42”</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 使用 until 函数排除结束元素</span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8"> until </span><span style="color:#79B8FF">10</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">{</span><span style="color:#E1E4E8">   </span><span style="color:#6A737D">// i in [1, 10), 等同于 1 &#x3C;= i &#x26;&#x26; i &#x3C; 10</span></span>
+<span class="line"><span style="color:#B392F0">     println</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<h2 id="数据类型"><a href="#数据类型">数据类型</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">类型</th><th align="left">位宽度</th></tr></thead><tbody><tr><td align="left">Double</td><td align="left">64</td></tr><tr><td align="left">Float</td><td align="left">32</td></tr><tr><td align="left">Long</td><td align="left">64</td></tr><tr><td align="left">Int</td><td align="left">32</td></tr><tr><td align="left">Short</td><td align="left">16</td></tr><tr><td align="left">Byte</td><td align="left">8</td></tr></tbody></table>
+<h3 id="字面常量"><a href="#字面常量">字面常量</a></h3>
+<ul>
+<li>十进制：123</li>
+<li>长整型以大写的 L 结尾：123L</li>
+<li>16 进制以 0x 开头：0x0F</li>
+<li>2 进制以 0b 开头：0b00001011</li>
+</ul>
+<p><em>注意：不支持八进制</em></p>
+<p>Kotlin 同时也支持传统符号表示的浮点数值：</p>
+<ul>
+<li>Doubles 默认写法: <code>123.5</code>, <code>123.5e10</code></li>
+<li>Floats 使用 f 或者 F 后缀：<code>123.5f</code></li>
+</ul>
+<h3 id="相等和相同"><a href="#相等和相同">相等和相同</a></h3>
+<p>Kotlin中没有基本数据类型， 只有被封装的数据类型， 这样可以保证不会出现空指针，数字类型也都是被封装的，所以在比较数据大小的时候存在两种不同的比较（==和===）。</p>
+<p>其中**==<strong>表示比较</strong>数值大小**， <strong>===<strong>则表示比较对象的</strong>地址</strong>。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">args: </span><span style="color:#B392F0">Array</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">></span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    val</span><span style="color:#E1E4E8"> a: </span><span style="color:#B392F0">Int</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 10000</span></span>
+<span class="line"><span style="color:#B392F0">    println</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">a </span><span style="color:#F97583">===</span><span style="color:#E1E4E8"> a</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// true，值相等，对象地址相等</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // 经过了装箱，创建了两个不同的对象（装箱的意思是把基本类型转化成对象）</span></span>
+<span class="line"><span style="color:#F97583">    val</span><span style="color:#E1E4E8"> boxedA: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">? </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#F97583">    val</span><span style="color:#E1E4E8"> anotherBoxedA: </span><span style="color:#B392F0">Int</span><span style="color:#E1E4E8">? </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    //虽然经过了装箱，但是值是相等的，都是10000</span></span>
+<span class="line"><span style="color:#B392F0">    println</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">boxedA </span><span style="color:#F97583">===</span><span style="color:#E1E4E8"> anotherBoxedA</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">//  false，值相等，对象地址不一样</span></span>
+<span class="line"><span style="color:#B392F0">    println</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">boxedA </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> anotherBoxedA</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// true，值相等</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<p>实际上，对象地址相等，值必然相等。</p>
+<h3 id="类型转化"><a href="#类型转化">类型转化</a></h3>
+<p>由于不同的表示方式，较小类型并不是较大类型的子类型，较小的类型不能隐式转换为较大的类型。 这意味着在不进行显式转换的情况下我们不能把 Byte 型值赋给一个 Int 变量。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> b: </span><span style="color:#B392F0">Byte</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 1</span><span style="color:#6A737D"> // 自动给字面量封装成Byte对象</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> i: </span><span style="color:#B392F0">Int</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> b  </span><span style="color:#6A737D">// 错误！ b是一个Byte对象， 不能直接转换成Int对象</span></span></code></pre>
+<p>咱们可以使用对象携带的方法来进行转化：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> b: </span><span style="color:#B392F0">Byte</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> i: </span><span style="color:#B392F0">Int</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> b.</span><span style="color:#B392F0">toInt</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// 显式类型转换</span></span></code></pre>
+<p>每种数据类型都有下面的这些方法，可以转化为其它的类型：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">toByte</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Byte</span></span>
+<span class="line"><span style="color:#B392F0">toShort</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Short</span></span>
+<span class="line"><span style="color:#B392F0">toInt</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Int</span></span>
+<span class="line"><span style="color:#B392F0">toLong</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Long</span></span>
+<span class="line"><span style="color:#B392F0">toFloat</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Float</span></span>
+<span class="line"><span style="color:#B392F0">toDouble</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Double</span></span>
+<span class="line"><span style="color:#B392F0">toChar</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Char</span></span></code></pre>
+<p>有些情况下也是可以使用<strong>自动类型转化</strong>的，需要满足如下两个条件：</p>
+<ol>
+<li>可以根据上下文环境推断出正确的数据类型</li>
+<li>数学操作符会做相应的重载</li>
+</ol>
+<p>例如下面是正确的：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> l </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1L</span><span style="color:#F97583"> +</span><span style="color:#79B8FF"> 3</span><span style="color:#6A737D"> // Long + Int 自动转成 Long</span></span></code></pre>
+<h3 id="位操作符"><a href="#位操作符">位操作符</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th align="left">运算符</th><th align="left">表示含义</th></tr></thead><tbody><tr><td align="left">and(bits)</td><td align="left">按位与</td></tr><tr><td align="left">or(bits)</td><td align="left">按位或</td></tr><tr><td align="left">inv(bits)</td><td align="left">按位非</td></tr><tr><td align="left">xor(bits)</td><td align="left">按位异或</td></tr><tr><td align="left">shl(bits)</td><td align="left">左移运算符</td></tr><tr><td align="left">shr(bits)</td><td align="left">右移运算符</td></tr><tr><td align="left">ushr(bits)</td><td align="left">无符号右移运算符</td></tr></tbody></table>
+<p><strong>注意：Kotlin的位运算符只能对Int和Long两种数据类型起作用。</strong></p>
+<p>举个例子🌰</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 5</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> a shl </span><span style="color:#79B8FF">2</span><span style="color:#6A737D"> // 等同于 a.shl(2)</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> b and a </span><span style="color:#6A737D">// 等同于 b.and(a)</span></span></code></pre>
+<h3 id="不一样的char"><a href="#不一样的char">不一样的Char</a></h3>
+<p>和大多数语言不一样， Kotlin的Char类型<strong>不能直接和数字进行操作</strong>， 而且<strong>必须</strong>由单引号包裹, 比如：<code>'a'</code></p>
+<p>所以<font color="red"><strong>下面这种写法是错误的</strong></font></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> check</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">c: </span><span style="color:#B392F0">Char</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">c </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> 1</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">{</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// 类型不兼容</span></span>
+<span class="line"><span style="color:#6A737D">        // ……</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<p>因为Kotlin没有基本数据类型~</p>
+<p>字符字面值用单引号括起来: ‘1’。 特殊字符可以用反斜杠转义。 支持这几个转义序列：<code>\t</code>,  <code> \b</code>, <code> \n</code>, <code> \r</code>,  <code>\'</code>, <code>\"</code>,  <code>\\</code> 和 $。 编码其他字符要用 Unicode 转义序列语法：<code>'\uFF00'</code>。</p>
+<p><strong>咱们可以用<code>toInt()</code>来显式地把 Char转换成 Int</strong></p>
+<h3 id="布尔-boolean"><a href="#布尔-boolean">布尔 Boolean</a></h3>
+<p>布尔用 Boolean 类型表示，它有两个值：true 和 false。</p>
+<p>若需要可空引用布尔会被装箱。</p>
+<p>内置的布尔运算有：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">||</span><span style="color:#F97583">  -</span><span style="color:#E1E4E8"> 逻辑或</span></span>
+<span class="line"><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#F97583">  -</span><span style="color:#E1E4E8"> 逻辑与</span></span>
+<span class="line"><span style="color:#F97583">!</span><span style="color:#F97583">   -</span><span style="color:#E1E4E8"> 逻辑非</span></span></code></pre>
+<h3 id="数组"><a href="#数组">数组</a></h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#B392F0"> arrayOf</span><span style="color:#79b8ff">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// [1,2,3]</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">=</span><span style="color:#B392F0"> Array</span><span style="color:#79b8ff">(</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">, </span><span style="color:#ffab70">{</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">-</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> </span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">i </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 2</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">}</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// [0,2,4]</span></span>
+<span class="line"><span style="color:#B392F0">println</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">a</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">    </span><span style="color:#6A737D">// 输出结果：1</span></span>
+<span class="line"><span style="color:#B392F0">println</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">b</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">1</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">    </span><span style="color:#6A737D">// 输出结果：2</span></span></code></pre>
+<p>除了类Array，还有<code>ByteArray</code>, <code>ShortArray</code>, <code>IntArray</code>，用来表示各个类型的数组，省去了装箱操作，因此效率更高，其用法同Array一样：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> x: </span><span style="color:#B392F0">IntArray</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> intArrayOf</span><span style="color:#79b8ff">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#6A737D">// 注意大小写</span></span>
+<span class="line"><span style="color:#E1E4E8">x</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">0</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> x</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">1</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> x</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">2</span><span style="color:#79b8ff">]</span></span></code></pre>
+<p><strong>注意：Kotlin 中数组是非协变的</strong></p>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div></div> </div><astro-island uid="gD63X" component-url="/_astro/WindowManager.DgB5G-u_.js" component-export="WindowManager" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;class&quot;:[0,&quot;invisible md:visible not-md:pointer-events-none&quot;],&quot;data-astro-transition-persist&quot;:[0,&quot;wm&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowManager&quot;,&quot;value&quot;:&quot;solid-js&quot;}" data-astro-transition-persist="wm"></astro-island>  </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

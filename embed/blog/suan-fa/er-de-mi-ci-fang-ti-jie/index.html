@@ -1,0 +1,81 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>二的幂次方-题解</title><!-- Open Graph / Facebook --><meta property="og:title" content="二的幂次方-题解"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/suan-fa/er-de-mi-ci-fang-ti-jie/"><meta name="description" content="# 题目描述
+
+任何一个正整数都可以用 2 的幂次方表示。
+
+例如：
+
+    137 = 2^7 + 2^3 + 2^0
+"><meta property="og:description" content="# 题目描述
+
+任何一个正整数都可以用 2 的幂次方表示。
+
+例如：
+
+    137 = 2^7 + 2^3 + 2^0
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 二的幂次方-题解 </p> <p class="text-sm"> 杨秋逸 · 2021-02-26 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="题目描述"><a href="#题目描述">题目描述</a></h1>
+<p>任何一个正整数都可以用 2 的幂次方表示。</p>
+<p>例如：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>137 = 2^7 + 2^3 + 2^0</span></span></code></pre>
+<!--more-->
+<p>同时约定次方用括号来表示，即 ab 可表示为 a（b）。</p>
+<p>由此可知，137 可表示为：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>2（7）+2（3）+2（0）</span></span></code></pre>
+<p>进一步：7 = 2^2 + 2 + 2^0（21 用 2 表示）</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>3=2+2^0</span></span></code></pre>
+<p>所以最后 137 可表示为：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>2（2（2）+2+2（0））+2（2+2（0））+2（0）</span></span></code></pre>
+<p>又如：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1315=2^10 +2^8 +2^5 +2+1</span></span></code></pre>
+<p>所以 1315 最后可表示为：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span> 2（2（2+2（0））+2）+2（2（2+2（0）））+2（2（2）+2（0））+2+2（0）</span></span></code></pre>
+<h2 id="输入"><a href="#输入">输入</a></h2>
+<p>每个测试文件只包含一组测试数据，每组输入一个正整数 n（n&#x3C;=20000）。</p>
+<h2 id="输出"><a href="#输出">输出</a></h2>
+<p>对于每组输入数据，输出符合约定的 n 的 0，2 表示。（在表示中不能有空格）</p>
+<h2 id="样例输入"><a href="#样例输入">样例输入</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>137</span></span></code></pre>
+<h2 id="样例输出"><a href="#样例输出">样例输出</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>2(2(2)+2+2(0))+2(2+2(0))+2(0)</span></span></code></pre>
+<h2 id="思路"><a href="#思路">思路</a></h2>
+<p>一看就要递归，然后拿张纸自己算了算，大概知道了拆解过程，便计算边输出，不需要返回值，因此定义一个void d(int n)
+d函数得到一个整数n，先判断是否需要继续拆解。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>pow(x,y)是C语言函数，返回x^y,类型为double</span></span></code></pre>
+<h2 id="我的代码"><a href="#我的代码">我的代码</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> d</span><span style="color:#79b8ff">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> n</span><span style="color:#79b8ff">)</span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">n</span><span style="color:#F97583">==</span><span style="color:#79B8FF">1</span><span style="color:#ffab70">)</span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#E1E4E8">        cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">"2(0)"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">n</span><span style="color:#F97583">==</span><span style="color:#79B8FF">2</span><span style="color:#ffab70">)</span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#E1E4E8">        cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">"2"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span><span style="color:#F97583">else</span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> i,s</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;n</span><span style="color:#F97583">-</span><span style="color:#B392F0">pow</span><span style="color:#79b8ff">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,i</span><span style="color:#79b8ff">)</span><span style="color:#F97583">></span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">++</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> res</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">n</span><span style="color:#F97583">-</span><span style="color:#B392F0">pow</span><span style="color:#b392f0">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,i</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">res</span><span style="color:#F97583">&#x3C;</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">)</span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            i</span><span style="color:#F97583">--</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            res</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">n</span><span style="color:#F97583">-</span><span style="color:#B392F0">pow</span><span style="color:#79b8ff">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,i</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">i</span><span style="color:#F97583">></span><span style="color:#79B8FF">1</span><span style="color:#b392f0">)</span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">"2("</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">            d</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">")"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span><span style="color:#F97583">else</span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">                cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">"2"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">res</span><span style="color:#F97583">!=</span><span style="color:#79B8FF">0</span><span style="color:#b392f0">)</span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">"+"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">            d</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">res</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> n;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">n;</span></span>
+<span class="line"><span style="color:#B392F0">    d</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">n</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

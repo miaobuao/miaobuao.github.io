@@ -1,0 +1,81 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>回文平方</title><!-- Open Graph / Facebook --><meta property="og:title" content="回文平方"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/suan-fa/hui-wen-ping-fang/"><meta name="description" content="又是一道基础题，考察双指针和进制转化
+
+"><meta property="og:description" content="又是一道基础题，考察双指针和进制转化
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 回文平方 </p> <p class="text-sm"> 杨秋逸 · 2021-03-06 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <p>又是一道基础题，考察双指针和进制转化</p>
+<!--more-->
+<h2 id="题目"><a href="#题目">题目</a></h2>
+<p>回文数是指数字从前往后读和从后往前读都相同的数字。</p>
+<p>例如数字 12321 就是典型的回文数字。</p>
+<p>现在给定你一个整数 B，请你判断 1∼300 之间的所有整数中，有哪些整数的平方转化为 B 进制后，其 B 进制表示是回文数字。</p>
+<p>输入格式
+一个整数 B。</p>
+<p>输出格式
+每行包含两个在 B 进制下表示的数字。</p>
+<p>第一个表示满足平方值转化为 B 进制后是回文数字那个数，第二个数表示第一个数的平方。</p>
+<p>所有满足条件的数字按从小到大顺序依次输出。</p>
+<p>数据范围
+2≤B≤20,
+对于大于 9 的数字，用 A 表示 10，用 B 表示 11，以此类推。</p>
+<p>输入样例：</p>
+<blockquote>
+<p>10</p>
+</blockquote>
+<p>输出样例：</p>
+<blockquote>
+<p>1 1
+2 4
+3 9
+11 121
+22 484
+26 676
+101 10201
+111 12321
+121 14641
+202 40804
+212 44944
+264 69696</p>
+</blockquote>
+<h2 id="code"><a href="#code">Code</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">map</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">,</span><span style="color:#F97583">int</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> a;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">bool</span><span style="color:#B392F0"> iH</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">string</span><span style="color:#FFAB70"> n</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,j</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">n.</span><span style="color:#B392F0">size</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">j;i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">,j</span><span style="color:#F97583">--</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">n</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#F97583">!=</span><span style="color:#E1E4E8">n</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">j</span><span style="color:#79b8ff">]</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#B392F0"> get</span><span style="color:#79b8ff">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> num</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">num</span><span style="color:#F97583">></span><span style="color:#79B8FF">9</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> num</span><span style="color:#F97583">-</span><span style="color:#79B8FF">10</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">'A'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> num</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">'0'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">string</span><span style="color:#B392F0"> base</span><span style="color:#79b8ff">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> n</span><span style="color:#E1E4E8">,</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> b</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    string res;</span></span>
+<span class="line"><span style="color:#F97583">    while</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">n</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> res</span><span style="color:#F97583">+=</span><span style="color:#B392F0">get</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">n</span><span style="color:#F97583">%</span><span style="color:#E1E4E8">b</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">,n</span><span style="color:#F97583">/=</span><span style="color:#E1E4E8">b;</span></span>
+<span class="line"><span style="color:#B392F0">    reverse</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">res.</span><span style="color:#B392F0">begin</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8">,res.</span><span style="color:#B392F0">end</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> res;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> b;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin</span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8">b;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#ffab70">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#79B8FF">300</span><span style="color:#E1E4E8">;i</span><span style="color:#F97583">++</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#b392f0">(</span><span style="color:#B392F0">iH</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">base</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">i</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">i,b</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#E1E4E8">            cout</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#B392F0">base</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i,b</span><span style="color:#79b8ff">)</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF">" "</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#B392F0">base</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">i</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">i,b</span><span style="color:#79b8ff">)</span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">endl;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

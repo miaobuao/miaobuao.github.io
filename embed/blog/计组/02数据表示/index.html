@@ -1,0 +1,95 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>02.数据表示</title><!-- Open Graph / Facebook --><meta property="og:title" content="02.数据表示"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/%E8%AE%A1%E7%BB%84/02%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 02.数据表示 </p> <p class="text-sm"> 杨秋逸 · 2023-07-13 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="02数据表示"><a href="#02数据表示">02.数据表示</a></h1>
+<h2 id="bcd"><a href="#bcd">BCD</a></h2>
+<h3 id="8421"><a href="#8421">8421</a></h3>
+<p>8421 只表示一位十进制数所以表示范围是 0~9, 如果>=10 则要+6</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>    7  +  8</span></span>
+<span class="line"><span>= 0111 + 1000</span></span>
+<span class="line"><span>= 1111</span></span></code></pre>
+<p>但是 15 用 8421 表示是 <code>0001 0101</code>, 这时候通过对<code>1111</code>+6:
+<img alt="1111 + 0110" loading="lazy" decoding="async" fetchpriority="auto" width="222" height="199" src="/_astro/image-1.Cb83lJOf_2fvKRz.webp" >
+得到<code>0001 0101</code>, 恰好是 15</p>
+<h3 id="余三码"><a href="#余三码">余三码</a></h3>
+<p>那为了解决上述 +6 的问题, 出现了余三码, 对 0-9 范围内的数以 8421 码表示之后全都+3,这样后期进行加减运算之后就不需要考虑数字是否落在 0-9 范围内, 然后为大于 9 的数单独+6 了.</p>
+<p>余三码不具有有权性, 属于无权码, 而 8421 属于有权码.</p>
+<h3 id="2421-码"><a href="#2421-码">2421 码</a></h3>
+<p>每一个 2421 码只要与自身按位取反，便可得到该数按 9 的补数的 2421 码，比如 4 的 2421 码 0100 自身取反后就变为了 1011，即 5 的 2421 码。2421 码可以给运算带来方便，因为可以利用·其对 9 的补数将减法运算转变为加法运算</p>
+<h2 id="数据范围"><a href="#数据范围">数据范围</a></h2>
+<p><img alt="数据范围" loading="lazy" decoding="async" fetchpriority="auto" width="1444" height="829" src="/_astro/image-3.CqbxQdgI_Z1Ie8VO.webp" ></p>
+<p>移码就是对补码的符号位取反, 只能表示整数. 所以移码数据范围和补码一样</p>
+<p><img alt="移码" loading="lazy" decoding="async" fetchpriority="auto" width="397" height="498" src="/_astro/image-2.sMF1WqO5_Z2rETMp.webp" >
+移码刚好是 0x00~0xff, 适合在电路中对比大小, 常用于表示浮点数的阶码.</p>
+<h2 id="定点小数1"><a href="#定点小数1">定点小数<sup></sup></a><a href="#user-content-fn-%E3%80%90%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%80%83%E7%A0%94%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%91%20https://www.bilibili.com/video/bv1ps4y1d73v/?p=14&#x26;share_source=copy_web&#x26;vd_source=0a7e9572278635efd730c0077f8e7b45" id="user-content-fnref-%E3%80%90%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%80%83%E7%A0%94%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%91%20https://www.bilibili.com/video/bv1ps4y1d73v/?p=14&#x26;share_source=copy_web&#x26;vd_source=0a7e9572278635efd730c0077f8e7b45" data-footnote-ref="" aria-describedby="footnote-label">1</a></h2>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="513" height="112" src="/_astro/image-5.B0B6CL05_1V134n.webp" >
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="924" height="415" src="/_astro/image-6.BLXJj6Ff_Z1YsWnw.webp" ></p>
+<p><strong>定点小数的转码规则:</strong>
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="771" height="336" src="/_astro/image-7.Z-Z3PgYg_2sxdOQ.webp" ></p>
+<p>加减规则也一样, 先转成补码然后 运算.</p>
+<directive-box-info><p>符号位也参与运算</p></directive-box-info>
+<p><strong>数据范围:</strong>
+<img alt="范围" loading="lazy" decoding="async" fetchpriority="auto" width="864" height="409" src="/_astro/image-8.Bmht8yJE_Z1gRlWy.webp" ></p>
+<p>定点小数拓展位数的时候 0 是追加在末尾, 定点整数拓展时 0 插入在符号位与数值位中间.</p>
+<h2 id="奇偶校验码"><a href="#奇偶校验码">奇偶校验码</a></h2>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="619" height="231" src="/_astro/image-9.tPdBKTdO_Z1LdoCk.webp" ></p>
+<p>偶较验位的计算: 对有效信息位按位 xor</p>
+<p>校验过程: 对奇偶校验码安位 xor, 是 1 则出错</p>
+<h2 id="算术逻辑单元alu"><a href="#算术逻辑单元alu">算术逻辑单元(ALU)</a></h2>
+<p>PS: <code>同或</code>是对 xor 进行取反</p>
+<h3 id="一位全加器"><a href="#一位全加器">一位全加器</a></h3>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="453" height="163" src="/_astro/image-10.DZ99Lrqj_OHJWO.webp" ></p>
+<p><img alt="电路图" loading="lazy" decoding="async" fetchpriority="auto" width="478" height="184" src="/_astro/image-11.TtXE-ZZb_Z2dHjh0.webp" ></p>
+<h3 id="并行加法器"><a href="#并行加法器">并行加法器</a></h3>
+<p><strong>串行进位(行波进位)的并行加法器</strong>: 计算速度很大程度取决于进位计算的速度</p>
+<p><img alt="串行的" loading="lazy" decoding="async" fetchpriority="auto" width="666" height="220" src="/_astro/image-12.D2tz5eb8_Zio9PP.webp" ></p>
+<p><strong>并行进位加法器</strong>:</p>
+<p><img alt="逻辑表达式" loading="lazy" decoding="async" fetchpriority="auto" width="445" height="169" src="/_astro/image-13.DYUfOfhc_Z9qHom.webp" >
+<img alt="电路" loading="lazy" decoding="async" fetchpriority="auto" width="678" height="235" src="/_astro/image-14.Dh3sbmvG_Z1EMfJG.webp" ></p>
+<p>因为逻辑越来越复杂, 一般只实现 4 位的并行加法器.</p>
+<h3 id="补码加减法器"><a href="#补码加减法器">补码加/减法器</a></h3>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1060" height="559" src="/_astro/image-15.C6K15vTv_nkPXh.webp" ></p>
+<h3 id="标志位生成"><a href="#标志位生成">标志位生成</a></h3>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="2505" height="1234" src="/_astro/image-16.EJADYjoD_ZUFzjc.webp" ></p>
+<p>真简单, 不做讲解.</p>
+<h2 id="移位运算"><a href="#移位运算">移位运算</a></h2>
+<h3 id="算术移位"><a href="#算术移位">算术移位</a></h3>
+<p>改变各个数码位和小数点的相对位置, 从而改变各个数码位的位权(相当于乘除2).
+可用于实现乘除法.</p>
+<ul>
+<li>原码: 直接整体左右移动, 舍弃的如果==0, 则相当于除以2, 如果!=0, 则会丢失精度.</li>
+<li>反码: 正数和原码相同, 负数: 右移高位补1, 左移低位补1.</li>
+<li><strong>补码</strong>: 正数和原码相同, 负数复杂.
+<img  loading="lazy" decoding="async" fetchpriority="auto" width="1494" height="325" src="/_astro/image-17.Bivj9CZN_wjDuh.webp" >
+因此左部分适用于反码算术移位的规则, 右部分使用原码的算术移位规则.</li>
+</ul>
+<h3 id="逻辑移位"><a href="#逻辑移位">逻辑移位</a></h3>
+<p><strong>对无符号数的算术移位.</strong></p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="769" height="558" src="/_astro/image-18.BG1_wtEY_ZKI4M3.webp" ></p>
+<h3 id="循环移位"><a href="#循环移位">循环移位</a></h3>
+<p>带进位位的循环左移: CF放到最低位, 最高位放到CF</p>
+<p>右移同理…</p>
+<h2 id="定点数乘法运算"><a href="#定点数乘法运算">定点数乘法运算</a></h2>
+<h3 id="原码一位乘法"><a href="#原码一位乘法">原码一位乘法</a></h3>
+<p>数值位取绝对值进行乘法计算</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="822" height="336" src="/_astro/image-19.0HXOdCHm_XOyD7.webp" ></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ACC = 0</span></span>
+<span class="line"><span>MQ = abs(乘数)</span></span>
+<span class="line"><span>X = abs(被乘数)</span></span>
+<span class="line"><span>loop {</span></span>
+<span class="line"><span>    if MQ最低位 == 0:</span></span>
+<span class="line"><span>        ACC += X</span></span>
+<span class="line"><span>    else:</span></span>
+<span class="line"><span>        ACC += 0</span></span>
+<span class="line"><span>    MQ >>= 1</span></span>
+<span class="line"><span>    AC >>= 1, 被舍弃的最低位补到MQ的最高位</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h3 id="补码一位乘法"><a href="#补码一位乘法">补码一位乘法</a></h3>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="2469" height="1002" src="/_astro/image-21.BX7cl62o_b04mL.webp" ></p>
+<p>由于MQ增加一位辅助位, ACC和X寄存器也各增加一位(做为双符号位),
+乘数MQ使用单符号位, 被乘数X使用双符号位.</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="844" height="346" src="/_astro/image-20.CUImg-Tz_Z1mSEd0.webp" ></p>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-%E3%80%90%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%80%83%E7%A0%94%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%91%20https://www.bilibili.com/video/bv1ps4y1d73v/?p=14&#x26;share_source=copy_web&#x26;vd_source=0a7e9572278635efd730c0077f8e7b45">
+<p>【王道计算机考研 计算机组成原理】 <a href="https://www.bilibili.com/video/BV1ps4y1d73V/?p=14&#x26;share_source=copy_web&#x26;vd_source=0a7e9572278635efd730c0077f8e7b45">https://www.bilibili.com/video/BV1ps4y1d73V/?p=14&#x26;share_source=copy_web&#x26;vd_source=0a7e9572278635efd730c0077f8e7b45</a> <a href="#user-content-fnref-%E3%80%90%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%80%83%E7%A0%94%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%91%20https://www.bilibili.com/video/bv1ps4y1d73v/?p=14&#x26;share_source=copy_web&#x26;vd_source=0a7e9572278635efd730c0077f8e7b45" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

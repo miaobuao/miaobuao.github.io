@@ -1,0 +1,92 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>棋盘挑战_N皇后问题</title><!-- Open Graph / Facebook --><meta property="og:title" content="棋盘挑战_N皇后问题"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/%E7%AE%97%E6%B3%95/%E6%A3%8B%E7%9B%98%E6%8C%91%E6%88%98_n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/"><meta name="description" content="DFS基础题
+
+"><meta property="og:description" content="DFS基础题
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 棋盘挑战_N皇后问题 </p> <p class="text-sm"> 杨秋逸 · 2021-03-08 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <p>DFS基础题</p>
+<!--more-->
+<h2 id="题目"><a href="#题目">题目</a></h2>
+<p>给定一个 N×N 的棋盘，请你在上面放置 N 个棋子，要求满足：</p>
+<p>每行每列都恰好有一个棋子
+每条对角线上都最多只能有一个棋子</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="txt"><code><span class="line"><span>    1   2   3   4   5   6</span></span>
+<span class="line"><span>  -------------------------</span></span>
+<span class="line"><span>1 |   | O |   |   |   |   |</span></span>
+<span class="line"><span>  -------------------------</span></span>
+<span class="line"><span>2 |   |   |   | O |   |   |</span></span>
+<span class="line"><span>  -------------------------</span></span>
+<span class="line"><span>3 |   |   |   |   |   | O |</span></span>
+<span class="line"><span>  -------------------------</span></span>
+<span class="line"><span>4 | O |   |   |   |   |   |</span></span>
+<span class="line"><span>  -------------------------</span></span>
+<span class="line"><span>5 |   |   | O |   |   |   |</span></span>
+<span class="line"><span>  -------------------------</span></span>
+<span class="line"><span>6 |   |   |   |   | O |   |</span></span>
+<span class="line"><span>  -------------------------</span></span></code></pre>
+<p>上图给出了当 N=6 时的一种解决方案，该方案可用序列 2 4 6 1 3 5 来描述，该序列按顺序给出了从第一行到第六行，每一行摆放的棋子所在的列的位置。</p>
+<p>请你编写一个程序，给定一个 N×N 的棋盘以及 N 个棋子，请你找出所有满足上述条件的棋子放置方案。</p>
+<p>输入格式
+共一行，一个整数 N。</p>
+<p>输出格式
+共四行，前三行每行输出一个整数序列，用来描述一种可行放置方案，序列中的第 i 个数表示第 i 行的棋子应该摆放的列的位置。</p>
+<p>这三行描述的方案应该是整数序列字典序排在第一、第二、第三的方案。</p>
+<p>第四行输出一个整数，表示可行放置方案的总数。</p>
+<p>数据范围
+6 ≤ N ≤ 13</p>
+<p>输入样例：</p>
+<blockquote>
+<p>6</p>
+</blockquote>
+<p>输出样例：</p>
+<blockquote>
+<p>2 4 6 1 3 5
+3 6 2 5 1 4
+4 1 5 2 6 3
+4</p>
+</blockquote>
+<h2 id="思路"><a href="#思路">思路</a></h2>
+<p>数据范围不大，所以可以用暴搜来做，层层递归，需要注意的是，每行每列，以及正反两条倾斜角为45°的对角线上只能有一颗棋子</p>
+<h2 id="code"><a href="#code">Code</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;bits/stdc++.h></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">using</span><span style="color:#F97583"> namespace</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> n, ans </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">bool</span><span style="color:#E1E4E8"> dg</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">15</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 15</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">, udg</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">15</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 15</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">, col</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">15</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> path</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">15</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> dfs</span><span style="color:#79b8ff">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> x</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x </span><span style="color:#F97583">></span><span style="color:#E1E4E8"> n</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#E1E4E8">        ans</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> </span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">ans </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 3</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#F97583">            for</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> n; i</span><span style="color:#F97583">++</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                cout </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> path</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">i</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#9ECBFF"> " "</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            cout </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> endl;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#F97583">    else</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> </span><span style="color:#b392f0">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> n; i</span><span style="color:#F97583">++</span><span style="color:#b392f0">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">col</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">and</span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">dg</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">and</span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">udg</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> n</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#E1E4E8">                path</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> i;</span></span>
+<span class="line"><span style="color:#E1E4E8">                col</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> dg</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> udg</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> n</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">                dfs</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">x </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                col</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> dg</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> i</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> udg</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> n</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                path</span><span style="color:#ffab70">[</span><span style="color:#E1E4E8">x</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#79b8ff">}</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#E1E4E8">    cin </span><span style="color:#F97583">></span><span style="color:#F97583">></span><span style="color:#E1E4E8"> n;</span></span>
+<span class="line"><span style="color:#B392F0">    dfs</span><span style="color:#ffab70">(</span><span style="color:#79B8FF">1</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    cout </span><span style="color:#F97583">&#x3C;</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> ans;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

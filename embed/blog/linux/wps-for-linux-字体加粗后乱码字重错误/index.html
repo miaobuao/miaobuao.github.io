@@ -1,0 +1,16 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>WPS for Linux 字体加粗后乱码(字重错误)</title><!-- Open Graph / Facebook --><meta property="og:title" content="WPS for Linux 字体加粗后乱码(字重错误)"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/linux/wps-for-linux-%E5%AD%97%E4%BD%93%E5%8A%A0%E7%B2%97%E5%90%8E%E4%B9%B1%E7%A0%81%E5%AD%97%E9%87%8D%E9%94%99%E8%AF%AF/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> WPS for Linux 字体加粗后乱码(字重错误) </p> <p class="text-sm"> 杨秋逸 · 2024-03-14 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="wps-for-linux-字体加粗后乱码字重错误"><a href="#wps-for-linux-字体加粗后乱码字重错误">WPS for Linux 字体加粗后乱码(字重错误)</a></h1>
+<p><strong>成因</strong>：WPS 依赖的 <code>freetype</code> 更新后不兼容</p>
+<h2 id="解决方案-1"><a href="#解决方案-1">解决方案 <sup><a href="#user-content-fn-https://bbs.wps.cn/topic/3137" id="user-content-fnref-https://bbs.wps.cn/topic/3137" data-footnote-ref aria-describedby="footnote-label">1</a></sup></a></h2>
+
+<ol>
+<li>点击下载<a href="/_astro/libfreetype-2.12.1.8I22t3nI.zip">libfreetype6_2.12.1</a></li>
+<li>解压后把里面的两个文件复制到WPS目录下的office6里（我的发行版位于<code>/opt/kingsoft/wps-office/office6</code>）</li>
+</ol>
+<p>也可以下载<a href="https://mirrors.ustc.edu.cn/debian/pool/main/f/freetype/libfreetype6_2.12.1%2Bdfsg-5_amd64.deb">deb包</a>然后把<code>data/usr/lib/x86_64-linux-gnu</code>下的所有文件复制到 <code>office6</code> 中</p>
+<section data-footnotes class="footnotes"><h2 class="sr-only" id="footnote-label"><a href="#footnote-label">Footnotes</a></h2>
+<ol>
+<li id="user-content-fn-https://bbs.wps.cn/topic/3137">
+<p><a href="https://bbs.wps.cn/topic/3137">https://bbs.wps.cn/topic/3137</a> <a href="#user-content-fnref-https://bbs.wps.cn/topic/3137" data-footnote-backref aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

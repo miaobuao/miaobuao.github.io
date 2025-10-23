@@ -1,0 +1,519 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostLayout.astro_astro_type_script_index_0_lang.CQKIrR8a.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>QQ的XML消息格式整理</title><!-- Open Graph / Facebook --><meta property="og:title" content="QQ的XML消息格式整理"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/blog/%E5%BC%80%E5%8F%91/qq%E7%9A%84xml%E6%B6%88%E6%81%AF%E6%A0%BC%E5%BC%8F%E6%95%B4%E7%90%86/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css">
+<style>progressive-image[data-astro-cid-njl3qch2]{display:block}
+@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><script type="module" src="/_astro/page.nXIIYMne.js"></script><style>[data-astro-transition-scope="astro-uniujczg-1"] { view-transition-name: avatar; }@layer astro { ::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(avatar) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-uniujczg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-uniujczg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="dark:text-white"> <div class="relative h-screen pointer-events-none"> <div class="absolute w-screen h-screen pointer-events-none" data-astro-transition-persist="bg"> <script type="module" src="/_astro/ProgressiveImage.astro_astro_type_script_index_0_lang.Zsl7yvEt.js"></script> <progressive-image data-url="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b.webp" data-thumbnailUrl="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" data-image-class="object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2="true" class="relative size-full pointer-events-none"> <img src="/images/3e171a532cf6845d0fe58924cc998f9b1c7244546777b816d44fe196656b3c4b_48x.webp" class="image-pixelated object-cover object-center size-full pointer-events-none" data-astro-cid-njl3qch2> </progressive-image>  </div> <div class="pointer-events-auto"><div class="absolute size-full max-w-7xl left-0 right-0 mx-auto sm:p-2"> <div class="sm:glassmorphism size-full rounded-md flex flex-row gap-2"> <div class="fixed w-full sm:w-50 lg:w-52 bottom-0 left-0 z-50 sm:static sm:flex sm:flex-col sm:overflow-auto no-scrollbar gap-2"> <div class="hidden sm:flex flex-col gap-1 justify-center items-center p-4" data-astro-transition-persist="author-info"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="rounded-full size-24 select-none" loading="lazy"> <p class="text-2xl font-bold">杨秋逸</p> <p class="text-sm">To Be A Geek :)</p> </div> <div class="flex flex-row sm:flex-col w-full justify-around border-none max-sm:glassmorphism sm:p-2"> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none  sm:glassmorphism" role="button" tabindex="0" href="/"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--nest-clock-farsight-analog] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Timeline
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/archive"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--calendar] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Archive
+ </div> </a>   <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none hidden sm:flex" role="button" tabindex="0" href="/friend-links/"> <div class="flex justify-center items-center"> <i class="icon-[icon-park-outline--friends-circle] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Friends
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none max-sm:flex hidden" role="button" tabindex="0" href="/finder"> <div class="flex justify-center items-center"> <i class="icon-[ix--navigation] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+Finder
+ </div> </a> <a class="transition-all flex flex-col items-center justify-center py-2 rounded-md max-sm:gap-0.5 sm:flex-row sm:justify-start sm:gap-4 sm:px-4 border-none" role="button" tabindex="0" href="/about-me"> <div class="flex justify-center items-center"> <i class="icon-[material-symbols--sentiment-excited-outline] size-6 sm:size-8"></i> </div> <div class="text-xs sm:text-base select-none">  
+About Me
+ </div> </a> </div> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z2plROE" component-url="/_astro/WindowsList.De5TXCyW.js" component-export="WindowsList" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;className&quot;:[0,&quot;flex-1 hidden sm:flex flex-col gap-1 overflow-auto px-2&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowsList&quot;,&quot;value&quot;:&quot;solid-js&quot;}"></astro-island> </div> <main id="main-scroll-container" class="overflow-auto h-full flex-1 no-scrollbar"> <div class="p-2 sm:pl-0">  <div class="flex flex-col glassmorphism rounded-lg"> <header class="p-4 gap-3 flex items-center sm:hidden"> <img src="https://avatars.githubusercontent.com/u/62047803?v=4" alt="秋逸" class="size-[3rem] rounded-full select-none" data-astro-transition-scope="astro-uniujczg-1"> <div class="flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> QQ的XML消息格式整理 </p> <p class="text-sm"> 杨秋逸 · 2022-08-03 </p> </div> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4 md:px-8">  <h1 id="qq-的-xml-消息格式整理"><a href="#qq-的-xml-消息格式整理">QQ 的 XML 消息格式整理</a></h1>
+<p>Forked from <a href="https://gist.github.com/koukuko/eb375cee7883764e01fb213b1ace4727">djkcyl/qq_message_xml.md</a>
+QQ 可以使用 xml 的方式发送消息，以下为了方便描述统称为卡片。</p>
+<h2 id="发送方式"><a href="#发送方式">发送方式</a></h2>
+<p>通过机器人的 API 进行发送 xml 即可，但是如果选择发送 xml，那么其他如<code>[image=xxx]</code>、<code>[@xxx]</code>这些命令就不可使用了。整个消息只有 XML。</p>
+<h2 id="基本结构"><a href="#基本结构">基本结构</a></h2>
+<p>xml 主要由<code>msg</code>,<code>item</code>,<code>source</code>这 3 部分组成</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">?</span><span style="color:#85E89D">xml</span><span style="color:#B392F0"> version</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">'1.0'</span><span style="color:#B392F0"> encoding</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">'utf-8'</span><span style="color:#B392F0"> standalone</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">'yes'</span><span style="color:#E1E4E8">?</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#6A737D">&#x3C;!-- msg 卡片的基本属性 只可以有1个  --></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">msg</span><span style="color:#B392F0"> flag</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">'1'</span><span style="color:#B392F0"> serviceID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">'1'</span><span style="color:#B392F0"> brief</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">'foobar'</span><span style="color:#B392F0"> templateID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">'1'</span><span style="color:#B392F0"> action</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">'plugin'</span><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#6A737D"> &#x3C;!-- item 卡片的内容 可重复使用  --></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">item</span><span style="color:#B392F0"> layout</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"0"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">layout="0"</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">title,summary,picture各占一行均可重复使用，按照Element顺序显示</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">picture</span><span style="color:#B392F0"> cover</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://placekitten.com/250/100"</span><span style="color:#E1E4E8">/</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">item</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#6A737D"> &#x3C;!-- source 卡片的来源，即卡片的角标 只可以有1个  --></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">source</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"koukuko"</span><span style="color:#B392F0"> icon</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"https://avatars2.githubusercontent.com/u/3916013?v=3</span><span style="color:#FDAEB7;font-style:italic">&#x26;</span><span style="color:#9ECBFF">s=40"</span><span style="color:#B392F0"> url</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">""</span><span style="color:#B392F0"> action</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"plugin"</span><span style="color:#B392F0"> appid</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"-1"</span><span style="color:#E1E4E8">/</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">msg</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h3 id="msg"><a href="#msg"><code>&#x3C;msg></code></a></h3>
+<h4 id="attribute"><a href="#attribute">attribute</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>attribute</th><th>value</th><th>description</th></tr></thead><tbody><tr><td>flag</td><td><code>0</code>,<code>1</code>,<code>2</code>,<code>3</code></td><td><code>0</code>默认，可以转发和收藏<br><code>1</code>不能转发<br><code>2</code>不能收藏<br><code>3</code>不能收藏也不能转发</td></tr><tr><td>serviceID</td><td><code>1</code></td><td>-</td></tr><tr><td>brief</td><td><code>{String}</code></td><td>卡片的简介，会显示于消息提示里</td></tr><tr><td>templateID</td><td><code>1</code>,<code>12345</code></td><td>-</td></tr><tr><td>action</td><td><code>web</code>、<code>plugin</code></td><td>-</td></tr><tr><td>url</td><td><code>{String}</code></td><td>点击后打开的 url</td></tr></tbody></table>
+<h3 id="item"><a href="#item"><code>&#x3C;item></code></a></h3>
+<h4 id="attribute-1"><a href="#attribute-1">attribute</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>attribute</th><th>value</th><th>description</th></tr></thead><tbody><tr><td>layout</td><td><code>0</code>,<code>1</code>,<code>2</code>,<code>3</code>,<code>4</code>,<code>5</code>,<code>6</code></td><td>排版方式</td></tr><tr><td>bg</td><td><code>0</code>,<code>1</code>,<code>2</code></td><td><code>&#x3C;item></code>的背景颜色<br><code>0</code>默认透明<br><code>1</code>蓝色<br><code>2</code>红色<br>手机端支持如#ff0000 的自定义颜色</td></tr></tbody></table>
+<h4 id="layout"><a href="#layout">layout</a></h4>
+<h5 id="layout0-顺序自由排版"><a href="#layout0-顺序自由排版">layout=“0” 顺序自由排版</a></h5>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">?</span><span style="color:#85E89D">xml</span><span style="color:#B392F0"> version</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1.0"</span><span style="color:#B392F0"> encoding</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">?</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">msg</span><span style="color:#B392F0"> templateID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"12345"</span><span style="color:#B392F0"> action</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"web"</span><span style="color:#B392F0"> brief</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"TEST"</span><span style="color:#B392F0"> serviceID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1"</span><span style="color:#B392F0"> url</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://koukuko.com"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">item</span><span style="color:#B392F0"> layout</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">layout="1"</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">title,summary,picture各占一行均可重复使用，按照Element顺序显示</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">picture</span><span style="color:#B392F0"> cover</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://placekitten.com/250/100"</span><span style="color:#E1E4E8">/</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">item</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">msg</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="353" height="246" src="/_astro/image-13.Cv8VKw8k_89x9N.webp" ></p>
+<h5 id="layout1-"><a href="#layout1-">layout=“1” -</a></h5>
+<p>会留空，用意不明</p>
+<h5 id="layout2-左中图右文字"><a href="#layout2-左中图右文字">layout=“2” 左中图右文字</a></h5>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">?</span><span style="color:#85E89D">xml</span><span style="color:#B392F0"> version</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1.0"</span><span style="color:#B392F0"> encoding</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">?</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">msg</span><span style="color:#B392F0"> templateID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"12345"</span><span style="color:#B392F0"> action</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"web"</span><span style="color:#B392F0"> brief</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"TEST"</span><span style="color:#B392F0"> serviceID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1"</span><span style="color:#B392F0"> url</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://koukuko.com"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">item</span><span style="color:#B392F0"> layout</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"2"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">layout="2"</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">左侧有1:1封面右侧正文</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">picture</span><span style="color:#B392F0"> cover</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://placekitten.com/100/100"</span><span style="color:#E1E4E8">/</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">item</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">msg</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="349" height="168" src="/_astro/image-14.DBC0jpI5_Z1RxScj.webp" ></p>
+<h5 id="layout3-三图"><a href="#layout3-三图">layout=“3” 三图</a></h5>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">?</span><span style="color:#85E89D">xml</span><span style="color:#B392F0"> version</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1.0"</span><span style="color:#B392F0"> encoding</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">?</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">msg</span><span style="color:#B392F0"> templateID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"12345"</span><span style="color:#B392F0"> action</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"web"</span><span style="color:#B392F0"> brief</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"TEST"</span><span style="color:#B392F0"> serviceID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1"</span><span style="color:#B392F0"> url</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://koukuko.com"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">item</span><span style="color:#B392F0"> layout</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"3"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">picture</span><span style="color:#B392F0"> cover</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://placekitten.com/100/100"</span><span style="color:#E1E4E8">/</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">picture</span><span style="color:#B392F0"> cover</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://placekitten.com/200/200"</span><span style="color:#E1E4E8">/</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">picture</span><span style="color:#B392F0"> cover</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://placekitten.com/300/300"</span><span style="color:#E1E4E8">/</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">layout="3"</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">固定显示2-3个封面，不显示title，picture必须要在最前面</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">item</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">msg</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="367" height="206" src="/_astro/image-15.BMbvwM0B_1594th.webp" ></p>
+<h5 id="layout4-左小图右文字"><a href="#layout4-左小图右文字">layout=“4” 左小图右文字</a></h5>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">?</span><span style="color:#85E89D">xml</span><span style="color:#B392F0"> version</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1.0"</span><span style="color:#B392F0"> encoding</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">?</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">msg</span><span style="color:#B392F0"> templateID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"12345"</span><span style="color:#B392F0"> action</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"web"</span><span style="color:#B392F0"> brief</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"TEST"</span><span style="color:#B392F0"> serviceID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1"</span><span style="color:#B392F0"> url</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://koukuko.com"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">item</span><span style="color:#B392F0"> layout</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"4"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">layout="4" 左侧有1:1小封面右侧正文 不显示summary</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">左侧有1:1小封面右侧正文</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">picture</span><span style="color:#B392F0"> cover</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://placekitten.com/100/100"</span><span style="color:#E1E4E8">/</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">item</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">msg</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="353" height="128" src="/_astro/image-16.BQ0nks-K_Z2w2x8N.webp" ></p>
+<h5 id="layout5-标题在图片之上且有黑底"><a href="#layout5-标题在图片之上且有黑底">layout=“5” 标题在图片之上且有黑底</a></h5>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">?</span><span style="color:#85E89D">xml</span><span style="color:#B392F0"> version</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1.0"</span><span style="color:#B392F0"> encoding</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"utf-8"</span><span style="color:#E1E4E8">?</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">msg</span><span style="color:#B392F0"> templateID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"12345"</span><span style="color:#B392F0"> action</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"web"</span><span style="color:#B392F0"> brief</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"TEST"</span><span style="color:#B392F0"> serviceID</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1"</span><span style="color:#B392F0"> url</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://koukuko.com"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">item</span><span style="color:#B392F0"> layout</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"5"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">layout="5" 标题在图片之上 不显示summary</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8">标题在图片之上</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">summary</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">picture</span><span style="color:#B392F0"> cover</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://placekitten.com/400/200"</span><span style="color:#E1E4E8">/</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8"> </span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">item</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#E1E4E8">/</span><span style="color:#85E89D">msg</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="345" height="173" src="/_astro/image-17.B_Oih9nc_Z1kftCu.webp" ></p>
+<h5 id="layout6"><a href="#layout6">layout=“6”`</a></h5>
+<p>和 1 类似</p>
+<h4 id="element"><a href="#element">element</a></h4>
+<p>在<code>&#x3C;item></code>中可选的 element</p>
+<h5 id="title"><a href="#title"><code>&#x3C;title></code></a></h5>
+<p>标题</p>
+<h6 id="attribute-2"><a href="#attribute-2">attribute</a></h6>
+<p>无</p>
+<h5 id="picture"><a href="#picture"><code>&#x3C;picture></code></a></h5>
+<p>封面图片</p>
+<h6 id="attribute-3"><a href="#attribute-3">attribute</a></h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>attribute</th><th>value</th><th>description</th></tr></thead><tbody><tr><td>cover</td><td>${String}</td><td>图片 URL</td></tr></tbody></table>
+<h5 id="summary"><a href="#summary"><code>&#x3C;summary></code></a></h5>
+<p>正文文本</p>
+<h6 id="attribute-4"><a href="#attribute-4">attribute</a></h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>attribute</th><th>value</th><th>description</th></tr></thead><tbody><tr><td>size</td><td>${Int}</td><td>文字大小(仅手机端支持)</td></tr><tr><td>color</td><td>${Int16_hex}</td><td>文字颜色 如：#000000</td></tr></tbody></table>
+<h5 id="button"><a href="#button"><code>&#x3C;button></code></a></h5>
+<p>按钮，按钮只有手机端可见，手机端下一排可现实两个按钮，必须使用<code>layout="3"</code>的排版才可以正常使用，但是“layout=“3”```的排版在 PC 上无论如何都会显示出 3 个封面图，因此不推荐使用。</p>
+<h6 id="attribute-5"><a href="#attribute-5">attribute</a></h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>attribute</th><th>value</th><th>description</th></tr></thead><tbody><tr><td>action</td><td><code>app</code>、<code>plugin</code></td><td><code>app</code>APP<br><code>plugin</code>插件</td></tr><tr><td>p_actionData</td><td><code>{String}</code></td><td>-</td></tr><tr><td>a_actionData</td><td><code>{String}</code></td><td>安卓下的 schema</td></tr><tr><td>i_actionData</td><td><code>{String}</code></td><td>iOs 下的 schema</td></tr></tbody></table>
+<h5 id="br"><a href="#br"><code>&#x3C;br/></code></a></h5>
+<p>换行</p>
+<h5 id="hr"><a href="#hr"><code>&#x3C;hr/></code></a></h5>
+<p>分割线</p>
+<h6 id="attribute-6"><a href="#attribute-6">attribute</a></h6>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>attribute</th><th>value</th><th>description</th></tr></thead><tbody><tr><td>hidden</td><td><code>{Boolean}</code></td><td>显示或隐藏分割线</td></tr></tbody></table>
+<h3 id="source"><a href="#source"><code>&#x3C;source></code></a></h3>
+<h4 id="attribute-7"><a href="#attribute-7">attribute</a></h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>attribute</th><th>value</th><th>description</th></tr></thead><tbody><tr><td>url</td><td><code>{String}</code></td><td>点击角标后打开的 url</td></tr><tr><td>icon</td><td><code>{String}</code></td><td>角标图片的地址</td></tr><tr><td>name</td><td><code>{String}</code></td><td>角标的名称</td></tr><tr><td>action</td><td><code>app</code>、<code>plugin</code></td><td><code>app</code>点击角标打开 APP<br><code>plugin</code>插件</td></tr><tr><td>appid</td><td><code>{Int}</code></td><td><a href="http://open.mobile.qq.com/">http://open.mobile.qq.com/</a> 下的 appid</td></tr><tr><td>p_actionData</td><td><code>{String}</code></td><td>-</td></tr><tr><td>a_actionData</td><td><code>{String}</code></td><td>安卓下的 schema</td></tr><tr><td>i_actionData</td><td><code>{String}</code></td><td>iOs 下的 schema</td></tr></tbody></table>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#79B8FF"> __future__</span><span style="color:#F97583"> import</span><span style="color:#E1E4E8"> annotations</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> html </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> escape</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> typing </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Any, Dict, List, Literal, Optional, Union</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pydantic </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> BaseModel</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pydantic.color </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> Color</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> pydantic.networks </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> AnyHttpUrl</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> _to_property</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">key: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">, value</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> -</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8"> </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#F97583"> f</span><span style="color:#9ECBFF">"</span><span style="color:#79b8ff">{</span><span style="color:#E1E4E8">key</span><span style="color:#79b8ff">}</span><span style="color:#9ECBFF">='</span><span style="color:#79b8ff">{</span><span style="color:#E1E4E8">escape</span><span style="color:#ffab70">(</span><span style="color:#79B8FF">str</span><span style="color:#b392f0">(</span><span style="color:#E1E4E8">value</span><span style="color:#b392f0">)</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">}</span><span style="color:#9ECBFF">'"</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> value </span><span style="color:#F97583">is</span><span style="color:#F97583"> not</span><span style="color:#79B8FF"> None</span><span style="color:#F97583"> else</span><span style="color:#9ECBFF"> ""</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> _many_property</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">args: Dict</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">, Any</span><span style="color:#ffab70">]</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> -</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8"> </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#9ECBFF"> " "</span><span style="color:#E1E4E8">.join</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">_to_property</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">key, value</span><span style="color:#ffab70">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> key, value </span><span style="color:#F97583">in</span><span style="color:#E1E4E8"> args.items</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span><span style="color:#79b8ff">)</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> XMLEntity</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">BaseModel</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    flag: Literal</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#E1E4E8">    service_id: Literal</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">1</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#E1E4E8">    brief: </span><span style="color:#79B8FF">str</span></span>
+<span class="line"><span style="color:#E1E4E8">    template_id: Literal</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">12345</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#E1E4E8">    action: Literal</span><span style="color:#79b8ff">[</span><span style="color:#9ECBFF">"web"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"plugin"</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "plugin"</span></span>
+<span class="line"><span style="color:#E1E4E8">    uri: Optional</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">AnyHttpUrl</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    item: EntityItem</span></span>
+<span class="line"><span style="color:#E1E4E8">    source: Optional</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">EntitiySource</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> to_element</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">self</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> -</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8"> </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span></span>
+<span class="line"><span style="color:#9ECBFF">            "&#x3C;?xml version='1.0' encoding='utf-8' standalone='yes'?>"</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#9ECBFF"> "&#x3C;msg "</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#E1E4E8"> _many_property</span><span style="color:#ffab70">(</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "flag"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.flag,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "serviceID"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.service_id,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "brief"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.brief,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "templateID"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.template_id,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "action"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.action,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "uri"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.uri,</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#9ECBFF"> ">"</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.item.to_element</span><span style="color:#ffab70">(</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">""</span><span style="color:#F97583"> if</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.source </span><span style="color:#F97583">is</span><span style="color:#79B8FF"> None</span><span style="color:#F97583"> else</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.source.to_element</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#9ECBFF"> "&#x3C;/msg>"</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#79b8ff">)</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> EntityItem</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">BaseModel</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    layout: Literal</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">6</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#E1E4E8">    bg: Union</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">Literal</span><span style="color:#ffab70">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#ffab70">]</span><span style="color:#E1E4E8">, Color</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    title: </span><span style="color:#79B8FF">str</span></span>
+<span class="line"><span style="color:#E1E4E8">    picture: List</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">ItemPicture</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">[</span><span style="color:#79b8ff">]</span></span>
+<span class="line"><span style="color:#E1E4E8">    summary: Optional</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">ItemSummary</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"><span style="color:#E1E4E8">    button: Optional</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">ItemButton</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> to_element</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">self</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span></span>
+<span class="line"><span style="color:#9ECBFF">            "&#x3C;item "</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#E1E4E8"> _many_property</span><span style="color:#ffab70">(</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "layout"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.layout,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "bg"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.bg.as_hex</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">if</span><span style="color:#79B8FF"> isinstance</span><span style="color:#79b8ff">(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.bg, Color</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">else</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.bg,</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#9ECBFF"> ">"</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">""</span><span style="color:#F97583"> if</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.title </span><span style="color:#F97583">is</span><span style="color:#79B8FF"> None</span><span style="color:#F97583"> else</span><span style="color:#F97583"> f</span><span style="color:#9ECBFF">"&#x3C;title></span><span style="color:#b392f0">{</span><span style="color:#E1E4E8">escape</span><span style="color:#79b8ff">(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.title</span><span style="color:#79b8ff">)</span><span style="color:#b392f0">}</span><span style="color:#9ECBFF">&#x3C;/title>"</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">""</span><span style="color:#F97583"> if</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.summary </span><span style="color:#F97583">is</span><span style="color:#79B8FF"> None</span><span style="color:#F97583"> else</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.summary.to_element</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#9ECBFF"> ""</span><span style="color:#E1E4E8">.join</span><span style="color:#ffab70">(</span><span style="color:#E1E4E8">pic.to_element</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">for</span><span style="color:#E1E4E8"> pic </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.picture</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#E1E4E8"> </span><span style="color:#ffab70">(</span><span style="color:#9ECBFF">""</span><span style="color:#F97583"> if</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.button </span><span style="color:#F97583">is</span><span style="color:#79B8FF"> None</span><span style="color:#F97583"> else</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.button.to_element</span><span style="color:#b392f0">(</span><span style="color:#b392f0">)</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#9ECBFF"> "&#x3C;/item>"</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#79b8ff">)</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ItemPicture</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">BaseModel</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    cover: AnyHttpUrl</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> to_element</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">self</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#9ECBFF"> "&#x3C;picture "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> _many_property</span><span style="color:#79b8ff">(</span><span style="color:#ffab70">{</span><span style="color:#9ECBFF">"cover"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.cover</span><span style="color:#ffab70">}</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "/>"</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ItemSummary</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">BaseModel</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    size: Optional</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">int</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"><span style="color:#E1E4E8">    color: Optional</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">Color</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    text: </span><span style="color:#79B8FF">str</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> to_element</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">self</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span></span>
+<span class="line"><span style="color:#9ECBFF">            "&#x3C;summary "</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#E1E4E8"> _many_property</span><span style="color:#ffab70">(</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "size"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.size,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "color"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.color.as_hex</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">if</span><span style="color:#79B8FF"> self</span><span style="color:#E1E4E8">.color </span><span style="color:#F97583">else</span><span style="color:#79B8FF"> None</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#9ECBFF"> ">"</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#E1E4E8"> escape</span><span style="color:#ffab70">(</span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.text</span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#9ECBFF"> "&#x3C;/summary>"</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#79b8ff">)</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ItemButton</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">BaseModel</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    action: Literal</span><span style="color:#79b8ff">[</span><span style="color:#9ECBFF">"app"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"plugin"</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "app"</span></span>
+<span class="line"><span style="color:#E1E4E8">    pc_action: Optional</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">str</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"><span style="color:#E1E4E8">    android_action: Optional</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">str</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"><span style="color:#E1E4E8">    ios_action: Optional</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">str</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> to_element</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">self</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span></span>
+<span class="line"><span style="color:#9ECBFF">            "&#x3C;button "</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#E1E4E8"> _many_property</span><span style="color:#ffab70">(</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "action"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.action,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "p_actionData"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.pc_action,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "a_actionData"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.android_action,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "i_actionData"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.ios_action,</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#9ECBFF"> "/>"</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#79b8ff">)</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> EntitiySource</span><span style="color:#79b8ff">(</span><span style="color:#B392F0">BaseModel</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    url: Optional</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">AnyHttpUrl</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"><span style="color:#E1E4E8">    icon: Optional</span><span style="color:#79b8ff">[</span><span style="color:#E1E4E8">AnyHttpUrl</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"><span style="color:#E1E4E8">    name: </span><span style="color:#79B8FF">str</span></span>
+<span class="line"><span style="color:#E1E4E8">    action: Literal</span><span style="color:#79b8ff">[</span><span style="color:#9ECBFF">"app"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"plugin"</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "app"</span></span>
+<span class="line"><span style="color:#E1E4E8">    appid: </span><span style="color:#79B8FF">int</span><span style="color:#F97583"> =</span><span style="color:#F97583"> -</span><span style="color:#79B8FF">1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    pc_action: Optional</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">str</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"><span style="color:#E1E4E8">    android_action: Optional</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">str</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"><span style="color:#E1E4E8">    ios_action: Optional</span><span style="color:#79b8ff">[</span><span style="color:#79B8FF">str</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8"> </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> None</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    def</span><span style="color:#B392F0"> to_element</span><span style="color:#79b8ff">(</span><span style="color:#E1E4E8">self</span><span style="color:#79b8ff">)</span><span style="color:#E1E4E8"> -</span><span style="color:#E1E4E8">></span><span style="color:#E1E4E8"> </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> </span><span style="color:#79b8ff">(</span></span>
+<span class="line"><span style="color:#9ECBFF">            "&#x3C;source "</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#E1E4E8"> _many_property</span><span style="color:#ffab70">(</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "url"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.url,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "icon"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.icon,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "name"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.name,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "action"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.action,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "appid"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.appid,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "p_actionData"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.pc_action,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "a_actionData"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.android_action,</span></span>
+<span class="line"><span style="color:#9ECBFF">                    "i_actionData"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">self</span><span style="color:#E1E4E8">.ios_action,</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span><span style="color:#ffab70">)</span></span>
+<span class="line"><span style="color:#F97583">            +</span><span style="color:#9ECBFF"> "/>"</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span><span style="color:#79b8ff">)</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">XMLEntity.update_forward_refs</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span>
+<span class="line"><span style="color:#E1E4E8">EntityItem.update_forward_refs</span><span style="color:#79b8ff">(</span><span style="color:#79b8ff">)</span></span></code></pre>  </article> </div> <div class="max-sm:glassmorphism rounded-lg mt-2 sm:mt-6 p-2 pt-6"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div> <div class="h-16 sm:h-0"></div>  </div> </main> </div> </div></div> </div><astro-island uid="gD63X" component-url="/_astro/WindowManager.DgB5G-u_.js" component-export="WindowManager" renderer-url="/_astro/client.DkS6DsO7.js" props="{&quot;class&quot;:[0,&quot;invisible md:visible not-md:pointer-events-none&quot;],&quot;data-astro-transition-persist&quot;:[0,&quot;wm&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;WindowManager&quot;,&quot;value&quot;:&quot;solid-js&quot;}" data-astro-transition-persist="wm"></astro-island>  </body></html> <script defer>
+	window.addEventListener(
+		'wheel',
+		(e) => {
+			const scrollContainer = document.getElementById('main-scroll-container')
+			if (e.target !== document.body) {
+				return
+			}
+			e.preventDefault()
+			scrollContainer.scrollTop += e.deltaY
+		},
+		{ passive: false },
+	)
+</script>

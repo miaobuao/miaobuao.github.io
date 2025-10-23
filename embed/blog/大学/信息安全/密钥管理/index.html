@@ -1,0 +1,56 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>密钥管理</title><!-- Open Graph / Facebook --><meta property="og:title" content="密钥管理"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/%E5%A4%A7%E5%AD%A6/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%AF%86%E9%92%A5%E7%AE%A1%E7%90%86/"><meta name="description" content="0. WiFi的密钥
+1. 对称密钥的分发
+2. 公钥加密体制的密钥管理
+3. 秘密分享
+
+"><meta property="og:description" content="0. WiFi的密钥
+1. 对称密钥的分发
+2. 公钥加密体制的密钥管理
+3. 秘密分享
+
+"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 密钥管理 </p> <p class="text-sm"> 杨秋逸 · 2021-05-14 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <ol start="0">
+<li>WiFi的密钥</li>
+<li>对称密钥的分发</li>
+<li>公钥加密体制的密钥管理</li>
+<li>秘密分享</li>
+</ol>
+<!--more-->
+<h2 id="0-wifi"><a href="#0-wifi">0. WIFI</a></h2>
+<ol>
+<li>家用WiFi（临时Key）
+WPA2-PSK模式下，TK的产生过程为：
+PSK(无线网络密码) -> PMK -> PTK -> TK(临时Key)
+Pmk = hash(PSK || ssid)
+所以家用WiFi生成的PMK是固定的9</li>
+<li>企业WiFi（临时Key+随机数）
+WPA2-Enterprise模式下，TK产生过程：
+xxxx -> PMK->TK
+Pmk = hash(masterKey, snonce, anonce)
+snonce &#x26; anonce 是两个随机数</li>
+</ol>
+<h2 id="1-对称密钥的分发"><a href="#1-对称密钥的分发">1. 对称密钥的分发</a></h2>
+<ol>
+<li>一方产生，然后安全传给另一方
+eg: Key和消息不走同一个信道，比如短信验证码</li>
+<li>两方协商产生
+Diffie-Hellman密钥协商协议:
+Alice &#x3C;----> Bob
+Alice —g—> Bob
+Alice &#x3C;—p— Bob
+Alice —y1—> Bob
+Alice &#x3C;—y2— Bob
+y1 = g^a mod p
+y2 = p^b mod g
+y1 &#x26; y2 是加密的消息，a &#x26; b是私钥
+Alice 获取到y2之后， msg1 = y2^a mod p
+Bob 获取到y1之后， msg2 = y1^b mod p
+最后 msg1 = msg2</li>
+<li>通过可信赖的第三方参与产生(太复杂了)</li>
+</ol>
+<h2 id="2-公钥加密体制的密钥管理"><a href="#2-公钥加密体制的密钥管理">2. 公钥加密体制的密钥管理</a></h2>
+<p>网络证书颁发机构（赛门杰克）</p>
+<h2 id="3-秘密分割"><a href="#3-秘密分割">3. 秘密分割</a></h2>
+<ol>
+<li>(k,n)秘密分割门限方案</li>
+<li>可验证秘密分享</li>
+</ol>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

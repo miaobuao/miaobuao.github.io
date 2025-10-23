@@ -1,0 +1,29 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.CBnQuka3.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Windows Server 2022 下安装B650E-E的驱动</title><!-- Open Graph / Facebook --><meta property="og:title" content="Windows Server 2022 下安装B650E-E的驱动"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/homelab/windows-server-2022-xia-an-zhuang-b650e-ede-qu-dong/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.DY52MY3N.js"></script><link rel="stylesheet" href="/_astro/_slug_.DyZWVpeX.css"><script type="module" src="/_astro/page.nXIIYMne.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> Windows Server 2022 下安装B650E-E的驱动 </p> <p class="text-sm"> 杨秋逸 · 2024-06-10 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="windows-server-2022-下安装b650e-e的驱动"><a href="#windows-server-2022-下安装b650e-e的驱动">Windows Server 2022 下安装B650E-E的驱动</a></h1>
+<h2 id="网卡驱动"><a href="#网卡驱动">网卡驱动</a></h2>
+<p>该章内容参考自<a href="https://www.quarkbook.com/?p=1414">Windows Server 2022安装Intel I225-V/I226-V驱动</a></p>
+<p>B650E-E的网卡型号是 Intel I225V 2.5Gb, 属于桌面端产品线，-LM后缀的才属于商业端产品线，默认情况下，Windows Server只能安装商业端产品线的网卡驱动。我们通过魔改配置文件可以绕过这一限制。</p>
+<h3 id="0-intel官网下载驱动"><a href="#0-intel官网下载驱动">0. Intel官网下载驱动</a></h3>
+<p><a href="https://www.intel.cn/content/www/cn/zh/products/sku/184676/intel-ethernet-controller-i225v/downloads.html">Intel I225-V驱动</a></p>
+<h3 id="1-找到网卡的硬件id"><a href="#1-找到网卡的硬件id">1. 找到网卡的硬件ID</a></h3>
+<p>安装好Windows Server 2022之后，在设备管理器中找到网卡，然后右键->属性->详细信息。选择硬件ID，记下第一行的硬件ID。</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="984" height="707" src="/_astro/image.DRbYPrNC_Zem1Ie.webp" ></p>
+<p>I225-V B3的硬件ID是 <code>PCI\VEN_8086&#x26;DEV_125C&#x26;SUBSYS_00008086&#x26;REV_04</code></p>
+<p>在驱动程序的inf文件中查找得知，I226网卡ID为</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>PCI\VEN_8086&#x26;DEV_125C</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>//I225-V B3 ID为：PCI\VEN_8086&#x26;DEV_15F3&#x26;REV_03</span></span></code></pre>
+<h3 id="2-修改驱动"><a href="#2-修改驱动">2. 修改驱动</a></h3>
+<p>下载驱动之后，解压驱动，找打并打卡<code>PRO2500\Winx64\WS2022\e2f.inf</code>文件。</p>
+<p>然后在这个文件里面搜素上面拿到的硬件ID <code>PCI\VEN_8086&#x26;DEV_125C</code>。找到这一行之后，将这一行复制到节点<code>[Intel.NTamd64.10.0...17763]</code>下面：</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="1215" height="614" src="/_astro/image-1.C3EYZRQw_qT8J5.webp" ></p>
+<h3 id="3-安装驱动"><a href="#3-安装驱动">3. 安装驱动</a></h3>
+<p>进入Windows Server 2022，在CMD（管理员身份）中依次输入下面两条命令，然后重启机器。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">bcdedit</span><span style="color:#79B8FF"> -set</span><span style="color:#9ECBFF"> loadoptions</span><span style="color:#9ECBFF"> DISABLE_INTEGRITY_CHECKS</span></span>
+<span class="line"><span style="color:#B392F0">bcdedit</span><span style="color:#79B8FF"> -set</span><span style="color:#9ECBFF"> TESTSIGNING</span><span style="color:#9ECBFF"> ON</span></span></code></pre>
+<p>这一步使为了禁用驱动程序签名和开启测试模式，修改了inf之后，过不了签名验证，但是禁用驱动程序签名验证之后，就可以正常安装了。</p>
+<p>重启之后，在设备管理器中，右键需要安装驱动的网卡，选择“更新驱动程序和软件”。</p>
+<p><img  loading="lazy" decoding="async" fetchpriority="auto" width="617" height="493" src="/_astro/image-2.VxHWyk0o_rTg9b.webp" ></p>
+<p>然后选择“浏览我的电脑以查找驱动程序”，找到刚刚修改的驱动，点击下一步，选择“始终安装此驱动程序软件”。然后I226-V的驱动就安装好了。</p>
+<p>驱动都安装完成之后，在CMD（管理员身份）中依次输入下面两条命令，关闭测试模式。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">bcdedit</span><span style="color:#79B8FF"> -set</span><span style="color:#9ECBFF"> loadoptions</span><span style="color:#9ECBFF"> ENABLE_INTEGRITY_CHECKS</span></span>
+<span class="line"><span style="color:#B392F0">bcdedit</span><span style="color:#79B8FF"> -set</span><span style="color:#9ECBFF"> TESTSIGNING</span><span style="color:#9ECBFF"> OFF</span></span></code></pre>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.C2pfN53L.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>
