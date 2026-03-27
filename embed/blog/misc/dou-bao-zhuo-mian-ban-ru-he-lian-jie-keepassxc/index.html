@@ -1,0 +1,22 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.BHvfW8aO.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title data-pagefind-meta="title">豆包桌面版如何连接KeePassXC？</title><!-- Open Graph / Facebook --><meta property="og:title" content="豆包桌面版如何连接KeePassXC？"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/misc/dou-bao-zhuo-mian-ban-ru-he-lian-jie-keepassxc/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.C5Ve43f5.js"></script><link rel="stylesheet" href="/_astro/_slug_.BRFUWfV5.css"><script type="module" src="/_astro/page.CWe2LBI6.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 豆包桌面版如何连接KeePassXC？ </p> <p class="text-sm"> 杨秋逸 · 2026-02-05 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="豆包桌面版如何连接keepassxc"><a href="#豆包桌面版如何连接keepassxc">豆包桌面版如何连接KeePassXC？</a></h1>
+<p>豆包桌面版基于 Chromium 内核，但它不是 KeePassXC 预设支持的浏览器之一。于是常见现象是：浏览器扩展能装上，但连接时提示“密钥交换未成功”，即使你已经在 KeePassXC 的浏览器集成里勾选了 Chrome/Chromium。</p>
+<p>根因通常是 Native Messaging 配置文件的读取路径不一致。只要把 KeePassXC 生成的配置文件放到豆包能读取的目录里即可。</p>
+<h2 id="具体步骤"><a href="#具体步骤">具体步骤</a></h2>
+<h3 id="1-找到-keepassxc-生成的配置文件"><a href="#1-找到-keepassxc-生成的配置文件">1. 找到 KeePassXC 生成的配置文件</a></h3>
+<p>在 KeePassXC 的「浏览器集成」里勾选 Chrome 后，系统会自动生成配置文件：</p>
+<ul>
+<li>Windows：<code>%LocalAppData%\Google\Chrome\User Data\NativeMessagingHosts\</code></li>
+<li>macOS：<code>~/Library/Application Support/Google/Chrome/NativeMessagingHosts/</code></li>
+</ul>
+<p>文件名是：<code>org.keepassxc.keepassxc_browser.json</code></p>
+<h3 id="2-定位豆包的-native-messaging-目录"><a href="#2-定位豆包的-native-messaging-目录">2. 定位豆包的 Native Messaging 目录</a></h3>
+<p>豆包是 Chromium 衍生版，读取路径在它自己的数据目录中：</p>
+<ul>
+<li>Windows：<code>%LocalAppData%\Doubao\User Data\NativeMessagingHosts\</code></li>
+<li>macOS：<code>~/Library/Application Support/Doubao/NativeMessagingHosts/</code></li>
+</ul>
+<h3 id="3-复制配置文件"><a href="#3-复制配置文件">3. 复制配置文件</a></h3>
+<p>把第 1 步生成的 <code>org.keepassxc.keepassxc_browser.json</code> 复制到第 2 步的豆包目录下。</p>
+<p>完成后重启豆包与 KeePassXC，再次连接通常就能正常完成密钥交换。</p>
+<h2 id="补充说明"><a href="#补充说明">补充说明</a></h2>
+<p>如果你之后更新了 KeePassXC 或重新切换浏览器集成设置，可能需要重新复制一次配置文件。建议先确认豆包目录中的 JSON 文件内容与 KeePassXC 生成的保持一致。</p>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.BPikHmkd.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.BHvfW8aO.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title data-pagefind-meta="title">解决VSCode终端自动激活Python延迟和打断输入问题</title><!-- Open Graph / Facebook --><meta property="og:title" content="解决VSCode终端自动激活Python延迟和打断输入问题"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/misc/jie-jue-vscodezhong-duan-zi-dong-ji-huo-pythonyan-chi-he-da-duan-shu-ru-wen-ti/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.C5Ve43f5.js"></script><link rel="stylesheet" href="/_astro/_slug_.BRFUWfV5.css"><script type="module" src="/_astro/page.CWe2LBI6.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> 解决VSCode终端自动激活Python延迟和打断输入问题 </p> <p class="text-sm"> 杨秋逸 · 2026-03-28 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="解决vscode终端自动激活python延迟和打断输入问题"><a href="#解决vscode终端自动激活python延迟和打断输入问题">解决VSCode终端自动激活Python延迟和打断输入问题</a></h1>
+<p>打开终端后，VS Code 反应迟钝，几秒后才弹出 source .venv/bin/activate。如果你手快正在打字（如 git push），这条指令会直接打断并污染你的输入。</p>
+<p>这是 VS Code Python 扩展的性能 Bug。默认模式是通过“模拟键盘输入”发送激活指令，一旦插件加载慢，就会产生延迟。</p>
+<h2 id="修复方案"><a href="#修复方案">修复方案：</a></h2>
+<ol>
+<li>打开 VS Code 设置 (Cmd + ,)。</li>
+<li>搜索：python-envs.terminal.autoActivationType。</li>
+<li>~将默认值改为：shellStartup。</li>
+</ol>
+<p>VS Code 将通过 Shell 集成静默激活环境，不再通过“发指令”的方式干扰你的正常输入。</p>
+<h2 id="reference"><a href="#reference">Reference</a></h2>
+<ul>
+<li><a href="https://github.com/microsoft/vscode-python-environments/issues/997">[Python Environments] Virtual environment activation is slow #997</a></li>
+</ul>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.BPikHmkd.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>
