@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>龟缸安全植物交互式选择指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Earthy Harmony -->
+    <!-- Application Structure Plan: The application is designed as a task-oriented interactive guide. The user's primary goal is to find and compare suitable plants. The structure includes: 1) A Hero section for a clear purpose statement. 2) An interactive Plant Selector with clickable cards and a detail view, which is more engaging than a static list. 3) A dynamic Comparison Chart to visually compare plant attributes, aiding decision-making. 4) A visually distinct "Danger Zone" section for critical safety warnings. 5) An accordion-style "Core Concepts" section to provide background info without cluttering the main view. This structure prioritizes user interaction and quick access to essential information over the linear format of the source report, making the content more consumable and actionable. -->
+    <!-- Visualization & Content Choices: Report Info: Plant characteristics (purification, growth, safety). -> Goal: Compare & Select. -> Viz/Presentation Method: Interactive cards (HTML/Tailwind) for individual exploration and a horizontal bar chart (Chart.js/Canvas) for multi-plant comparison. -> Interaction: Users click cards to view details; the chart provides an at-a-glance performance overview. -> Justification: This combination caters to both detailed research and quick comparison, making the selection process intuitive. A separate, icon-driven list is used for toxic plants to emphasize the warning. -> Library/Method: Chart.js for the canvas-based chart. All diagrams and layouts are done with HTML and Tailwind CSS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', 'Helvetica Neue', 'Hiragino Sans GB',
+                'WenQuanYi Micro Hei', 'Microsoft YaHei', sans-serif;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+            }
+        }
+
+        .active-tab {
+            border-color: #34d399;
+            color: #059669;
+            background-color: #d1fae5;
+        }
+
+        .inactive-tab {
+            border-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-[#FDFBF7] text-gray-800">
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#2F4F4F] mb-4">
+                龟缸安全植物交互式选择指南
+            </h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                为您和您的爱宠（乌龟与猫咪）寻找净化能力强、安全无毒的完美挺水植物。
+            </p>
+        </header>
+
+        <nav class="flex justify-center mb-12 border-b border-gray-200">
+            <a href="#plant-selector"
+                class="nav-link text-lg font-medium text-gray-500 hover:text-[#2F4F4F] py-4 px-6">🌿 推荐植物</a>
+            <a href="#plant-comparison"
+                class="nav-link text-lg font-medium text-gray-500 hover:text-[#2F4F4F] py-4 px-6">📊 性能对比</a>
+            <a href="#danger-zone" class="nav-link text-lg font-medium text-gray-500 hover:text-[#2F4F4F] py-4 px-6">⚠️
+                避雷清单</a>
+            <a href="#core-concepts"
+                class="nav-link text-lg font-medium text-gray-500 hover:text-[#2F4F4F] py-4 px-6">💡 核心知识</a>
+        </nav>
+
+        <main>
+            <section id="plant-selector" class="mb-16 scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#2F4F4F] mb-2">
+                        精选猫咪安全植物
+                    </h2>
+                    <p class="text-gray-600">
+                        点击下方的植物卡片，查看其详细信息、净化能力和养护特点。
+                    </p>
+                </div>
+
+                <div id="plant-details-display"
+                    class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8 sticky top-4 z-10 hidden"></div>
+
+                <div id="plant-cards-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                </div>
+            </section>
+
+            <section id="plant-comparison" class="mb-16 scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#2F4F4F] mb-2">
+                        植物性能对比图
+                    </h2>
+                    <p class="text-gray-600">
+                        直观比较不同植物在关键指标上的表现，帮助您做出最佳选择。分数越高代表能力越强。
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-4 md:p-8">
+                    <div class="chart-container">
+                        <canvas id="plantComparisonChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="danger-zone" class="mb-16 scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#D9534F] mb-2">
+                        ⚠️ 高危植物避雷清单
+                    </h2>
+                    <p class="text-gray-600">
+                        为了您猫咪的绝对安全，请务必避免在龟缸中使用以下对猫有毒的植物。
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center">
+                        <span class="text-3xl mr-4">💧</span>
+                        <div>
+                            <strong class="text-red-700">水浮莲 (Water Lettuce)</strong>
+                            <p class="text-sm text-red-600">
+                                含草酸钙，可致口腔刺激、呕吐。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center">
+                        <span class="text-3xl mr-4">🌷</span>
+                        <div>
+                            <strong class="text-red-700">真百合 (True Lilies)</strong>
+                            <p class="text-sm text-red-600">剧毒，可致急性肾衰竭，致命。</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center">
+                        <span class="text-3xl mr-4">🌿</span>
+                        <div>
+                            <strong class="text-red-700">绿萝 (Pothos)</strong>
+                            <p class="text-sm text-red-600">
+                                可致口腔灼烧、呕吐、吞咽困难。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center">
+                        <span class="text-3xl mr-4">🌾</span>
+                        <div>
+                            <strong class="text-red-700">文竹 (Asparagus Fern)</strong>
+                            <p class="text-sm text-red-600">剧毒，可致呕吐、腹泻、腹痛。</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center">
+                        <span class="text-3xl mr-4">🌴</span>
+                        <div>
+                            <strong class="text-red-700">苏铁 (Sago Palm)</strong>
+                            <p class="text-sm text-red-600">剧毒，可致肝损伤甚至死亡。</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center">
+                        <span class="text-3xl mr-4">🌸</span>
+                        <div>
+                            <strong class="text-red-700">风信子 (Hyacinth)</strong>
+                            <p class="text-sm text-red-600">全株有毒，尤其球茎。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 bg-amber-50 border-l-4 border-amber-400 text-amber-800 p-4 rounded-r-lg" role="alert">
+                    <p class="font-bold">重要安全提示</p>
+                    <p>
+                        根据美国爱护动物协会(ASPCA)的建议，即使被列为“无毒”的植物，如果猫咪大量摄入，也可能引起轻微的肠胃不适（如呕吐或腹泻）。请尽量将植物放置在猫咪不易接触的过滤器区域，并时刻观察您的宠物。
+                    </p>
+                </div>
+            </section>
+
+            <section id="core-concepts" class="scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#2F4F4F] mb-2">核心知识库</h2>
+                    <p class="text-gray-600">
+                        了解背后的科学原理，更好地构建您的生态过滤系统。
+                    </p>
+                </div>
+                <div class="space-y-4 max-w-4xl mx-auto">
+                    <div class="accordion-item bg-white rounded-lg shadow">
+                        <button
+                            class="accordion-header w-full text-left p-4 font-semibold text-lg text-[#2F4F4F] flex justify-between items-center hover:bg-gray-50">
+                            为什么选择挺水植物进行过滤？
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <div class="p-4 border-t border-gray-200 text-gray-700">
+                                <p>
+                                    挺水植物的根系浸在水中，叶片伸出水面，这种独特的生长方式使它们成为天然的生物过滤器。它们通过根系高效吸收水中的硝酸盐、磷酸盐等龟类产生的废物，从源头上抑制藻类爆发。同时，它们还能为水体补充氧气，为有益菌提供附着表面，构建一个更稳定、更健康的迷你生态系统，大大减少您的换水频率和维护工作。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item bg-white rounded-lg shadow">
+                        <button
+                            class="accordion-header w-full text-left p-4 font-semibold text-lg text-[#2F4F4F] flex justify-between items-center hover:bg-gray-50">
+                            植物选择的三大黄金标准
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                            <div class="p-4 border-t border-gray-200 text-gray-700">
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li>
+                                        <strong>强大的水质净化能力:</strong>
+                                        能高效吸收硝酸盐和磷酸盐，与藻类竞争营养，从根本上净化水质。
+                                    </li>
+                                    <li>
+                                        <strong>适合挺水生长:</strong>
+                                        根在水中，叶在水上，完美适应过滤槽、底缸等环境，易于整合到过滤系统中。
+                                    </li>
+                                    <li>
+                                        <strong>对猫咪绝对无毒:</strong>
+                                        这是不可妥协的底线。所有推荐植物都经过ASPCA（美国爱护动物协会）确认对猫安全。
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-200">
+            <p class="text-gray-500">
+                为您的多宠物家庭，打造一个和谐、健康、美丽的生态环境。
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const plantData = [
+                {
+                    id: 'anubias',
+                    name: '水榕',
+                    scientificName: 'Anubias spp.',
+                    icon: '🌿',
+                    purification: 8,
+                    growthSpeed: 2,
+                    turtleResistance: 9,
+                    description:
+                        '非常坚韧且低维护的植物，叶片厚实，能有效抵抗乌龟的啃食。生长缓慢，但净化水质稳定。',
+                    details: {
+                        净化能力: '能有效吸收硝酸盐和磷酸盐，并通过光合作用为水体增氧。',
+                        生长特性:
+                            '两栖植物，根茎可附着在石头或沉木上，非常适合在过滤器中挺水生长。',
+                        乌龟兼容性: '极佳。厚实的叶片不易被破坏，且对乌龟无毒。',
+                    },
+                },
+                {
+                    id: 'javafern',
+                    name: '爪哇蕨',
+                    scientificName: 'Microsorum pteropus',
+                    icon: '🍃',
+                    purification: 7,
+                    growthSpeed: 3,
+                    turtleResistance: 8,
+                    description:
+                        '一种坚韧且对猫咪无毒的蕨类植物，通过叶片直接吸收水中养分。',
+                    details: {
+                        净化能力: '通过叶片直接吸收水中营养，有效降低硝酸盐和磷酸盐。',
+                        生长特性:
+                            '根茎需附着于硬质表面，非种于底床。在潮湿的过滤器环境中也能挺水生长。',
+                        乌龟兼容性: '良好。坚韧的叶片多数乌龟不感兴趣，且对乌龟无毒。',
+                    },
+                },
+                {
+                    id: 'hornwort',
+                    name: '金鱼藻',
+                    scientificName: 'Ceratophyllum demersum',
+                    icon: '🌱',
+                    purification: 10,
+                    growthSpeed: 10,
+                    turtleResistance: 5,
+                    description:
+                        '生长极为迅速的“营养吸收海绵”，净化水质的王者，能有效抑制藻类。',
+                    details: {
+                        净化能力: '顶级。能快速大量吸收水中的氨、硝酸盐和磷酸盐。',
+                        生长特性:
+                            '可漂浮或简单固定。部分枝条伸出水面可利用空气中的二氧化碳，生长更快。',
+                        乌龟兼容性:
+                            '尚可。针状叶片可能不受欢迎，即使被啃食也能飞速长回来。',
+                    },
+                },
+                {
+                    id: 'amazonsword',
+                    name: '亚马逊剑',
+                    scientificName: 'Echinodorus amazonicus',
+                    icon: '🗡️',
+                    purification: 7,
+                    growthSpeed: 6,
+                    turtleResistance: 7,
+                    description: '经典的背景水草，根系发达，净化能力强，叶片宽大坚韧。',
+                    details: {
+                        净化能力: '通过强大的根系吸收底床和水中的过量营养。',
+                        生长特性:
+                            '需要一定底床空间，但也能在有基质的过滤槽中生长，叶片可伸出水面。',
+                        乌龟兼容性: '良好。宽大坚韧的叶片能抵抗多数乌龟的破坏。',
+                    },
+                },
+                {
+                    id: 'moneywort',
+                    name: '钱币草',
+                    scientificName: 'Bacopa monnieri',
+                    icon: '💰',
+                    purification: 8,
+                    growthSpeed: 8,
+                    turtleResistance: 4,
+                    description:
+                        '生长快速的茎类植物，非常适合挺水生长，是过滤槽的绝佳选择。',
+                    details: {
+                        净化能力: '生长快速，能有效吸收营养，与藻类竞争。',
+                        生长特性:
+                            '非常容易挺水生长，茎可以不断向水面以上延伸，充分利用空气。',
+                        乌龟兼容性:
+                            '一般。叶片柔软可能被啃食，但超强的恢复能力可以弥补。',
+                    },
+                },
+                {
+                    id: 'pennywort',
+                    name: '巴西水竹叶',
+                    scientificName: 'Hydrocotyle leucocephala',
+                    icon: '🍀',
+                    purification: 9,
+                    growthSpeed: 9,
+                    turtleResistance: 3,
+                    description: '生长迅速，形态多变，既可漂浮也可扎根，净化能力出众。',
+                    details: {
+                        净化能力: '生长极快，是吸收硝酸盐的好手。',
+                        生长特性:
+                            '可漂浮或扎根，叶片很轻松就能伸出水面，为水下提供遮蔽。',
+                        乌龟兼容性: '较差。叶片柔软，是乌龟喜欢的零食，但好在长得飞快。',
+                    },
+                },
+                {
+                    id: 'spiderplant',
+                    name: '吊兰',
+                    scientificName: 'Chlorophytum comosum',
+                    icon: '🕷️',
+                    purification: 6,
+                    growthSpeed: 5,
+                    turtleResistance: 6,
+                    description:
+                        '常见的无毒室内植物，在水培环境下同样是优秀的“营养海绵”。',
+                    details: {
+                        净化能力: '能有效吸收水中的氮化合物，净化水体。',
+                        生长特性:
+                            '完美适应水培。只需将根系浸入过滤器水中，叶片自然垂下。',
+                        乌龟兼容性: '尚可。建议放置在乌龟不易直接接触的过滤器高处。',
+                    },
+                },
+                {
+                    id: 'palms',
+                    name: '棕榈类',
+                    scientificName: 'Areca, Parlor, Ponytail',
+                    icon: '🌴',
+                    purification: 5,
+                    growthSpeed: 2,
+                    turtleResistance: 8,
+                    description:
+                        '散尾葵、袖珍椰子等对猫无毒的棕榈，可为过滤系统带来独特的热带景观。',
+                    details: {
+                        净化能力: '作为大型植物，长期来看有吸收大量营养的潜力。',
+                        生长特性:
+                            '适合根部潮湿的环境，可放置在有足够空间的底缸或大型过滤槽中。',
+                        乌龟兼容性: '良好。叶片通常较硬，乌龟啃食兴趣不大。',
+                    },
+                },
+            ]
+
+            const cardsContainer = document.getElementById('plant-cards-container')
+            const detailsDisplay = document.getElementById('plant-details-display')
+
+            plantData.forEach((plant) => {
+                const card = document.createElement('div')
+                card.className =
+                    'plant-card cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300 p-4 text-center'
+                card.dataset.plantId = plant.id
+                card.innerHTML = `
+                    <div class="text-5xl mb-2">${plant.icon}</div>
+                    <h3 class="font-bold text-lg text-[#2F4F4F]">${plant.name}</h3>
+                    <p class="text-sm text-gray-500">${plant.scientificName}</p>
+                `
+                cardsContainer.appendChild(card)
+            })
+
+            cardsContainer.addEventListener('click', (e) => {
+                const card = e.target.closest('.plant-card')
+                if (card) {
+                    const plantId = card.dataset.plantId
+                    const plant = plantData.find((p) => p.id === plantId)
+
+                    document
+                        .querySelectorAll('.plant-card')
+                        .forEach((c) => c.classList.remove('ring-2', 'ring-emerald-400'))
+                    card.classList.add('ring-2', 'ring-emerald-400')
+
+                    let detailsHtml = `
+                        <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+                            <div class="text-7xl">${plant.icon}</div>
+                            <div class="flex-grow">
+                                <h3 class="text-2xl font-bold text-[#2F4F4F]">${plant.name} <span class="text-lg font-normal text-gray-500">${plant.scientificName}</span></h3>
+                                <p class="text-gray-600 mt-1">${plant.description}</p>
+                            </div>
+                            <button id="close-details" class="text-gray-400 hover:text-gray-600">&times;</button>
+                        </div>
+                        <div class="mt-6 border-t border-gray-200 pt-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                    `
+                    for (const [key, value] of Object.entries(plant.details)) {
+                        detailsHtml += `
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">${key}</h4>
+                                <p class="text-gray-600">${value}</p>
+                            </div>
+                        `
+                    }
+                    detailsHtml += `</div>`
+
+                    detailsDisplay.innerHTML = detailsHtml
+                    detailsDisplay.classList.remove('hidden')
+
+                    detailsDisplay.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                    })
+
+                    document
+                        .getElementById('close-details')
+                        .addEventListener('click', () => {
+                            detailsDisplay.classList.add('hidden')
+                            document
+                                .querySelectorAll('.plant-card')
+                                .forEach((c) =>
+                                    c.classList.remove('ring-2', 'ring-emerald-400'),
+                                )
+                        })
+                }
+            })
+
+            const ctx = document
+                .getElementById('plantComparisonChart')
+                .getContext('2d')
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: plantData.map((p) => p.name),
+                    datasets: [
+                        {
+                            label: '水质净化能力',
+                            data: plantData.map((p) => p.purification),
+                            backgroundColor: '#68B0AB',
+                            borderColor: '#548C88',
+                            borderWidth: 1,
+                        },
+                        {
+                            label: '生长速度',
+                            data: plantData.map((p) => p.growthSpeed),
+                            backgroundColor: '#95C6B1',
+                            borderColor: '#7DAA92',
+                            borderWidth: 1,
+                        },
+                        {
+                            label: '抗乌龟破坏能力',
+                            data: plantData.map((p) => p.turtleResistance),
+                            backgroundColor: '#C2DDC8',
+                            borderColor: '#A6C2AA',
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 10,
+                            ticks: {
+                                stepSize: 1,
+                            },
+                        },
+                        y: {
+                            ticks: {
+                                autoSkip: false,
+                            },
+                        },
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '各项能力综合评分 (10分制)',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || ''
+                                    if (label) {
+                                        label += ': '
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += context.parsed.x + '分'
+                                    }
+                                    return label
+                                },
+                            },
+                        },
+                    },
+                },
+            })
+
+            document.querySelectorAll('.accordion-header').forEach((header) => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling
+                    const arrow = header.querySelector('span')
+
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null
+                        arrow.style.transform = 'rotate(0deg)'
+                    } else {
+                        document
+                            .querySelectorAll('.accordion-content')
+                            .forEach((c) => (c.style.maxHeight = null))
+                        document
+                            .querySelectorAll('.accordion-header span')
+                            .forEach((a) => (a.style.transform = 'rotate(0deg)'))
+                        content.style.maxHeight = content.scrollHeight + 'px'
+                        arrow.style.transform = 'rotate(180deg)'
+                    }
+                })
+            })
+
+            document.querySelectorAll('a.nav-link').forEach((anchor) => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault()
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth',
+                    })
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

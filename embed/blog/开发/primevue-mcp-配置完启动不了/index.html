@@ -1,0 +1,32 @@
+<!DOCTYPE html><script type="module" src="/_astro/BlogPostEmbedLayout.astro_astro_type_script_index_0_lang.D05zVpD0.js"></script> <html lang="zh-CN" class="no-scrollbar"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title data-pagefind-meta="title">PrimeVue MCP 配置完启动不了</title><!-- Open Graph / Facebook --><meta property="og:title" content="PrimeVue MCP 配置完启动不了"><meta property="og:type" content="website"><meta property="og:url" content="https://yangqiuyi.com/embed/blog/%E5%BC%80%E5%8F%91/primevue-mcp-%E9%85%8D%E7%BD%AE%E5%AE%8C%E5%90%AF%E5%8A%A8%E4%B8%8D%E4%BA%86/"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CLDwYp7M.js"></script><link rel="stylesheet" href="/_astro/_slug_.CW7yuJUQ.css"><script type="module" src="/_astro/page.BNYwb576.js"></script></head> <body class="dark:text-white max-w-prose mx-auto">  <div class="flex flex-col rounded-lg"> <header class="p-4 flex flex-col"> <p class="break-all text-lg md:text-xl font-bold"> PrimeVue MCP 配置完启动不了 </p> <p class="text-sm"> 杨秋逸 · 2026-07-03 </p> </header> <article class="prose max-sm:prose-sm dark:prose-invert text-inherit max-w-full py-4 px-4">  <h1 id="primevue-mcp-配置完启动不了"><a href="#primevue-mcp-配置完启动不了">PrimeVue MCP 配置完启动不了</a></h1>
+<p>按官方文档把 PrimeVue MCP 配到 opencode 里报错：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Error: Tool get_composable expected a Zod schema or ToolAnnotations,</span></span>
+<span class="line"><span>but received an unrecognized object</span></span>
+<span class="line"><span>    at McpServer.tool (node_modules/@modelcontextprotocol/sdk/dist/esm/server/mcp.js:688:27)</span></span>
+<span class="line"><span>    at F (node_modules/@primeuix/mcp/dist/index.js:232:4752)</span></span></code></pre>
+<h2 id="原因"><a href="#原因">原因</a></h2>
+<p><code>@primevue/mcp</code> → <code>@primeuix/mcp</code> → <code>@modelcontextprotocol/sdk</code></p>
+<p><code>@primeuix/mcp</code> 声明了对 SDK 的依赖 <code>^1.24.3</code>，npx 没有 lockfile，每次都拉 semver 范围内最新的。1.29.0 改了 <code>McpServer.tool()</code> 的入参类型，但 <code>@primeuix/mcp</code> 还在按旧签名传参。</p>
+<h2 id="修复"><a href="#修复">修复</a></h2>
+<p>用 <code>-p</code> 固定 SDK 版本，不让 npx 拉最新版：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#79b8ff">{</span></span>
+<span class="line"><span style="color:#79B8FF">	"mcp"</span><span style="color:#E1E4E8">: </span><span style="color:#ffab70">{</span></span>
+<span class="line"><span style="color:#79B8FF">		"primevue"</span><span style="color:#E1E4E8">: </span><span style="color:#b392f0">{</span></span>
+<span class="line"><span style="color:#79B8FF">			"type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"local"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">			"command"</span><span style="color:#E1E4E8">: </span><span style="color:#79b8ff">[</span></span>
+<span class="line"><span style="color:#9ECBFF">				"npx"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">				"-y"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">				"-p"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">				"@modelcontextprotocol/sdk@1.26.0"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">				"-p"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">				"@primevue/mcp@latest"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">				"primevue-mcp"</span></span>
+<span class="line"><span style="color:#E1E4E8">			</span><span style="color:#79b8ff">]</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">			"enabled"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">		</span><span style="color:#b392f0">}</span></span>
+<span class="line"><span style="color:#E1E4E8">	</span><span style="color:#ffab70">}</span></span>
+<span class="line"><span style="color:#79b8ff">}</span></span></code></pre>
+<h2 id="参考"><a href="#参考">参考</a></h2>
+<ul>
+<li><a href="https://github.com/primefaces/primevue/issues/8511#issuecomment-4171667294">https://github.com/primefaces/primevue/issues/8511#issuecomment-4171667294</a></li>
+</ul>  </article> </div> <div class="mt-8 p-2"> <script type="module" src="/_astro/Giscus.astro_astro_type_script_index_0_lang.PGnekRe2.js"></script> <giscus-widget repo="miaobuao/miaobuao.github.io" repoId="R_kgDOJONNeg" categoryId="DIC_kwDOJONNes4CVJhu" mapping="og:title" strict="0" reactionsEnabled="1" emitMetadata="0" inputPosition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy"></giscus-widget> </div><div class="h-16 sm:h-0"></div>  </body></html>
